@@ -25,7 +25,7 @@ import { courses } from "../data/courses";
                     {
                     courses.filter((course => course.isAvailable === true)).map((course) => (
                     <CourseCard courseTitle={course.courseTitle} cardText={course.cardText} imageFileName={course.imageFileName}
-                        isPaid={course.isPaid} level={course.level} slug={course.slug} color={course.color} />
+                        isPaid={course.isPaid} level={course.level} slug={course.slug} color={course.color}/>
                     ))
                     }
             

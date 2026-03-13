@@ -5,38 +5,43 @@ import { courses } from "../../data/courses";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import TopicCard from "../../components/TopicCard.astro";
+import { syllabus } from "../../content/syllabus";
+import { authors } from "../../data/authors";
+import AuthorChip from "../../components/AuthorChip.astro";
 
 export function getStaticPaths() {
   
-  return courses.map(({ slug, courseTitle,cardText,descriptionText,imageFileName,isPaid,isPopular,level,color,isAvailable,}) => {
+  return courses.map(({ slug, courseTitle,cardText,descriptionText,imageFileName,isPaid,isPopular,level,color,isAvailable, authorId}) => {
     return {
         params: { slug },
-        props: { courseTitle,descriptionText,imageFileName,level},
+        props: { courseTitle,descriptionText,imageFileName,level, authorId},
     };
   });
 }
 
-const {courseTitle,descriptionText,imageFileName,level} = Astro.props;
+const {courseTitle,descriptionText,imageFileName,level, authorId} = Astro.props;
 const {slug} = Astro.params;
-let allCodeArticles : CollectionEntry<"codeArticles">[] = await getCollection('codeArticles');
 
+let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseName.toLowerCase() === slug)
+let beginner :any[] = [];
+let intermediate :any[] = [];
+let advance :any[] = [];
 
-const filteredObjects = allCodeArticles.filter(obj => 
-obj.filePath?.includes(slug)
-);
-filteredObjects.sort((a: CollectionEntry<"codeArticles">, b: CollectionEntry<"codeArticles">) => new Date(a.data.updateDate).valueOf() - new Date(b.data.updateDate).valueOf());
+if(currentSyllabus.length > 0){
+    beginner = currentSyllabus[0].topics.filter((topic )=> 
+        topic.difficultyLevel === "Beginner"
+    )
+    intermediate = currentSyllabus[0].topics.filter((topic )=> 
+        topic.difficultyLevel === "Intermediate"
+    )
+    
+    advance = currentSyllabus[0].topics.filter((topic )=> 
+        topic.difficultyLevel === "Advanced"
+    )
+}
 
-// console.log(filteredObjects);
+let courseAuthor = authors.filter((author) => author.authorId === authorId)
 
-const beginner = filteredObjects.filter(obj => 
-    obj.data.level === 1
-)
-const intermediate = filteredObjects.filter(obj => 
-    obj.data.level === 2
-)
-const advance = filteredObjects.filter(obj => 
-    obj.data.level === 3
-)
 ---
 <style is:inline>
     
@@ -102,22 +107,18 @@ const advance = filteredObjects.filter(obj =>
             <div class="flex flex-col lg:flex-row items-center justify-between">
                 <div class="lg:w-2/3 animate-on-scroll">
                     <div class="flex items-center space-x-2 mb-4">
-                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm font-medium">• {filteredObjects.length} modules</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm font-medium">• {currentSyllabus.length > 0 && currentSyllabus[0].topics.length} modules</span>
                         <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">• {level}</span>
                     </div>
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">{courseTitle} Mastery Course</h1>
                     <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">{descriptionText}</p>
                     
                     <div class="flex items-center space-x-6 flex-wrap gap-3">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white dark:border-gray-800">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor" class="w-full h-full object-cover">
-                            </div>
-                            <div class="ml-3">
-                                <p class="font-medium">Alex Johnson</p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Senior Frontend Engineer</p>
-                            </div>
-                        </div>
+                        <AuthorChip 
+                            authorName = {courseAuthor[0].authorName}
+                            authorDesignation = {courseAuthor[0].authorDesignation}
+                            authorImage = {courseAuthor[0].authorImageFileName}
+                        /> 
                         <div class="flex items-center">
                             <div class="flex text-yellow-400 mr-2">
                                 <i class="fas fa-star"></i>
@@ -138,121 +139,139 @@ const advance = filteredObjects.filter(obj =>
         </div>
     </header>
 
-    <!-- Progress Bar Section -->
-    <section id="progress" class="py-10 px-6">
-        <div class="container mx-auto">
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 animate-on-scroll">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl font-bold">Your Progress</h2>
-                    <span id="progress-percentage" class="text-3xl font-bold gradient-text">0%</span>
-                </div>
-                <p class="text-gray-600 dark:text-gray-300 mb-6">Track your journey through the {courseTitle} course. Complete topics to increase your progress.</p>
-                
-                <div class="mb-4">
-                    <div class="flex justify-between text-sm mb-2">
-                        <span>Course Completion</span>
-                        <span id="completed-count">0 of {filteredObjects.length} topics</span>
+    {
+        currentSyllabus.length > 0 ?
+        <!-- Progress Bar Section -->
+        <section id="progress" class="py-10 px-6">
+            <div class="container mx-auto">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 animate-on-scroll">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold">Your Progress</h2>
+                        <span id="progress-percentage" class="text-3xl font-bold gradient-text">0%</span>
                     </div>
-                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
-                        <div id="progress-bar" class="progress-gradient h-4 rounded-full transition-all duration-700" style="width: 0%"></div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Track your journey through the {courseTitle} course. Complete topics to increase your progress.</p>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span>Course Completion</span>
+                            <span id="completed-count">0 of {currentSyllabus.length > 0 && currentSyllabus[0].topics.length} topics</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+                            <div id="progress-bar" class="progress-gradient h-4 rounded-full transition-all duration-700" style="width: 0%"></div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
-                        <p class="text-2xl font-bold gradient-text" id="beginner-completed">0</p>
-                        <p class="text-gray-600 dark:text-gray-300">Beginner Done</p>
-                    </div>
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
-                        <p class="text-2xl font-bold text-blue-600 dark:text-blue-400" id="intermediate-completed">0</p>
-                        <p class="text-gray-600 dark:text-gray-300">Intermediate Done</p>
-                    </div>
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
-                        <p class="text-2xl font-bold text-yellow-600 dark:text-yellow-400" id="advanced-completed">0</p>
-                        <p class="text-gray-600 dark:text-gray-300">Advanced Done</p>
-                    </div>
-                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
-                        <p class="text-2xl font-bold text-green-600 dark:text-green-400" id="total-hours">0</p>
-                        <p class="text-gray-600 dark:text-gray-300">Hours Completed</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
+                            <p class="text-2xl font-bold gradient-text" id="beginner-completed">0</p>
+                            <p class="text-gray-600 dark:text-gray-300">Beginner Done</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400" id="intermediate-completed">0</p>
+                            <p class="text-gray-600 dark:text-gray-300">Intermediate Done</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
+                            <p class="text-2xl font-bold text-yellow-600 dark:text-yellow-400" id="advanced-completed">0</p>
+                            <p class="text-gray-600 dark:text-gray-300">Advanced Done</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400" id="total-hours">0</p>
+                            <p class="text-gray-600 dark:text-gray-300">Hours Completed</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    
+        <!-- Course Topics -->
+        <section class="py-12 px-6 bg-gray-100/50 dark:bg-gray-800/50">
+            <div class="container mx-auto">
+                <!-- Beginner Section -->
+                <div class="mb-16 animate-on-scroll">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-seedling text-green-600 dark:text-green-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Beginner Level</h2>
+                            <p class="text-gray-600 dark:text-gray-300">Foundational concepts to get you started with JavaScript</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Topic Card Template - Will be generated by JS -->
+                    {
+                    (beginner.length > 0) &&
+                    beginner.map((topic)=>(
+                        <TopicCard courseName={slug} topicSlug={topic.slug} topicDuration={"Easy"} topicId={topic.slug} topicLevel={topic.difficultyLevel} topicTitle={topic.topicName}/>    
+                    ))
+                    }
+                    </div>
+                </div>
+                
+                <!-- Intermediate Section -->
+                <div class="mb-16 animate-on-scroll delay-200">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-blue-600 dark:text-blue-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Intermediate Level</h2>
+                            <p class="text-gray-600 dark:text-gray-300">Deep dive into core JavaScript concepts and patterns</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Topic Card Template - Will be generated by JS -->
+                    {
+                    (intermediate.length > 0) &&
+                    intermediate.map((topic)=>(
+                        <TopicCard courseName={slug} topicSlug={topic.slug} topicDuration={"Intermediate"} topicId={topic.slug} topicLevel={topic.difficultyLevel} topicTitle={topic.topicName}/>    
+                    ))
+                    }
+                    </div>
+                </div>
+                
+                <!-- Advanced Section -->
+                <div class="animate-on-scroll delay-300">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-rocket text-purple-600 dark:text-purple-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Advanced Level</h2>
+                            <p class="text-gray-600 dark:text-gray-300">Master advanced JavaScript patterns and modern features</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Topic Card Template - Will be generated by JS -->
+                    {
+                    (advance.length > 0) &&
+                    advance.map((topic)=>(
+                        <TopicCard courseName={slug} topicSlug={topic.slug} topicDuration={"Advance"} topicId={topic.slug} topicLevel={topic.difficultyLevel} topicTitle={topic.topicName}/>    
+                    ))
+                    }
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Course Topics -->
-    <section class="py-12 px-6 bg-gray-100/50 dark:bg-gray-800/50">
-        <div class="container mx-auto">
-            <!-- Beginner Section -->
-            <div class="mb-16 animate-on-scroll">
-                <div class="flex items-center mb-8">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-xl flex items-center justify-center mr-4">
-                        <i class="fas fa-seedling text-green-600 dark:text-green-400 text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-bold">Beginner Level</h2>
-                        <p class="text-gray-600 dark:text-gray-300">Foundational concepts to get you started with JavaScript</p>
-                    </div>
+        : <section class="py-12 px-6 bg-gray-100/50 dark:bg-gray-800/50">
+            <div class="flex items-center justify-center mb-8">
+                <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-xl flex items-center justify-center mr-4">
+                    <i class="fas fa-seedling text-green-600 dark:text-green-400 text-xl"></i>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Topic Card Template - Will be generated by JS -->
-                {
-                beginner.map((topic)=>(
-                    <TopicCard courseName={slug} topicSlug={topic.data.slug} topicDuration={"Easy"} topicId={topic.id} topicLevel={topic.data.level} topicTitle={topic.data.title}/>    
-                ))
-                }
+                <div>
+                    <h2 class="text-3xl font-bold">Coming Soon</h2>
+                    <p class="text-gray-600 dark:text-gray-300">This course is in the making. Stay Tuned</p>
                 </div>
             </div>
-            
-            <!-- Intermediate Section -->
-            <div class="mb-16 animate-on-scroll delay-200">
-                <div class="flex items-center mb-8">
-                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center mr-4">
-                        <i class="fas fa-chart-line text-blue-600 dark:text-blue-400 text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-bold">Intermediate Level</h2>
-                        <p class="text-gray-600 dark:text-gray-300">Deep dive into core JavaScript concepts and patterns</p>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Topic Card Template - Will be generated by JS -->
-                {
-                intermediate.map((topic)=>(
-                    <TopicCard courseName={slug} topicSlug={topic.data.slug} topicDuration={"Intermediate"} topicId={topic.id} topicLevel={topic.data.level} topicTitle={topic.data.title}/>    
-                ))
-                }
-                </div>
-            </div>
-            
-            <!-- Advanced Section -->
-            <div class="animate-on-scroll delay-300">
-                <div class="flex items-center mb-8">
-                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center mr-4">
-                        <i class="fas fa-rocket text-purple-600 dark:text-purple-400 text-xl"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-bold">Advanced Level</h2>
-                        <p class="text-gray-600 dark:text-gray-300">Master advanced JavaScript patterns and modern features</p>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Topic Card Template - Will be generated by JS -->
-                {
-                advance.map((topic)=>(
-                    <TopicCard courseName={slug} topicSlug={topic.data.slug} topicDuration={"Advance"} topicId={topic.id} topicLevel={topic.data.level} topicTitle={topic.data.title}/>    
-                ))
-                }
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    }
 
     <!-- Resources Section -->
-    <section id="resources" class="py-16 px-6">
+    <section id="resources" class="py-16 px-6 hidden">
         <div class="container mx-auto">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Course <span class="gradient-text">Resources</span></h2>

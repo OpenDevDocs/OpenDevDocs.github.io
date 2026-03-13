@@ -9,7 +9,8 @@ export const courses = [
     "level": "Frontend",
     "slug": "angular",
     "color": "#DD0031",
-    "isAvailable" : true
+    "isAvailable" : true,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Astro",
@@ -21,7 +22,8 @@ export const courses = [
     "level": "Beginner",
     "slug": "astro",
     "color": "#FF5D01",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Avalonia",
@@ -33,7 +35,8 @@ export const courses = [
     "level": "Intermediate",
     "slug": "avalonia",
     "color": "#68217A",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Azure",
@@ -45,7 +48,8 @@ export const courses = [
     "level": "Advanced",
     "slug": "azure",
     "color": "#0078D4",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "C Sharp",
@@ -57,7 +61,8 @@ export const courses = [
     "level": "Backend",
     "slug": "c-sharp",
     "color": "#239120",
-    "isAvailable" : true
+    "isAvailable" : true,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "DotNet MVC",
@@ -69,7 +74,8 @@ export const courses = [
     "level": "Frontend & Backend",
     "slug": "dotnet-mvc",
     "color": "#512BD4",
-    "isAvailable" : true
+    "isAvailable" : true,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "DotNet Web API",
@@ -81,7 +87,8 @@ export const courses = [
     "level": "API Development",
     "slug": "dotnet-webapi",
     "color": "#512BD4",
-    "isAvailable" : true
+    "isAvailable" : true,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Electron JS",
@@ -93,7 +100,8 @@ export const courses = [
     "level": "Intermediate",
     "slug": "electronjs",
     "color": "#47848F",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Express JS",
@@ -105,7 +113,8 @@ export const courses = [
     "level": "Intermediate",
     "slug": "expressjs",
     "color": "#000000",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "JavaScript",
@@ -117,7 +126,8 @@ export const courses = [
     "level": "Frontend",
     "slug": "javascript",
     "color": "#F7DF1E",
-    "isAvailable" : true
+    "isAvailable" : true,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Mongo DB",
@@ -129,7 +139,8 @@ export const courses = [
     "level": "Intermediate",
     "slug": "mongodb",
     "color": "#47A248",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Next JS",
@@ -141,7 +152,8 @@ export const courses = [
     "level": "Intermediate",
     "slug": "nextjs",
     "color": "#000000",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Node JS",
@@ -153,7 +165,8 @@ export const courses = [
     "level": "Intermediate",
     "slug": "nodejs",
     "color": "#339933",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "PostMan",
@@ -165,7 +178,8 @@ export const courses = [
     "level": "Beginner",
     "slug": "postman",
     "color": "#FF6C37",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Python",
@@ -177,7 +191,8 @@ export const courses = [
     "level": "Beginner",
     "slug": "python",
     "color": "#3776AB",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "React",
@@ -189,7 +204,8 @@ export const courses = [
     "level": "Frontend",
     "slug": "react",
     "color": "#61DAFB",
-    "isAvailable" : true
+    "isAvailable" : true,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "SQL",
@@ -201,7 +217,8 @@ export const courses = [
     "level": "Beginner",
     "slug": "sql",
     "color": "#00758F",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   },
   {
     "courseTitle": "Supabase",
@@ -213,6 +230,7 @@ export const courses = [
     "level": "Intermediate",
     "slug": "supabase",
     "color": "#3ECF8E",
-    "isAvailable" : false
+    "isAvailable" : false,
+    "authorId" : "bishal-biswas"
   }
 ]

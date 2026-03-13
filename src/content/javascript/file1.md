@@ -1,7 +1,7 @@
 ---
 publishDate : 2025-05-24T08:30
 title: 1 Article
-slug : javascript-basics-Syntax
+slug : what-is-javascript-history-setup
 metadescription : Some Text
 featuredImage : image1.png
 updateDate : 2025-12-01T08:30

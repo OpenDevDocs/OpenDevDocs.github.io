@@ -4,14 +4,22 @@ interface Props {
     topicTitle : string,
     topicSlug : string,
     topicDuration : string,
-    topicLevel : number,
+    topicLevel : string,
     courseName : string,
 }
 
 const {topicId, topicTitle, topicSlug, topicDuration, topicLevel, courseName} = Astro.props;
 
 const levelColors = ['green','blue','purple'];
-let color = levelColors[topicLevel-1];
+function getDifficultyLevelCounter(level : string){
+    let counter = 0
+    level == "Intermediate" 
+    ? counter = 1
+    : counter = 2
+
+    return counter
+}
+let color = levelColors[getDifficultyLevelCounter(topicLevel)];
 ---
 <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover animate-on-scroll delay-200 visible">
     

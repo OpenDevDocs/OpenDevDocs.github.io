@@ -8,8 +8,10 @@ interface Props {
     slug: string,
     color: string,
 }
+import { syllabus } from "../content/syllabus";
 
 const {courseTitle, cardText, imageFileName, isPaid, level, slug, color} = Astro.props;
+let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseName.toLowerCase() === courseTitle.toLowerCase())
 ---
 
 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden card-hover animate-on-scroll delay-100">
@@ -32,7 +34,7 @@ const {courseTitle, cardText, imageFileName, isPaid, level, slug, color} = Astro
             </div>
             <div class="flex items-center">
                 <i class="fas fa-signal text-purple-500 mr-2"></i>
-                <span class="text-sm">{8} modules</span>
+                <span class="text-sm">{currentSyllabus.length > 0 && currentSyllabus[0].topics.length || 0} modules</span>
             </div>
         </div>
     </div>

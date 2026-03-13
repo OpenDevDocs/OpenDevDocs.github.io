@@ -1,7 +1,39 @@
 ---
 
 ---
+<style is:inline>
+    .scroll-to-top {
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(100px) scale(0.8);
+        pointer-events: none;
+    }
+    
+    .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) scale(1);
+        pointer-events: auto;
+    }
 
+    .scroll-to-top:hover {
+        transform: translateX(0) scale(1.1);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .scroll-to-top:active {
+        transform: translateX(0) scale(0.95);
+    }
+
+    /* Progress ring animation */
+    .progress-ring {
+        transition: stroke-dashoffset 0.1s linear;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+    }
+</style>
 <!-- Footer -->
 <footer class="bg-gray-900 text-gray-300 py-12 px-6">
     <div class="container mx-auto">
@@ -67,3 +99,148 @@
         </div>
     </div>
 </footer>
+
+<!-- Scroll to Top Button -->
+<button 
+    id="scrollToTopBtn" 
+    class="scroll-to-top gradient-bg fixed bottom-8 right-8 z-50 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group"
+    aria-label="Scroll to top"
+>
+    <!-- Progress ring SVG -->
+    <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+        <circle
+            id="progressRing"
+            class="text-white/30"
+            stroke-width="4"
+            stroke="currentColor"
+            fill="transparent"
+            r="42"
+            cx="50"
+            cy="50"
+        />
+        <circle
+            id="progressRingFill"
+            class="text-white progress-ring"
+            stroke-width="4"
+            stroke="currentColor"
+            fill="transparent"
+            r="42"
+            cx="50"
+            cy="50"
+            stroke-dasharray="263.89"
+            stroke-dashoffset="263.89"
+        />
+    </svg>
+    
+    <!-- Arrow icon -->
+    <svg class="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</button>
+
+<script is:inline>
+    // DOM Elements
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+    const progressRingFill = document.getElementById('progressRingFill');
+    
+    // Configuration
+    const SCROLL_THRESHOLD = 300; // Show button after scrolling 300px
+    const progressRingRadius = 42;
+    const progressRingCircumference = 2 * Math.PI * progressRingRadius;
+
+    // Set initial progress ring dashoffset
+    progressRingFill.style.strokeDasharray = progressRingCircumference;
+
+    // Function to calculate scroll percentage
+    function getScrollPercentage() {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        return (winScroll / height) * 100;
+    }
+
+    // Function to update progress ring
+    function updateProgressRing(percentage) {
+        const offset = progressRingCircumference - (percentage / 100 * progressRingCircumference);
+        progressRingFill.style.strokeDashoffset = offset;
+    }
+
+    // Function to toggle button visibility
+    function toggleScrollButton() {
+        const scrolled = document.documentElement.scrollTop;
+        
+        // Update progress bar and percentage
+        const percentage = getScrollPercentage();
+        
+        // Update progress ring
+        updateProgressRing(percentage);
+        
+        // Show/hide button based on scroll position
+        if (scrolled > SCROLL_THRESHOLD) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    }
+
+    // Smooth scroll to top function
+    function scrollToTop() {
+        // Smooth scroll with behavior
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        // Button click animation
+        scrollBtn.classList.add('scale-110');
+        setTimeout(() => {
+            scrollBtn.classList.remove('scale-110');
+        }, 200);
+    }
+
+    // Debounce function for performance
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', debounce(toggleScrollButton, 10));
+    window.addEventListener('resize', debounce(toggleScrollButton, 100));
+    scrollBtn.addEventListener('click', scrollToTop);
+
+    // Check initial scroll position on page load
+    document.addEventListener('DOMContentLoaded', toggleScrollButton);
+
+    // Optional: Add keyboard support
+    document.addEventListener('keydown', (e) => {
+        // Ctrl + Home to scroll to top
+        if (e.ctrlKey && e.key === 'Home') {
+            e.preventDefault();
+            scrollToTop();
+        }
+    });
+
+    // Optional: Show button on hover of bottom area
+    let hoverTimeout;
+    document.addEventListener('mousemove', (e) => {
+        // If mouse is near bottom of page, show button
+        if (window.innerHeight - e.clientY < 50 && document.documentElement.scrollTop > SCROLL_THRESHOLD) {
+            clearTimeout(hoverTimeout);
+            scrollBtn.classList.add('visible');
+        } else {
+            // Hide after delay if mouse leaves area
+            hoverTimeout = setTimeout(() => {
+                if (document.documentElement.scrollTop <= SCROLL_THRESHOLD) {
+                    scrollBtn.classList.remove('visible');
+                }
+            }, 1000);
+        }
+    });
+</script>

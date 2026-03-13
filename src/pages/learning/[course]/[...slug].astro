@@ -135,9 +135,13 @@ pageType='article'
             <!-- Main Content Area -->
             <div class="flex-1">
                 <!-- Split Layout Container -->
-                <div id="split-container" class="split-container flex flex-col lg:flex-row lg:gap-0 gap-4 lg:max-h-[calc(100vh-5rem)]">
-                    <section class="w-full lg:w-1/2 lg:p-12 overflow-y-auto">
-                        <div class="max-w-2xl mx-auto">
+                <div id="split-container" class="split-container flex flex-col lg:flex-row lg:gap-0 gap-4" class:list={[
+                    article.rendered?.html.split(`<code id="code-content"`)[`1`]?.length ? "lg:max-h-[calc(100vh-5rem)]" : ""
+                ]}>
+                    <section class="w-full lg:p-12 overflow-y-auto" class:list={[
+                        article.rendered?.html.split(`<code id="code-content"`)[`1`]?.length ? "lg:w-1/2" : "lg:w-full"
+                    ]}>
+                        <div class="mx-auto">
                             <span class="text-blue-600 font-semibold text-sm uppercase tracking-widest">
                                 {article.data.level == 1 && "Beginner"}
                                 {article.data.level == 2 && "Intermediate"}
@@ -153,31 +157,31 @@ pageType='article'
                         </div>
                     </section>
 
-                    <section class="rounded-xl w-full lg:w-1/2 bg-slate-950 p-6 lg:p-12 sticky top-14 overflow-hidden">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex gap-2">
-                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                                <span class="text-xs text-slate-500 font-mono italic">script.js</span>
-                            </div>
-                            <div>
-                                <button id="copy-code"
-                                    class="cursor-pointer copy-btn px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                                    <i class="far fa-copy mr-1"></i> Copy
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="h-full overflow-y-auto pb-20">
-                        {
+                    {
                             article.rendered?.html.split(`<code id="code-content"`)[`1`]?.length &&
-                            <pre class="rounded-xl !bg-transparent !m-0" set:html={`<code id="code-content"` + article.rendered?.html.split(`<code id="code-content"`)[`1`]}>
-                                <!-- Preview Code will be  -->
-                            </pre>
-                        }
-                        </div>
-                    </section>
+                            <section class="rounded-xl w-full lg:w-1/2 bg-slate-950 p-6 lg:p-12 sticky top-14 overflow-hidden">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex gap-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                        <span class="text-xs text-slate-500 font-mono italic">script.js</span>
+                                    </div>
+                                    <div>
+                                        <button id="copy-code"
+                                            class="cursor-pointer copy-btn px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                            <i class="far fa-copy mr-1"></i> Copy
+                                        </button>
+                                    </div>
+                                </div>
+        
+                                <div class="h-full overflow-y-auto pb-20">
+                                    <pre class="rounded-xl !bg-transparent !m-0" set:html={`<code id="code-content"` + article.rendered?.html.split(`<code id="code-content"`)[`1`]}>
+                                        <!-- Preview Code will be  -->
+                                    </pre>
+                                </div>
+                            </section>
+                    }
                 </div>
 
                 <!-- Next/Previous Navigation -->
