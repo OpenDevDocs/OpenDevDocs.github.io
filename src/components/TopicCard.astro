@@ -13,7 +13,10 @@ const {topicId, topicTitle, topicSlug, topicDuration, topicLevel, courseName} = 
 const levelColors = ['green','blue','purple'];
 function getDifficultyLevelCounter(level : string){
     let counter = 0
-    level == "Intermediate" 
+
+    level == "Beginner" 
+    ? counter = 0
+    : level == "Intermediate" 
     ? counter = 1
     : counter = 2
 

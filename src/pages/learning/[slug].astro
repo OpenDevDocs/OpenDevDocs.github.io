@@ -154,7 +154,10 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                     <div class="mb-4">
                         <div class="flex justify-between text-sm mb-2">
                             <span>Course Completion</span>
-                            <span id="completed-count">0 of {currentSyllabus.length > 0 && currentSyllabus[0].topics.length} topics</span>
+                            <span>
+                                <span id="completed-count">0</span>
+                                 of {currentSyllabus.length > 0 && currentSyllabus[0].topics.length} topics
+                            </span>
                         </div>
                         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
                             <div id="progress-bar" class="progress-gradient h-4 rounded-full transition-all duration-700" style="width: 0%"></div>
@@ -163,15 +166,15 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                     
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                         <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
-                            <p class="text-2xl font-bold gradient-text" id="beginner-completed">0</p>
+                            <p class="text-2xl font-bold gradient-text" id="beginner-completed"><span id="beginnerCounter">0</span>/{beginner.length}</p>
                             <p class="text-gray-600 dark:text-gray-300">Beginner Done</p>
                         </div>
                         <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
-                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400" id="intermediate-completed">0</p>
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400" id="intermediate-completed"><span id="intermediateCounter">0</span>/{intermediate.length}</p>
                             <p class="text-gray-600 dark:text-gray-300">Intermediate Done</p>
                         </div>
                         <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
-                            <p class="text-2xl font-bold text-yellow-600 dark:text-yellow-400" id="advanced-completed">0</p>
+                            <p class="text-2xl font-bold text-yellow-600 dark:text-yellow-400" id="advanced-completed"><span id="advanceCounter">0</span>/{advance.length}</p>
                             <p class="text-gray-600 dark:text-gray-300">Advanced Done</p>
                         </div>
                         <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
@@ -372,3 +375,108 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
         </div>
     </section>
 </MainLayout>
+
+<script is:inline define:vars={{courseTitle , currentSyllabus : currentSyllabus[0] }}>
+    
+    let allTopicCheckBox = document.querySelectorAll(".topic-checkbox");
+    let savedCompletionProgress = [];
+
+    savedCompletionProgress = JSON.parse(localStorage.getItem("completionProgress"));
+    
+    if(!savedCompletionProgress) 
+        savedCompletionProgress = [];
+
+    // console.log(savedCompletionProgress);
+
+    if(savedCompletionProgress.length == 0){
+        // Syllabus From Server
+        currentSyllabus.topics.forEach(topic => {
+            topic.isComplete = false
+        });
+        
+        savedCompletionProgress.push(currentSyllabus);
+    }
+    
+    if (!savedCompletionProgress.some(courseSyllabus => courseSyllabus.courseName === currentSyllabus.courseName)) {
+        savedCompletionProgress.push(currentSyllabus);
+    }
+    
+    localStorage.setItem("completionProgress", JSON.stringify(savedCompletionProgress));
+    updateTopicCompletion();
+    updateProgressStats();
+
+    // Handling Click of the topic Checkbox
+    allTopicCheckBox.forEach(TopicCheckBox => {
+        TopicCheckBox.addEventListener("click", ()=>{
+
+            savedCompletionProgress.forEach(course => {
+                if(course.courseName === courseTitle){
+                    course.topics.forEach(topic => {
+                        if(TopicCheckBox.dataset.id === topic.slug){
+                            if(TopicCheckBox.checked)
+                                topic.isComplete = true;
+                            else
+                                topic.isComplete = false;
+                        }
+                    });
+                }
+            });
+            
+            localStorage.setItem("completionProgress", JSON.stringify(savedCompletionProgress));
+            updateProgressStats();
+        })
+    });
+
+    function updateTopicCompletion() {
+        savedCompletionProgress.forEach(course => {
+            if(course.courseName === courseTitle){
+                course.topics.forEach(topic => {
+                    if(topic.isComplete === true){
+                        
+                        allTopicCheckBox.forEach(TopicCheckBox => {
+                            if(TopicCheckBox.dataset.id === topic.slug){
+                                TopicCheckBox.checked = true;
+                            }
+                        });
+                    
+                    }
+                });
+            }
+        });
+    }
+
+    function updateProgressStats(){
+        
+        let beginnerCounter = 0;
+        let intermediateCounter = 0;
+        let advanceCounter = 0;
+
+        savedCompletionProgress.forEach(course => {
+            if(course.courseName === courseTitle){
+                course.topics.forEach(topic => {
+                    if(topic.isComplete == true){
+                        if(topic.difficultyLevel == "Beginner")
+                            beginnerCounter++;
+                        if(topic.difficultyLevel == "Intermediate")
+                            intermediateCounter++;
+                        if(topic.difficultyLevel == "Advance")
+                            advanceCounter++;
+                    }
+
+                    document.getElementById("beginnerCounter").textContent = beginnerCounter;
+                    document.getElementById("intermediateCounter").textContent = intermediateCounter;
+                    document.getElementById("advanceCounter").textContent = advanceCounter;
+                });
+            }
+        });
+
+        let totalCompletion = beginnerCounter + intermediateCounter + advanceCounter;
+        document.getElementById("completed-count").textContent = totalCompletion;
+
+        let thisCourse = savedCompletionProgress.filter((course) => course.courseName === courseTitle)[0];
+
+        document.getElementById("progress-percentage").textContent = ((totalCompletion/thisCourse.topics.length) * 100).toFixed(1).toString() + "%";
+        document.getElementById("progress-bar").style.width = ((totalCompletion/thisCourse.topics.length) * 100).toFixed(1).toString() + "%";
+    }
+
+</script>

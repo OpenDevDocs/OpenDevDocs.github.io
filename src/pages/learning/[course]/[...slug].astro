@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 const {article} = Astro.props;
-const {course} = Astro.params;
+const {course, slug} = Astro.params;
 const courseData = courses.find(obj => obj.slug === course);
 let authorData :any[] = [];
 article.data.author.map((articleAuthors)=>{
@@ -261,9 +261,10 @@ pageType='article'
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
 
-    <script is:inline>
+    <script is:inline define:vars={{courseTitle: courseData?.courseTitle, slug : slug}}>
         // Copy Code Button
         const copyButton = document.getElementById('copy-code');
+        if(copyButton)
         copyButton.addEventListener('click', function() {
             const codeContent = document.getElementById('code-content');
             const code = codeContent.textContent;
@@ -294,5 +295,22 @@ pageType='article'
                 animateOnScroll();
             }, 100);
         });
+
+        // Mark as Complete for Topic
+        let savedCompletionProgress = JSON.parse(localStorage.getItem("completionProgress"));;
+        document.getElementById("mark-complete").addEventListener("click", ()=>{
+            savedCompletionProgress.forEach(course => {
+                if(course.courseName === courseTitle){
+                    debugger
+                    course.topics.forEach(topic => {
+                        if(topic.slug === slug){
+                            topic.isComplete = true;
+                        }
+                    });
+                }
+            });
+            
+            localStorage.setItem("completionProgress", JSON.stringify(savedCompletionProgress));
+        })
     </script>
 </MainLayout>

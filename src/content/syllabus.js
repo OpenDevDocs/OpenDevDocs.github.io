@@ -269,5 +269,355 @@ export let syllabus = [
                 "difficultyLevel": "Advanced"
             }
         ]
+    },
+    {
+        "courseName": "React",
+        "topics": [
+            {
+                "topicName": "JavaScript before React - Prerequisite",
+                "slug": "javascript-before-react",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "NPM (Node Package Manager) - Prerequisite",
+                "slug": "node-package-manager-npm",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "What is React? - Introduction and Setup",
+                "slug": "what-is-react-introduction-and-setup",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Create React App vs Vite",
+                "slug": "create-react-app-vs-vite",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Project Structure and Files",
+                "slug": "project-structure-and-files",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "JSX Syntax and Expressions",
+                "slug": "jsx-syntax-and-expressions",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Rendering Elements",
+                "slug": "rendering-elements",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Components - Functional Components",
+                "slug": "components-functional-components",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Props and Prop Types",
+                "slug": "props-and-prop-types",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "State and useState Hook",
+                "slug": "state-and-usestate-hook",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Handling Events",
+                "slug": "handling-events",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Conditional Rendering",
+                "slug": "conditional-rendering",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Lists and Keys",
+                "slug": "lists-and-keys",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Forms and Controlled Components",
+                "slug": "forms-and-controlled-components",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Styling in React (CSS, Modules, Inline)",
+                "slug": "styling-in-react-css-modules-inline",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Fragments",
+                "slug": "fragments",
+                "difficultyLevel": "Beginner"
+            },
+            {
+                "topicName": "Lifecycle Methods vs useEffect Hook",
+                "slug": "lifecycle-methods-vs-useeffect-hook",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "useEffect - Dependencies and Cleanup",
+                "slug": "useeffect-dependencies-and-cleanup",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "useRef and DOM Refs",
+                "slug": "useref-and-dom-refs",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "useCallback Hook",
+                "slug": "usecallback-hook",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "useMemo Hook",
+                "slug": "usememo-hook",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "useReducer Hook",
+                "slug": "usereducer-hook",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "useContext Hook and Context API",
+                "slug": "usecontext-hook-and-context-api",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Custom Hooks",
+                "slug": "custom-hooks",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "React Router - Setup and Basics",
+                "slug": "react-router-setup-and-basics",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "React Router - Nested Routes and Layouts",
+                "slug": "react-router-nested-routes-and-layouts",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "React Router - Navigation and Hooks",
+                "slug": "react-router-navigation-and-hooks",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "State Management with Context API",
+                "slug": "state-management-with-context-api",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Prop Drilling and Component Composition",
+                "slug": "prop-drilling-and-component-composition",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Lifting State Up",
+                "slug": "lifting-state-up",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Forms with React Hook Form",
+                "slug": "forms-with-react-hook-form",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Form Validation (Yup, Zod)",
+                "slug": "form-validation-yup-zod",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Data Fetching with Fetch API",
+                "slug": "data-fetching-with-fetch-api",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Data Fetching with Axios",
+                "slug": "data-fetching-with-axios",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Loading and Error States",
+                "slug": "loading-and-error-states",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Class Components (Legacy)",
+                "slug": "class-components-legacy",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Error Boundaries",
+                "slug": "error-boundaries",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Portals",
+                "slug": "portals",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Higher-Order Components (HOC)",
+                "slug": "higher-order-components-hoc",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Render Props Pattern",
+                "slug": "render-props-pattern",
+                "difficultyLevel": "Intermediate"
+            },
+            {
+                "topicName": "Redux - Introduction and Setup",
+                "slug": "redux-introduction-and-setup",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Redux - Actions, Reducers, Store",
+                "slug": "redux-actions-reducers-store",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Redux Toolkit (RTK)",
+                "slug": "redux-toolkit-rtk",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Redux Thunk and Async Actions",
+                "slug": "redux-thunk-and-async-actions",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Redux Saga",
+                "slug": "redux-saga",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Zustand State Management",
+                "slug": "zustand-state-management",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "TanStack Query (React Query)",
+                "slug": "tanstack-query-react-query",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Server State Management",
+                "slug": "server-state-management",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Next.js - Introduction and Setup",
+                "slug": "nextjs-introduction-and-setup",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Next.js - Pages and Routing",
+                "slug": "nextjs-pages-and-routing",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Next.js - SSR, SSG, ISR",
+                "slug": "nextjs-ssr-ssg-isr",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Next.js - API Routes",
+                "slug": "nextjs-api-routes",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Next.js - App Router",
+                "slug": "nextjs-app-router",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "React Performance Optimization",
+                "slug": "react-performance-optimization",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Code Splitting and Lazy Loading",
+                "slug": "code-splitting-and-lazy-loading",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "React DevTools and Profiling",
+                "slug": "react-devtools-and-profiling",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Testing React with Jest and React Testing Library",
+                "slug": "testing-react-with-jest-and-react-testing-library",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "End-to-End Testing with Cypress",
+                "slug": "end-to-end-testing-with-cypress",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "TypeScript with React",
+                "slug": "typescript-with-react",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Tailwind CSS Integration",
+                "slug": "tailwind-css-integration",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Component Libraries (Material-UI, Chakra UI)",
+                "slug": "component-libraries-material-ui-chakra-ui",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Authentication and Authorization",
+                "slug": "authentication-and-authorization",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "JWT and Session Management",
+                "slug": "jwt-and-session-management",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "WebSockets and Real-time Features",
+                "slug": "websockets-and-real-time-features",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "React Native Fundamentals",
+                "slug": "react-native-fundamentals",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Deployment and CI/CD",
+                "slug": "deployment-and-cicd",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Security Best Practices",
+                "slug": "security-best-practices",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "Accessibility (a11y) in React",
+                "slug": "accessibility-a11y-in-react",
+                "difficultyLevel": "Advanced"
+            },
+            {
+                "topicName": "SEO Optimization with React",
+                "slug": "seo-optimization-with-react",
+                "difficultyLevel": "Advanced"
+            }
+        ]
     }
 ]
