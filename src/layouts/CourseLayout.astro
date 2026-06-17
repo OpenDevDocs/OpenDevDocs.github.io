@@ -12,10 +12,12 @@ interface Props {
     pageType ?: string,
     isFullWidth ?: boolean,
     courseData : any,
-    courseName : string
+    courseName : string,
+    courseImage : string
+    courseSlug : string
 }
 
-const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWidth = true,  description, seoImagePath, courseData, courseName} = Astro.props;
+const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWidth = true,  description, seoImagePath, courseData, courseName, courseSlug, courseImage} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -133,7 +135,7 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWid
         }
 
         .dropdown-submenu.open {
-            max-height: 550px;
+            max-height: 100vh;
         }
 
         .topic-toggle .fa-chevron-down {
@@ -163,13 +165,13 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWid
 </Head>
 <body class="theme-transition bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
     <div class="flex flex-col min-h-screen">
-        <Topic_Navbar />
+        <Topic_Navbar courseTitle={courseName} {courseImage} {courseSlug}/>
         <section class="main flex">
 
-            <TopicSideBar {courseData} {courseName}/>
+            <TopicSideBar {courseData} {courseName} {courseSlug}/>
             
             <!-- Overlay + Sidebar logic: for desktop sidebar is always visible, for mobile we control -->
-            <div class="flex flex-1 relative">
+            <div class="flex flex-1 relative w-full">
                 <!-- Desktop sidebar duplicate visibility (actual aside above works for both) but the aside has same classes, it's visible on lg+. However we want the aside to be independent: we keep it, but on mobile hidden via transform, on lg visible. Fine. Also we need main content shift -->
                 <main class="flex-1 overflow-hidden px-4 sm:px-6 lg:px-8 py-6 md:py-8 w-full">
                 

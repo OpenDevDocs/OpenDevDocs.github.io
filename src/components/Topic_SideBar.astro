@@ -2,9 +2,10 @@
 interface Props {
     courseData : any,
     courseName : string
+    courseSlug : string
 }
 
-const {courseData, courseName} = Astro.props;
+const {courseData, courseName, courseSlug} = Astro.props;
 let beginner :any[] = [];
 let intermediate :any[] = [];
 let advance :any[] = [];
@@ -63,30 +64,12 @@ topic.difficultyLevel === "Advanced"
                         {
                         (beginner.length > 0) &&
                         beginner.map((topic)=>(
-                            <a href={`/CodeMastery/learning/${courseName}/${topic.slug}`}
+                            <a href={`/CodeMastery/courses/${courseSlug}/${topic.slug}`}
                             class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                                 class="fas fa-play-circle w-4 mr-2 text-emerald-500"></i>{topic.topicName}</a>
                             ))
                         }
                         
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-code w-4 mr-2 text-emerald-500"></i>Variables &amp; Data
-                            Types</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-grip-lines w-4 mr-2 text-emerald-500"></i>Operators &amp;
-                            Conditionals</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-redo-alt w-4 mr-2 text-emerald-500"></i>Loops &amp;
-                            Iteration</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-cube w-4 mr-2 text-emerald-500"></i>Functions Basics</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-list w-4 mr-2 text-emerald-500"></i>Arrays &amp; Objects</a>
                     </div>
                 </div>
                 <!-- INTERMEDIATE -->
@@ -100,25 +83,14 @@ topic.difficultyLevel === "Advanced"
                         <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
                     </div>
                     <div id="intermediateDropdown" class="dropdown-submenu ml-4 mt-1 space-y-1">
-                        <a href="#"
+                        {
+                        (intermediate.length > 0) &&
+                        intermediate.map((topic)=>(
+                            <a href={`/CodeMastery/courses/${courseSlug}/${topic.slug}`}
                             class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-bolt w-4 mr-2 text-blue-400"></i>Scope &amp; Closures</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-tachometer-alt w-4 mr-2 text-blue-400"></i>'this' keyword</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-layer-group w-4 mr-2 text-blue-400"></i>Prototypes &amp;
-                            Inheritance</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-sync-alt w-4 mr-2 text-blue-400"></i>Async JS (Promises)</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-network-wired w-4 mr-2 text-blue-400"></i>ES6+ Features</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-bug w-4 mr-2 text-blue-400"></i>Error Handling</a>
+                                class="fas fa-play-circle w-4 mr-2 text-blue-400"></i>{topic.topicName}</a>
+                            ))
+                        }
                     </div>
                 </div>
                 <!-- ADVANCED -->
@@ -132,36 +104,33 @@ topic.difficultyLevel === "Advanced"
                         <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
                     </div>
                     <div id="advancedDropdown" class="dropdown-submenu ml-4 mt-1 space-y-1">
-                        <a href="#"
+                        {
+                        (advance.length > 0) &&
+                        advance.map((topic)=>(
+                            <a href={`/CodeMastery/courses/${courseSlug}/${topic.slug}`}
                             class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-microchip w-4 mr-2 text-purple-400"></i>Event Loop &amp;
-                            Concurrency</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-shield-alt w-4 mr-2 text-purple-400"></i>Design Patterns</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-chart-line w-4 mr-2 text-purple-400"></i>Performance
-                            Optimization</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-lock w-4 mr-2 text-purple-400"></i>Security Best Practices</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-cogs w-4 mr-2 text-purple-400"></i>WebAssembly &amp; JS</a>
-                        <a href="#"
-                            class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-tools w-4 mr-2 text-purple-400"></i>Build Tools</a>
+                                class="fas fa-play-circle w-4 mr-2 text-purple-400"></i>{topic.topicName}</a>
+                            ))
+                        }
                     </div>
                 </div>
                 <div class="pt-4 border-t border-gray-200 dark:border-gray-800 mt-2">
                     <div class="text-xs text-gray-500 dark:text-gray-400 px-1"><i
                             class="fas fa-book-open mr-1"></i> Resources</div>
-                    <div class="mt-2 space-y-1"><a href="#"
-                            class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-download"></i>Cheatsheet</a><a href="#"
-                            class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
-                                class="fas fa-tasks"></i>Quizzes</a></div>
+                    <div class="mt-2 space-y-1">
+                        <a href="#" class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+                            <i class="fas fa-download"></i>
+                            Interview Questions
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
+                            class="fas fa-tasks"></i>
+                            Quizzes
+                        </a>
+                        <a href="#" class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
+                            class="fas fa-tasks"></i>
+                            Project Ideas
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

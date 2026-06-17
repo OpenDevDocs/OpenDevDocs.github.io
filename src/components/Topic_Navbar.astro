@@ -1,5 +1,11 @@
 ---
+interface Props {
+    courseTitle : string,
+    courseSlug : string,
+    courseImage : string,
+}
 
+const {courseTitle, courseImage, courseSlug} = Astro.props;
 ---
 
 <!-- Header with mobile menu button + dark mode -->
@@ -14,17 +20,23 @@
                     <i class="fas fa-bars text-lg"></i>
                 </button>
                 <div class="flex items-center space-x-2">
-                    <i class="fab fa-js text-yellow-500 text-2xl"></i>
-                    <span
-                        class="font-bold text-xl tracking-tight bg-gradient-to-r from-yellow-600 to-orange-500 bg-clip-text text-transparent dark:from-yellow-400 dark:to-orange-400">JS
-                        Mastery Docs</span>
-                    <span
-                        class="hidden sm:inline-block ml-1 text-xs bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-600 dark:text-gray-400">v2.0</span>
+                    <a href="/CodeMastery"><i class="fa-solid fa-house gradient-text text-2xl"></i></a>
+                    <i class="fa-solid fa-angle-right text-black dark:text-white "></i>
+                    <a href="/CodeMastery/courses/"><span>Course</span></a>
+                    <i class="fa-solid fa-angle-right text-black dark:text-white "></i>
+                    <a href={"/CodeMastery/courses/"+courseSlug} class="flex items-center space-x-2">
+                        <img src={`/CodeMastery/assets/course-logo/${courseImage}.png`} class="size-6" alt="">
+                        <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-yellow-600 to-orange-500 bg-clip-text text-transparent dark:from-yellow-400 dark:to-orange-400">{courseTitle + " Mastery Docs" }</span>
+                        {
+                            false && 
+                            <span class="hidden sm:inline-block ml-1 text-xs bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-600 dark:text-gray-400">v2.0</span>
+                        }
+                    </a>
                 </div>
             </div>
             <div class="flex items-center gap-2 sm:gap-3">
                 <button id="darkModeToggle"
-                    class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                    class="size-10 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                     <i id="darkIcon" class="fas fa-sun"></i>
                 </button>
                 <div

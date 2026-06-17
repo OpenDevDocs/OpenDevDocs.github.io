@@ -1,26 +1,23 @@
 ---
 import CourseLayout from "../../layouts/CourseLayout.astro";
 import { courses } from "../../data/courses";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 import TopicCard from "../../components/TopicCard.astro";
 import { syllabus } from "../../content/syllabus";
 import { authors } from "../../data/authors";
 import AuthorChip from "../../components/AuthorChip.astro";
-import TopicSideBar from "../../components/Topic_SideBar.astro";
 
 export function getStaticPaths() {
 
-return courses.map(({ slug, courseTitle,cardText,descriptionText,imageFileName,isPaid,isPopular,level,color,isAvailable,
-authorId}) => {
-return {
-params: { slug },
-props: { courseTitle,descriptionText,imageFileName,level, authorId},
-};
+return courses.map(({ slug, courseTitle, cardText, descriptionText, imageFileName, isCompleted, level, color, isAvailable,
+    authorId }) => {
+    return {
+        params: { slug },
+        props: { courseTitle, descriptionText, imageFileName, isCompleted, level, authorId },
+    };
 });
 }
 
-const {courseTitle,descriptionText,imageFileName,level, authorId} = Astro.props;
+const {courseTitle,descriptionText,imageFileName,level, isCompleted, authorId} = Astro.props;
 const {slug} = Astro.params;
 
 let currentSyllabus = syllabus.filter((courseName :any) => courseName.courseName.toLowerCase() === slug)
@@ -112,8 +109,10 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
     description="" 
     seoImagePath="" 
     pageType="website"
-    courseName = {slug}
+    courseName = {courseTitle}
     courseData = {currentSyllabus}
+    courseImage = {imageFileName}
+    courseSlug = {slug}
     >
 
     <!-- Course Header -->
@@ -124,12 +123,14 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
         <div class="container mx-auto relative z-1">
             <div class="flex flex-col lg:flex-row items-center justify-between">
                 <div class="lg:w-2/3 animate-on-scroll">
-                    <div class="mb-6 sm:mb-8">
-                        <span
-                            class="inline-block bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">
-                            <i class="fas fa-graduation-cap mr-1"></i> Complete JavaScript Tutorial
-                        </span>
-                    </div>
+                    {
+                        isCompleted && 
+                        <div class="mb-6 sm:mb-8">
+                            <span class="inline-block bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">
+                                <i class="fas fa-graduation-cap mr-1"></i> Complete {courseTitle} Tutorial
+                            </span>
+                        </div>
+                    }
                     <div class="flex items-center space-x-2 mb-4">
                         <span
                             class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm font-medium">•
@@ -165,7 +166,9 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
         </div>
     </header>
 
-    <!-- stats responsive grid -->
+   {
+        false && 
+        <!-- stats responsive grid -->
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-10">
         <div class="bg-white dark:bg-gray-800/60 rounded-xl p-4 border flex items-center gap-3">
             <div
@@ -198,6 +201,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
             </div>
         </div>
     </div>
+   } 
 
     {
     currentSyllabus.length > 0 ?

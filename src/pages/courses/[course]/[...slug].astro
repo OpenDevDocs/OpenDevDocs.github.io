@@ -1,11 +1,12 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import MainLayout from '../../../layouts/MainLayout.astro';
+import CourseLayout from '../../../layouts/CourseLayout.astro';
 import { courses } from '../../../data/courses';
 import { authors } from '../../../data/authors';
 import {getFormattedDate, getAdjacentElements} from "../../../data/utils"
 import AuthorChip from '../../../components/AuthorChip.astro';
 import Prose from "../../../components/Prose.astro"
+import { syllabus } from '../../../content/syllabus';
 
 let _allCodeArticles : CollectionEntry<"codeArticles">[] = await getCollection('codeArticles');
 export async function getStaticPaths() {
@@ -27,7 +28,7 @@ const {article} = Astro.props;
 const {course, slug} = Astro.params;
 const courseData = courses.find(obj => obj.slug === course);
 let authorData :any[] = [];
-article.data.author.map((articleAuthors)=>{
+article.data.author.map((articleAuthors :any)=>{
     authorData.push(authors.find(obj => obj.authorId === articleAuthors));
 })
 
@@ -47,14 +48,20 @@ function getArticleByFileName(Filename : string){
     return filteredObjects.find(article => article.filePath === Filename)
 }
 
+let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseName.toLowerCase() === course.toLowerCase())
+
 ---
 
-<MainLayout 
-pageTitle={`${article.data.title}`} 
-description={article.data.metadescription}
-seoImagePath={article.data.featuredImage || ""}
-pageType='article'
->
+<CourseLayout 
+    pageTitle={`${article.data.title}`} 
+    description="" 
+    seoImagePath="" 
+    pageType="website"
+    courseName = {courseData?.courseTitle || ""}
+    courseData = {currentSyllabus}
+    courseImage = {courseData?.imageFileName || ""}
+    courseSlug = {course}
+    >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 
     <!-- Main Content -->
@@ -62,7 +69,7 @@ pageType='article'
         <!-- Page Header -->
         <div class="mb-8 animate-on-scroll">
             <div class="flex items-center space-x-4 mb-4">
-                <a href={`/CodeMastery/learning/${courseData?.slug}`} class="flex items-center text-purple-600 dark:text-purple-400">
+                <a href={`/CodeMastery/courses/${courseData?.slug}`} class="flex items-center text-purple-600 dark:text-purple-400">
                     <i class="fas fa-arrow-left mr-2"></i>
                     <span class="hover:underline">Back to Course</span>
                 </a>
@@ -82,7 +89,7 @@ pageType='article'
             </div>
     
             <div>
-                <a href={`/CodeMastery/learning/${courseData?.slug}`}
+                <a href={`/CodeMastery/courses/${courseData?.slug}`}
                     class="font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
                     {courseData?.courseTitle}
                 </a>
@@ -119,10 +126,10 @@ pageType='article'
                     <button id="mark-complete"
                         class="px-6 py-2 gradient-bg text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
                         <i class="far fa-check-circle mr-2"></i>
-                        Mark as Complete
+                        <span>Mark as Complete</span>
                     </button>
                     <button
-                        class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        class="size-10 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                         <i class="far fa-bookmark"></i>
                     </button>
                 </div>
@@ -135,12 +142,8 @@ pageType='article'
             <!-- Main Content Area -->
             <div class="flex-1">
                 <!-- Split Layout Container -->
-                <div id="split-container" class="split-container flex flex-col lg:flex-row lg:gap-0 gap-4" class:list={[
-                    article.rendered?.html.split(`<code id="code-content"`)[`1`]?.length ? "lg:max-h-[calc(100vh-5rem)]" : ""
-                ]}>
-                    <section class="w-full lg:p-12 overflow-y-auto" class:list={[
-                        article.rendered?.html.split(`<code id="code-content"`)[`1`]?.length ? "lg:w-1/2" : "lg:w-full"
-                    ]}>
+                <div id="split-container" class="split-container lg:gap-0 gap-4">
+                    <section class="w-full lg:p-12 overflow-y-auto" >
                         <div class="mx-auto">
                             <span class="text-blue-600 font-semibold text-sm uppercase tracking-widest">
                                 {article.data.level == 1 && "Beginner"}
@@ -159,7 +162,7 @@ pageType='article'
 
                     {
                             article.rendered?.html.split(`<code id="code-content"`)[`1`]?.length &&
-                            <section class="rounded-xl w-full lg:w-1/2 bg-slate-950 p-6 lg:p-12 sticky top-14 overflow-hidden">
+                            <section class="rounded-xl w-full bg-slate-950 p-6 lg:p-12 sticky top-14 overflow-hidden">
                                 <div class="flex items-center justify-between mb-4">
                                     <div class="flex gap-2">
                                         <div class="w-3 h-3 rounded-full bg-red-500"></div>
@@ -187,7 +190,7 @@ pageType='article'
                 <!-- Next/Previous Navigation -->
                 <div
                     class="flex flex-wrap lg:gap-0 gap-3 justify-between items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 animate-on-scroll delay-200">
-                    <a href={`/CodeMastery/learning/${course}/${getArticleByFileName(adjacentArticles.previous)?.data.slug}`}
+                    <a href={`/CodeMastery/courses/${course}/${getArticleByFileName(adjacentArticles.previous)?.data.slug}`}
                         class="flex lg:w-fit w-full items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                         class:list={[adjacentArticles.previous == null && "invisible"]}>
                         <i class="fas fa-arrow-left mr-3"></i>
@@ -197,7 +200,7 @@ pageType='article'
                         </div>
                     </a>
 
-                    <a href={`/CodeMastery/learning/${course}/${getArticleByFileName(adjacentArticles.next)?.data.slug}`}
+                    <a href={`/CodeMastery/courses/${course}/${getArticleByFileName(adjacentArticles.next)?.data.slug}`}
                         class="flex lg:w-fit w-full justify-end items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-right"
                         class:list={[adjacentArticles.next == null && "invisible"]}>
                         <div>
@@ -313,4 +316,4 @@ pageType='article'
             localStorage.setItem("completionProgress", JSON.stringify(savedCompletionProgress));
         })
     </script>
-</MainLayout>
+</CourseLayout>

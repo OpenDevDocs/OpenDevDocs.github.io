@@ -10,6 +10,7 @@ export const courses = [
     "slug": "angular",
     "color": "#DD0031",
     "isAvailable" : true,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -23,6 +24,7 @@ export const courses = [
     "slug": "astro",
     "color": "#FF5D01",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -36,6 +38,7 @@ export const courses = [
     "slug": "avalonia",
     "color": "#68217A",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -49,6 +52,7 @@ export const courses = [
     "slug": "azure",
     "color": "#0078D4",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -62,6 +66,7 @@ export const courses = [
     "slug": "c-sharp",
     "color": "#239120",
     "isAvailable" : true,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -75,6 +80,7 @@ export const courses = [
     "slug": "dotnet-mvc",
     "color": "#512BD4",
     "isAvailable" : true,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -88,6 +94,7 @@ export const courses = [
     "slug": "dotnet-webapi",
     "color": "#512BD4",
     "isAvailable" : true,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -101,6 +108,7 @@ export const courses = [
     "slug": "electronjs",
     "color": "#47848F",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -114,6 +122,7 @@ export const courses = [
     "slug": "expressjs",
     "color": "#000000",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -127,6 +136,7 @@ export const courses = [
     "slug": "javascript",
     "color": "#F7DF1E",
     "isAvailable" : true,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -140,6 +150,7 @@ export const courses = [
     "slug": "mongodb",
     "color": "#47A248",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -153,6 +164,7 @@ export const courses = [
     "slug": "nextjs",
     "color": "#000000",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -166,6 +178,7 @@ export const courses = [
     "slug": "nodejs",
     "color": "#339933",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -179,6 +192,7 @@ export const courses = [
     "slug": "postman",
     "color": "#FF6C37",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -192,6 +206,7 @@ export const courses = [
     "slug": "python",
     "color": "#3776AB",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -205,6 +220,7 @@ export const courses = [
     "slug": "react",
     "color": "#61DAFB",
     "isAvailable" : true,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -218,6 +234,7 @@ export const courses = [
     "slug": "sql",
     "color": "#00758F",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   },
   {
@@ -231,6 +248,7 @@ export const courses = [
     "slug": "supabase",
     "color": "#3ECF8E",
     "isAvailable" : false,
+    "isCompleted" : false,
     "authorId" : "bishal-biswas"
   }
 ]
