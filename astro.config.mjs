@@ -11,6 +11,26 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
+    image: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**.github.io',     // Matches all GitHub Pages subdomains
+            },
+            {
+                protocol: 'https',
+                hostname: 'raw.githubusercontent.com', // For raw image URLs
+            },
+            {
+                protocol: 'https',
+                hostname: 'secureurl.github.io',   // Specific user's GitHub Pages
+            },
+            {
+                protocol: 'https',
+                hostname: '**.netlify.app',   // If you also use Netlify
+            },
+        ]
+    },
 
     integrations: [sitemap()],
 });

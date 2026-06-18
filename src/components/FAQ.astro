@@ -1,0 +1,151 @@
+---
+interface Props {
+    FAQData : any[]
+}
+
+const {FAQData} = Astro.props;
+
+---
+<!-- small style tweak for smooth opacity (optional) -->
+<style>
+    .faq-panel {
+        opacity: 0;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, padding 0.2s;
+    }
+
+    .faq-panel[style*="max-height"] {
+        opacity: 1;
+        /* when max-height is set by JS, show it */
+    }
+
+    .faq-panel>div {
+        padding-top: 0.25rem;
+        /* small spacing */
+    }
+
+    .faq-toggle:focus-visible {
+        outline: 2px solid #818cf8;
+        outline-offset: -2px;
+    }
+
+    /* ensure icon rotation transition */
+    .faq-icon {
+        transition: transform 0.25s ease;
+    }
+</style>
+
+<div class="space-y-3" id="faqContainer">
+    {
+        FAQData.map((FAQ, index) =>(
+            <div class="faq-item border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-shadow hover:shadow-md">
+                <button
+                    class="faq-toggle w-full flex items-center justify-between px-5 py-4 text-left text-slate-800 font-medium text-base bg-white dark:bg-gray-800 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+                    data-target={"faq" + index+1} aria-expanded="false">
+                    <span class="flex items-center gap-3">
+                        {
+                            FAQ.q
+                        }
+                    </span>
+                    <svg class="faq-icon w-5 h-5 text-slate-500 transition-transform duration-200" fill="none"
+                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <!-- answer panel -->
+                <div id={"faq" + index+1} class="faq-panel max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-50/50 dark:bg-gray-900 ">
+                    <div class="px-5 pb-5 pt-1 dark:text-white text-slate-600 text-sm leading-relaxed border-t border-slate-200/70">
+                        {
+                            FAQ.a
+                        }
+                    </div>
+                </div>
+            </div>
+        ))
+    }
+</div>
+
+<!-- JavaScript: manages toggles with exclusive behaviour -->
+<script is:inline>
+    (function () {
+        // get all toggle buttons and panels
+        const toggles = document.querySelectorAll(".faq-toggle");
+        const panels = document.querySelectorAll(".faq-panel");
+
+        // helper: close all panels & reset icons
+        function closeAllPanels() {
+            panels.forEach((panel) => {
+                panel.style.maxHeight = "0";
+                panel.style.opacity = "0"; // subtle fade (optional)
+            });
+            toggles.forEach((btn) => {
+                btn.setAttribute("aria-expanded", "false");
+                const icon = btn.querySelector(".faq-icon");
+                if (icon) {
+                    icon.style.transform = "rotate(0deg)";
+                }
+            });
+        }
+
+        // open a specific panel by id (or element)
+        function openPanel(panelId) {
+            const targetPanel = document.getElementById(panelId);
+            if (!targetPanel) return;
+
+            // find the corresponding toggle button for this panel (using data-target)
+            const correspondingToggle = document.querySelector(
+                `.faq-toggle[data-target="${panelId}"]`,
+            );
+            if (!correspondingToggle) return;
+
+            // first close all others (exclusive behaviour)
+            closeAllPanels();
+
+            // now open the target panel
+            targetPanel.style.maxHeight = targetPanel.scrollHeight + "px";
+            targetPanel.style.opacity = "1";
+            correspondingToggle.setAttribute("aria-expanded", "true");
+            const icon = correspondingToggle.querySelector(".faq-icon");
+            if (icon) {
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+
+        // attach click event to each toggle
+        toggles.forEach((toggle) => {
+            toggle.addEventListener("click", function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute("data-target");
+                const panel = document.getElementById(targetId);
+                if (!panel) return;
+
+                // if this panel is already open → close it (exclusive: only this one closes)
+                // but we want "only one open at a time" – if it's already open, we close it (toggle off)
+                // however typical behaviour for "only one open" is: if you click the open one, it closes.
+                // we check if it's currently expanded
+                const isOpen = this.getAttribute("aria-expanded") === "true";
+
+                if (isOpen) {
+                    // close this panel (and since we close all, it's fine)
+                    closeAllPanels();
+                } else {
+                    // open the clicked one (closes others automatically)
+                    openPanel(targetId);
+                }
+            });
+        });
+
+        // optional: ensure panels are closed on load (already closed via CSS max-h-0)
+        // but we also want to set initial opacity and aria-expanded
+        closeAllPanels();
+
+        // edge case: if someone clicks inside panel content, nothing happens.
+        // also handle dynamic resize (not needed for static content)
+        // but if content changes, you may want to recalc – but it's static.
+
+        // small improvement: if a panel is opened and window resizes, maxHeight stays correct
+        // because we set it based on scrollHeight at the moment of opening.
+        // For static content it's fine.
+
+        console.log("✅ FAQ ready – only one drop-down at a time.");
+    })();
+</script>

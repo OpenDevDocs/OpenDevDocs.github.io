@@ -1,0 +1,847 @@
+---
+import FAQ from "../components/FAQ.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+
+
+---
+<MainLayout pageTitle = "Contributors are Welcome"
+    description = "If you are one with skills, you can make others skillful too."
+    seoImagePath = ""
+    pageType = "website">
+<style is:inline>
+    /* Benefit Cards */
+    .benefit-card {
+        border-radius: 1.5rem;
+        padding: 2rem;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .benefit-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .benefit-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+    }
+    
+    .benefit-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+    
+    /* Form Styles */
+    .form-step {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .form-step.active {
+        display: block;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .step-indicator {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    
+    .step-indicator.active {
+        background: var(--gradient-primary);
+        color: white;
+    }
+    
+    .step-indicator.completed {
+        background: var(--gradient-success);
+        color: white;
+    }
+    
+    .step-line {
+        flex: 1;
+        height: 2px;
+        background: #e5e7eb;
+        transition: background 0.3s ease;
+    }
+    
+    .dark .step-line {
+        background: #4b5563;
+    }
+    
+    .step-line.completed {
+        background: var(--gradient-success);
+    }
+    
+    /* Password strength */
+    .password-strength {
+        height: 4px;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    
+    .password-strength.weak { background: #ef4444; width: 25%; }
+    .password-strength.medium { background: #f59e0b; width: 50%; }
+    .password-strength.strong { background: #10b981; width: 75%; }
+    .password-strength.very-strong { background: #059669; width: 100%; }
+    
+    /* Topic Pills */
+    .topic-pill {
+        padding: 0.5rem 1.25rem;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid #e5e7eb;
+        font-size: 0.875rem;
+    }
+    
+    .dark .topic-pill {
+        border-color: #4b5563;
+    }
+    
+    .topic-pill.selected {
+        border-color: #667eea;
+        background: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+    }
+    
+    .dark .topic-pill.selected {
+        background: rgba(102, 126, 234, 0.2);
+        color: #a78bfa;
+    }
+    
+    .topic-pill:hover {
+        transform: translateY(-2px);
+    }
+    
+    /* Success animation */
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    .scale-in {
+        animation: scaleIn 0.5s ease;
+    }
+    
+    /* Floating particles */
+    @keyframes floatParticle {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    .particle {
+        position: absolute;
+        opacity: 0.1;
+        animation: floatParticle 8s ease-in-out infinite;
+    }
+</style>
+    
+    <!-- Hero Section -->
+    <header class="py-16 px-6 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+        <!-- Background Particles -->
+        <div class="particle text-4xl top-10 left-10">✍️</div>
+        <div class="particle text-5xl bottom-20 right-20" style="animation-delay: 2s">💻</div>
+        <div class="particle text-3xl top-1/2 left-1/4" style="animation-delay: 4s">📚</div>
+        <div class="particle text-4xl bottom-1/3 right-1/3" style="animation-delay: 6s">🚀</div>
+        
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-300 dark:bg-purple-900 rounded-full -translate-y-32 translate-x-32 opacity-30 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-300 dark:bg-blue-900 rounded-full translate-y-32 -translate-x-32 opacity-30 blur-3xl"></div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl mx-auto text-center animate-on-scroll">
+                <div class="mb-6">
+                    <span class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm font-medium">
+                        <i class="fas fa-pen-fancy mr-2"></i>Write for CodeMaster
+                    </span>
+                </div>
+                
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="block">Share Your</span>
+                    <span class="gradient-text">Coding Knowledge</span>
+                </h1>
+                
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Join our community of expert contributors and help thousands of developers learn and grow. 
+                    Write articles, tutorials, and guides that make a real impact.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#signup" class="px-8 py-3 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg">
+                        <i class="fas fa-user-plus mr-2"></i>Become a Contributor
+                    </a>
+                    <a href="#guidelines" class="px-8 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-book-open mr-2"></i>Read Guidelines
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+                <div class="text-center animate-on-scroll delay-100">
+                    <div class="text-3xl font-bold gradient-text">150+</div>
+                    <div class="text-gray-600 dark:text-gray-300">Articles Published</div>
+                </div>
+                <div class="text-center animate-on-scroll delay-200">
+                    <div class="text-3xl font-bold gradient-text">50+</div>
+                    <div class="text-gray-600 dark:text-gray-300">Active Contributors</div>
+                </div>
+                <div class="text-center animate-on-scroll delay-300">
+                    <div class="text-3xl font-bold gradient-text">2M+</div>
+                    <div class="text-gray-600 dark:text-gray-300">Monthly Readers</div>
+                </div>
+                <div class="text-center animate-on-scroll delay-400">
+                    <div class="text-3xl font-bold gradient-text">4.9★</div>
+                    <div class="text-gray-600 dark:text-gray-300">Contributor Rating</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Why <span class="gradient-text">Contribute</span></h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Join our community of passionate educators and get rewarded for sharing your expertise</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="benefit-card bg-gray-50 dark:bg-gray-900 shadow-lg animate-on-scroll delay-100">
+                    <div class="benefit-icon gradient-bg text-white mb-6">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Build Your Community</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Reach thousands of developers and build your professional network. 
+                        Get recognized as an expert in your field.
+                    </p>
+                    <div class="mt-4 text-sm text-purple-600 dark:text-purple-400">
+                        <i class="fas fa-users mr-1"></i> 50,000+ community members
+                    </div>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card bg-gray-50 dark:bg-gray-900 shadow-lg animate-on-scroll delay-200">
+                    <div class="benefit-icon bg-green-500 text-white mb-6">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Earn Recognition & Rewards</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Get featured, earn badges, and receive exclusive perks for your 
+                        contributions. Top contributors get invited to our speaker events.
+                    </p>
+                    <div class="mt-4 text-sm text-green-600 dark:text-green-400">
+                        <i class="fas fa-trophy mr-1"></i> Monthly contributor awards
+                    </div>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card bg-gray-50 dark:bg-gray-900 shadow-lg animate-on-scroll delay-300">
+                    <div class="benefit-icon bg-blue-500 text-white mb-6">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Build Your Portfolio</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Showcase your expertise with published articles and tutorials. 
+                        Great for your professional portfolio and job applications.
+                    </p>
+                    <div class="mt-4 text-sm text-blue-600 dark:text-blue-400">
+                        <i class="fas fa-check-circle mr-1"></i> 85% get interview calls
+                    </div>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="benefit-card bg-gray-50 dark:bg-gray-900 shadow-lg animate-on-scroll delay-100">
+                    <div class="benefit-icon bg-purple-500 text-white mb-6">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Editorial Support</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Our editorial team helps you polish your articles to make them 
+                        clear, engaging, and professional.
+                    </p>
+                    <div class="mt-4 text-sm text-purple-600 dark:text-purple-400">
+                        <i class="fas fa-star mr-1"></i> 95% satisfaction rate
+                    </div>
+                </div>
+                
+                <!-- Benefit 5 -->
+                <div class="benefit-card bg-gray-50 dark:bg-gray-900 shadow-lg animate-on-scroll delay-200">
+                    <div class="benefit-icon bg-yellow-500 text-white mb-6">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Global Reach</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Your articles reach a global audience of developers in 100+ 
+                        countries, making a real impact on their learning journey.
+                    </p>
+                    <div class="mt-4 text-sm text-yellow-600 dark:text-yellow-400">
+                        <i class="fas fa-users mr-1"></i> 2M+ monthly readers
+                    </div>
+                </div>
+                
+                <!-- Benefit 6 -->
+                <div class="benefit-card bg-gray-50 dark:bg-gray-900 shadow-lg animate-on-scroll delay-300">
+                    <div class="benefit-icon bg-red-500 text-white mb-6">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Exclusive Access</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Get early access to new courses, beta features, and networking 
+                        opportunities with industry leaders.
+                    </p>
+                    <div class="mt-4 text-sm text-red-600 dark:text-red-400">
+                        <i class="fas fa-lock-open mr-1"></i> Premium content access
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guidelines Section -->
+    <section id="guidelines" class="py-16 px-6 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contribution <span class="gradient-text">Guidelines</span></h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">What we look for in contributions and how to get started</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Guideline 1 -->
+                <div class="card animate-on-scroll delay-100">
+                    <div class="text-4xl font-bold gradient-text mb-4">01</div>
+                    <h3 class="text-xl font-bold mb-3">Choose Your Topic</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        Write about JavaScript, React, Python, Data Science, or any modern 
+                        web development technology. Focus on practical, actionable content.
+                    </p>
+                </div>
+                
+                <!-- Guideline 2 -->
+                <div class="card animate-on-scroll delay-200">
+                    <div class="text-4xl font-bold gradient-text mb-4">02</div>
+                    <h3 class="text-xl font-bold mb-3">Write Quality Content</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        Create original, well-researched content with clear explanations, 
+                        code examples, and real-world use cases. Aim for 1500+ words.
+                    </p>
+                </div>
+                
+                <!-- Guideline 3 -->
+                <div class="card animate-on-scroll delay-300">
+                    <div class="text-4xl font-bold gradient-text mb-4">03</div>
+                    <h3 class="text-xl font-bold mb-3">Submit for Review</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        Our editorial team reviews submissions within 48 hours and provides 
+                        constructive feedback to help you polish your article.
+                    </p>
+                </div>
+                
+                <!-- Guideline 4 -->
+                <div class="card animate-on-scroll delay-400">
+                    <div class="text-4xl font-bold gradient-text mb-4">04</div>
+                    <h3 class="text-xl font-bold mb-3">Engage with Readers</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">
+                        Respond to comments, participate in discussions, and help readers 
+                        understand your content better. Build your reputation as an expert.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Quick Tips -->
+            <div class="mt-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 animate-on-scroll">
+                <div class="flex items-start">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                        <i class="fas fa-lightbulb text-purple-600 dark:text-purple-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Quick Tips for Success</h3>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                Write clear, engaging headlines that attract readers
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                Include relevant code examples and screenshots
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                Organize content with headings and subheadings
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                Cite sources and credit other creators
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Form Section -->
+    <section id="signup" class="py-16 px-6 bg-white dark:bg-gray-800">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Join as a <span class="gradient-text">Contributor</span></h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Create your account and start sharing your coding knowledge with the world</p>
+            </div>
+            
+            <!-- Form Progress -->
+            <div class="flex items-center justify-center gap-4 mb-8 animate-on-scroll">
+                <div class="step-indicator active" data-step="1">1</div>
+                <div class="step-line" data-step="1"></div>
+                <div class="step-indicator" data-step="2">2</div>
+                <div class="step-line" data-step="2"></div>
+                <div class="step-indicator" data-step="3">3</div>
+            </div>
+            
+            <!-- Main Form -->
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-2xl shadow-xl p-8 animate-on-scroll">
+                <form id="contribution-form" novalidate>
+                    <!-- Step 1: Account Information -->
+                    <div class="form-step active" data-step="1">
+                        <h3 class="text-2xl font-bold mb-6">Account Information</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Your full name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Choose a username" required>
+                            </div>
+                            
+                            <div class="form-group md:col-span-2">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="you@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Create a strong password" required>
+                                <div class="mt-2">
+                                    <div class="password-strength weak"></div>
+                                    <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                        <span>Weak</span>
+                                        <span>Medium</span>
+                                        <span>Strong</span>
+                                        <span>Very Strong</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Confirm Password</label>
+                                <input type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Confirm your password" required>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end mt-8">
+                            <button type="button" class="btn-primary next-step px-6 py-2 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity text-center" data-next="2">
+                                Next Step <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Profile & Expertise -->
+                    <div class="form-step" data-step="2">
+                        <h3 class="text-2xl font-bold mb-6">Profile & Expertise</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="form-group">
+                                <label class="form-label">Profile Photo</label>
+                                <div class="flex items-center gap-6">
+                                    <div class="w-20 h-20 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                                        <i class="fas fa-user text-3xl text-gray-500 dark:text-gray-400"></i>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn-secondary">
+                                            <i class="fas fa-upload mr-2"></i>Upload Photo
+                                        </button>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">PNG, JPG up to 5MB</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Professional Bio</label>
+                                <textarea class="form-textarea bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Tell us about yourself and your expertise..." rows="4"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Portfolio / GitHub URL</label>
+                                <input type="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="https://github.com/yourusername">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">What topics do you want to write about?</label>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="topic-pill selected" data-topic="JavaScript">JavaScript</span>
+                                    <span class="topic-pill" data-topic="React">React</span>
+                                    <span class="topic-pill" data-topic="Python">Python</span>
+                                    <span class="topic-pill" data-topic="Data Science">Data Science</span>
+                                    <span class="topic-pill" data-topic="Node.js">Node.js</span>
+                                    <span class="topic-pill" data-topic="TypeScript">TypeScript</span>
+                                    <span class="topic-pill" data-topic="Vue.js">Vue.js</span>
+                                    <span class="topic-pill" data-topic="DevOps">DevOps</span>
+                                    <span class="topic-pill" data-topic="Cloud">Cloud Computing</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Experience Level</label>
+                                <select class="form-select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option>Select your experience level</option>
+                                    <option>Beginner (0-2 years)</option>
+                                    <option>Intermediate (3-5 years)</option>
+                                    <option>Advanced (6+ years)</option>
+                                    <option>Expert (10+ years)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between mt-8">
+                            <button type="button" class="btn-secondary prev-step px-6 py-2 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity text-center" data-prev="1">
+                                <i class="fas fa-arrow-left mr-2"></i>Previous
+                            </button>
+                            <button type="button" class="btn-primary next-step px-6 py-2 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity text-center" data-next="3">
+                                Next Step <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Terms & Submit -->
+                    <div class="form-step" data-step="3">
+                        <h3 class="text-2xl font-bold mb-6">Review & Submit</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6">
+                                <h4 class="font-bold mb-4">Review Your Information</h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
+                                        <span class="text-gray-600 dark:text-gray-400">Full Name</span>
+                                        <span class="font-medium" id="review-name">Your Name</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
+                                        <span class="text-gray-600 dark:text-gray-400">Email</span>
+                                        <span class="font-medium" id="review-email">you@example.com</span>
+                                    </div>
+                                    <div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
+                                        <span class="text-gray-600 dark:text-gray-400">Topics</span>
+                                        <span class="font-medium">JavaScript, React</span>
+                                    </div>
+                                    <div class="flex justify-between py-2">
+                                        <span class="text-gray-600 dark:text-gray-400">Experience</span>
+                                        <span class="font-medium">Intermediate (3-5 years)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="form-checkbox mr-3 mt-1" required>
+                                    <span class="text-gray-700 dark:text-gray-300">
+                                        <span class="font-bold">I agree to the terms and conditions</span><br>
+                                        <span class="text-sm">I understand that my content will be reviewed before publication and I retain ownership of my work.</span>
+                                    </span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="form-checkbox mr-3 mt-1">
+                                    <span class="text-gray-700 dark:text-gray-300">
+                                        <span class="font-bold">Subscribe to newsletter</span><br>
+                                        <span class="text-sm">Receive updates about new features, opportunities, and community news.</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between mt-8">
+                            <button type="button" class="btn-secondary prev-step px-6 py-2 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity text-center" data-prev="2">
+                                <i class="fas fa-arrow-left mr-2"></i>Previous
+                            </button>
+                            <button type="submit" class="btn-primary px-6 py-2 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity text-center">
+                                <i class="fas fa-check-circle mr-2"></i>Submit Application
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+                <!-- Success Message -->
+                <div id="success-message" class="hidden text-center py-12">
+                    <div class="w-24 h-24 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6 scale-in">
+                        <i class="fas fa-check text-white text-4xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Welcome to the Team! 🎉</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-6">
+                        Thank you for applying to become a CodeMaster contributor. Our editorial team will 
+                        review your application and get back to you within 48 hours.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="index.html" class="px-8 py-3 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity">
+                            <i class="fas fa-home mr-2"></i>Back to Home
+                        </a>
+                        <a href="#guidelines" class="px-8 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            <i class="fas fa-book mr-2"></i>Read Guidelines
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-6 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <p class="text-gray-600 dark:text-gray-300">Everything you need to know about contributing to CodeMaster</p>
+            </div>
+            
+            <FAQ FAQData={[{
+                    q: "Who can contribute to CodeMaster?",
+                    a : "Anyone with coding knowledge and a passion for teaching can contribute. We welcome contributors from all experience levels - from experienced developers sharing advanced concepts to beginners documenting their learning journey."
+                },
+                {
+                    q: "Do I get paid for writing?",
+                    a: "While we currently operate on a non-monetary model, contributors receive recognition, exposure, and exclusive benefits including featured author status, community badges, early access to new features, and networking opportunities with industry leaders."
+                },
+                {
+                    q: "How long does the review process take?",
+                    a: "Our editorial team reviews all submissions within 48 hours. We provide constructive feedback and work with you to polish your article. Once approved, your article is typically published within 2-3 business days."
+                },
+                {
+                    q: "What topics can I write about?",
+                    a: "We accept articles on modern web development, programming languages (JavaScript, Python, etc.), frameworks (React, Vue, Node.js), data science, DevOps, cloud computing, and career development in tech. If you're passionate about a topic, we'd love to hear about it!"
+                }]} />
+        </div>
+    </section>
+
+    <script is:inline>
+        // Accordion Functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+                
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+        
+        // Form Steps
+        const steps = document.querySelectorAll('.form-step');
+        const stepIndicators = document.querySelectorAll('.step-indicator');
+        const stepLines = document.querySelectorAll('.step-line');
+        let currentStep = 1;
+        
+        function goToStep(step) {
+            // Hide all steps
+            steps.forEach(s => s.classList.remove('active'));
+            // Show target step
+            document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+            
+            // Update indicators
+            stepIndicators.forEach((indicator, index) => {
+                const stepNum = index + 1;
+                indicator.classList.remove('active', 'completed');
+                if (stepNum === step) {
+                    indicator.classList.add('active');
+                } else if (stepNum < step) {
+                    indicator.classList.add('completed');
+                }
+            });
+            
+            // Update lines
+            stepLines.forEach((line, index) => {
+                const stepNum = index + 1;
+                if (stepNum < step) {
+                    line.classList.add('completed');
+                } else {
+                    line.classList.remove('completed');
+                }
+            });
+            
+            currentStep = step;
+            updateReviewInfo();
+        }
+        
+        // Next/Previous buttons
+        document.querySelectorAll('.next-step').forEach(button => {
+            button.addEventListener('click', () => {
+                const next = parseInt(button.dataset.next);
+                if (validateStep(currentStep)) {
+                    goToStep(next);
+                }
+            });
+        });
+        
+        document.querySelectorAll('.prev-step').forEach(button => {
+            button.addEventListener('click', () => {
+                const prev = parseInt(button.dataset.prev);
+                goToStep(prev);
+            });
+        });
+        
+        // Step validation
+        function validateStep(step) {
+            const form = document.getElementById('contribution-form');
+            const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+            const inputs = currentStepElement.querySelectorAll('input[required], textarea[required], select[required]');
+            
+            let valid = true;
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('border-red-500');
+                    valid = false;
+                } else {
+                    input.classList.remove('border-red-500');
+                }
+            });
+            
+            // Special validation for step 3 checkbox
+            if (step === 3) {
+                const termsCheckbox = document.querySelector('input[type="checkbox"][required]');
+                if (!termsCheckbox.checked) {
+                    termsCheckbox.classList.add('border-red-500');
+                    valid = false;
+                } else {
+                    termsCheckbox.classList.remove('border-red-500');
+                }
+            }
+            
+            if (!valid) {
+                // Show a simple alert
+                const firstInvalid = currentStepElement.querySelector('.border-red-500');
+                if (firstInvalid) {
+                    firstInvalid.focus();
+                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                alert('Please fill in all required fields before proceeding.');
+            }
+            
+            return valid;
+        }
+        
+        // Update review information
+        function updateReviewInfo() {
+            const nameInput = document.querySelector('input[placeholder="Your full name"]');
+            const emailInput = document.querySelector('input[type="email"]');
+            
+            if (nameInput && document.getElementById('review-name')) {
+                document.getElementById('review-name').textContent = nameInput.value || 'Your Name';
+            }
+            if (emailInput && document.getElementById('review-email')) {
+                document.getElementById('review-email').textContent = emailInput.value || 'you@example.com';
+            }
+        }
+        
+        // Topic selection
+        document.querySelectorAll('.topic-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+        
+        // Password strength indicator
+        document.querySelector('input[type="password"]')?.addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = this.closest('.form-group').querySelector('.password-strength');
+            
+            let strength = 0;
+            if (password.length >= 8) strength += 25;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 25;
+            if (/\d/.test(password)) strength += 25;
+            if (/[^a-zA-Z0-9]/.test(password)) strength += 25;
+            
+            strengthBar.className = 'password-strength';
+            if (strength <= 25) strengthBar.classList.add('weak');
+            else if (strength <= 50) strengthBar.classList.add('medium');
+            else if (strength <= 75) strengthBar.classList.add('strong');
+            else strengthBar.classList.add('very-strong');
+        });
+        
+        // Form Submit
+        const form = document.getElementById('contribution-form');
+        const successMessage = document.getElementById('success-message');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate step 3
+            if (!validateStep(3)) {
+                return;
+            }
+            
+            // Hide form, show success
+            this.style.display = 'none';
+            successMessage.classList.remove('hidden');
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize animations
+            window.addEventListener('load', animateOnScroll);
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Trigger initial animation
+            setTimeout(() => {
+                animateOnScroll();
+            }, 100);
+            
+            // Initialize step 1
+            goToStep(1);
+        });
+    </script>
+</MainLayout>
