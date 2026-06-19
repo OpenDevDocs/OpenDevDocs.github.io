@@ -2,6 +2,7 @@
 import CourseCard from "../components/CourseCard.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import { courses } from "../data/courses";
+import { getSiteName } from "../data/data";
 
 ---
 <MainLayout description="" seoImagePath="" >
@@ -88,7 +89,7 @@ import { courses } from "../data/courses";
             </div>
             
             <div class="text-center mt-12 animate-on-scroll delay-400">
-                <a href="/CodeMastery/courses" class="inline-flex items-center px-6 py-3 gradient-border text-purple-600 dark:text-purple-400 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <a href="/courses" class="inline-flex items-center px-6 py-3 gradient-border text-purple-600 dark:text-purple-400 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                     View All Courses
                     <i class="fas fa-arrow-right ml-2"></i>
                 </a>
@@ -210,7 +211,7 @@ import { courses } from "../data/courses";
     <section id="features" class="py-16 px-6 bg-gray-100/50 dark:bg-gray-800/50">
         <div class="container mx-auto">
             <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose <span class="gradient-text">CodeMaster</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose <span class="gradient-text">{getSiteName()}</span></h2>
                 <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Our platform is designed to give you the most effective and engaging learning experience</p>
             </div>
             
@@ -247,7 +248,7 @@ import { courses } from "../data/courses";
         <div class="container mx-auto">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our <span class="gradient-text">Students Say</span></h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Join thousands of developers who have transformed their careers with CodeMaster</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Join thousands of developers who have transformed their careers with {getSiteName()}</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -321,7 +322,7 @@ import { courses } from "../data/courses";
         
         <div class="container mx-auto relative z-10 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 animate-on-scroll">Start Your Coding Journey Today</h2>
-            <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto animate-on-scroll delay-100">Join over 50,000 developers who have accelerated their careers with CodeMaster</p>
+            <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto animate-on-scroll delay-100">Join over 50,000 developers who have accelerated their careers with {getSiteName()}</p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-on-scroll delay-200">
                 <a href="#" class="hidden px-8 py-3 bg-white text-purple-600 font-bold rounded-full hover:bg-gray-100 transition-colors shadow-lg">
                     Get Started for Free

@@ -1,4 +1,5 @@
 ---
+import { getSiteName } from "../data/data";
 import MainLayout from "../layouts/MainLayout.astro";
 
 
@@ -218,8 +219,8 @@ import MainLayout from "../layouts/MainLayout.astro";
     }
 </style>
 <MainLayout
-    pageTitle = "About Us - CodeMastery"
-    description = "Know a little about CodeMastery"
+    pageTitle = `About Us - ${getSiteName()}`
+    description = `Know a little about ${getSiteName()}`
     seoImagePath = ""
     pageType = "website"
 >
@@ -286,7 +287,7 @@ import MainLayout from "../layouts/MainLayout.astro";
         <div class="container mx-auto">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12 animate-on-scroll">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Vision Behind <span class="gradient-text">CodeMaster</span></h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Vision Behind <span class="gradient-text">{getSiteName()}</span></h2>
                     <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Meet the founder who turned a personal struggle into a mission to help millions learn to code</p>
                 </div>
                 
@@ -369,7 +370,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                                 </div>
                                 
                                 <p class="text-gray-700 dark:text-gray-300">
-                                    Today, CodeMaster has grown into a platform serving thousands of developers worldwide. But our core mission 
+                                    Today, {getSiteName()} has grown into a platform serving thousands of developers worldwide. But our core mission 
                                     remains unchanged: to create the learning experience I wish I had when I started coding.
                                 </p>
                             </div>
@@ -423,7 +424,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                             </div>
                         </div>
                         <p class="text-gray-600 dark:text-gray-300">
-                            CodeMaster launches with 3 courses and 50 practice projects. First 100 students join within a week, 
+                            {getSiteName()} launches with 3 courses and 50 practice projects. First 100 students join within a week, 
                             validating the need for our approach.
                         </p>
                     </div>
@@ -517,7 +518,7 @@ import MainLayout from "../layouts/MainLayout.astro";
         <div class="container mx-auto">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Our <span class="gradient-text">Core Values</span></h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">The principles that guide everything we do at CodeMaster</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">The principles that guide everything we do at {getSiteName()}</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -731,10 +732,10 @@ import MainLayout from "../layouts/MainLayout.astro";
                     Whether you're starting your coding journey or advancing your career, we're here to help you succeed.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="index.html" class="px-8 py-3 gradient-bg text-white font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg">
+                    <a href="/courses" class="px-8 py-3 gradient-bg text-white font-bold rounded-full hover:opacity-90 transition-opacity shadow-lg">
                         <i class="fas fa-play-circle mr-2"></i>Start Learning Free
                     </a>
-                    <a href="#" class="px-8 py-3 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-bold rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <a href="/contact" class="px-8 py-3 bg-white dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-bold rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                         <i class="fas fa-envelope mr-2"></i>Contact Our Team
                     </a>
                 </div>

@@ -5,6 +5,7 @@ import TopicCard from "../../components/TopicCard.astro";
 import { syllabus } from "../../content/syllabus";
 import { authors } from "../../data/authors";
 import AuthorChip from "../../components/AuthorChip.astro";
+import { getSiteName } from "../../data/data";
 
 export function getStaticPaths() {
 
@@ -105,7 +106,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
     }
 </style>
 <CourseLayout 
-    pageTitle={`FREE ${courseTitle} Mastery Course`} 
+    pageTitle={`FREE ${courseTitle} Mastery Course - ` + getSiteName()} 
     description="" 
     seoImagePath="" 
     pageType="website"
@@ -160,7 +161,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                 </div>
 
                 <div class="lg:w-1/3 mt-8 lg:mt-0 flex justify-center animate-on-scroll delay-200">
-                    <img src={`/CodeMastery/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/course-logo/${imageFileName}.png&w=300&h=300&q=80&f=webp`} class="size-75" alt="">
+                    <img src={`/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/course-logo/${imageFileName}.png&w=300&h=300&q=80&f=webp`} class="size-75" alt="">
                 </div>
             </div>
         </div>

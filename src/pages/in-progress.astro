@@ -1,9 +1,10 @@
 ---
+import { getSiteName } from "../data/data";
 import OtherPageLayout from "../layouts/OtherPageLayout.astro";
 import "../styles/global.css";
 ---
 
-<OtherPageLayout pageTitle="Creation in Progress - CodeMastery" description="" seoImagePath=""
+<OtherPageLayout pageTitle={`Creation in Progress - ${getSiteName()}`} description="" seoImagePath=""
     bodyClass="theme-transition bg-gradient-to-br from-gray-900 to-gray-800 text-white">
     <style is:inline>
     

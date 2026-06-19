@@ -11,7 +11,7 @@ interface Props {
     bodyClass ?:string
 }
 
-const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", description, seoImagePath, bodyClass} = Astro.props;
+const {pageTitle = "{getSiteName()} - Learn to Code", pageType = "website", description, seoImagePath, bodyClass} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", descripti
     {seoImagePath}
     {pageType}
     >
-    <link rel="stylesheet" href="/CodeMastery/assets/view-transition.css">
+    <link rel="stylesheet" href="/assets/view-transition.css">
 </Head> 
 <body class:list={[bodyClass]}>
     <slot /> 

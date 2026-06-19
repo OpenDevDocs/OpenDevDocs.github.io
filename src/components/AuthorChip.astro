@@ -11,7 +11,7 @@ const { authorName, authorDesignation, authorImage} = Astro.props;
 <div class="flex items-center">
     <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white dark:border-gray-800">
         <img src={
-            authorImage.includes("http") ? authorImage : `/CodeMastery/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/author-imgs/${authorImage}&w=300&h=300&q=80&f=webp`} 
+            authorImage.includes("http") ? authorImage : `/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/author-imgs/${authorImage}&w=300&h=300&q=80&f=webp`} 
             alt={authorName}
             class="w-full h-full object-cover">
     </div>

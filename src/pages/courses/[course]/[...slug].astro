@@ -53,7 +53,7 @@ let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseNam
 ---
 
 <CourseLayout 
-    pageTitle={`${article.data.title}`} 
+    pageTitle={`${article.data.title} - ${courseData?.courseTitle} Mastery Course`} 
     description="" 
     seoImagePath="" 
     pageType="website"
@@ -70,7 +70,7 @@ let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseNam
         <!-- Page Header -->
         <div class="mb-8 animate-on-scroll">
             <div class="flex items-center space-x-4 mb-4">
-                <a href={`/CodeMastery/courses/${courseData?.slug}`} class="flex items-center text-purple-600 dark:text-purple-400">
+                <a href={`/courses/${courseData?.slug}`} class="flex items-center text-purple-600 dark:text-purple-400">
                     <i class="fas fa-arrow-left mr-2"></i>
                     <span class="hover:underline">Back to Course</span>
                 </a>
@@ -90,7 +90,7 @@ let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseNam
             </div>
     
             <div>
-                <a href={`/CodeMastery/courses/${courseData?.slug}`}
+                <a href={`/courses/${courseData?.slug}`}
                     class="font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
                     {courseData?.courseTitle}
                 </a>
@@ -191,7 +191,7 @@ let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseNam
                 <!-- Next/Previous Navigation -->
                 <div
                     class="flex flex-wrap lg:gap-0 gap-3 justify-between items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 animate-on-scroll delay-200">
-                    <a href={`/CodeMastery/courses/${course}/${getArticleByFileName(adjacentArticles.previous)?.data.slug}`}
+                    <a href={`/courses/${course}/${getArticleByFileName(adjacentArticles.previous)?.data.slug}`}
                         class="flex lg:w-fit w-full items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                         class:list={[adjacentArticles.previous == null && "invisible"]}>
                         <i class="fas fa-arrow-left mr-3"></i>
@@ -201,7 +201,7 @@ let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseNam
                         </div>
                     </a>
 
-                    <a href={`/CodeMastery/courses/${course}/${getArticleByFileName(adjacentArticles.next)?.data.slug}`}
+                    <a href={`/courses/${course}/${getArticleByFileName(adjacentArticles.next)?.data.slug}`}
                         class="flex lg:w-fit w-full justify-end items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-right"
                         class:list={[adjacentArticles.next == null && "invisible"]}>
                         <div>

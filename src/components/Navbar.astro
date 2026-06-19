@@ -1,4 +1,6 @@
 ---
+import { getSiteName } from "../data/data";
+
 
 ---
 
@@ -10,11 +12,11 @@
                 <div class="gradient-bg w-8 h-8 rounded-lg flex items-center justify-center">
                     <i class="fas fa-code text-white"></i>
                 </div>
-                <a href="/CodeMastery" class="text-2xl font-bold gradient-text">CodeMastery</a>
+                <a href="/" class="text-2xl font-bold gradient-text">{getSiteName()}</a>
             </div>
 
             <div class="hidden md:flex space-x-8">
-                <a href="/CodeMastery/courses"
+                <a href="/courses"
                     class="font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Courses</a>
                 <a href="#interview"
                     class="font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Interview Prep</a>
@@ -43,7 +45,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
             <div class="flex flex-col space-y-4 mt-4">
-                <a href="/CodeMastery/courses"
+                <a href="/courses"
                     class="font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Courses</a>
                 <a href="#interview"
                     class="font-medium hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Roadmaps</a>

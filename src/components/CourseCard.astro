@@ -19,7 +19,7 @@ let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseNam
         <div class="flex items-center justify-between mb-4">
             <!-- Course Image -->
             <div class="w-20 h-1w-20 rounded-xl overflow-hidden">
-                <img src={`/CodeMastery/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/course-logo/${imageFileName}.png&w=80&h=80&q=80&f=webp`} alt={`${courseTitle} Course`}
+                <img src={`/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/course-logo/${imageFileName}.png&w=80&h=80&q=80&f=webp`} alt={`${courseTitle} Course`}
                     class="w-full h-full object-cover border-0" />
             </div>
             <span
@@ -40,7 +40,7 @@ let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseNam
     </div>
     <!--  gradient-bg -->
     <div class="px-6 py-4 bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-700">
-        <a href={`/CodeMastery/courses/${slug}`} class="w-full block text-center py-2 text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
+        <a href={`/courses/${slug}`} class="w-full block text-center py-2 text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
             style=`background-color: ${color};`
         >Start Learning</a>
     </div>

@@ -1,5 +1,6 @@
 ---
 import FAQ from "../components/FAQ.astro";
+import { getSiteName } from "../data/data";
 import MainLayout from "../layouts/MainLayout.astro";
 
 
@@ -184,7 +185,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             <div class="max-w-4xl mx-auto text-center animate-on-scroll">
                 <div class="mb-6">
                     <span class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm font-medium">
-                        <i class="fas fa-pen-fancy mr-2"></i>Write for CodeMaster
+                        <i class="fas fa-pen-fancy mr-2"></i>Write for {getSiteName()}
                     </span>
                 </div>
                 
@@ -617,7 +618,7 @@ dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <h3 class="text-3xl font-bold mb-4">Welcome to the Team! 🎉</h3>
                     <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-6">
-                        Thank you for applying to become a CodeMaster contributor. Our editorial team will 
+                        Thank you for applying to become a {getSiteName()} contributor. Our editorial team will 
                         review your application and get back to you within 48 hours.
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -638,11 +639,11 @@ dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <div class="container mx-auto max-w-4xl">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="gradient-text">Questions</span></h2>
-                <p class="text-gray-600 dark:text-gray-300">Everything you need to know about contributing to CodeMaster</p>
+                <p class="text-gray-600 dark:text-gray-300">Everything you need to know about contributing to {getSiteName()}</p>
             </div>
             
             <FAQ FAQData={[{
-                    q: "Who can contribute to CodeMaster?",
+                    q: "Who can contribute to Open Dev Docs?",
                     a : "Anyone with coding knowledge and a passion for teaching can contribute. We welcome contributors from all experience levels - from experienced developers sharing advanced concepts to beginners documenting their learning journey."
                 },
                 {

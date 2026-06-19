@@ -1,0 +1,577 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+
+---
+
+<style is:inline>
+    /* Contact Info Cards */
+    .contact-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .contact-card .icon-wrapper {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+    
+    /* Map Container */
+    .map-container {
+        border-radius: 1rem;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        border: 0;
+    }
+    
+    /* Form Styles */
+    .input-group {
+        position: relative;
+    }
+    
+    .input-group .input-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        transition: color 0.3s ease;
+    }
+    
+    .input-group .input-icon.focused {
+        color: #667eea;
+    }
+    
+    .input-group textarea ~ .input-icon {
+        top: 1.25rem;
+        transform: none;
+    }
+    
+    /* Success Message */
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    .scale-in {
+        animation: scaleIn 0.5s ease;
+    }
+    
+    /* Social Icons */
+    .social-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-size: 1.25rem;
+    }
+    
+    .social-icon:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Status indicator */
+    .status-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        display: inline-block;
+        animation: pulse-dot 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-dot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    
+</style>
+
+<MainLayout 
+    pageTitle="Contact Us - "
+    description=""
+    seoImagePath="">
+
+    <!-- Hero Section -->
+    <header class="py-16 px-6 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-300 dark:bg-purple-900 rounded-full -translate-y-32 translate-x-32 opacity-30 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-300 dark:bg-blue-900 rounded-full translate-y-32 -translate-x-32 opacity-30 blur-3xl"></div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-3xl mx-auto text-center animate-on-scroll">
+                <div class="mb-6">
+                    <span class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm font-medium">
+                        <i class="fas fa-heart mr-2"></i>We'd Love to Hear From You
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="block">Get in</span>
+                    <span class="gradient-text">Touch With Us</span>
+                </h1>
+                
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                    Have questions, feedback, or want to collaborate? We're here to help. 
+                    Reach out to us through any of the channels below.
+                </p>
+                
+                <!-- Status Indicator -->
+                <div class="inline-flex items-center bg-white dark:bg-gray-800 rounded-full px-6 py-3 shadow-lg">
+                    <span class="status-dot bg-green-500 mr-3"></span>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        We're online and ready to help
+                    </span>
+                    <span class="ml-3 text-xs text-gray-500 dark:text-gray-400">• 24/7</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Info Cards -->
+    <section id="contact-info" class="py-12 px-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Email -->
+                <div class="contact-card bg-gray-50 dark:bg-gray-900 animate-on-scroll delay-100">
+                    <div class="icon-wrapper gradient-bg text-white mb-4">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Email Us</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">We'll respond within 24 hours</p>
+                    <a href="mailto:support@codemaster.com" class="text-purple-600 dark:text-purple-400 font-medium hover:underline">
+                        support@codemaster.com
+                    </a>
+                </div>
+                
+                <!-- Phone -->
+                <div class="contact-card bg-gray-50 dark:bg-gray-900 animate-on-scroll delay-200">
+                    <div class="icon-wrapper bg-green-500 text-white mb-4">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Call Us</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Mon-Fri 9am-6pm EST</p>
+                    <a href="tel:+1234567890" class="text-purple-600 dark:text-purple-400 font-medium hover:underline">
+                        +1 (234) 567-890
+                    </a>
+                </div>
+                
+                <!-- Location -->
+                <div class="contact-card bg-gray-50 dark:bg-gray-900 animate-on-scroll delay-300">
+                    <div class="icon-wrapper bg-blue-500 text-white mb-4">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Visit Us</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Come say hello in person</p>
+                    <span class="text-gray-800 dark:text-gray-200 font-medium">
+                        123 Tech Park, Silicon Valley, CA
+                    </span>
+                </div>
+                
+                <!-- Social -->
+                <div class="contact-card bg-gray-50 dark:bg-gray-900 animate-on-scroll delay-400">
+                    <div class="icon-wrapper bg-purple-500 text-white mb-4">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Follow Us</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Connect with us online</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="social-icon bg-blue-500 text-white hover:bg-blue-600">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon bg-blue-700 text-white hover:bg-blue-800">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-icon bg-gray-800 text-white hover:bg-gray-900">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon bg-red-600 text-white hover:bg-red-700">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section id="get-in-touch" class="py-16 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="animate-on-scroll">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+                        <h2 class="text-2xl font-bold mb-2">Send Us a Message</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Fill out the form and we'll get back to you shortly</p>
+                        
+                        <form id="contact-form" novalidate>
+                            <!-- Name -->
+                            <div class="form-group mb-5">
+                                <label class="input-label input-label-required">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-icon"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="input-default bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10" placeholder="John Doe" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="form-group mb-5">
+                                <label class="input-label input-label-required">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="input-default bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Subject -->
+                            <div class="form-group mb-5">
+                                <label class="input-label input-label-required">Subject</label>
+                                <div class="input-group">
+                                    <span class="input-icon"><i class="fas fa-tag"></i></span>
+                                    <select class="input-default bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 appearance-none" required>
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="contribution">Become a Contributor</option>
+                                        <option value="partnership">Partnership Opportunity</option>
+                                        <option value="feedback">Feedback/Suggestions</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Message -->
+                            <div class="form-group mb-6">
+                                <label class="input-label input-label-required">Message</label>
+                                <div class="input-group relative">
+                                    <span class="input-icon top-4"><i class="fas fa-comment"></i></span>
+                                    <textarea class="input-default bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-10 min-h-[140px]" placeholder="Write your message here..." required></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Preferred Contact Method -->
+                            <div class="form-group mb-6">
+                                <label class="input-label">Preferred Contact Method</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="flex items-center p-3 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                        <input type="radio" name="contact-method" class="form-radio mr-3" value="email" checked>
+                                        <span class="text-sm"><i class="fas fa-envelope mr-2 text-purple-500"></i>Email</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                        <input type="radio" name="contact-method" class="form-radio mr-3" value="phone">
+                                        <span class="text-sm"><i class="fas fa-phone mr-2 text-green-500"></i>Phone</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Consent -->
+                            <div class="form-group mb-6">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="form-checkbox mr-3 mt-1" required>
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                                        I agree to the <a href="#" class="text-purple-600 dark:text-purple-400 hover:underline">privacy policy</a> 
+                                        and consent to having my information stored for contact purposes.
+                                    </span>
+                                </label>
+                            </div>
+                            
+                            <!-- Submit -->
+                            <button type="submit" class="btn-primary hidden md:inline-block px-6 py-2 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity w-full py-3.5 text-lg">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Message
+                            </button>
+                            
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4 text-center">
+                                <i class="fas fa-lock mr-1"></i>Your information is secure and will not be shared
+                            </p>
+                        </form>
+                        
+                        <!-- Success Message -->
+                        <div id="success-message" class="hidden text-center py-8">
+                            <div class="w-20 h-20 gradient-success rounded-full flex items-center justify-center mx-auto mb-4 scale-in">
+                                <i class="fas fa-check text-white text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Message Sent! 🎉</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                Thank you for reaching out. We'll get back to you within 24 hours.
+                            </p>
+                            <button onclick="resetForm()" class="btn-secondary">
+                                <i class="fas fa-redo mr-2"></i>Send Another Message
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Map & Additional Info -->
+                <div class="space-y-6 animate-on-scroll delay-200">
+                    <!-- Map -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                        <div class="map-container" style="height: 300px;">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.649564882868!2d-122.08424968469258!3d37.42206597982578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fba02425dad8f%3A0x6c296c66619367d!2sGoogleplex!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                                allowfullscreen 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- Office Hours -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-clock text-purple-500 mr-3"></i>
+                            Office Hours
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                                <span class="text-gray-600 dark:text-gray-300">Monday - Friday</span>
+                                <span class="font-medium">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                                <span class="text-gray-600 dark:text-gray-300">Saturday</span>
+                                <span class="font-medium">10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span class="text-gray-600 dark:text-gray-300">Sunday</span>
+                                <span class="font-medium text-green-600 dark:text-green-400">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-link text-purple-500 mr-3"></i>
+                            Quick Links
+                        </h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="about.html" class="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-center">
+                                <i class="fas fa-info-circle text-purple-500 block mb-1"></i>
+                                <span class="text-sm">About Us</span>
+                            </a>
+                            <a href="faq.html" class="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-center">
+                                <i class="fas fa-question-circle text-purple-500 block mb-1"></i>
+                                <span class="text-sm">FAQ</span>
+                            </a>
+                            <a href="contribute.html" class="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-center">
+                                <i class="fas fa-pen-fancy text-purple-500 block mb-1"></i>
+                                <span class="text-sm">Contribute</span>
+                            </a>
+                            <a href="support.html" class="p-3 bg-gray-50 dark:bg-gray-900 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors text-center">
+                                <i class="fas fa-headset text-purple-500 block mb-1"></i>
+                                <span class="text-sm">Support</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / Help Section -->
+    <section class="py-16 px-6 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <p class="text-gray-600 dark:text-gray-300">Quick answers to common questions</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg animate-on-scroll delay-100">
+                    <button class="accordion-header w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-lg">How quickly do you respond to inquiries?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-gray-400"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                            We typically respond to all inquiries within 24 hours during business days. For urgent matters, 
+                            please call us directly at our support number.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg animate-on-scroll delay-200">
+                    <button class="accordion-header w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-lg">Can I contribute content to CodeMaster?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-gray-400"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                            Absolutely! We're always looking for passionate writers and developers to contribute articles, tutorials, 
+                            and guides. Visit our <a href="contribute.html" class="text-purple-600 dark:text-purple-400 hover:underline">Contribute page</a> 
+                            to learn more and apply.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg animate-on-scroll delay-300">
+                    <button class="accordion-header w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-lg">Do you offer partnerships or sponsorships?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-gray-400"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                            Yes, we welcome partnership and sponsorship opportunities. Please fill out our contact form with 
+                            "Partnership" as the subject, and our partnerships team will reach out to discuss potential collaborations.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg animate-on-scroll delay-400">
+                    <button class="accordion-header w-full p-6 text-left flex justify-between items-center">
+                        <span class="font-bold text-lg">How can I report a bug or issue?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300 text-gray-400"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+                        <div class="p-6 pt-0 text-gray-600 dark:text-gray-300">
+                            If you encounter any bugs or issues, please send us a detailed report through our contact form. 
+                            Include steps to reproduce the issue, your browser/device information, and any screenshots if available.
+                            We appreciate your help in making CodeMaster better!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline>
+        // Accordion Functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+                
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+        
+        // Form Validation
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        const inputGroups = form.querySelectorAll('.input-group');
+        
+        // Focus effects for icons
+        inputGroups.forEach(group => {
+            const input = group.querySelector('input, textarea, select');
+            const icon = group.querySelector('.input-icon');
+            
+            if (input && icon) {
+                input.addEventListener('focus', () => {
+                    icon.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', () => {
+                    icon.classList.remove('focused');
+                });
+            }
+        });
+        
+        // Form Submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Basic validation
+            let valid = true;
+            const requiredFields = form.querySelectorAll('[required]');
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500', 'dark:border-red-400');
+                    valid = false;
+                } else {
+                    field.classList.remove('border-red-500', 'dark:border-red-400');
+                }
+            });
+            
+            // Email validation
+            const emailField = form.querySelector('input[type="email"]');
+            if (emailField && emailField.value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailField.value)) {
+                    emailField.classList.add('border-red-500', 'dark:border-red-400');
+                    valid = false;
+                }
+            }
+            
+            if (!valid) {
+                // Scroll to first error
+                const firstError = form.querySelector('.border-red-500');
+                if (firstError) {
+                    firstError.focus();
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                alert('Please fill in all required fields correctly.');
+                return;
+            }
+            
+            // Simulate submission
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Hide form, show success
+                form.style.display = 'none';
+                successMessage.classList.remove('hidden');
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        });
+        
+        // Reset Form
+        function resetForm() {
+            form.style.display = 'block';
+            successMessage.classList.add('hidden');
+            form.reset();
+            
+            // Remove error states
+            form.querySelectorAll('.border-red-500').forEach(el => {
+                el.classList.remove('border-red-500', 'dark:border-red-400');
+            });
+            
+            // Scroll to form
+            form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</MainLayout>

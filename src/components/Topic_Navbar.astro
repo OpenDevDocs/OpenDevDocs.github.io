@@ -20,12 +20,12 @@ const {courseTitle, courseImage, courseSlug} = Astro.props;
                     <i class="fas fa-bars text-lg"></i>
                 </button>
                 <div class="flex items-center space-x-2">
-                    <a class="hidden lg:block" href="/CodeMastery"><i class="fa-solid fa-house gradient-text text-2xl"></i></a>
+                    <a class="hidden lg:block" href="/"><i class="fa-solid fa-house gradient-text text-2xl"></i></a>
                     <i class="hidden! lg:block! fa-solid fa-angle-right text-black dark:text-white "></i>
-                    <a class="hidden lg:block" href="/CodeMastery/courses/"><span>Course</span></a>
+                    <a class="hidden lg:block" href="/courses/"><span>Course</span></a>
                     <i class="hidden! lg:block! fa-solid fa-angle-right text-black dark:text-white "></i>
-                    <a href={"/CodeMastery/courses/"+courseSlug} class="flex items-center space-x-2">
-                        <img src={`/CodeMastery/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/course-logo/${courseImage}.png&w=24&h=24&q=80&f=webp`} class="size-6" alt="">
+                    <a href={"/courses/"+courseSlug} class="flex items-center space-x-2">
+                        <img src={`/_image?href=https://secureurl.github.io/cloud/OpenDevDocs/course-logo/${courseImage}.png&w=24&h=24&q=80&f=webp`} class="size-6" alt="">
                         <span class="font-bold text-xl tracking-tight bg-linear-to-r from-yellow-600 to-orange-500 bg-clip-text text-transparent dark:from-yellow-400 dark:to-orange-400">{courseTitle + " Mastery Docs" }</span>
                         {
                             false && 

@@ -1,4 +1,6 @@
 ---
+import { getSiteName } from "../data/data";
+
 
 ---
 <style is:inline>
@@ -43,7 +45,7 @@
                     <div class="gradient-bg w-8 h-8 rounded-lg flex items-center justify-center">
                         <i class="fas fa-code text-white"></i>
                     </div>
-                    <span class="text-2xl font-bold text-white">CodeMaster</span>
+                    <span class="text-2xl font-bold text-white">{getSiteName()}</span>
                 </div>
                 <p class="max-w-md">Learn to code effectively with interactive courses and comprehensive interview
                     preparation.</p>
@@ -95,7 +97,7 @@
         </div>
 
         <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-            <p>&copy; {new Date().getFullYear()} CodeMastery. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} {getSiteName()}. All rights reserved.</p>
         </div>
     </div>
 </footer>

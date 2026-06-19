@@ -4,6 +4,7 @@ import Topic_Navbar from "../components/Topic_Navbar.astro"
 import Head from "../components/Head.astro";
 import Footer from "../components/Footer.astro";
 import TopicSideBar from "../components/Topic_SideBar.astro";
+import { getSiteName } from "../data/data";
 
 interface Props {
     pageTitle ?: string,
@@ -17,7 +18,7 @@ interface Props {
     courseSlug : string
 }
 
-const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWidth = true,  description, seoImagePath, courseData, courseName, courseSlug, courseImage} = Astro.props;
+const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFullWidth = true,  description, seoImagePath, courseData, courseName, courseSlug, courseImage} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWid
     {seoImagePath}
     {pageType}
 >
-    <link rel="stylesheet" href="/CodeMastery/assets/view-transition.css">
+    <link rel="stylesheet" href="/assets/view-transition.css">
     <style is:global>
         :root {
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -177,7 +178,7 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWid
                 <!-- Desktop sidebar duplicate visibility (actual aside above works for both) but the aside has same classes, it's visible on lg+. However we want the aside to be independent: we keep it, but on mobile hidden via transform, on lg visible. Fine. Also we need main content shift -->
                 <main class="flex-1 overflow-hidden px-4 sm:px-6 lg:px-8 py-6 md:py-8 w-full">
                 
-                    <div class="mx-auto" class:list={[isFullWidth ? "max-w-full lg:max-w-full" : "max-w-md lg:max-w-4xl"]}>
+                    <div class="mx-auto" >
                              
                         <slot /> 
                              
@@ -286,7 +287,7 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", isFullWid
         })();
     </script>
 
-    <script is:inline src="/CodeMastery/assets/load-animation.js"></script>
+    <script is:inline src="/assets/load-animation.js"></script>
     
 </body>
 </html>

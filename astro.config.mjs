@@ -6,8 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://dev-bishal.github.io',
-    base: '/CodeMastery',
+    site: 'https://opendevdocs.github.io',
     vite: {
         plugins: [tailwindcss()],
     },

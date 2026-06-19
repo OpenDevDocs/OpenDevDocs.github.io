@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Head from "../components/Head.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import { getSiteName } from "../data/data";
 
 interface Props {
     pageTitle ?: string,
@@ -11,7 +12,7 @@ interface Props {
     pageType ?: string
 }
 
-const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", description, seoImagePath} = Astro.props;
+const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", description, seoImagePath} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", descripti
     {seoImagePath}
     {pageType}
 >
-    <link rel="stylesheet" href="/CodeMastery/assets/view-transition.css">
+    <link rel="stylesheet" href="/assets/view-transition.css">
     <style is:global>
         :root {
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -98,7 +99,7 @@ const {pageTitle = "CodeMaster - Learn to Code", pageType = "website", descripti
     <slot /> 
     <Footer />
     
-    <script is:inline src="/CodeMastery/assets/load-animation.js"></script>
-    <script is:inline src="/CodeMastery/assets/main.js"></script>
+    <script is:inline src="/assets/load-animation.js"></script>
+    <script is:inline src="/assets/main.js"></script>
 </body>
 </html>
