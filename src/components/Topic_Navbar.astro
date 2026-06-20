@@ -5,9 +5,12 @@ interface Props {
     courseTitle : string,
     courseSlug : string,
     courseImage : string,
+    courseTextClass : string
 }
 
-const {courseTitle, courseImage, courseSlug} = Astro.props;
+const {courseTitle, courseImage, courseSlug, courseTextClass} = Astro.props;
+// console.log(courseTextClass);
+
 ---
 
 <!-- Header with mobile menu button + dark mode -->
@@ -28,7 +31,7 @@ const {courseTitle, courseImage, courseSlug} = Astro.props;
                     <i class="hidden! lg:block! fa-solid fa-angle-right text-black dark:text-white "></i>
                     <a href={"/courses/"+courseSlug} class="flex items-center space-x-2">
                         <Image format='webp' width={24} height={24} src={`https://secureurl.github.io/cloud/OpenDevDocs/course-logo/${courseImage}.png`} class="size-6" alt="" />
-                        <span class="font-bold text-xl tracking-tight bg-linear-to-r from-yellow-600 to-orange-500 bg-clip-text text-transparent dark:from-yellow-400 dark:to-orange-400">{courseTitle + " Mastery Docs" }</span>
+                        <span class="font-bold text-xl tracking-tight bg-linear-to-r bg-clip-text text-transparent" class:list={[courseTextClass]}>{courseTitle + " Mastery Docs" }</span>
                         {
                             false && 
                             <span class="hidden sm:inline-block ml-1 text-xs bg-gray-200 dark:bg-gray-800 px-2 py-0.5 rounded-full text-gray-600 dark:text-gray-400">v2.0</span>

@@ -15,10 +15,11 @@ interface Props {
     courseData : any,
     courseName : string,
     courseImage : string
-    courseSlug : string
+    courseSlug : string,
+    courseTextClass : string
 }
 
-const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFullWidth = true,  description, seoImagePath, courseData, courseName, courseSlug, courseImage} = Astro.props;
+const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFullWidth = true,  description, seoImagePath, courseData, courseName, courseSlug, courseImage, courseTextClass} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -167,7 +168,7 @@ const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFu
 </Head>
 <body class="theme-transition bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
     <div class="flex flex-col min-h-screen">
-        <Topic_Navbar courseTitle={courseName} {courseImage} {courseSlug}/>
+        <Topic_Navbar courseTitle={courseName} {courseImage} {courseSlug} {courseTextClass}/>
         <section class="main flex justify-end">
 
             <TopicSideBar {courseData} {courseName} {courseSlug}/>

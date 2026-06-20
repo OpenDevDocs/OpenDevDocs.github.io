@@ -10,16 +10,16 @@ import { Image } from "astro:assets";
 
 export function getStaticPaths() {
 
-return courses.map(({ slug, courseTitle, cardText, descriptionText, imageFileName, isCompleted, level, color, isAvailable,
-    authorId }) => {
+return courses.filter(course => course.isAvailable == true).map(({ slug, courseTitle, cardText, descriptionText, imageFileName, isCompleted, level, color, isAvailable,
+    authorId, gradientClass}) => {
     return {
         params: { slug },
-        props: { courseTitle, descriptionText, imageFileName, isCompleted, level, authorId },
+        props: { courseTitle, descriptionText, imageFileName, isCompleted, level, authorId, gradientClass },
     };
 });
 }
 
-const {courseTitle,descriptionText,imageFileName,level, isCompleted, authorId} = Astro.props;
+const {courseTitle,descriptionText,imageFileName,level, isCompleted, authorId, gradientClass} = Astro.props;
 const {slug} = Astro.params;
 
 let currentSyllabus = syllabus.filter((courseName :any) => courseName.courseName.toLowerCase() === slug)
@@ -115,6 +115,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
     courseData = {currentSyllabus}
     courseImage = {imageFileName}
     courseSlug = {slug}
+    courseTextClass = {gradientClass || "text-black dark:text-white"}
     >
 
     <!-- Course Header -->

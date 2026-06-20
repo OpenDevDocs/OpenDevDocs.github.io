@@ -1,5 +1,35 @@
 export const courses = [
   {
+    "courseTitle": "JavaScript",
+    "cardText": "The language of the web",
+    "descriptionText": "JavaScript is a versatile programming language that enables interactive web pages. Learn the fundamentals of this essential web technology, from basic syntax to advanced concepts like closures, prototypes, and asynchronous programming.",
+    "imageFileName": "js",
+    "isPaid": false,
+    "isPopular": false,
+    "level": "Frontend",
+    "slug": "javascript",
+    "color": "#F7DF1E",
+    "isAvailable" : true,
+    "isCompleted" : false,
+    "gradientClass": "dark:from-yellow-400 dark:to-orange-400 from-yellow-600 to-orange-500",
+    "authorId" : "bishal-biswas"
+  },
+  {
+    "courseTitle": "C Sharp",
+    "cardText": "Modern object-oriented programming language",
+    "descriptionText": "C# is a modern, object-oriented programming language developed by Microsoft. Learn this versatile language used for desktop applications, web development, mobile apps, games, and enterprise software with strong typing and rich libraries.",
+    "imageFileName": "c-sharp",
+    "isPaid": false,
+    "isPopular": false,
+    "level": "Backend",
+    "slug": "c-sharp",
+    "color": "#239120",
+    "isAvailable" : false,
+    "isCompleted" : false,
+    "gradientClass": "from-purple-700 to-fuchsia-700",
+    "authorId" : "bishal-biswas"
+  },
+  {
     "courseTitle": "Angular",
     "cardText": "Build powerful web applications with Google's framework",
     "descriptionText": "Angular is a platform and framework for building single-page client applications using HTML and TypeScript. Learn to build dynamic, enterprise-grade applications with dependency injection, declarative templates, and end-to-end tooling.",
@@ -9,8 +39,9 @@ export const courses = [
     "level": "Frontend",
     "slug": "angular",
     "color": "#DD0031",
-    "isAvailable" : true,
+    "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "dark:from-pink-400 dark:to-pink-800 from-pink-600 to-pink-500",
     "authorId" : "bishal-biswas"
   },
   {
@@ -25,6 +56,7 @@ export const courses = [
     "color": "#FF5D01",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -39,6 +71,7 @@ export const courses = [
     "color": "#68217A",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -53,20 +86,7 @@ export const courses = [
     "color": "#0078D4",
     "isAvailable" : false,
     "isCompleted" : false,
-    "authorId" : "bishal-biswas"
-  },
-  {
-    "courseTitle": "C Sharp",
-    "cardText": "Modern object-oriented programming language",
-    "descriptionText": "C# is a modern, object-oriented programming language developed by Microsoft. Learn this versatile language used for desktop applications, web development, mobile apps, games, and enterprise software with strong typing and rich libraries.",
-    "imageFileName": "c-sharp",
-    "isPaid": false,
-    "isPopular": false,
-    "level": "Backend",
-    "slug": "c-sharp",
-    "color": "#239120",
-    "isAvailable" : true,
-    "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -79,8 +99,9 @@ export const courses = [
     "level": "Frontend & Backend",
     "slug": "dotnet-mvc",
     "color": "#512BD4",
-    "isAvailable" : true,
+    "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "from-indigo-500 to-purple-700",
     "authorId" : "bishal-biswas"
   },
   {
@@ -93,8 +114,9 @@ export const courses = [
     "level": "API Development",
     "slug": "dotnet-webapi",
     "color": "#512BD4",
-    "isAvailable" : true,
+    "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "from-blue-600 to-sky-500",
     "authorId" : "bishal-biswas"
   },
   {
@@ -109,6 +131,7 @@ export const courses = [
     "color": "#47848F",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -123,20 +146,7 @@ export const courses = [
     "color": "#000000",
     "isAvailable" : false,
     "isCompleted" : false,
-    "authorId" : "bishal-biswas"
-  },
-  {
-    "courseTitle": "JavaScript",
-    "cardText": "The language of the web",
-    "descriptionText": "JavaScript is a versatile programming language that enables interactive web pages. Learn the fundamentals of this essential web technology, from basic syntax to advanced concepts like closures, prototypes, and asynchronous programming.",
-    "imageFileName": "js",
-    "isPaid": false,
-    "isPopular": false,
-    "level": "Frontend",
-    "slug": "javascript",
-    "color": "#F7DF1E",
-    "isAvailable" : true,
-    "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -151,6 +161,7 @@ export const courses = [
     "color": "#47A248",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -165,6 +176,7 @@ export const courses = [
     "color": "#000000",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -179,6 +191,7 @@ export const courses = [
     "color": "#339933",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -193,6 +206,7 @@ export const courses = [
     "color": "#FF6C37",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -207,6 +221,7 @@ export const courses = [
     "color": "#3776AB",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -219,8 +234,9 @@ export const courses = [
     "level": "Frontend",
     "slug": "react",
     "color": "#61DAFB",
-    "isAvailable" : true,
+    "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "from-blue-400 to-blue-600",
     "authorId" : "bishal-biswas"
   },
   {
@@ -235,6 +251,7 @@ export const courses = [
     "color": "#00758F",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   },
   {
@@ -249,6 +266,7 @@ export const courses = [
     "color": "#3ECF8E",
     "isAvailable" : false,
     "isCompleted" : false,
+    "gradientClass": "",
     "authorId" : "bishal-biswas"
   }
 ]
