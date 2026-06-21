@@ -5,7 +5,7 @@ slug : what-is-javascript-history-setup
 metadescription : Some Text
 featuredImage : image1.png
 updateDate : 2025-12-01T08:30
-author : ['bishal-biswas', 'elon-musk']
+author : ['bishal-biswas']
 level : 1
 tags : []
 ---
