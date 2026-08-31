@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Head from "../components/Head.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import InstallPrompt from "../components/InstallPrompt.astro";
 import { getSiteName } from "../data/data";
 
 interface Props {
@@ -98,6 +99,7 @@ const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", desc
     <Navbar />    
     <slot /> 
     <Footer />
+    <InstallPrompt />
     
     <script is:inline src="/assets/load-animation.js"></script>
     <script is:inline src="/assets/main.js"></script>

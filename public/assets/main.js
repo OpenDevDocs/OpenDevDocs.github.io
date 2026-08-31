@@ -5,6 +5,11 @@ const themeIcon = themeToggle.querySelector('i');
 // Check for saved theme or prefer-color-scheme
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 const currentTheme = localStorage.getItem('theme');
+const themeColors = document.querySelectorAll('meta[name="theme-color"]');
+const updateThemeColor = () => {
+    const color = document.documentElement.classList.contains('dark') ? '#111827' : '#f9fafb';
+    themeColors.forEach(meta => meta.setAttribute('content', color));
+};
 
 // Apply theme on page load to avoid flash
 if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
@@ -16,6 +21,7 @@ if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
     themeIcon.classList.remove('fa-sun');
     themeIcon.classList.add('fa-moon');
 }
+updateThemeColor();
 
 themeToggle.addEventListener('click', () => {
     if (document.documentElement.classList.contains('dark')) {
@@ -29,6 +35,7 @@ themeToggle.addEventListener('click', () => {
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
     }
+    updateThemeColor();
 });
 
 // Mobile Menu Toggle

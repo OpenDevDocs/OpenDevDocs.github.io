@@ -4,6 +4,7 @@ import Topic_Navbar from "../components/Topic_Navbar.astro"
 import Head from "../components/Head.astro";
 import Footer from "../components/Footer.astro";
 import TopicSideBar from "../components/Topic_SideBar.astro";
+import InstallPrompt from "../components/InstallPrompt.astro";
 import { getSiteName } from "../data/data";
 
 interface Props {
@@ -191,6 +192,7 @@ const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFu
         
         <Footer />
     </div>   
+    <InstallPrompt />
     
     <script is:inline>
         (function () {
@@ -226,6 +228,11 @@ const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFu
             const darkToggle = document.getElementById('darkModeToggle');
             const darkIcon = document.getElementById('darkIcon');
             const html = document.documentElement;
+            const themeColors = document.querySelectorAll('meta[name="theme-color"]');
+            function updateThemeColor() {
+                const color = html.classList.contains('dark') ? '#111827' : '#f9fafb';
+                themeColors.forEach(meta => meta.setAttribute('content', color));
+            }
             if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 html.classList.add('dark');
                 if (darkIcon) darkIcon.className = 'fas fa-sun';
@@ -233,6 +240,7 @@ const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFu
                 html.classList.remove('dark');
                 if (darkIcon) darkIcon.className = 'fas fa-moon';
             }
+            updateThemeColor();
             if (darkToggle) {
                 darkToggle.addEventListener('click', () => {
                     if (html.classList.contains('dark')) {
@@ -244,6 +252,7 @@ const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", isFu
                         localStorage.setItem('theme', 'dark');
                         darkIcon.className = 'fas fa-sun';
                     }
+                    updateThemeColor();
                 });
             }
             // mobile sidebar logic

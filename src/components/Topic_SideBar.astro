@@ -32,12 +32,12 @@ topic.difficultyLevel === "Expert"
 
 <!-- Mobile Sidebar Overlay + Drawer (for tablet/mobile) -->
 <div id="mobileSidebarOverlay"
-    class="mobile-sidebar-overlay fixed inset-0 bg-black/50 z-10 lg:hidden invisible opacity-0 transition-all duration-300">
+    class="mobile-sidebar-overlay fixed inset-0 bg-black/50 z-40 lg:hidden invisible opacity-0 transition-all duration-300">
 </div>
 <!-- lg:relative lg:h-auto -->
-<aside id="mobileSidebar" class="fixed top-0 left-0 z-10 lg:relative lg:h-auto w-72 sm:w-80 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transform -translate-x-full transition-transform duration-300 ease-out lg:translate-x-0 lg:block lg:w-72 xl:w-80 shrink-0 overflow-y-auto sidebar-scroll shadow-xl lg:shadow-none">
+<aside id="mobileSidebar" class="fixed inset-y-0 left-0 z-40 flex h-dvh max-h-dvh w-72 sm:w-80 flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transform -translate-x-full transition-transform duration-300 ease-out lg:relative lg:inset-y-auto lg:h-auto lg:max-h-none lg:translate-x-0 lg:block lg:w-72 xl:w-80 shrink-0 shadow-xl lg:shadow-none">
     <div
-        class="sticky mt-16 lg:mt-0 top-0 bg-white dark:bg-gray-900 z-10 flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800 lg:hidden">
+        class="shrink-0 bg-white dark:bg-gray-900 z-10 flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800 lg:hidden">
         <a href="/" class="flex items-center gap-2">
             <i class="fa-solid fa-house gradient-text"></i>
             <span class="font-semibold">Home</span>
@@ -47,7 +47,7 @@ topic.difficultyLevel === "Expert"
             <i class="fas fa-times"></i>
         </button>
     </div>
-    <div class="p-4 pb-8">
+    <div class="min-h-0 flex-1 overflow-y-auto sidebar-scroll p-4 pb-8">
         <div class="mb-6">
             <h3
                 class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-2">
@@ -148,11 +148,11 @@ topic.difficultyLevel === "Expert"
                             <i class="fas fa-download"></i>
                             Interview Questions
                         </a>
-                        <a href="#" class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
+                        <a href={`/courses/${courseSlug}/quizzes`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                             class="fas fa-tasks"></i>
                             Quizzes
                         </a>
-                        <a href="#" class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
+                        <a href={`/courses/${courseSlug}/project-ideas`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                             class="fas fa-tasks"></i>
                             Project Ideas
                         </a>

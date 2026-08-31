@@ -1,0 +1,87 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import { courses } from '../../../../data/courses';
+
+const difficultyLevels = [
+    { id: 'beginner', label: 'Beginner', icon: 'fa-seedling', color: 'green' },
+    { id: 'intermediate', label: 'Intermediate', icon: 'fa-chart-line', color: 'yellow' },
+    { id: 'advanced', label: 'Advanced', icon: 'fa-rocket', color: 'red' },
+    { id: 'expert', label: 'Expert', icon: 'fa-crown', color: 'purple' },
+] as const;
+
+export function getStaticPaths() {
+    return courses.map((course) => ({
+        params: { course: course.slug },
+        props: { courseData: course },
+    }));
+}
+
+const { course } = Astro.params;
+const { courseData } = Astro.props;
+const quizzes = (await getCollection('quizzes'))
+    .filter((quiz) => quiz.data.course === course && quiz.data.isPublished)
+    .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const quizzesByDifficulty = Object.fromEntries(
+    difficultyLevels.map((level) => [level.id, quizzes.filter((quiz) => quiz.data.difficulty === level.id)])
+) as Record<typeof difficultyLevels[number]['id'], typeof quizzes>;
+---
+
+<MainLayout
+    pageTitle={`${courseData.courseTitle} Quizzes`}
+    description={`Test your ${courseData.courseTitle} knowledge with quizzes by difficulty level.`}
+    seoImagePath=""
+    pageType="website">
+    <header class="relative overflow-hidden bg-linear-to-br from-purple-50 to-blue-50 px-6 py-20 dark:from-gray-900 dark:to-gray-800">
+        <div class="container relative z-10 mx-auto max-w-4xl text-center">
+            <div class="mb-6 flex justify-center"><div class="gradient-bg flex size-20 items-center justify-center rounded-2xl"><i class="fas fa-brain text-3xl text-white"></i></div></div>
+            <h1 class="mb-4 text-4xl font-bold md:text-5xl">{courseData.courseTitle} Quizzes</h1>
+            <p class="mb-8 text-xl text-gray-600 dark:text-gray-300">Test your knowledge with quizzes for every difficulty level.</p>
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-5">
+                <div class="rounded-xl bg-white p-4 shadow-lg dark:bg-gray-800"><div class="gradient-text text-2xl font-bold">{quizzes.length}</div><div class="text-sm text-gray-600 dark:text-gray-300">Total Quizzes</div></div>
+                {difficultyLevels.map((level) => quizzesByDifficulty[level.id].length > 0 && <div class="rounded-xl bg-white p-4 shadow-lg dark:bg-gray-800"><div class="text-2xl font-bold">{quizzesByDifficulty[level.id].length}</div><div class="text-sm text-gray-600 dark:text-gray-300">{level.label}</div></div>)}
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-7xl px-6 py-12">
+        {quizzes.length > 0 && <div class="mb-10 flex flex-wrap justify-center gap-3">
+            <button class="quiz-filter rounded-full gradient-bg px-5 py-2 font-medium text-white" data-filter="all">All Quizzes</button>
+            {difficultyLevels.map((level) => quizzesByDifficulty[level.id].length > 0 && <button class="quiz-filter rounded-full bg-gray-100 px-5 py-2 font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-200" data-filter={level.id}>{level.label}</button>)}
+        </div>}
+        {quizzes.length > 0 ? <div class="space-y-16">
+            {difficultyLevels.map((level) => quizzesByDifficulty[level.id].length > 0 && (
+                <section id={level.id} class="quiz-section">
+                    <div class="mb-6 flex items-center gap-4">
+                        <div class="flex size-12 items-center justify-center rounded-xl bg-purple-100 dark:bg-purple-900"><i class:list={['fas', level.icon, 'text-xl text-purple-600 dark:text-purple-400']}></i></div>
+                        <div><h2 class="text-3xl font-bold">{level.label} Quizzes</h2><p class="text-gray-600 dark:text-gray-300">{quizzesByDifficulty[level.id].length} quiz{quizzesByDifficulty[level.id].length === 1 ? '' : 'zes'} to explore</p></div>
+                    </div>
+                    {quizzesByDifficulty[level.id].length > 0 ? (
+                        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            {quizzesByDifficulty[level.id].map((quiz) => (
+                                <article class="group flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl dark:bg-gray-800">
+                                    <div class="mb-5 flex items-start justify-between gap-3"><span class="rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold capitalize text-purple-700 dark:bg-purple-900/40 dark:text-purple-300">{level.label}</span><i class="fas fa-brain text-xl text-purple-500"></i></div>
+                                    <h3 class="mb-3 text-xl font-bold">{quiz.data.title}</h3>
+                                    <p class="mb-6 flex-1 text-gray-600 dark:text-gray-300">{quiz.data.description}</p>
+                                    <div class="mb-5 flex flex-wrap gap-3 text-sm text-gray-500 dark:text-gray-400"><span><i class="fas fa-list-ol mr-1"></i>{quiz.data.questions.length} questions</span><span><i class:list={['fas', quiz.data.isTimed ? 'fa-clock' : 'fa-infinity', 'mr-1']}></i>{quiz.data.isTimed ? `${quiz.data.timeLimitMinutes} min` : 'No time limit'}</span></div>
+                                    <a href={`/courses/${course}/quizzes/${quiz.data.slug}`} class="rounded-lg gradient-bg px-4 py-3 text-center font-medium text-white transition hover:opacity-90"><i class="fas fa-play mr-2"></i>Start Quiz</a>
+                                </article>
+                            ))}
+                        </div>
+                    ) : <p class="rounded-xl border border-dashed border-gray-300 p-8 text-center text-gray-500 dark:border-gray-700">No {level.label.toLowerCase()} quizzes have been published yet.</p>}
+                </section>
+            ))}
+        </div> : <div class="rounded-2xl border border-dashed border-gray-300 px-6 py-16 text-center dark:border-gray-700"><div class="gradient-bg mx-auto mb-5 flex size-16 items-center justify-center rounded-full"><i class="fas fa-brain text-2xl text-white"></i></div><h2 class="mb-2 text-2xl font-bold">No quizzes added yet</h2><p class="text-gray-600 dark:text-gray-300">Quizzes for this course will appear here when they are published.</p></div>}
+    </main>
+</MainLayout>
+
+<script is:inline>
+    document.querySelectorAll('.quiz-filter').forEach((button) => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.filter;
+            document.querySelectorAll('.quiz-filter').forEach((item) => item.classList.remove('gradient-bg', 'text-white'));
+            button.classList.add('gradient-bg', 'text-white');
+            document.querySelectorAll('.quiz-section').forEach((section) => section.classList.toggle('hidden', filter !== 'all' && section.id !== filter));
+        });
+    });
+</script>

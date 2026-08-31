@@ -326,6 +326,117 @@ collections:
             default: true
 
     # ------------------------------------------------------------------
+    # Project ideas - src/content/project-ideas/<course>/<slug>.md
+    #                     -> /courses/<course>/project-ideas
+    # ------------------------------------------------------------------
+    - name: projectIdeas
+      label: Project Ideas
+      label_singular: Project Idea
+      description: Course-specific project ideas grouped by difficulty.
+      folder: src/content/project-ideas
+      create: true
+      path: '{{fields.course}}/{{fields.slug}}'
+      slug: '{{fields.slug}}'
+      identifier_field: title
+      summary: '{{fields.title}} ({{fields.course}} / {{fields.difficulty}})'
+      preview_path: 'courses/{{fields.course}}/project-ideas'
+      sortable_fields: [course, difficulty, title]
+      fields:
+          - label: Course
+            name: course
+            widget: relation
+            collection: siteData
+            file: languages
+            value_field: 'courses.*.slug'
+            display_fields: ['courses.*.courseTitle']
+            search_fields: ['courses.*.courseTitle']
+          - label: URL slug
+            name: slug
+            widget: string
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - label: Difficulty
+            name: difficulty
+            widget: select
+            options: [beginner, intermediate, advanced]
+            default: beginner
+          - { label: Image URL, name: image, widget: string, required: false }
+          - { label: Estimated time, name: estimatedTime, widget: string, required: false }
+          - { label: Topics, name: topics, widget: list, required: false, default: [] }
+          - { label: Key features, name: features, widget: list, required: false, default: [] }
+          - { label: Technologies, name: technologies, widget: list, required: false, default: [] }
+          - { label: Published, name: isPublished, widget: boolean, default: true }
+
+    # ------------------------------------------------------------------
+    # Quizzes - src/content/quizzes/<course>/<slug>.md
+    #                    -> /courses/<course>/quizzes/<slug>
+    # ------------------------------------------------------------------
+    - name: quizzes
+      label: Quizzes
+      label_singular: Quiz
+      description: Course quizzes grouped by difficulty, with optional timers.
+      folder: src/content/quizzes
+      create: true
+      path: '{{fields.course}}/{{fields.slug}}'
+      slug: '{{fields.slug}}'
+      identifier_field: title
+      summary: '{{fields.title}} ({{fields.course}} / {{fields.difficulty}})'
+      preview_path: 'courses/{{fields.course}}/quizzes/{{fields.slug}}'
+      sortable_fields: [course, difficulty, title]
+      fields:
+          - label: Course
+            name: course
+            widget: relation
+            collection: siteData
+            file: languages
+            value_field: 'courses.*.slug'
+            display_fields: ['courses.*.courseTitle']
+            search_fields: ['courses.*.courseTitle']
+          - label: URL slug
+            name: slug
+            widget: string
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - label: Difficulty
+            name: difficulty
+            widget: select
+            options: [beginner, intermediate, advanced, expert]
+            default: beginner
+          - label: Timed quiz
+            name: isTimed
+            widget: boolean
+            default: false
+          - label: Time limit (minutes)
+            name: timeLimitMinutes
+            widget: number
+            value_type: int
+            min: 1
+            required: false
+            hint: Required when Timed quiz is enabled.
+          - label: Questions
+            name: questions
+            widget: list
+            label_singular: Question
+            summary: '{{fields.question}}'
+            fields:
+                - { label: Question, name: question, widget: text }
+                - label: Options
+                  name: options
+                  widget: list
+                  min: 2
+                - label: Correct answer index
+                  name: correctAnswer
+                  widget: number
+                  value_type: int
+                  min: 0
+                  hint: Zero-based index. 0 is the first option.
+                - { label: Explanation, name: explanation, widget: text, required: false }
+                - { label: Points, name: points, widget: number, value_type: int, min: 1, default: 5 }
+          - { label: Published, name: isPublished, widget: boolean, default: true }
+
+    # ------------------------------------------------------------------
     # Site data - single JSON files read directly by the Astro pages
     # ------------------------------------------------------------------
     - name: siteData

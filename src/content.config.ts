@@ -76,6 +76,46 @@ const interviewQuestions = defineCollection({
     }),
 });
 
+// Project ideas: `src/content/project-ideas/<course>/<project>.md`
+const projectIdeas = defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/project-ideas/' }),
+    schema: z.object({
+        course: z.string(),
+        slug: z.string(),
+        title: z.string(),
+        description: z.string(),
+        difficulty: z.enum(['beginner', 'intermediate', 'advanced']),
+        image: z.string().optional(),
+        estimatedTime: z.string().optional(),
+        topics: z.array(z.string()).default([]),
+        features: z.array(z.string()).default([]),
+        technologies: z.array(z.string()).default([]),
+        isPublished: z.boolean().default(true),
+    }),
+});
+
+// Quizzes: `src/content/quizzes/<course>/<quiz>.md`
+const quizzes = defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/quizzes/' }),
+    schema: z.object({
+        course: z.string(),
+        slug: z.string(),
+        title: z.string(),
+        description: z.string(),
+        difficulty: z.enum(['beginner', 'intermediate', 'advanced', 'expert']),
+        isTimed: z.boolean().default(false),
+        timeLimitMinutes: z.number().int().positive().optional(),
+        questions: z.array(z.object({
+            question: z.string(),
+            options: z.array(z.string()).min(2),
+            correctAnswer: z.number().int().nonnegative(),
+            explanation: z.string().optional(),
+            points: z.number().positive().default(5),
+        })).min(1),
+        isPublished: z.boolean().default(true),
+    }),
+});
+
 // Expose your defined collection to Astro
 // with the `collections` export
-export const collections = { codeArticles, blog, legal, interviewQuestions };
+export const collections = { codeArticles, blog, legal, interviewQuestions, projectIdeas, quizzes };
