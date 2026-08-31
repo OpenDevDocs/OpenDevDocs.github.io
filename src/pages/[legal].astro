@@ -1,0 +1,222 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import MainLayout from "../layouts/MainLayout.astro";
+import Prose from "../components/Prose.astro";
+import { getFormattedDate } from "../data/utils";
+import { getSiteName } from "../data/data";
+
+export async function getStaticPaths() {
+    const legalPages = await getCollection("legal");
+
+    return legalPages.map((page: CollectionEntry<"legal">) => ({
+        params: { legal: page.data.slug },
+        props: { page },
+    }));
+}
+
+interface Props {
+    page: CollectionEntry<"legal">;
+}
+
+const { page } = Astro.props;
+const { Content, headings } = await render(page);
+
+// Only top level sections make it into the table of contents
+const tableOfContents = headings.filter((heading) => heading.depth === 2);
+---
+
+<style is:inline>
+    /* Table of Contents */
+    .toc-link {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+        font-size: 0.875rem;
+    }
+
+    .toc-link:hover {
+        background-color: rgba(102, 126, 234, 0.05);
+        border-left-color: #667eea;
+    }
+
+    .dark .toc-link:hover {
+        background-color: rgba(102, 126, 234, 0.1);
+    }
+
+    .toc-link.active {
+        background-color: rgba(102, 126, 234, 0.08);
+        border-left-color: #667eea;
+        color: #667eea;
+    }
+
+    .dark .toc-link.active {
+        background-color: rgba(102, 126, 234, 0.15);
+        color: #a78bfa;
+    }
+
+    /* Anchored headings should not hide under the sticky navbar */
+    .legal-content :is(h2, h3) {
+        scroll-margin-top: 6rem;
+    }
+
+    /* Last updated badge */
+    .update-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background-color: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+    }
+
+    .dark .update-badge {
+        background-color: rgba(102, 126, 234, 0.2);
+        color: #a78bfa;
+    }
+
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+    }
+</style>
+
+<MainLayout
+    pageTitle={`${page.data.title} - ${getSiteName()}`}
+    description={page.data.metadescription}
+    seoImagePath=""
+    pageType="article"
+>
+    <!-- Hero Section -->
+    <header
+        class="pt-24 py-16 px-6 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden"
+    >
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-purple-300 dark:bg-purple-900 rounded-full -translate-y-32 translate-x-32 opacity-30 blur-3xl">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-blue-300 dark:bg-blue-900 rounded-full translate-y-32 -translate-x-32 opacity-30 blur-3xl">
+        </div>
+
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl mx-auto text-center animate-on-scroll">
+                <div class="mb-6 flex items-center justify-center gap-4 flex-wrap">
+                    <span
+                        class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm font-medium"
+                    >
+                        <i class="fas fa-shield-alt mr-2"></i>{page.data.badge || page.data.title}
+                    </span>
+                    <span class="update-badge">
+                        <i class="fas fa-clock mr-1"></i> Last Updated: {getFormattedDate(page.data.updateDate)}
+                    </span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="block">{page.data.heroHeadline || page.data.title}</span>
+                    {page.data.heroSubHeadline && <span class="gradient-text">{page.data.heroSubHeadline}</span>}
+                </h1>
+
+                {
+                    page.data.summary && (
+                        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                            {page.data.summary}
+                        </p>
+                    )
+                }
+
+                {
+                    page.data.highlights.length > 0 && (
+                        <div class="flex flex-wrap justify-center gap-6 text-sm">
+                            {page.data.highlights.map((highlight) => (
+                                <div class="flex items-center text-gray-600 dark:text-gray-300">
+                                    <i class="fas fa-check-circle text-green-500 mr-2" />
+                                    {highlight}
+                                </div>
+                            ))}
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Table of Contents -->
+            {
+                tableOfContents.length > 0 && (
+                    <div class="lg:w-1/4 shrink-0 no-print">
+                        <div class="sticky top-32">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 animate-on-scroll">
+                                <h3 class="text-lg font-bold mb-4 flex items-center">
+                                    <i class="fas fa-list text-purple-500 mr-2" />
+                                    Table of Contents
+                                </h3>
+
+                                <nav class="space-y-1">
+                                    {tableOfContents.map((heading, index) => (
+                                        <a href={`#${heading.slug}`} class:list={["toc-link", index === 0 && "active"]}>
+                                            {heading.text}
+                                        </a>
+                                    ))}
+                                </nav>
+
+                                <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                                    <button
+                                        id="print-legal-page"
+                                        class="w-full py-2 btn-secondary text-sm cursor-pointer"
+                                    >
+                                        <i class="fas fa-print mr-2" />
+                                        Print this page
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            <!-- Page Content -->
+            <div class:list={[tableOfContents.length > 0 ? "lg:w-3/4" : "w-full"]}>
+                <div class="legal-content bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 md:p-10 animate-on-scroll">
+                    <Prose>
+                        <Content />
+                    </Prose>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Highlight the section currently in view inside the table of contents
+        const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".toc-link"));
+        const sections = tocLinks
+            .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+            .filter((section): section is HTMLElement => section !== null);
+
+        function highlightTOC() {
+            const scrollPosition = window.scrollY + 140;
+            let activeIndex = 0;
+
+            sections.forEach((section, index) => {
+                if (section.offsetTop <= scrollPosition) {
+                    activeIndex = index;
+                }
+            });
+
+            tocLinks.forEach((link, index) => link.classList.toggle("active", index === activeIndex));
+        }
+
+        if (sections.length > 0) {
+            window.addEventListener("scroll", highlightTOC, { passive: true });
+            highlightTOC();
+        }
+
+        document.getElementById("print-legal-page")?.addEventListener("click", () => window.print());
+    </script>
+</MainLayout>

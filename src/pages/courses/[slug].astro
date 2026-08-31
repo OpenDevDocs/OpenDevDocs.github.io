@@ -1,5 +1,6 @@
 ---
 import CourseLayout from "../../layouts/CourseLayout.astro";
+import { getCollection } from "astro:content";
 import { courses } from "../../data/courses";
 import TopicCard from "../../components/TopicCard.astro";
 import { syllabus } from "../../content/syllabus";
@@ -22,11 +23,20 @@ return courses.filter(course => course.isAvailable == true).map(({ slug, courseT
 const {courseTitle,descriptionText,imageFileName,tags, isCompleted, authorId, gradientClass} = Astro.props;
 const {slug} = Astro.params;
 
+const publishedCourseTopics = new Set(
+    (await getCollection('codeArticles'))
+        .filter((article) => {
+            const articleCourse = article.data.course ?? article.filePath?.split('/')[3];
+            return articleCourse === slug;
+        })
+        .map((article) => article.data.slug)
+);
 
 let currentSyllabus = syllabus.filter((courseName :any) => courseName.courseName.toLowerCase() === courseTitle.toLowerCase())
 let beginner :any[] = [];
 let intermediate :any[] = [];
 let advance :any[] = [];
+let expert :any[] = [];
 
 if(currentSyllabus.length > 0){
 beginner = currentSyllabus[0].topics.filter((topic )=>
@@ -39,6 +49,10 @@ topic.difficultyLevel === "Intermediate"
 advance = currentSyllabus[0].topics.filter((topic )=>
 topic.difficultyLevel === "Advanced"
 )
+
+expert = currentSyllabus[0].topics.filter((topic )=>
+topic.difficultyLevel === "Expert"
+)
 }
 
 let courseAuthor = authors.filter((author) => author.authorId === authorId)
@@ -47,6 +61,16 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
 <style is:inline>
     .progress-gradient {
         background: var(--gradient-success);
+    }
+
+    .expert-badge {
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        color: #991b1b;
+    }
+
+    .dark .expert-badge {
+        background: linear-gradient(135deg, rgba(127, 29, 29, 0.9) 0%, rgba(153, 27, 27, 0.85) 100%);
+        color: #fecaca;
     }
 
     .topic-checkbox {
@@ -176,7 +200,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
 
    {
         false && 
-        <!-- stats responsive grid -->
+        /* stats responsive grid */
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-10">
         <div class="bg-white dark:bg-gray-800/60 rounded-xl p-4 border flex items-center gap-3">
             <div
@@ -213,7 +237,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
 
     {
     currentSyllabus.length > 0 ?
-    <!-- Progress Bar Section -->
+    /* Progress Bar Section */
     <section id="progress" class="py-10 px-6">
         <div class="container mx-auto">
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 animate-on-scroll">
@@ -228,8 +252,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                     <div class="flex justify-between text-sm mb-2">
                         <span>Course Completion</span>
                         <span>
-                            <span id="completed-count">0</span>
-                            of {currentSyllabus.length > 0 && currentSyllabus[0].topics.length} topics
+                            <span id="completed-count">0</span> of {currentSyllabus.length > 0 && currentSyllabus[0].topics.length} topics
                         </span>
                     </div>
                     <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
@@ -254,6 +277,13 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                                 id="advanceCounter">0</span>/{advance.length}</p>
                         <p class="text-gray-600 dark:text-gray-300">Advanced Done</p>
                     </div>
+                    {expert.length > 0 && (
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
+                            <p class="text-2xl font-bold text-red-600 dark:text-red-400" id="expert-completed"><span
+                                    id="expertCounter">0</span>/{expert.length}</p>
+                            <p class="text-gray-600 dark:text-gray-300">Expert Done</p>
+                        </div>
+                    )}
                     <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-4 text-center">
                         <p class="text-2xl font-bold text-green-600 dark:text-green-400" id="total-hours">0</p>
                         <p class="text-gray-600 dark:text-gray-300">Hours Completed</p>
@@ -286,8 +316,15 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                     {
                     (beginner.length > 0) &&
                     beginner.map((topic)=>(
-                    <TopicCard courseName={slug} topicSlug={topic.slug} topicDuration={"Easy"} topicId={topic.slug}
-                        topicLevel={topic.difficultyLevel} topicTitle={topic.topicName} />
+                    <TopicCard
+                        courseName={slug}
+                        topicSlug={topic.slug}
+                        topicDuration={"Easy"}
+                        topicId={topic.slug}
+                        topicLevel={topic.difficultyLevel}
+                        topicTitle={topic.topicName}
+                        isPublished={publishedCourseTopics.has(topic.slug)}
+                    />
                     ))
                     }
                 </div>
@@ -313,8 +350,15 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                     {
                     (intermediate.length > 0) &&
                     intermediate.map((topic)=>(
-                    <TopicCard courseName={slug} topicSlug={topic.slug} topicDuration={"Intermediate"}
-                        topicId={topic.slug} topicLevel={topic.difficultyLevel} topicTitle={topic.topicName} />
+                    <TopicCard
+                        courseName={slug}
+                        topicSlug={topic.slug}
+                        topicDuration={"Intermediate"}
+                        topicId={topic.slug}
+                        topicLevel={topic.difficultyLevel}
+                        topicTitle={topic.topicName}
+                        isPublished={publishedCourseTopics.has(topic.slug)}
+                    />
                     ))
                     }
                 </div>
@@ -322,7 +366,9 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
 
             <!-- Advanced Section -->
             <div
-                class="animate-on-scroll px-6 py-12 delay-300 rounded-xl border border-purple-200 dark:border-purple-800/50 bg-white dark:bg-gray-800/40">
+                class="animate-on-scroll px-6 py-12 delay-300 rounded-xl border border-purple-200 dark:border-purple-800/50 bg-white dark:bg-gray-800/40" class:list={[
+                    expert.length > 0 && "mb-16" 
+                ]}>
                 <div class="flex items-center mb-8">
                     <div
                         class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center mr-4">
@@ -340,12 +386,51 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                     {
                     (advance.length > 0) &&
                     advance.map((topic)=>(
-                    <TopicCard courseName={slug} topicSlug={topic.slug} topicDuration={"Advance"} topicId={topic.slug}
-                        topicLevel={topic.difficultyLevel} topicTitle={topic.topicName} />
+                    <TopicCard
+                        courseName={slug}
+                        topicSlug={topic.slug}
+                        topicDuration={"Advance"}
+                        topicId={topic.slug}
+                        topicLevel={topic.difficultyLevel}
+                        topicTitle={topic.topicName}
+                        isPublished={publishedCourseTopics.has(topic.slug)}
+                    />
                     ))
                     }
                 </div>
             </div>
+
+            {expert.length > 0 && (
+                <div
+                    class="animate-on-scroll px-6 py-12 delay-400 rounded-xl border border-red-200 dark:border-red-800/60 bg-gradient-to-br from-red-50 via-white to-rose-50 dark:from-red-950/30 dark:via-gray-800/80 dark:to-rose-950/20 shadow-[0_0_0_1px_rgba(254,202,202,0.4)]">
+                    <div class="flex items-center mb-8">
+                        <div
+                            class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-star text-red-600 dark:text-red-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Expert Level</h2>
+                            <p class="text-gray-600 dark:text-gray-300">High-performance and production-grade {courseTitle} expertise</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {
+                        expert.map((topic)=>(
+                        <TopicCard
+                            courseName={slug}
+                            topicSlug={topic.slug}
+                            topicDuration={"Expert"}
+                            topicId={topic.slug}
+                            topicLevel={topic.difficultyLevel}
+                            topicTitle={topic.topicName}
+                            isPublished={publishedCourseTopics.has(topic.slug)}
+                        />
+                        ))
+                        }
+                    </div>
+                </div>
+            )}
         </div>
     </section>
 

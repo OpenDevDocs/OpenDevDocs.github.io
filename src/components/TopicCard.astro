@@ -6,9 +6,10 @@ interface Props {
     topicDuration : string,
     topicLevel : string,
     courseName : string,
+    isPublished?: boolean,
 }
 
-const {topicId, topicTitle, topicSlug, topicDuration, topicLevel, courseName} = Astro.props;
+const {topicId, topicTitle, topicSlug, topicDuration, topicLevel, courseName, isPublished = true} = Astro.props;
 
 const levelColors = ['green','blue','purple'];
 function getDifficultyLevelCounter(level : string){
@@ -30,19 +31,27 @@ let color = levelColors[getDifficultyLevelCounter(topicLevel)];
         <div>
             <span class="px-3 py-1 rounded-full text-sm font-medium"
             class:list={[
-                `bg-${color}-100`,
-                `dark:bg-${color}-900`,
-                `text-${color}-800`,
-                `dark:text-${color}-200`
+                topicDuration === 'Expert' && 'expert-badge',
+                topicDuration !== 'Expert' && `bg-${color}-100`,
+                topicDuration !== 'Expert' && `dark:bg-${color}-900`,
+                topicDuration !== 'Expert' && `text-${color}-800`,
+                topicDuration !== 'Expert' && `dark:text-${color}-200`
             ]}
             >{topicDuration}</span>
         </div>
         <input type="checkbox" class="topic-checkbox" data-id={topicId}>
     </div>
     <h3 class="text-lg font-bold mb-3">{topicTitle}</h3>
-    <a href=`/courses/${courseName}/${topicSlug}` class="flex items-center text-gray-500 dark:text-gray-400">
-        <i class="fas fa-play-circle mr-2"></i>
-        <span>Start Learning</span>
-    </a>
+    {isPublished ? (
+        <a href=`/courses/${courseName}/${topicSlug}` class="flex items-center text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+            <i class="fas fa-play-circle mr-2"></i>
+            <span>Start Learning</span>
+        </a>
+    ) : (
+        <div class="flex items-center text-gray-400 dark:text-gray-500 cursor-not-allowed">
+            <i class="fas fa-clock mr-2"></i>
+            <span>Coming Soon</span>
+        </div>
+    )}
 
 </div>

@@ -16,7 +16,8 @@ export async function getStaticPaths() {
     return allCodeArticles.map((article) => {
         return {
             params: {
-                course: article.filePath?.split("/")[2], // e.g., "javascript"
+                // Set by the CMS; older files fall back to their folder name
+                course: article.data.course ?? article.filePath?.split("/")[3], // e.g., "javascript"
                 slug: article.data.slug,    // e.g., "article-about-ai"
             },
             props: { article }, // Pass the full article data as a prop

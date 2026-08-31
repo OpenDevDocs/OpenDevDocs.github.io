@@ -31,5 +31,6 @@ export default defineConfig({
         ]
     },
 
-    integrations: [sitemap()],
+    // The CMS admin app is not site content, so keep it out of the sitemap
+    integrations: [sitemap({ filter: (page) => !page.includes('/admin') })],
 });

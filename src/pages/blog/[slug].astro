@@ -1,0 +1,99 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Prose from "../../components/Prose.astro";
+import AuthorChip from "../../components/AuthorChip.astro";
+import { authors } from "../../data/authors";
+import { getFormattedDate } from "../../data/utils";
+import { getSiteName } from "../../data/data";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+
+    return posts
+        .filter((post: CollectionEntry<"blog">) => post.data.isDraft === false)
+        .map((post: CollectionEntry<"blog">) => ({
+            params: { slug: post.data.slug },
+            props: { post },
+        }));
+}
+
+interface Props {
+    post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const postAuthors = post.data.author
+    .map((authorId) => authors.find((author: any) => author.authorId === authorId))
+    .filter(Boolean);
+---
+
+<MainLayout
+    pageTitle={`${post.data.title} - ${getSiteName()}`}
+    description={post.data.metadescription}
+    seoImagePath={post.data.featuredImage || ""}
+    pageType="article"
+>
+    <article class="container mx-auto px-6 pt-24 pb-16">
+        <div class="max-w-3xl mx-auto">
+            <a
+                href="/blog"
+                class="inline-flex items-center text-purple-600 dark:text-purple-400 mb-8 hover:underline"
+            >
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Blog
+            </a>
+
+            <div class="flex items-center gap-3 mb-4 flex-wrap">
+                <span
+                    class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-xs font-semibold uppercase tracking-wide"
+                >
+                    {post.data.category}
+                </span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                    Published {getFormattedDate(post.data.publishDate)}
+                </span>
+                {
+                    post.data.updateDate.getTime() !== post.data.publishDate.getTime() && (
+                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                            &middot; Updated {getFormattedDate(post.data.updateDate)}
+                        </span>
+                    )
+                }
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{post.data.title}</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">{post.data.metadescription}</p>
+
+            <div class="flex flex-wrap gap-6 pb-8 mb-8 border-b border-gray-200 dark:border-gray-700">
+                {
+                    postAuthors.map((author: any) => (
+                        <AuthorChip
+                            authorName={author.authorName}
+                            authorDesignation={author.authorDesignation}
+                            authorImage={author.authorImageFileName}
+                        />
+                    ))
+                }
+            </div>
+
+            <Prose>
+                <Content />
+            </Prose>
+
+            {
+                post.data.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-3 mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                        {post.data.tags.map((tag) => (
+                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm">
+                                #{tag}
+                            </span>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    </article>
+</MainLayout>

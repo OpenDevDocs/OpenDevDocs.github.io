@@ -1,0 +1,153 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import AuthorChip from "../../components/AuthorChip.astro";
+import { authors } from "../../data/authors";
+import { getFormattedDate } from "../../data/utils";
+import { getSiteName } from "../../data/data";
+
+const allPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+
+const publishedPosts = allPosts
+    .filter((post) => post.data.isDraft === false)
+    .sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+
+const categories = [...new Set(publishedPosts.map((post) => post.data.category))].sort();
+
+function getAuthors(authorIds: string[]) {
+    return authorIds.map((authorId) => authors.find((author: any) => author.authorId === authorId)).filter(Boolean);
+}
+
+const [featuredPost, ...remainingPosts] = publishedPosts;
+---
+
+<MainLayout
+    pageTitle={`Blog - ${getSiteName()}`}
+    description="Articles, release notes, and short explanations from the Open Dev Docs team."
+    seoImagePath=""
+    pageType="website"
+>
+    <section class="pt-24 pb-12 px-6 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-purple-300 dark:bg-purple-900 rounded-full -translate-y-32 translate-x-32 opacity-30 blur-3xl">
+        </div>
+
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-3xl mx-auto text-center animate-on-scroll">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    The <span class="gradient-text">Blog</span>
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300">
+                    Short reads on the languages, tools, and ideas behind the courses.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-6 py-12">
+        <div class="container mx-auto">
+            {
+                publishedPosts.length === 0 && (
+                    <div class="max-w-xl mx-auto text-center py-16">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center">
+                            <i class="fas fa-pen-nib text-2xl text-purple-600 dark:text-purple-300" />
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">No posts yet</h2>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            The first article is on its way. Check back soon.
+                        </p>
+                    </div>
+                )
+            }
+
+            {
+                categories.length > 1 && (
+                    <div class="flex flex-wrap gap-3 justify-center mb-12 animate-on-scroll">
+                        {categories.map((category) => (
+                            <span class="px-4 py-1.5 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                                {category}
+                            </span>
+                        ))}
+                    </div>
+                )
+            }
+
+            {
+                featuredPost && (
+                    <a
+                        href={`/blog/${featuredPost.data.slug}`}
+                        class="block mb-12 group animate-on-scroll"
+                        aria-label={featuredPost.data.title}
+                    >
+                        <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-200 dark:border-gray-700">
+                            <div class="p-8 md:p-10">
+                                <div class="flex items-center gap-3 mb-4 flex-wrap">
+                                    <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-xs font-semibold uppercase tracking-wide">
+                                        Latest
+                                    </span>
+                                    <span class="px-3 py-1 bg-gray-100 dark:bg-gray-900 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                                        {featuredPost.data.category}
+                                    </span>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                                        {getFormattedDate(featuredPost.data.publishDate)}
+                                    </span>
+                                </div>
+
+                                <h2 class="text-3xl md:text-4xl font-bold mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                                    {featuredPost.data.title}
+                                </h2>
+                                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                                    {featuredPost.data.metadescription}
+                                </p>
+
+                                <div class="flex flex-wrap gap-6">
+                                    {getAuthors(featuredPost.data.author).map((author: any) => (
+                                        <AuthorChip
+                                            authorName={author.authorName}
+                                            authorDesignation={author.authorDesignation}
+                                            authorImage={author.authorImageFileName}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                )
+            }
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    remainingPosts.map((post) => (
+                        <a href={`/blog/${post.data.slug}`} class="block group animate-on-scroll">
+                            <article class="h-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 card-hover border border-gray-200 dark:border-gray-700 flex flex-col">
+                                <div class="flex items-center gap-3 mb-3 flex-wrap">
+                                    <span class="px-3 py-1 bg-gray-100 dark:bg-gray-900 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
+                                        {post.data.category}
+                                    </span>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                                        {getFormattedDate(post.data.publishDate)}
+                                    </span>
+                                </div>
+
+                                <h2 class="text-xl font-bold mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                                    {post.data.title}
+                                </h2>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6 grow">{post.data.metadescription}</p>
+
+                                <div class="flex flex-wrap gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                                    {getAuthors(post.data.author).map((author: any) => (
+                                        <AuthorChip
+                                            authorName={author.authorName}
+                                            authorDesignation={author.authorDesignation}
+                                            authorImage={author.authorImageFileName}
+                                        />
+                                    ))}
+                                </div>
+                            </article>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</MainLayout>

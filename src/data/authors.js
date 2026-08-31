@@ -1,23 +1,5 @@
-export const authors = [
-    {
-        "authorId" : "bishal-biswas",
-        "authorName" : "Bishal Biswas",
-        "authorDesignation" : "Self Learner",
-        "authorImageFileName" : "bishal-biswas.png",
-        "bio" : "I am the Best in the Coding World."
-    },
-    /* {
-        "authorId" : "rohit-sharma",
-        "authorName" : "Rohit Sharma",
-        "authorDesignation" : "Cricketer",
-        "authorImageFileName" : "https://randomuser.me/api/portraits/men/44.jpg",
-        "bio" : "I am the Best in the Cricket World"
-    },
-    {
-        "authorId" : "elon-musk",
-        "authorName" : "Elon Musk",
-        "authorDesignation" : "Entreprenuer",
-        "authorImageFileName" : "https://randomuser.me/api/portraits/men/45.jpg",
-        "bio" : "I am the Best in the Business World"
-    }, */
-];
+// Author records live in `src/data/authors.json` so Decap CMS can edit them.
+// Admin UI: /admin -> "Site Data" -> "Authors".
+import data from './authors.json';
+
+export const authors = data.authors;

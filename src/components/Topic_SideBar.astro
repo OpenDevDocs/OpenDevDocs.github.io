@@ -9,6 +9,7 @@ const {courseData, courseName, courseSlug} = Astro.props;
 let beginner :any[] = [];
 let intermediate :any[] = [];
 let advance :any[] = [];
+let expert :any[] = [];
 
 if(courseData.length > 0){
 beginner = courseData[0].topics.filter((topic :any )=>
@@ -20,6 +21,10 @@ topic.difficultyLevel === "Intermediate"
 
 advance = courseData[0].topics.filter((topic :any )=>
 topic.difficultyLevel === "Advanced"
+)
+
+expert = courseData[0].topics.filter((topic :any )=>
+topic.difficultyLevel === "Expert"
 )
 }
 
@@ -100,7 +105,7 @@ topic.difficultyLevel === "Advanced"
                         <div class="flex items-center gap-2"><span
                                 class="w-1.5 h-1.5 rounded-full bg-purple-500"></span><span
                                 class="font-semibold">Advanced</span><span
-                                class="text-xs text-gray-500">(Expert)</span></div>
+                                class="text-xs text-gray-500">(Advanced)</span></div>
                         <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
                     </div>
                     <div id="advancedDropdown" class="dropdown-submenu ml-4 mt-1 space-y-1">
@@ -114,11 +119,32 @@ topic.difficultyLevel === "Advanced"
                         }
                     </div>
                 </div>
+                {expert.length > 0 && (
+                    <div class="topic-group">
+                        <div class="topic-toggle flex justify-between items-center cursor-pointer py-2 px-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800/70 transition"
+                            data-target="expertDropdown">
+                            <div class="flex items-center gap-2"><span
+                                    class="w-1.5 h-1.5 rounded-full bg-red-500"></span><span
+                                    class="font-semibold">Expert</span><span
+                                    class="text-xs text-gray-500">(Production)</span></div>
+                            <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
+                        </div>
+                        <div id="expertDropdown" class="dropdown-submenu ml-4 mt-1 space-y-1">
+                            {
+                            expert.map((topic)=>(
+                                <a href={`/courses/${courseSlug}/${topic.slug}`}
+                                class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
+                                    class="fas fa-play-circle w-4 mr-2 text-red-400"></i>{topic.topicName}</a>
+                                ))
+                            }
+                        </div>
+                    </div>
+                )}
                 <div class="pt-4 border-t border-gray-200 dark:border-gray-800 mt-2">
                     <div class="text-xs text-gray-500 dark:text-gray-400 px-1"><i
                             class="fas fa-book-open mr-1"></i> Resources</div>
                     <div class="mt-2 space-y-1">
-                        <a href="#" class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <a href={`/courses/${courseSlug}/interview-questions`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
                             <i class="fas fa-download"></i>
                             Interview Questions
                         </a>

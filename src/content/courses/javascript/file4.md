@@ -8,5 +8,6 @@ updateDate : 2025-12-04T08:30
 author : ['bishal-biswas']
 level : 3
 tags : []
+course : javascript
 ---
 Lorem

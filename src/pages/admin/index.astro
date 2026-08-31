@@ -1,0 +1,21 @@
+---
+// Decap CMS admin app.
+//
+// This is an Astro page rather than a plain file in `public/` so that `/admin`
+// resolves in `astro dev` as well as in the built site. The CMS reads its
+// collections from `public/admin/config.yml`, served next to this page.
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex, nofollow" />
+        <title>Content Manager &middot; Open Dev Docs</title>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    </head>
+    <body>
+        <script is:inline src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    </body>
+</html>

@@ -1,0 +1,424 @@
+# Decap CMS configuration for Open Dev Docs
+# Docs: https://decapcms.org/docs/configuration-options/
+#
+# Every save here is a git commit to the repo below, which triggers the
+# GitHub Pages deploy workflow (.github/workflows/deploy.yml).
+
+backend:
+    name: github
+    repo: opendevdocs/opendevdocs.github.io
+    branch: main
+    # GitHub Pages cannot host the OAuth handshake, so it is proxied here.
+    base_url: https://decap-oauth-bishal.vercel.app
+    # Decap calls `<base_url>/auth` by default. If your proxy exposes the
+    # Vercel-style routes instead, uncomment the next line.
+    # auth_endpoint: api/auth
+    commit_messages:
+        create: 'cms: create {{collection}} "{{slug}}"'
+        update: 'cms: update {{collection}} "{{slug}}"'
+        delete: 'cms: delete {{collection}} "{{slug}}"'
+        uploadMedia: 'cms: upload "{{path}}"'
+        deleteMedia: 'cms: delete "{{path}}"'
+
+# Lets you edit against the local filesystem with `npm run cms` + `npm run dev`.
+# Ignored automatically when the site is not served from localhost.
+local_backend: true
+
+site_url: https://opendevdocs.github.io
+display_url: https://opendevdocs.github.io
+
+media_folder: public/assets/uploads
+public_folder: /assets/uploads
+
+collections:
+    # ------------------------------------------------------------------
+    # Blog - src/content/blog/*.md  ->  /blog/<slug>
+    # ------------------------------------------------------------------
+    - name: blog
+      label: Blog
+      label_singular: Blog Post
+      description: Standalone articles, release notes, and announcements.
+      folder: src/content/blog
+      create: true
+      slug: '{{fields.slug}}'
+      identifier_field: title
+      summary: '{{title}}'
+      preview_path: 'blog/{{fields.slug}}'
+      sortable_fields: [publishDate, updateDate, title]
+      view_filters:
+          - label: Drafts
+            field: isDraft
+            pattern: true
+          - label: Published
+            field: isDraft
+            pattern: false
+      fields:
+          - { label: Title, name: title, widget: string }
+          - label: URL slug
+            name: slug
+            widget: string
+            hint: 'Lowercase words separated by dashes. The post is served at /blog/<slug>.'
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - label: Meta description
+            name: metadescription
+            widget: text
+            hint: Shown in search results and used as the post summary on the blog index.
+          - {
+                label: Featured image,
+                name: featuredImage,
+                widget: image,
+                required: false,
+                allow_multiple: false,
+            }
+          - { label: Publish date, name: publishDate, widget: datetime }
+          - { label: Last updated, name: updateDate, widget: datetime }
+          - label: Authors
+            name: author
+            widget: relation
+            collection: siteData
+            file: authors
+            value_field: 'authors.*.authorId'
+            display_fields: ['authors.*.authorName']
+            search_fields: ['authors.*.authorName']
+            multiple: true
+          - { label: Category, name: category, widget: string, default: General }
+          - { label: Tags, name: tags, widget: list, required: false, default: [] }
+          - label: Draft
+            name: isDraft
+            widget: boolean
+            default: false
+            hint: Drafts are kept in the repo but excluded from the published site.
+          - { label: Body, name: body, widget: markdown }
+
+    # ------------------------------------------------------------------
+    # Course articles - src/content/courses/<language>/<slug>.md
+    #                   ->  /courses/<language>/<slug>
+    # ------------------------------------------------------------------
+    - name: courseArticles
+      label: Course Articles
+      label_singular: Course Article
+      description: The topic pages that make up each language course.
+      folder: src/content/courses
+      create: true
+      path: '{{fields.course}}/{{fields.slug}}'
+      slug: '{{fields.slug}}'
+      identifier_field: title
+      summary: '{{title}}'
+      preview_path: 'courses/{{fields.course}}/{{fields.slug}}'
+      sortable_fields: [title, publishDate, updateDate, level]
+      fields:
+          - label: Language
+            name: course
+            widget: relation
+            collection: siteData
+            file: languages
+            value_field: 'courses.*.slug'
+            display_fields: ['courses.*.courseTitle']
+            search_fields: ['courses.*.courseTitle']
+            hint: Decides which course folder the article is stored in. Changing it on an existing article does not move the file.
+          - { label: Title, name: title, widget: string }
+          - label: URL slug
+            name: slug
+            widget: string
+            hint: 'Must match the topic slug in the course syllabus so the topic card links here.'
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - { label: Meta description, name: metadescription, widget: text }
+          - {
+                label: Featured image,
+                name: featuredImage,
+                widget: image,
+                required: false,
+                allow_multiple: false,
+            }
+          - { label: Publish date, name: publishDate, widget: datetime }
+          - { label: Last updated, name: updateDate, widget: datetime }
+          - label: Authors
+            name: author
+            widget: relation
+            collection: siteData
+            file: authors
+            value_field: 'authors.*.authorId'
+            display_fields: ['authors.*.authorName']
+            search_fields: ['authors.*.authorName']
+            multiple: true
+          - label: Level
+            name: level
+            widget: number
+            value_type: int
+            min: 1
+            max: 3
+            hint: '1 = Beginner, 2 = Intermediate, 3 = Advanced. Controls the badge colour on the article.'
+          - { label: Tags, name: tags, widget: list, required: false, default: [] }
+          - { label: Body, name: body, widget: markdown }
+
+    # ------------------------------------------------------------------
+    # Course syllabus - src/data/syllabus/<course>.json
+    # ------------------------------------------------------------------
+    - name: syllabus
+      label: Course Syllabus
+      label_singular: Syllabus
+      description: The topic list and ordering for each course page.
+      folder: src/data/syllabus
+      create: true
+      extension: json
+      format: json
+      slug: '{{fields.courseSlug}}'
+      identifier_field: courseName
+      summary: '{{courseName}}'
+      editor:
+          preview: false
+      fields:
+          - label: Course name
+            name: courseName
+            widget: string
+            hint: 'Must match the language title exactly (for example "C Sharp").'
+          - label: Course slug
+            name: courseSlug
+            widget: string
+            hint: 'Must match the language slug (for example "c-sharp").'
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - label: Topics
+            name: topics
+            widget: list
+            label_singular: Topic
+            summary: '{{fields.topicName}} ({{fields.difficultyLevel}})'
+            fields:
+                - { label: Topic name, name: topicName, widget: string }
+                - label: Slug
+                  name: slug
+                  widget: string
+                  hint: Must match the URL slug of the course article for this topic.
+                  pattern:
+                      ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+                - label: Difficulty level
+                  name: difficultyLevel
+                  widget: select
+                  options: [Beginner, Intermediate, Advanced, Expert]
+                - {
+                      label: Section,
+                      name: section,
+                      widget: string,
+                      required: false,
+                      hint: 'Optional grouping heading, e.g. "Getting Started".',
+                  }
+
+    # ------------------------------------------------------------------
+    # Legal pages - src/content/legal/*.md  ->  /<slug>
+    # ------------------------------------------------------------------
+    - name: legal
+      label: Legal Pages
+      label_singular: Legal Page
+      description: Privacy policy, terms, disclaimer. Served at the root of the site.
+      folder: src/content/legal
+      create: true
+      slug: '{{fields.slug}}'
+      identifier_field: title
+      summary: '{{title}}'
+      preview_path: '{{fields.slug}}'
+      sortable_fields: [order, title, updateDate]
+      fields:
+          - { label: Title, name: title, widget: string }
+          - label: URL slug
+            name: slug
+            widget: string
+            hint: 'Served at the site root, e.g. "privacy-policy" becomes /privacy-policy.'
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - { label: Meta description, name: metadescription, widget: text }
+          - {
+                label: Badge,
+                name: badge,
+                widget: string,
+                required: false,
+                hint: Small pill shown above the heading. Defaults to the title.,
+            }
+          - { label: Hero headline, name: heroHeadline, widget: string, required: false }
+          - label: Hero sub-headline
+            name: heroSubHeadline
+            widget: string
+            required: false
+            hint: Rendered in the gradient accent colour under the headline.
+          - { label: Summary, name: summary, widget: text, required: false }
+          - label: Highlights
+            name: highlights
+            widget: list
+            required: false
+            default: []
+            hint: Short ticked points shown under the summary.
+          - { label: Last updated, name: updateDate, widget: datetime }
+          - label: Order
+            name: order
+            widget: number
+            value_type: int
+            default: 0
+            hint: Lower numbers come first when the pages are listed together.
+          - { label: Show in footer, name: showInFooter, widget: boolean, default: true }
+          - { label: Body, name: body, widget: markdown }
+
+    # ------------------------------------------------------------------
+    # Course interview questions - src/content/interview-questions/<course>/<slug>.md
+    #                          ->  /courses/<course>/interview-questions
+    # ------------------------------------------------------------------
+    - name: interviewQuestions
+      label: Interview Questions
+      label_singular: Interview Question
+      description: Course-specific interview questions organized by experience level and difficulty.
+      folder: src/content/interview-questions
+      create: true
+      path: '{{fields.course}}/{{fields.slug}}'
+      slug: '{{fields.slug}}'
+      identifier_field: question
+      summary: '{{fields.question}} ({{fields.course}})'
+      preview_path: 'courses/{{fields.course}}/interview-questions'
+      sortable_fields: [course, experienceLevel, difficulty, question]
+      fields:
+          - label: Course
+            name: course
+            widget: relation
+            collection: siteData
+            file: languages
+            value_field: 'courses.*.slug'
+            display_fields: ['courses.*.courseTitle']
+            search_fields: ['courses.*.courseTitle']
+            hint: Select the course this question belongs to.
+          - label: URL slug
+            name: slug
+            widget: string
+            hint: 'Use lowercase words separated by dashes, e.g. "var-vs-let-const".'
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - label: Experience level
+            name: experienceLevel
+            widget: select
+            options: [fresher, mid, senior]
+            default: fresher
+          - label: Difficulty
+            name: difficulty
+            widget: select
+            options: [easy, medium, hard]
+            default: easy
+          - label: Tags
+            name: tags
+            widget: list
+            required: false
+            default: []
+          - label: Question
+            name: question
+            widget: string
+          - label: Answer
+            name: answer
+            widget: text
+            required: false
+          - label: Code example
+            name: codeExample
+            widget: text
+            required: false
+            hint: Optional code snippet shown in the accordion answer.
+          - label: Popularity score
+            name: popularity
+            widget: number
+            value_type: float
+            min: 0
+            max: 10
+            default: 8
+            required: false
+          - label: Published
+            name: isPublished
+            widget: boolean
+            default: true
+
+    # ------------------------------------------------------------------
+    # Site data - single JSON files read directly by the Astro pages
+    # ------------------------------------------------------------------
+    - name: siteData
+      label: Site Data
+      editor:
+          preview: false
+      files:
+          - name: languages
+            label: Languages
+            file: src/data/courses.json
+            description: The language cards on the home page and /courses.
+            editor:
+                preview: false
+            fields:
+                - label: Languages
+                  name: courses
+                  widget: list
+                  label_singular: Language
+                  summary: '{{fields.courseTitle}} ({{fields.slug}})'
+                  fields:
+                      - { label: Title, name: courseTitle, widget: string }
+                      - label: Slug
+                        name: slug
+                        widget: string
+                        hint: 'Used in the URL: /courses/<slug>. Course articles are stored in a folder with this name.'
+                        pattern:
+                            [
+                                '^[a-z0-9]+(?:-[a-z0-9]+)*$',
+                                'Use lowercase letters, numbers and dashes only',
+                            ]
+                      - { label: Card text, name: cardText, widget: string }
+                      - { label: Description, name: descriptionText, widget: text }
+                      - label: Logo file name
+                        name: imageFileName
+                        widget: string
+                        hint: 'File name without extension in the course-logo CDN folder, e.g. "c-sharp".'
+                      - {
+                            label: Tag,
+                            name: tags,
+                            widget: string,
+                            hint: 'Single label shown on the card, e.g. "Frontend".',
+                        }
+                      - { label: Brand colour, name: color, widget: color, allowInput: true }
+                      - label: Gradient classes
+                        name: gradientClass
+                        widget: string
+                        required: false
+                        hint: Optional Tailwind gradient classes for the course heading.
+                      - label: Author
+                        name: authorId
+                        widget: relation
+                        collection: siteData
+                        file: authors
+                        value_field: 'authors.*.authorId'
+                        display_fields: ['authors.*.authorName']
+                        search_fields: ['authors.*.authorName']
+                      - {
+                            label: Available,
+                            name: isAvailable,
+                            widget: boolean,
+                            default: false,
+                            hint: Only available languages get a course page and appear in listings.,
+                        }
+                      - { label: Completed, name: isCompleted, widget: boolean, default: false }
+                      - { label: Popular, name: isPopular, widget: boolean, default: false }
+                      - { label: Paid, name: isPaid, widget: boolean, default: false }
+
+          - name: authors
+            label: Authors
+            file: src/data/authors.json
+            description: People credited on articles, blog posts, and courses.
+            editor:
+                preview: false
+            fields:
+                - label: Authors
+                  name: authors
+                  widget: list
+                  label_singular: Author
+                  summary: '{{fields.authorName}} ({{fields.authorId}})'
+                  fields:
+                      - label: Author ID
+                        name: authorId
+                        widget: string
+                        hint: Stable identifier referenced by articles and courses. Changing it breaks existing credits.
+                        pattern:
+                            [
+                                '^[a-z0-9]+(?:-[a-z0-9]+)*$',
+                                'Use lowercase letters, numbers and dashes only',
+                            ]
+                      - { label: Name, name: authorName, widget: string }
+                      - { label: Designation, name: authorDesignation, widget: string }
+                      - label: Image
+                        name: authorImageFileName
+                        widget: string
+                        hint: 'File name in the author-imgs CDN folder (e.g. "bishal-biswas.png") or a full https:// URL.'
+                      - { label: Bio, name: bio, widget: text }
