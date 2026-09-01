@@ -10,9 +10,8 @@ backend:
     branch: main
     # GitHub Pages cannot host the OAuth handshake, so it is proxied here.
     base_url: https://decap-oauth-bishal.vercel.app
-    # Decap calls `<base_url>/auth` by default. If your proxy exposes the
-    # Vercel-style routes instead, uncomment the next line.
-    # auth_endpoint: api/auth
+    # The proxy exposes Vercel-style routes, so override Decap's `<base_url>/auth` default.
+    auth_endpoint: api/auth
     commit_messages:
         create: 'cms: create {{collection}} "{{slug}}"'
         update: 'cms: update {{collection}} "{{slug}}"'
