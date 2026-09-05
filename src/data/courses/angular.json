@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Angular",
+  "slug": "angular",
+  "cardText": "Build powerful web applications with Google's framework",
+  "descriptionText": "Angular is a platform and framework for building single-page client applications using HTML and TypeScript. Learn to build dynamic, enterprise-grade applications with dependency injection, declarative templates, and end-to-end tooling.",
+  "imageFileName": "angular",
+  "tags": "Frontend",
+  "color": "#DD0031",
+  "gradientClass": "dark:from-pink-400 dark:to-pink-800 from-pink-600 to-pink-500",
+  "authorId": "bishal-biswas",
+  "order": 30,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": true,
+  "isPaid": false
+}

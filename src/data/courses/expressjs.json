@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Express JS",
+  "slug": "expressjs",
+  "cardText": "Minimal and flexible Node.js web framework",
+  "descriptionText": "Express.js is a fast, unopinionated, minimalist web framework for Node.js. Learn to build robust APIs and web applications with a myriad of HTTP utility methods and middleware, making it perfect for single-page, multi-page, and hybrid applications.",
+  "imageFileName": "express",
+  "tags": "Intermediate",
+  "color": "#000000",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 100,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

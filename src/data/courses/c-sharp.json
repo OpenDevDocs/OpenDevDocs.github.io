@@ -1,0 +1,16 @@
+{
+  "courseTitle": "C Sharp",
+  "slug": "c-sharp",
+  "cardText": "Modern object-oriented programming language",
+  "descriptionText": "C# is a modern, object-oriented programming language developed by Microsoft. Learn this versatile language used for desktop applications, web development, mobile apps, games, and enterprise software with strong typing and rich libraries.",
+  "imageFileName": "c-sharp",
+  "tags": "Backend",
+  "color": "#239120",
+  "gradientClass": "from-purple-700 to-fuchsia-700",
+  "authorId": "bishal-biswas",
+  "order": 10,
+  "isAvailable": true,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

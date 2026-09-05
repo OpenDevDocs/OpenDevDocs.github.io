@@ -1,0 +1,16 @@
+{
+  "courseTitle": "DotNet Web API",
+  "slug": "dotnet-webapi",
+  "cardText": "Build RESTful services with ASP.NET Core",
+  "descriptionText": "ASP.NET Web API is a framework for building HTTP services that reach a broad range of clients. Learn to create RESTful services that can be consumed by browsers, mobile devices, and desktop applications with robust routing and serialization.",
+  "imageFileName": "dotnet-webapi",
+  "tags": "API Development",
+  "color": "#512BD4",
+  "gradientClass": "from-blue-600 to-sky-500",
+  "authorId": "bishal-biswas",
+  "order": 80,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": true,
+  "isPaid": false
+}

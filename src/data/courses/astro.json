@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Astro",
+  "slug": "astro",
+  "cardText": "Build faster websites with less client-side JavaScript",
+  "descriptionText": "Astro is a modern static site builder that delivers lightning-fast performance. Learn to build content-focused websites using your favorite UI frameworks while shipping zero JavaScript by default for optimal performance.",
+  "imageFileName": "astro",
+  "tags": "Beginner",
+  "color": "#FF5D01",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 40,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

@@ -1,0 +1,468 @@
+{
+  "courseName": "Angular",
+  "courseSlug": "angular",
+  "topics": [
+    {
+      "topicName": "What is Angular 22? Architecture and Ecosystem",
+      "slug": "what-is-angular-architecture-and-ecosystem",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "TypeScript Essentials for Angular",
+      "slug": "typescript-essentials-for-angular",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Angular CLI: Setup and Scaffolding",
+      "slug": "angular-cli-setup-and-scaffolding",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Project Structure and Configuration Files",
+      "slug": "project-structure-and-configuration",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Bootstrapping a Standalone Application",
+      "slug": "bootstrapping-a-standalone-application",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Standalone Components and Component Metadata",
+      "slug": "standalone-components",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Templates and Interpolation",
+      "slug": "templates-and-interpolation",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Property, Attribute and Class Bindings",
+      "slug": "property-and-attribute-binding",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Event Binding and Template Statements",
+      "slug": "event-binding",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Built-in Control Flow: at-if, at-for and at-switch",
+      "slug": "built-in-control-flow",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Template Variables and at-let",
+      "slug": "template-variables-and-let",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Component Styles and View Encapsulation",
+      "slug": "component-styles-and-view-encapsulation",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Built-in Pipes and Formatting",
+      "slug": "built-in-pipes",
+      "difficultyLevel": "Beginner",
+      "section": "Components and Templates"
+    },
+    {
+      "topicName": "Signals: signal, computed and effect",
+      "slug": "signals-fundamentals",
+      "difficultyLevel": "Beginner",
+      "section": "Signals Basics"
+    },
+    {
+      "topicName": "Signal Inputs with input()",
+      "slug": "signal-inputs",
+      "difficultyLevel": "Beginner",
+      "section": "Signals Basics"
+    },
+    {
+      "topicName": "Outputs with output()",
+      "slug": "signal-outputs",
+      "difficultyLevel": "Beginner",
+      "section": "Signals Basics"
+    },
+    {
+      "topicName": "Two-way Binding with model()",
+      "slug": "two-way-binding-with-model",
+      "difficultyLevel": "Beginner",
+      "section": "Signals Basics"
+    },
+    {
+      "topicName": "Zoneless Change Detection",
+      "slug": "zoneless-change-detection",
+      "difficultyLevel": "Beginner",
+      "section": "Signals Basics"
+    },
+    {
+      "topicName": "linkedSignal and Derived Writable State",
+      "slug": "linkedsignal",
+      "difficultyLevel": "Intermediate",
+      "section": "Signals in Depth"
+    },
+    {
+      "topicName": "Effects, Cleanup and untracked",
+      "slug": "effects-and-untracked",
+      "difficultyLevel": "Intermediate",
+      "section": "Signals in Depth"
+    },
+    {
+      "topicName": "Signal Queries: viewChild, viewChildren and contentChild",
+      "slug": "signal-queries",
+      "difficultyLevel": "Intermediate",
+      "section": "Signals in Depth"
+    },
+    {
+      "topicName": "afterRenderEffect and Render Hooks",
+      "slug": "after-render-effect",
+      "difficultyLevel": "Intermediate",
+      "section": "Signals in Depth"
+    },
+    {
+      "topicName": "Component Lifecycle Hooks",
+      "slug": "component-lifecycle-hooks",
+      "difficultyLevel": "Intermediate",
+      "section": "Signals in Depth"
+    },
+    {
+      "topicName": "Dependency Injection and inject()",
+      "slug": "dependency-injection-and-inject",
+      "difficultyLevel": "Intermediate",
+      "section": "Dependency Injection"
+    },
+    {
+      "topicName": "Providers, Injection Tokens and Scopes",
+      "slug": "providers-and-injection-tokens",
+      "difficultyLevel": "Intermediate",
+      "section": "Dependency Injection"
+    },
+    {
+      "topicName": "Services and Shared State",
+      "slug": "services-and-shared-state",
+      "difficultyLevel": "Intermediate",
+      "section": "Dependency Injection"
+    },
+    {
+      "topicName": "Attribute Directives",
+      "slug": "attribute-directives",
+      "difficultyLevel": "Intermediate",
+      "section": "Directives and Pipes"
+    },
+    {
+      "topicName": "Structural Directives and Custom Templates",
+      "slug": "structural-directives",
+      "difficultyLevel": "Intermediate",
+      "section": "Directives and Pipes"
+    },
+    {
+      "topicName": "Custom Pipes: Pure and Impure",
+      "slug": "custom-pipes",
+      "difficultyLevel": "Intermediate",
+      "section": "Directives and Pipes"
+    },
+    {
+      "topicName": "Host Bindings and the host Metadata",
+      "slug": "host-bindings",
+      "difficultyLevel": "Intermediate",
+      "section": "Directives and Pipes"
+    },
+    {
+      "topicName": "Router Setup and Route Configuration",
+      "slug": "router-setup-and-configuration",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Route Parameters and Query Parameters",
+      "slug": "route-parameters-and-query-params",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Nested Routes and Child Outlets",
+      "slug": "nested-routes-and-outlets",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Lazy Loading with loadComponent and loadChildren",
+      "slug": "lazy-loading-routes",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Functional Guards and Resolvers",
+      "slug": "functional-guards-and-resolvers",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "HttpClient with provideHttpClient",
+      "slug": "httpclient-setup",
+      "difficultyLevel": "Intermediate",
+      "section": "HTTP and Async Data"
+    },
+    {
+      "topicName": "Functional HTTP Interceptors",
+      "slug": "functional-http-interceptors",
+      "difficultyLevel": "Intermediate",
+      "section": "HTTP and Async Data"
+    },
+    {
+      "topicName": "Reactive Data Fetching with httpResource",
+      "slug": "httpresource",
+      "difficultyLevel": "Intermediate",
+      "section": "HTTP and Async Data"
+    },
+    {
+      "topicName": "Async Signals: resource and rxResource",
+      "slug": "resource-and-rxresource",
+      "difficultyLevel": "Intermediate",
+      "section": "HTTP and Async Data"
+    },
+    {
+      "topicName": "HTTP Error Handling and Retries",
+      "slug": "http-error-handling-and-retries",
+      "difficultyLevel": "Intermediate",
+      "section": "HTTP and Async Data"
+    },
+    {
+      "topicName": "Signal Forms: form, Field and Control",
+      "slug": "signal-forms-fundamentals",
+      "difficultyLevel": "Intermediate",
+      "section": "Signal Forms"
+    },
+    {
+      "topicName": "Signal Forms Validation and Schemas",
+      "slug": "signal-forms-validation",
+      "difficultyLevel": "Intermediate",
+      "section": "Signal Forms"
+    },
+    {
+      "topicName": "Signal Forms: Dynamic and Nested Fields",
+      "slug": "signal-forms-dynamic-fields",
+      "difficultyLevel": "Intermediate",
+      "section": "Signal Forms"
+    },
+    {
+      "topicName": "Signal Forms with Angular Material and Aria",
+      "slug": "signal-forms-with-material-and-aria",
+      "difficultyLevel": "Intermediate",
+      "section": "Signal Forms"
+    },
+    {
+      "topicName": "Reactive Forms",
+      "slug": "reactive-forms",
+      "difficultyLevel": "Intermediate",
+      "section": "Classic Forms"
+    },
+    {
+      "topicName": "Template-driven Forms",
+      "slug": "template-driven-forms",
+      "difficultyLevel": "Intermediate",
+      "section": "Classic Forms"
+    },
+    {
+      "topicName": "Deferrable Views with at-defer",
+      "slug": "deferrable-views",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Image Optimisation with NgOptimizedImage",
+      "slug": "ngoptimizedimage",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Change Detection Strategies and OnPush",
+      "slug": "change-detection-and-onpush",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Bundle Analysis and Build Budgets",
+      "slug": "bundle-analysis-and-budgets",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Server-Side Rendering with Angular SSR",
+      "slug": "server-side-rendering",
+      "difficultyLevel": "Advanced",
+      "section": "Server-Side Rendering"
+    },
+    {
+      "topicName": "Hydration and Event Replay",
+      "slug": "hydration-and-event-replay",
+      "difficultyLevel": "Advanced",
+      "section": "Server-Side Rendering"
+    },
+    {
+      "topicName": "Incremental Hydration",
+      "slug": "incremental-hydration",
+      "difficultyLevel": "Advanced",
+      "section": "Server-Side Rendering"
+    },
+    {
+      "topicName": "Prerendering and Static Site Generation",
+      "slug": "prerendering-and-ssg",
+      "difficultyLevel": "Advanced",
+      "section": "Server-Side Rendering"
+    },
+    {
+      "topicName": "RxJS Essentials for Angular",
+      "slug": "rxjs-essentials",
+      "difficultyLevel": "Advanced",
+      "section": "RxJS and State"
+    },
+    {
+      "topicName": "Signals and RxJS Interop: toSignal and toObservable",
+      "slug": "signals-rxjs-interop",
+      "difficultyLevel": "Advanced",
+      "section": "RxJS and State"
+    },
+    {
+      "topicName": "NgRx SignalStore",
+      "slug": "ngrx-signalstore",
+      "difficultyLevel": "Advanced",
+      "section": "RxJS and State"
+    },
+    {
+      "topicName": "NgRx Store, Effects and Entity",
+      "slug": "ngrx-store-and-effects",
+      "difficultyLevel": "Advanced",
+      "section": "RxJS and State"
+    },
+    {
+      "topicName": "Angular Aria Accessibility Patterns",
+      "slug": "angular-aria",
+      "difficultyLevel": "Advanced",
+      "section": "Accessibility and UI"
+    },
+    {
+      "topicName": "Angular Material and the CDK",
+      "slug": "angular-material-and-cdk",
+      "difficultyLevel": "Advanced",
+      "section": "Accessibility and UI"
+    },
+    {
+      "topicName": "Animations in Angular",
+      "slug": "angular-animations",
+      "difficultyLevel": "Advanced",
+      "section": "Accessibility and UI"
+    },
+    {
+      "topicName": "Unit Testing with Vitest",
+      "slug": "unit-testing-with-vitest",
+      "difficultyLevel": "Advanced",
+      "section": "Testing"
+    },
+    {
+      "topicName": "Testing Components with TestBed",
+      "slug": "testing-components-with-testbed",
+      "difficultyLevel": "Advanced",
+      "section": "Testing"
+    },
+    {
+      "topicName": "End-to-End Testing with Playwright",
+      "slug": "e2e-testing-with-playwright",
+      "difficultyLevel": "Advanced",
+      "section": "Testing"
+    },
+    {
+      "topicName": "Internationalisation and Localisation",
+      "slug": "internationalisation-and-localisation",
+      "difficultyLevel": "Advanced",
+      "section": "Tooling"
+    },
+    {
+      "topicName": "Progressive Web Apps and the Service Worker",
+      "slug": "pwa-and-service-worker",
+      "difficultyLevel": "Advanced",
+      "section": "Tooling"
+    },
+    {
+      "topicName": "Angular MCP Server and AI-assisted Development",
+      "slug": "angular-mcp-and-ai-tooling",
+      "difficultyLevel": "Advanced",
+      "section": "Tooling"
+    },
+    {
+      "topicName": "Authentication and Authorization",
+      "slug": "authentication-and-authorization",
+      "difficultyLevel": "Expert",
+      "section": "Security"
+    },
+    {
+      "topicName": "Security: XSS, Sanitisation and CSP",
+      "slug": "security-xss-and-csp",
+      "difficultyLevel": "Expert",
+      "section": "Security"
+    },
+    {
+      "topicName": "Custom Build Pipelines with the Angular Build System",
+      "slug": "custom-build-pipelines",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Nx Monorepos and Library Architecture",
+      "slug": "nx-monorepos-and-libraries",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Micro-frontends with Module Federation",
+      "slug": "micro-frontends-with-module-federation",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Custom Elements with Angular Elements",
+      "slug": "angular-elements",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Writing Custom Schematics",
+      "slug": "custom-schematics",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Performance Profiling and Core Web Vitals",
+      "slug": "performance-profiling-and-web-vitals",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    },
+    {
+      "topicName": "Migrating to Angular 22 with ng update",
+      "slug": "migrating-to-angular-22",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    },
+    {
+      "topicName": "Deployment and CI/CD",
+      "slug": "deployment-and-cicd",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    }
+  ]
+}

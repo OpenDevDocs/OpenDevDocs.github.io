@@ -1,0 +1,16 @@
+{
+  "courseTitle": "PostMan",
+  "slug": "postman",
+  "cardText": "API platform for building and using APIs",
+  "descriptionText": "Postman is a collaboration platform for API development. Learn to design, test, document, and monitor APIs using this powerful tool. Master API testing, automation, and collaboration to streamline your API development workflow.",
+  "imageFileName": "postman",
+  "tags": "Beginner",
+  "color": "#FF6C37",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 140,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

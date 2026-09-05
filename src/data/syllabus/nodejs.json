@@ -1,0 +1,390 @@
+{
+  "courseName": "Node JS",
+  "courseSlug": "nodejs",
+  "topics": [
+    {
+      "topicName": "What is Node.js? Runtime, V8 and the Ecosystem",
+      "slug": "what-is-nodejs",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Installing Node.js 24 LTS and Version Managers",
+      "slug": "installing-nodejs-and-version-managers",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Release Lines: Current, Active LTS and Maintenance",
+      "slug": "nodejs-release-lines",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The REPL and Running Scripts",
+      "slug": "repl-and-running-scripts",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "CommonJS vs ES Modules",
+      "slug": "commonjs-vs-es-modules",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "require(esm) and Module Interop",
+      "slug": "require-esm-and-interop",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "package.json Explained",
+      "slug": "package-json-explained",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "npm, npx and node --run",
+      "slug": "npm-npx-and-node-run",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "Semantic Versioning and Lockfiles",
+      "slug": "semver-and-lockfiles",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "Globals: process, __dirname and import.meta",
+      "slug": "node-globals",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "Command-line Arguments with util.parseArgs",
+      "slug": "parsing-command-line-arguments",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "Environment Variables and --env-file",
+      "slug": "environment-variables-and-env-file",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "The Console and Debugging Basics",
+      "slug": "console-and-debugging-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "Paths and the path Module",
+      "slug": "the-path-module",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "Reading and Writing Files with fs/promises",
+      "slug": "file-system-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "Watch Mode with node --watch",
+      "slug": "watch-mode",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "The Event Loop and Its Phases",
+      "slug": "the-event-loop",
+      "difficultyLevel": "Intermediate",
+      "section": "Asynchronous Node"
+    },
+    {
+      "topicName": "Callbacks, Promises and async/await",
+      "slug": "callbacks-promises-async-await",
+      "difficultyLevel": "Intermediate",
+      "section": "Asynchronous Node"
+    },
+    {
+      "topicName": "Promise Combinators and AbortSignal",
+      "slug": "promise-combinators-and-abortsignal",
+      "difficultyLevel": "Intermediate",
+      "section": "Asynchronous Node"
+    },
+    {
+      "topicName": "Timers, setImmediate and process.nextTick",
+      "slug": "timers-and-microtasks",
+      "difficultyLevel": "Intermediate",
+      "section": "Asynchronous Node"
+    },
+    {
+      "topicName": "Error Handling and Unhandled Rejections",
+      "slug": "error-handling-and-unhandled-rejections",
+      "difficultyLevel": "Intermediate",
+      "section": "Asynchronous Node"
+    },
+    {
+      "topicName": "EventEmitter and the Observer Pattern",
+      "slug": "eventemitter",
+      "difficultyLevel": "Intermediate",
+      "section": "Asynchronous Node"
+    },
+    {
+      "topicName": "Streams: Readable, Writable and Transform",
+      "slug": "streams-fundamentals",
+      "difficultyLevel": "Intermediate",
+      "section": "Streams and Buffers"
+    },
+    {
+      "topicName": "Pipelines and Backpressure",
+      "slug": "pipelines-and-backpressure",
+      "difficultyLevel": "Intermediate",
+      "section": "Streams and Buffers"
+    },
+    {
+      "topicName": "Web Streams and Interop",
+      "slug": "web-streams",
+      "difficultyLevel": "Intermediate",
+      "section": "Streams and Buffers"
+    },
+    {
+      "topicName": "Buffers and Binary Data",
+      "slug": "buffers-and-binary-data",
+      "difficultyLevel": "Intermediate",
+      "section": "Streams and Buffers"
+    },
+    {
+      "topicName": "The http Module and a Server from Scratch",
+      "slug": "http-module-and-servers",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules"
+    },
+    {
+      "topicName": "Built-in fetch, Undici and the WebSocket Client",
+      "slug": "fetch-undici-and-websocket",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules"
+    },
+    {
+      "topicName": "URL, Query Strings and URLSearchParams",
+      "slug": "url-and-query-strings",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules"
+    },
+    {
+      "topicName": "The crypto Module and Hashing",
+      "slug": "crypto-and-hashing",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules"
+    },
+    {
+      "topicName": "The os, util and zlib Modules",
+      "slug": "os-util-and-zlib",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules"
+    },
+    {
+      "topicName": "The Built-in node:sqlite Database",
+      "slug": "node-sqlite",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules"
+    },
+    {
+      "topicName": "Working with JSON and Structured Data",
+      "slug": "working-with-json",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules"
+    },
+    {
+      "topicName": "The Built-in Test Runner",
+      "slug": "built-in-test-runner",
+      "difficultyLevel": "Intermediate",
+      "section": "Tooling"
+    },
+    {
+      "topicName": "Assertions, Mocking and Code Coverage",
+      "slug": "assertions-mocking-and-coverage",
+      "difficultyLevel": "Intermediate",
+      "section": "Tooling"
+    },
+    {
+      "topicName": "Running TypeScript Natively with Type Stripping",
+      "slug": "running-typescript-natively",
+      "difficultyLevel": "Intermediate",
+      "section": "Tooling"
+    },
+    {
+      "topicName": "Debugging with the Inspector and Chrome DevTools",
+      "slug": "debugging-with-the-inspector",
+      "difficultyLevel": "Intermediate",
+      "section": "Tooling"
+    },
+    {
+      "topicName": "Child Processes: spawn, exec and fork",
+      "slug": "child-processes",
+      "difficultyLevel": "Advanced",
+      "section": "Concurrency"
+    },
+    {
+      "topicName": "Worker Threads and Shared Memory",
+      "slug": "worker-threads",
+      "difficultyLevel": "Advanced",
+      "section": "Concurrency"
+    },
+    {
+      "topicName": "The Cluster Module and Multi-core Scaling",
+      "slug": "cluster-module",
+      "difficultyLevel": "Advanced",
+      "section": "Concurrency"
+    },
+    {
+      "topicName": "AsyncLocalStorage and Context Propagation",
+      "slug": "asynclocalstorage",
+      "difficultyLevel": "Advanced",
+      "section": "Concurrency"
+    },
+    {
+      "topicName": "The Permission Model",
+      "slug": "permission-model",
+      "difficultyLevel": "Advanced",
+      "section": "Platform Features"
+    },
+    {
+      "topicName": "Single Executable Applications",
+      "slug": "single-executable-applications",
+      "difficultyLevel": "Advanced",
+      "section": "Platform Features"
+    },
+    {
+      "topicName": "Module Customisation Hooks and Loaders",
+      "slug": "module-customisation-hooks",
+      "difficultyLevel": "Advanced",
+      "section": "Platform Features"
+    },
+    {
+      "topicName": "Native Addons and the FFI Module",
+      "slug": "native-addons-and-ffi",
+      "difficultyLevel": "Advanced",
+      "section": "Platform Features"
+    },
+    {
+      "topicName": "The Temporal API",
+      "slug": "temporal-api",
+      "difficultyLevel": "Advanced",
+      "section": "Platform Features"
+    },
+    {
+      "topicName": "Reports, Heap Snapshots and Profiling",
+      "slug": "diagnostics-and-profiling",
+      "difficultyLevel": "Advanced",
+      "section": "Diagnostics"
+    },
+    {
+      "topicName": "Performance Hooks and Benchmarking",
+      "slug": "performance-hooks-and-benchmarking",
+      "difficultyLevel": "Advanced",
+      "section": "Diagnostics"
+    },
+    {
+      "topicName": "Memory Management, GC and Leak Hunting",
+      "slug": "memory-management-and-leaks",
+      "difficultyLevel": "Advanced",
+      "section": "Diagnostics"
+    },
+    {
+      "topicName": "Logging and Structured Observability",
+      "slug": "logging-and-observability",
+      "difficultyLevel": "Advanced",
+      "section": "Diagnostics"
+    },
+    {
+      "topicName": "OpenTelemetry Tracing in Node",
+      "slug": "opentelemetry-tracing",
+      "difficultyLevel": "Advanced",
+      "section": "Diagnostics"
+    },
+    {
+      "topicName": "Graceful Shutdown and Signal Handling",
+      "slug": "graceful-shutdown",
+      "difficultyLevel": "Advanced",
+      "section": "Production Practices"
+    },
+    {
+      "topicName": "Security: Supply Chain, Audits and Hardening",
+      "slug": "security-and-supply-chain",
+      "difficultyLevel": "Advanced",
+      "section": "Production Practices"
+    },
+    {
+      "topicName": "Caching Strategies",
+      "slug": "caching-strategies",
+      "difficultyLevel": "Advanced",
+      "section": "Production Practices"
+    },
+    {
+      "topicName": "Building CLIs and Publishing to npm",
+      "slug": "building-and-publishing-cli-tools",
+      "difficultyLevel": "Expert",
+      "section": "Building and Shipping"
+    },
+    {
+      "topicName": "Monorepos and Workspaces",
+      "slug": "monorepos-and-workspaces",
+      "difficultyLevel": "Expert",
+      "section": "Building and Shipping"
+    },
+    {
+      "topicName": "Dockerising Node Applications",
+      "slug": "dockerising-node-applications",
+      "difficultyLevel": "Expert",
+      "section": "Building and Shipping"
+    },
+    {
+      "topicName": "Deploying and Scaling in Production",
+      "slug": "deploying-and-scaling",
+      "difficultyLevel": "Expert",
+      "section": "Building and Shipping"
+    },
+    {
+      "topicName": "CI/CD for Node Projects",
+      "slug": "ci-cd-for-node-projects",
+      "difficultyLevel": "Expert",
+      "section": "Building and Shipping"
+    },
+    {
+      "topicName": "Serverless and Edge Runtimes",
+      "slug": "serverless-and-edge-runtimes",
+      "difficultyLevel": "Expert",
+      "section": "Building and Shipping"
+    },
+    {
+      "topicName": "Node.js Internals: libuv and the Thread Pool",
+      "slug": "nodejs-internals-libuv",
+      "difficultyLevel": "Expert",
+      "section": "Internals"
+    },
+    {
+      "topicName": "V8 Internals and Optimisation",
+      "slug": "v8-internals-and-optimisation",
+      "difficultyLevel": "Expert",
+      "section": "Internals"
+    },
+    {
+      "topicName": "Load Testing and Capacity Planning",
+      "slug": "load-testing-and-capacity-planning",
+      "difficultyLevel": "Expert",
+      "section": "Internals"
+    },
+    {
+      "topicName": "Upgrading Across LTS Lines",
+      "slug": "upgrading-across-lts-lines",
+      "difficultyLevel": "Expert",
+      "section": "Internals"
+    }
+  ]
+}

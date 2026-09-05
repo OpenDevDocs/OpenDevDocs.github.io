@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Avalonia",
+  "slug": "avalonia",
+  "cardText": "Cross-platform desktop applications with .NET",
+  "descriptionText": "Avalonia is a cross-platform XAML-based UI framework providing a flexible styling system and supporting a wide variety of platforms. Create beautiful desktop applications that run on Windows, macOS, Linux, iOS, Android, and WebAssembly.",
+  "imageFileName": "avalonia",
+  "tags": "Intermediate",
+  "color": "#68217A",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 50,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

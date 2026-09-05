@@ -31,6 +31,87 @@ public_folder: /assets/uploads
 
 collections:
     # ------------------------------------------------------------------
+    # Courses - src/data/courses/<slug>.json  ->  /courses/<slug>
+    # ------------------------------------------------------------------
+    - name: courses
+      label: Courses
+      label_singular: Course
+      description: The language and framework cards on the home page and /courses. One file per course.
+      folder: src/data/courses
+      create: true
+      extension: json
+      format: json
+      slug: '{{fields.slug}}'
+      identifier_field: courseTitle
+      summary: '{{courseTitle}} ({{fields.slug}})'
+      preview_path: 'courses/{{fields.slug}}'
+      sortable_fields: [order, courseTitle, tags]
+      view_filters:
+          - label: Published
+            field: isAvailable
+            pattern: true
+          - label: Coming soon
+            field: isAvailable
+            pattern: false
+          - label: Popular
+            field: isPopular
+            pattern: true
+      view_groups:
+          - label: Tag
+            field: tags
+      editor:
+          preview: false
+      fields:
+          - { label: Title, name: courseTitle, widget: string }
+          - label: Slug
+            name: slug
+            widget: string
+            hint: 'Used in the URL: /courses/<slug>. Course articles are stored in a folder with this name.'
+            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+          - { label: Card text, name: cardText, widget: string }
+          - { label: Description, name: descriptionText, widget: text }
+          - label: Logo file name
+            name: imageFileName
+            widget: string
+            hint: 'File name without extension in the course-logo CDN folder, e.g. "c-sharp".'
+          - {
+                label: Tag,
+                name: tags,
+                widget: string,
+                hint: 'Single label shown on the card, e.g. "Frontend".',
+            }
+          - { label: Brand colour, name: color, widget: color, allowInput: true }
+          - label: Gradient classes
+            name: gradientClass
+            widget: string
+            required: false
+            hint: Optional Tailwind gradient classes for the course heading.
+          - label: Author
+            name: authorId
+            widget: relation
+            collection: siteData
+            file: authors
+            value_field: 'authors.*.authorId'
+            display_fields: ['authors.*.authorName']
+            search_fields: ['authors.*.authorName']
+          - label: Listing order
+            name: order
+            widget: number
+            value_type: int
+            default: 999
+            hint: Lower numbers come first on the home page and /courses. Existing courses step by 10, so leave gaps.
+          - {
+                label: Available,
+                name: isAvailable,
+                widget: boolean,
+                default: false,
+                hint: Only available courses get a course page and appear in listings.,
+            }
+          - { label: Completed, name: isCompleted, widget: boolean, default: false }
+          - { label: Popular, name: isPopular, widget: boolean, default: false }
+          - { label: Paid, name: isPaid, widget: boolean, default: false }
+
+    # ------------------------------------------------------------------
     # Blog - src/content/blog/*.md  ->  /blog/<slug>
     # ------------------------------------------------------------------
     - name: blog
@@ -109,11 +190,10 @@ collections:
           - label: Language
             name: course
             widget: relation
-            collection: siteData
-            file: languages
-            value_field: 'courses.*.slug'
-            display_fields: ['courses.*.courseTitle']
-            search_fields: ['courses.*.courseTitle']
+            collection: courses
+            value_field: slug
+            display_fields: [courseTitle]
+            search_fields: [courseTitle]
             hint: Decides which course folder the article is stored in. Changing it on an existing article does not move the file.
           - { label: Title, name: title, widget: string }
           - label: URL slug
@@ -169,13 +249,20 @@ collections:
       fields:
           - label: Course name
             name: courseName
-            widget: string
-            hint: 'Must match the language title exactly (for example "C Sharp").'
+            widget: relation
+            collection: courses
+            value_field: courseTitle
+            display_fields: [courseTitle]
+            search_fields: [courseTitle]
+            hint: The course page matches its syllabus on this title, so pick it rather than typing it.
           - label: Course slug
             name: courseSlug
-            widget: string
-            hint: 'Must match the language slug (for example "c-sharp").'
-            pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Use lowercase letters, numbers and dashes only']
+            widget: relation
+            collection: courses
+            value_field: slug
+            display_fields: [courseTitle]
+            search_fields: [courseTitle]
+            hint: Pick the same course again. This one names the file, so /courses/<slug> finds the syllabus.
           - label: Topics
             name: topics
             widget: list
@@ -273,11 +360,10 @@ collections:
           - label: Course
             name: course
             widget: relation
-            collection: siteData
-            file: languages
-            value_field: 'courses.*.slug'
-            display_fields: ['courses.*.courseTitle']
-            search_fields: ['courses.*.courseTitle']
+            collection: courses
+            value_field: slug
+            display_fields: [courseTitle]
+            search_fields: [courseTitle]
             hint: Select the course this question belongs to.
           - label: URL slug
             name: slug
@@ -344,11 +430,10 @@ collections:
           - label: Course
             name: course
             widget: relation
-            collection: siteData
-            file: languages
-            value_field: 'courses.*.slug'
-            display_fields: ['courses.*.courseTitle']
-            search_fields: ['courses.*.courseTitle']
+            collection: courses
+            value_field: slug
+            display_fields: [courseTitle]
+            search_fields: [courseTitle]
           - label: URL slug
             name: slug
             widget: string
@@ -387,11 +472,10 @@ collections:
           - label: Course
             name: course
             widget: relation
-            collection: siteData
-            file: languages
-            value_field: 'courses.*.slug'
-            display_fields: ['courses.*.courseTitle']
-            search_fields: ['courses.*.courseTitle']
+            collection: courses
+            value_field: slug
+            display_fields: [courseTitle]
+            search_fields: [courseTitle]
           - label: URL slug
             name: slug
             widget: string
@@ -443,66 +527,6 @@ collections:
       editor:
           preview: false
       files:
-          - name: languages
-            label: Languages
-            file: src/data/courses.json
-            description: The language cards on the home page and /courses.
-            editor:
-                preview: false
-            fields:
-                - label: Languages
-                  name: courses
-                  widget: list
-                  label_singular: Language
-                  summary: '{{fields.courseTitle}} ({{fields.slug}})'
-                  fields:
-                      - { label: Title, name: courseTitle, widget: string }
-                      - label: Slug
-                        name: slug
-                        widget: string
-                        hint: 'Used in the URL: /courses/<slug>. Course articles are stored in a folder with this name.'
-                        pattern:
-                            [
-                                '^[a-z0-9]+(?:-[a-z0-9]+)*$',
-                                'Use lowercase letters, numbers and dashes only',
-                            ]
-                      - { label: Card text, name: cardText, widget: string }
-                      - { label: Description, name: descriptionText, widget: text }
-                      - label: Logo file name
-                        name: imageFileName
-                        widget: string
-                        hint: 'File name without extension in the course-logo CDN folder, e.g. "c-sharp".'
-                      - {
-                            label: Tag,
-                            name: tags,
-                            widget: string,
-                            hint: 'Single label shown on the card, e.g. "Frontend".',
-                        }
-                      - { label: Brand colour, name: color, widget: color, allowInput: true }
-                      - label: Gradient classes
-                        name: gradientClass
-                        widget: string
-                        required: false
-                        hint: Optional Tailwind gradient classes for the course heading.
-                      - label: Author
-                        name: authorId
-                        widget: relation
-                        collection: siteData
-                        file: authors
-                        value_field: 'authors.*.authorId'
-                        display_fields: ['authors.*.authorName']
-                        search_fields: ['authors.*.authorName']
-                      - {
-                            label: Available,
-                            name: isAvailable,
-                            widget: boolean,
-                            default: false,
-                            hint: Only available languages get a course page and appear in listings.,
-                        }
-                      - { label: Completed, name: isCompleted, widget: boolean, default: false }
-                      - { label: Popular, name: isPopular, widget: boolean, default: false }
-                      - { label: Paid, name: isPaid, widget: boolean, default: false }
-
           - name: authors
             label: Authors
             file: src/data/authors.json

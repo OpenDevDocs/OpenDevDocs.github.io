@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Next JS",
+  "slug": "nextjs",
+  "cardText": "React framework for production-grade applications",
+  "descriptionText": "Next.js is a React framework that enables functionality like server-side rendering and static website generation. Learn to build fast, SEO-friendly React applications with file-based routing, API routes, and optimized performance out of the box.",
+  "imageFileName": "next-js",
+  "tags": "Intermediate",
+  "color": "#000000",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 120,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": true,
+  "isPaid": false
+}

@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Azure",
+  "slug": "azure",
+  "cardText": "Microsoft's cloud computing platform and services",
+  "descriptionText": "Microsoft Azure is a comprehensive cloud platform offering over 200 products and cloud services. Learn to build, run, and manage applications across multiple clouds, on-premises, and at the edge with your preferred tools and frameworks.",
+  "imageFileName": "azure",
+  "tags": "Advanced",
+  "color": "#0078D4",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 60,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

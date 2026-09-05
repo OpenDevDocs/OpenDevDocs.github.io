@@ -1,0 +1,16 @@
+{
+  "courseTitle": "SQL",
+  "slug": "sql",
+  "cardText": "Structured Query Language for database management",
+  "descriptionText": "SQL is a domain-specific language used for managing and manipulating relational databases. Learn to create databases, write complex queries, optimize performance, and ensure data integrity with this essential skill for developers.",
+  "imageFileName": "sql",
+  "tags": "Beginner",
+  "color": "#00758F",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 170,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

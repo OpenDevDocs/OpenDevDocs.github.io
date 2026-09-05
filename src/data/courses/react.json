@@ -1,0 +1,16 @@
+{
+  "courseTitle": "React",
+  "slug": "react",
+  "cardText": "JavaScript library for building user interfaces",
+  "descriptionText": "React is a declarative, efficient, and flexible JavaScript library for building user interfaces. Learn to create interactive UIs with component-based architecture, manage state effectively, and build single-page applications that scale.",
+  "imageFileName": "react",
+  "tags": "Frontend",
+  "color": "#61DAFB",
+  "gradientClass": "from-blue-400 to-blue-600",
+  "authorId": "bishal-biswas",
+  "order": 160,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

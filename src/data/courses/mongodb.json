@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Mongo DB",
+  "slug": "mongodb",
+  "cardText": "NoSQL document database for modern applications",
+  "descriptionText": "MongoDB is a source-available cross-platform document-oriented database program. Learn to work with JSON-like documents, perform complex queries, implement aggregation pipelines, and build scalable applications with this flexible NoSQL database.",
+  "imageFileName": "mongo",
+  "tags": "Intermediate",
+  "color": "#47A248",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 110,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

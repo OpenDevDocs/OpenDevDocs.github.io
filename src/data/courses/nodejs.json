@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Node JS",
+  "slug": "nodejs",
+  "cardText": "JavaScript runtime built on Chrome's V8 engine",
+  "descriptionText": "Node.js is an asynchronous event-driven JavaScript runtime designed to build scalable network applications. Learn to create server-side applications using JavaScript, work with npm packages, handle I/O operations, and build REST APIs.",
+  "imageFileName": "node",
+  "tags": "Intermediate",
+  "color": "#339933",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 130,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

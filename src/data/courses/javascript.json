@@ -1,0 +1,16 @@
+{
+  "courseTitle": "JavaScript",
+  "slug": "javascript",
+  "cardText": "The language of the web",
+  "descriptionText": "JavaScript is a versatile programming language that enables interactive web pages. Learn the fundamentals of this essential web technology, from basic syntax to advanced concepts like closures, prototypes, and asynchronous programming.",
+  "imageFileName": "js",
+  "tags": "Frontend",
+  "color": "#F7DF1E",
+  "gradientClass": "dark:from-yellow-400 dark:to-orange-400 from-yellow-600 to-orange-500",
+  "authorId": "bishal-biswas",
+  "order": 20,
+  "isAvailable": true,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

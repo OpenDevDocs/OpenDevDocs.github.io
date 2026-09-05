@@ -1,0 +1,390 @@
+{
+  "courseName": "Express JS",
+  "courseSlug": "expressjs",
+  "topics": [
+    {
+      "topicName": "What is Express 5? Role in the Node Ecosystem",
+      "slug": "what-is-express",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Node.js and npm Prerequisites",
+      "slug": "nodejs-and-npm-prerequisites",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Installing Express 5 and Project Setup",
+      "slug": "installing-express-5",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Your First Server and app.listen",
+      "slug": "your-first-express-server",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "ES Modules vs CommonJS in Express Apps",
+      "slug": "esm-vs-commonjs",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Dev Loop: node --watch and Nodemon",
+      "slug": "dev-workflow-and-watch-mode",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Routing with app.get, app.post and Friends",
+      "slug": "routing-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Routing Basics"
+    },
+    {
+      "topicName": "Route Parameters and path-to-regexp v8 Syntax",
+      "slug": "route-parameters-and-path-to-regexp",
+      "difficultyLevel": "Beginner",
+      "section": "Routing Basics"
+    },
+    {
+      "topicName": "Query Strings and the Query Parser",
+      "slug": "query-strings-and-query-parser",
+      "difficultyLevel": "Beginner",
+      "section": "Routing Basics"
+    },
+    {
+      "topicName": "Route Order and Path Matching",
+      "slug": "route-order-and-path-matching",
+      "difficultyLevel": "Beginner",
+      "section": "Routing Basics"
+    },
+    {
+      "topicName": "The Request Object",
+      "slug": "the-request-object",
+      "difficultyLevel": "Beginner",
+      "section": "Request and Response"
+    },
+    {
+      "topicName": "The Response Object",
+      "slug": "the-response-object",
+      "difficultyLevel": "Beginner",
+      "section": "Request and Response"
+    },
+    {
+      "topicName": "Sending JSON, Files and Redirects",
+      "slug": "sending-json-files-and-redirects",
+      "difficultyLevel": "Beginner",
+      "section": "Request and Response"
+    },
+    {
+      "topicName": "Status Codes and Response Headers",
+      "slug": "status-codes-and-headers",
+      "difficultyLevel": "Beginner",
+      "section": "Request and Response"
+    },
+    {
+      "topicName": "Serving Static Files with express.static",
+      "slug": "serving-static-files",
+      "difficultyLevel": "Beginner",
+      "section": "Request and Response"
+    },
+    {
+      "topicName": "Environment Variables and Configuration",
+      "slug": "environment-variables-and-config",
+      "difficultyLevel": "Beginner",
+      "section": "Request and Response"
+    },
+    {
+      "topicName": "How the Middleware Stack Works",
+      "slug": "how-middleware-works",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Writing Custom Middleware",
+      "slug": "writing-custom-middleware",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Built-in Body Parsers: express.json and urlencoded",
+      "slug": "built-in-body-parsers",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "express.Router and Modular Routes",
+      "slug": "express-router-and-modular-routes",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Route Handlers, next() and Chaining",
+      "slug": "route-handlers-and-next",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Async Routes and Automatic Error Forwarding",
+      "slug": "async-routes-and-error-forwarding",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Error-Handling Middleware",
+      "slug": "error-handling-middleware",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Custom Error Classes and HTTP Errors",
+      "slug": "custom-error-classes",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Not Found and Fallback Handling",
+      "slug": "not-found-handling",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware"
+    },
+    {
+      "topicName": "Template Engines: EJS, Pug and Handlebars",
+      "slug": "template-engines",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Data"
+    },
+    {
+      "topicName": "Cookies with cookie-parser",
+      "slug": "cookies-and-cookie-parser",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Data"
+    },
+    {
+      "topicName": "Sessions with express-session",
+      "slug": "sessions-with-express-session",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Data"
+    },
+    {
+      "topicName": "File Uploads with Multer",
+      "slug": "file-uploads-with-multer",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Data"
+    },
+    {
+      "topicName": "CORS Configuration",
+      "slug": "cors-configuration",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Data"
+    },
+    {
+      "topicName": "Request Validation with Zod",
+      "slug": "request-validation-with-zod",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Data"
+    },
+    {
+      "topicName": "Logging with Morgan and Pino",
+      "slug": "logging-with-morgan-and-pino",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Data"
+    },
+    {
+      "topicName": "Designing RESTful Routes",
+      "slug": "designing-restful-routes",
+      "difficultyLevel": "Intermediate",
+      "section": "Building REST APIs"
+    },
+    {
+      "topicName": "CRUD API with MongoDB and Mongoose",
+      "slug": "crud-api-with-mongodb",
+      "difficultyLevel": "Intermediate",
+      "section": "Building REST APIs"
+    },
+    {
+      "topicName": "CRUD API with SQL and an ORM",
+      "slug": "crud-api-with-sql",
+      "difficultyLevel": "Intermediate",
+      "section": "Building REST APIs"
+    },
+    {
+      "topicName": "Pagination, Filtering and Sorting",
+      "slug": "pagination-filtering-sorting",
+      "difficultyLevel": "Intermediate",
+      "section": "Building REST APIs"
+    },
+    {
+      "topicName": "API Versioning",
+      "slug": "api-versioning",
+      "difficultyLevel": "Intermediate",
+      "section": "Building REST APIs"
+    },
+    {
+      "topicName": "JWT Authentication",
+      "slug": "jwt-authentication",
+      "difficultyLevel": "Advanced",
+      "section": "Authentication"
+    },
+    {
+      "topicName": "Session and Cookie Authentication with Passport",
+      "slug": "passport-authentication",
+      "difficultyLevel": "Advanced",
+      "section": "Authentication"
+    },
+    {
+      "topicName": "Role-Based Authorization",
+      "slug": "role-based-authorization",
+      "difficultyLevel": "Advanced",
+      "section": "Authentication"
+    },
+    {
+      "topicName": "Password Hashing and Account Security",
+      "slug": "password-hashing-and-account-security",
+      "difficultyLevel": "Advanced",
+      "section": "Authentication"
+    },
+    {
+      "topicName": "Rate Limiting and Throttling",
+      "slug": "rate-limiting",
+      "difficultyLevel": "Advanced",
+      "section": "Hardening"
+    },
+    {
+      "topicName": "Security Headers with Helmet",
+      "slug": "security-headers-with-helmet",
+      "difficultyLevel": "Advanced",
+      "section": "Hardening"
+    },
+    {
+      "topicName": "Preventing Injection, XSS and CSRF",
+      "slug": "preventing-injection-xss-csrf",
+      "difficultyLevel": "Advanced",
+      "section": "Hardening"
+    },
+    {
+      "topicName": "Input Sanitisation and Payload Limits",
+      "slug": "input-sanitisation-and-payload-limits",
+      "difficultyLevel": "Advanced",
+      "section": "Hardening"
+    },
+    {
+      "topicName": "Streaming Responses and Backpressure",
+      "slug": "streaming-responses",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "WebSockets and Server-Sent Events",
+      "slug": "websockets-and-sse",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Caching with Redis and HTTP Cache Headers",
+      "slug": "caching-with-redis",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Compression and Response Optimisation",
+      "slug": "compression-and-response-optimisation",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Clustering and Worker Threads",
+      "slug": "clustering-and-worker-threads",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Graceful Shutdown and Health Checks",
+      "slug": "graceful-shutdown-and-health-checks",
+      "difficultyLevel": "Advanced",
+      "section": "Performance"
+    },
+    {
+      "topicName": "Testing with Supertest and the Node Test Runner",
+      "slug": "testing-with-supertest",
+      "difficultyLevel": "Advanced",
+      "section": "Quality"
+    },
+    {
+      "topicName": "OpenAPI and Swagger Documentation",
+      "slug": "openapi-and-swagger",
+      "difficultyLevel": "Advanced",
+      "section": "Quality"
+    },
+    {
+      "topicName": "TypeScript with Express 5",
+      "slug": "typescript-with-express",
+      "difficultyLevel": "Advanced",
+      "section": "Quality"
+    },
+    {
+      "topicName": "Express 5 Breaking Changes Reference",
+      "slug": "express-5-breaking-changes",
+      "difficultyLevel": "Expert",
+      "section": "Migration"
+    },
+    {
+      "topicName": "Migrating from Express 4 to Express 5",
+      "slug": "migrating-from-express-4-to-5",
+      "difficultyLevel": "Expert",
+      "section": "Migration"
+    },
+    {
+      "topicName": "Layered and Hexagonal Architecture",
+      "slug": "layered-architecture",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Dependency Injection in Express Apps",
+      "slug": "dependency-injection",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Observability: Metrics and OpenTelemetry Tracing",
+      "slug": "observability-and-opentelemetry",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Dockerising an Express API",
+      "slug": "dockerising-an-express-api",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    },
+    {
+      "topicName": "Reverse Proxies and Trusting Proxy Headers",
+      "slug": "reverse-proxies-and-trust-proxy",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    },
+    {
+      "topicName": "CI/CD Pipelines for Node APIs",
+      "slug": "ci-cd-for-node-apis",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    },
+    {
+      "topicName": "Load Testing and Performance Tuning",
+      "slug": "load-testing-and-performance-tuning",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    },
+    {
+      "topicName": "Serverless Express and Edge Runtimes",
+      "slug": "serverless-express",
+      "difficultyLevel": "Expert",
+      "section": "Production"
+    }
+  ]
+}

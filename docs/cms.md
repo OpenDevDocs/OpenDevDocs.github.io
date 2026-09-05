@@ -15,18 +15,25 @@ database and no server holding content.
 
 ## What you can edit
 
-| Collection          | Edits                        | Files                                       | URL                          |
-| ------------------- | ---------------------------- | ------------------------------------------- | ---------------------------- |
-| **Blog**            | Standalone posts             | `src/content/blog/<slug>.md`                | `/blog/<slug>`               |
-| **Course Articles** | Topic pages inside a course  | `src/content/courses/<language>/<slug>.md`  | `/courses/<language>/<slug>` |
-| **Course Syllabus** | Topic list/order per course  | `src/data/syllabus/<language>.json`         | `/courses/<language>`        |
-| **Legal Pages**     | Privacy, terms, disclaimer   | `src/content/legal/<slug>.md`               | `/<slug>`                    |
-| **Site Data**       | Languages and authors        | `src/data/courses.json`, `src/data/authors.json` | site-wide               |
+| Collection          | Edits                        | Files                                      | URL                        |
+| ------------------- | ---------------------------- | ------------------------------------------ | -------------------------- |
+| **Courses**         | The course cards themselves  | `src/data/courses/<slug>.json`             | `/courses/<slug>`          |
+| **Blog**            | Standalone posts             | `src/content/blog/<slug>.md`               | `/blog/<slug>`             |
+| **Course Articles** | Topic pages inside a course  | `src/content/courses/<course>/<slug>.md`   | `/courses/<course>/<slug>` |
+| **Course Syllabus** | Topic list/order per course  | `src/data/syllabus/<course>.json`          | `/courses/<course>`        |
+| **Legal Pages**     | Privacy, terms, disclaimer   | `src/content/legal/<slug>.md`              | `/<slug>`                  |
+| **Site Data**       | Authors                      | `src/data/authors.json`                    | site-wide                  |
 
 Blog, Course Articles, and Legal Pages are Astro content collections defined in
-[`src/content.config.ts`](../src/content.config.ts). Site Data and Course Syllabus are
-plain JSON re-exported by thin modules (`src/data/courses.js`, `src/data/authors.js`,
-`src/content/syllabus.js`) so every existing page import keeps working untouched.
+[`src/content.config.ts`](../src/content.config.ts). Courses, Course Syllabus, and Site
+Data are plain JSON re-exported by thin modules (`src/data/courses/index.js`,
+`src/data/authors.js`, `src/content/syllabus.js`) so every existing page import keeps
+working untouched.
+
+**Courses is one file per course**, not one big list. Adding a course through *+ Course*
+writes a new `src/data/courses/<slug>.json`; editing one touches only that file. The list
+view has search, *Sort by*, *Filter by* (published / coming soon / popular), and *Group
+by* tag, and every other collection picks its course from this one.
 
 ---
 
@@ -48,12 +55,13 @@ Requirements for login to work:
 1. The GitHub OAuth App's **Authorization callback URL** must point at the proxy's
    callback route (e.g. `https://decap-oauth-bishal.vercel.app/callback`), and the
    proxy needs that app's client ID and secret in its environment.
-2. Decap requests `<base_url>/auth`. If your proxy exposes Vercel-style routes
-   (`/api/auth`, `/api/callback`) instead, uncomment this line in `config.yml`:
+2. Decap requests `<base_url>/auth` by default. This proxy exposes Vercel-style routes
+   (`/api/auth`, `/api/callback`), so `config.yml` overrides it:
    ```yaml
-   # auth_endpoint: api/auth
+   auth_endpoint: api/auth
    ```
-   A 404 on the popup right after clicking *Login with GitHub* is the symptom.
+   A 404 on the popup right after clicking *Login with GitHub* is the symptom of this
+   being wrong.
 3. The GitHub account you log in with needs write access to the repo. A collaborator
    account works. If the **OpenDevDocs** org restricts third-party OAuth apps, an org
    owner has to approve the OAuth App once — otherwise login succeeds but the repo is
@@ -95,22 +103,26 @@ agree with each other:
 
 - A course article's **URL slug** must equal the **topic slug** in that course's
   syllabus. If they differ, the topic card on the course page links to a 404.
-- A language's **slug** in Site Data is both its URL (`/courses/<slug>`) and the folder
-  name articles are stored in (`src/content/courses/<slug>/`).
-- The syllabus **Course name** must match the language **Title** exactly (`C Sharp`,
-  not `C#`), because the course page pairs them by name.
-- An author's **Author ID** is referenced by every article, post, and language that
+- A course's **slug** is both its URL (`/courses/<slug>`), the file name under
+  `src/data/courses/`, and the folder articles live in (`src/content/courses/<slug>/`).
+- The syllabus **Course name** must match the course **Title** exactly (`C Sharp`, not
+  `C#`), because the course page pairs them by name. Both syllabus course fields are
+  pickers rather than free text so they cannot drift apart.
+- An author's **Author ID** is referenced by every article, post, and course that
   credits them. Renaming an ID silently drops those credits — add a new author instead.
 
-**A language only appears on the site when *Available* is on.** Unavailable languages
-are filtered out of `/courses` and get no course page, so you can add one and fill in
-its syllabus before it is visible.
+**A course only appears on the site when *Available* is on.** Unavailable courses are
+filtered out of `/courses` and get no course page, so you can add one and fill in its
+syllabus before it is visible.
+
+**Listing order** is the *Listing order* number on each course — lowest first on the home
+page and `/courses`. Existing courses step by 10 so there is room to slot one in between.
 
 **Images.** Uploads through the CMS go to `public/assets/uploads/` and are referenced
 as `/assets/uploads/<file>`. Two fields are deliberately plain text instead, because
 the site builds their URLs from a CDN convention rather than a path:
 
-- Language *logo file name* — a bare name, no extension (`c-sharp`), resolved against
+- Course *logo file name* — a bare name, no extension (`c-sharp`), resolved against
   the `course-logo` CDN folder.
 - Author *image* — a file name (`bishal-biswas.png`) in the `author-imgs` CDN folder,
   or a full `https://` URL.

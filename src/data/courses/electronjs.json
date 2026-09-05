@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Electron JS",
+  "slug": "electronjs",
+  "cardText": "Build cross-platform desktop apps with web technologies",
+  "descriptionText": "Electron is a framework for creating native applications with web technologies like JavaScript, HTML, and CSS. Learn to build desktop applications that work on Windows, macOS, and Linux using familiar web development tools and practices.",
+  "imageFileName": "electron",
+  "tags": "Intermediate",
+  "color": "#47848F",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 90,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

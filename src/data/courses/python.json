@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Python",
+  "slug": "python",
+  "cardText": "Versatile programming language for everyone",
+  "descriptionText": "Python is a high-level, interpreted programming language known for its readability and versatility. Learn this popular language used in web development, data science, machine learning, automation, and more with its extensive standard library.",
+  "imageFileName": "python",
+  "tags": "Beginner",
+  "color": "#3776AB",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 150,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

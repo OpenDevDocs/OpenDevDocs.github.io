@@ -1,0 +1,414 @@
+{
+  "courseName": "Mongo DB",
+  "courseSlug": "mongodb",
+  "topics": [
+    {
+      "topicName": "What is MongoDB 8? Documents and Collections",
+      "slug": "what-is-mongodb",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "SQL vs NoSQL: When to Use MongoDB",
+      "slug": "sql-vs-nosql",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Installing MongoDB Community 8",
+      "slug": "installing-mongodb",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "MongoDB Atlas: Free Cluster Setup",
+      "slug": "mongodb-atlas-setup",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "mongosh: The MongoDB Shell",
+      "slug": "mongosh-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Compass and the VS Code Extension",
+      "slug": "compass-and-vscode-extension",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "BSON Types and Document Structure",
+      "slug": "bson-types-and-documents",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Databases, Collections and Namespaces",
+      "slug": "databases-and-collections",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Inserting Documents",
+      "slug": "inserting-documents",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Querying with find and Filters",
+      "slug": "querying-with-find",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Comparison and Logical Query Operators",
+      "slug": "query-operators",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Projections and Field Selection",
+      "slug": "projections",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Sorting, Limiting and Skipping",
+      "slug": "sort-limit-skip",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Updating Documents",
+      "slug": "updating-documents",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Update Operators and Upserts",
+      "slug": "update-operators-and-upserts",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Deleting Documents",
+      "slug": "deleting-documents",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Working with Arrays",
+      "slug": "working-with-arrays",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Embedded Documents and Dot Notation",
+      "slug": "embedded-documents",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Embedding vs Referencing",
+      "slug": "schema-design-embedding-vs-referencing",
+      "difficultyLevel": "Intermediate",
+      "section": "Schema Design"
+    },
+    {
+      "topicName": "Data Modelling Patterns",
+      "slug": "data-modelling-patterns",
+      "difficultyLevel": "Intermediate",
+      "section": "Schema Design"
+    },
+    {
+      "topicName": "Schema Validation with JSON Schema",
+      "slug": "schema-validation",
+      "difficultyLevel": "Intermediate",
+      "section": "Schema Design"
+    },
+    {
+      "topicName": "Single Field and Compound Indexes",
+      "slug": "indexes-single-and-compound",
+      "difficultyLevel": "Intermediate",
+      "section": "Indexing"
+    },
+    {
+      "topicName": "Multikey, Text and Wildcard Indexes",
+      "slug": "multikey-text-wildcard-indexes",
+      "difficultyLevel": "Intermediate",
+      "section": "Indexing"
+    },
+    {
+      "topicName": "Partial, Sparse and TTL Indexes",
+      "slug": "partial-sparse-ttl-indexes",
+      "difficultyLevel": "Intermediate",
+      "section": "Indexing"
+    },
+    {
+      "topicName": "Geospatial Indexes and Queries",
+      "slug": "geospatial-indexes",
+      "difficultyLevel": "Intermediate",
+      "section": "Indexing"
+    },
+    {
+      "topicName": "explain and Query Plans",
+      "slug": "explain-and-query-plans",
+      "difficultyLevel": "Intermediate",
+      "section": "Indexing"
+    },
+    {
+      "topicName": "The Cost-Based Ranker",
+      "slug": "cost-based-ranker",
+      "difficultyLevel": "Intermediate",
+      "section": "Indexing"
+    },
+    {
+      "topicName": "Aggregation Pipeline Fundamentals",
+      "slug": "aggregation-pipeline-fundamentals",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "Core Stages: match, project, group and sort",
+      "slug": "core-aggregation-stages",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "Joining Collections with lookup",
+      "slug": "lookup-and-joins",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "unwind and Array Aggregation",
+      "slug": "unwind-and-array-aggregation",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "facet, bucket and Multi-Result Pipelines",
+      "slug": "facet-and-bucket",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "Window Functions with setWindowFields",
+      "slug": "window-functions",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "Array Index Access with IDX and arrayIndexAs",
+      "slug": "array-index-access",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "Conversion Operators: convert, toObject and toArray",
+      "slug": "conversion-operators",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "Expression Operators: hash, createObjectId and EJSON",
+      "slug": "expression-operators",
+      "difficultyLevel": "Intermediate",
+      "section": "Aggregation"
+    },
+    {
+      "topicName": "Bulk Writes and the Bulk API",
+      "slug": "bulk-writes",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Operations"
+    },
+    {
+      "topicName": "Change Streams",
+      "slug": "change-streams",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Operations"
+    },
+    {
+      "topicName": "Time Series and Capped Collections",
+      "slug": "time-series-collections",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Operations"
+    },
+    {
+      "topicName": "GridFS for Large Files",
+      "slug": "gridfs",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Operations"
+    },
+    {
+      "topicName": "Import, Export and Data Migration Tools",
+      "slug": "import-export-and-tools",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Operations"
+    },
+    {
+      "topicName": "Transactions and ACID Guarantees",
+      "slug": "transactions",
+      "difficultyLevel": "Advanced",
+      "section": "Reliability"
+    },
+    {
+      "topicName": "Read and Write Concerns",
+      "slug": "read-and-write-concerns",
+      "difficultyLevel": "Advanced",
+      "section": "Reliability"
+    },
+    {
+      "topicName": "Read Preferences and Replica Set Reads",
+      "slug": "read-preferences",
+      "difficultyLevel": "Advanced",
+      "section": "Reliability"
+    },
+    {
+      "topicName": "Replica Sets and Elections",
+      "slug": "replica-sets",
+      "difficultyLevel": "Advanced",
+      "section": "Reliability"
+    },
+    {
+      "topicName": "Backups, Snapshots and Point-in-Time Restore",
+      "slug": "backups-and-restore",
+      "difficultyLevel": "Advanced",
+      "section": "Reliability"
+    },
+    {
+      "topicName": "Sharding: Shard Keys and Chunk Distribution",
+      "slug": "sharding-fundamentals",
+      "difficultyLevel": "Advanced",
+      "section": "Scaling"
+    },
+    {
+      "topicName": "Shard Draining and Cluster Operations",
+      "slug": "shard-draining-and-cluster-ops",
+      "difficultyLevel": "Advanced",
+      "section": "Scaling"
+    },
+    {
+      "topicName": "Performance Tuning and Working Set Sizing",
+      "slug": "performance-tuning",
+      "difficultyLevel": "Advanced",
+      "section": "Scaling"
+    },
+    {
+      "topicName": "Monitoring with serverStatus and FTDC",
+      "slug": "monitoring-and-ftdc",
+      "difficultyLevel": "Advanced",
+      "section": "Scaling"
+    },
+    {
+      "topicName": "Query Settings and Index Hints",
+      "slug": "query-settings-and-hints",
+      "difficultyLevel": "Advanced",
+      "section": "Scaling"
+    },
+    {
+      "topicName": "Atlas Search and the search Stage",
+      "slug": "atlas-search",
+      "difficultyLevel": "Advanced",
+      "section": "Search and AI"
+    },
+    {
+      "topicName": "Vector Search for AI Workloads",
+      "slug": "vector-search",
+      "difficultyLevel": "Advanced",
+      "section": "Search and AI"
+    },
+    {
+      "topicName": "Hybrid Search with rankFusion and scoreFusion",
+      "slug": "rank-and-score-fusion",
+      "difficultyLevel": "Advanced",
+      "section": "Search and AI"
+    },
+    {
+      "topicName": "Role-Based Access Control and Users",
+      "slug": "rbac-and-users",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "TLS, Authentication and Network Security",
+      "slug": "tls-and-authentication",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Client-Side Field Level Encryption",
+      "slug": "client-side-field-level-encryption",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Queryable Encryption",
+      "slug": "queryable-encryption",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Node.js Driver and Connection Pooling",
+      "slug": "nodejs-driver-and-connection-pooling",
+      "difficultyLevel": "Expert",
+      "section": "Application Development"
+    },
+    {
+      "topicName": "Mongoose ODM: Schemas, Models and Middleware",
+      "slug": "mongoose-odm",
+      "difficultyLevel": "Expert",
+      "section": "Application Development"
+    },
+    {
+      "topicName": "Migrations and Schema Evolution",
+      "slug": "migrations-and-schema-evolution",
+      "difficultyLevel": "Expert",
+      "section": "Application Development"
+    },
+    {
+      "topicName": "Aggregation Performance with merge and out",
+      "slug": "aggregation-performance",
+      "difficultyLevel": "Expert",
+      "section": "Application Development"
+    },
+    {
+      "topicName": "Multi-Region and Global Clusters",
+      "slug": "multi-region-clusters",
+      "difficultyLevel": "Expert",
+      "section": "Operations"
+    },
+    {
+      "topicName": "Atlas Data Federation and Online Archive",
+      "slug": "data-federation-and-online-archive",
+      "difficultyLevel": "Expert",
+      "section": "Operations"
+    },
+    {
+      "topicName": "Atlas Stream Processing",
+      "slug": "atlas-stream-processing",
+      "difficultyLevel": "Expert",
+      "section": "Operations"
+    },
+    {
+      "topicName": "MongoDB on Kubernetes with the Operator",
+      "slug": "mongodb-on-kubernetes",
+      "difficultyLevel": "Expert",
+      "section": "Operations"
+    },
+    {
+      "topicName": "Upgrading to MongoDB 8.3",
+      "slug": "upgrading-to-mongodb-8-3",
+      "difficultyLevel": "Expert",
+      "section": "Operations"
+    },
+    {
+      "topicName": "Capacity Planning and Cost Optimisation",
+      "slug": "capacity-planning",
+      "difficultyLevel": "Expert",
+      "section": "Operations"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Supabase",
+  "slug": "supabase",
+  "cardText": "Open source Firebase alternative",
+  "descriptionText": "Supabase is an open source Firebase alternative providing a PostgreSQL database, authentication, instant APIs, realtime subscriptions, and storage. Learn to build full-stack applications with this modern backend-as-a-service platform.",
+  "imageFileName": "supabase",
+  "tags": "Intermediate",
+  "color": "#3ECF8E",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 180,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

@@ -1,0 +1,16 @@
+{
+  "courseTitle": "DotNet MVC",
+  "slug": "dotnet-mvc",
+  "cardText": "Pattern-based way to build dynamic websites",
+  "descriptionText": "ASP.NET MVC is a web application framework that implements the model-view-controller pattern. Learn to build scalable, standards-based web applications using this powerful framework with separation of concerns and testability built-in.",
+  "imageFileName": "dotnet-mvc",
+  "tags": "Frontend & Backend",
+  "color": "#512BD4",
+  "gradientClass": "from-indigo-500 to-purple-700",
+  "authorId": "bishal-biswas",
+  "order": 70,
+  "isAvailable": false,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}
