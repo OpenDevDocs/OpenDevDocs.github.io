@@ -7,7 +7,15 @@ const dateValue = z.coerce.date();
 
 // Course topic articles: `src/content/courses/<language>/<article>.md`
 const codeArticles = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/courses/' }),
+    // The default id comes from the `slug` frontmatter, so two courses using
+    // the same slug (e.g. react and angular both having `deployment-and-cicd`)
+    // collide and one article is silently dropped. Key on the file path instead,
+    // which is unique. Routing still uses `data.slug`, so no URL changes.
+    loader: glob({
+        pattern: '**/*.md',
+        base: './src/content/courses/',
+        generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+    }),
     schema: z.object({
         title: z.string(),
         slug: z.string(),
@@ -16,7 +24,8 @@ const codeArticles = defineCollection({
         publishDate: dateValue,
         updateDate: dateValue,
         author: z.array(z.string()),
-        level: z.number(),
+        // 1 = Beginner, 2 = Intermediate, 3 = Advanced, 4 = Expert.
+        level: z.number().int().min(1).max(4),
         tags: z.array(z.string()),
         // Written by the CMS so it knows which language folder an article belongs to.
         // Existing files fall back to the folder name in the route.

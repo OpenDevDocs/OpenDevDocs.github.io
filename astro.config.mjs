@@ -10,6 +10,12 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
+
+    // Course articles load the Prism theme and runtime, so emit Prism-compatible
+    // markup (`language-*` classes and `.token` spans) instead of Shiki's inline styles.
+    markdown: {
+        syntaxHighlight: 'prism',
+    },
     image: {
         remotePatterns: [
             {
