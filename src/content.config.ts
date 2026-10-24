@@ -70,7 +70,13 @@ const legal = defineCollection({
 
 // Interview questions: `src/content/interview-questions/<course>/<question>.md`
 const interviewQuestions = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/interview-questions/' }),
+    // Same slug-collision problem as codeArticles: generic slugs such as
+    // `async-await-basics` will repeat across courses, so key on the file path.
+    loader: glob({
+        pattern: '**/*.md',
+        base: './src/content/interview-questions/',
+        generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+    }),
     schema: z.object({
         course: z.string(),
         slug: z.string(),
