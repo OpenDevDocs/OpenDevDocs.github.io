@@ -19,14 +19,71 @@ export function getStaticPaths() {
 const { course } = Astro.params;
 
 const { courseData } = Astro.props;
+
+// Questions and answers are plain text with a little markdown (`code`, **bold**,
+// "- " / "1. " lists, ``` fences). The client script injects them with innerHTML,
+// so escape everything first: otherwise generics such as List<T> are parsed as
+// HTML tags and vanish from the page.
+const escapeHtml = (text: string) =>
+    text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// `code` spans are swapped for placeholders while bold is applied, so **`List<T>`**
+// works and a `**` inside code (e.g. `int**`) is never treated as bold.
+const formatInline = (text: string) => {
+    const spans: string[] = [];
+    const withPlaceholders = text.replace(/`([^`]+)`/g, (_, code: string) => `\u0000${spans.push(code) - 1}\u0000`);
+    return escapeHtml(withPlaceholders)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\u0000(\d+)\u0000/g, (_, i: string) => `<code>${escapeHtml(spans[Number(i)])}</code>`);
+};
+
+type AnswerBlock = { tag: 'p' | 'ul' | 'ol' | 'pre'; lines: string[]; open: boolean };
+const LIST_ITEM = /^\s*(?:[-*]|(\d+)\.)\s+(.*)$/;
+
+function formatAnswer(text: string) {
+    const blocks: AnswerBlock[] = [];
+    for (const line of text.replace(/\r\n/g, '\n').trim().split('\n')) {
+        const last = blocks.at(-1);
+        const open = last?.open ? last : undefined;
+        const item = line.match(LIST_ITEM);
+        if (open?.tag === 'pre') {
+            if (/^\s*```/.test(line)) open.open = false;
+            else open.lines.push(line);
+        } else if (/^\s*```/.test(line)) {
+            blocks.push({ tag: 'pre', lines: [], open: true });
+        } else if (!line.trim()) {
+            if (open) open.open = false;
+        } else if (item && open?.tag === (item[1] ? 'ol' : 'ul')) {
+            open.lines.push(item[2]);
+        } else if (!item && open?.tag === 'p') {
+            open.lines.push(line.trim());
+        } else if (!item && open && /^\s/.test(line)) {
+            // Indented line under a list item continues that item.
+            open.lines[open.lines.length - 1] += ` ${line.trim()}`;
+        } else {
+            blocks.push({ tag: item ? (item[1] ? 'ol' : 'ul') : 'p', lines: [item ? item[2] : line.trim()], open: true });
+        }
+    }
+    return blocks
+        .map(({ tag, lines }) => {
+            if (tag === 'pre') return `<pre><code>${escapeHtml(lines.join('\n'))}</code></pre>`;
+            if (tag === 'p') return `<p>${formatInline(lines.join(' '))}</p>`;
+            // Kept out of the <ul>/<ol> template: the Astro compiler fails to parse a
+            // template literal nested inside one that starts with an HTML-like tag.
+            const items = lines.map((line) => `<li>${formatInline(line)}</li>`).join('');
+            return `<${tag}>${items}</${tag}>`;
+        })
+        .join('');
+}
+
 const allInterviewQuestions = await getCollection('interviewQuestions');
 const pageQuestions = {
     fresher: allInterviewQuestions
         .filter((question) => question.data.course === course && question.data.experienceLevel === 'fresher')
         .map((question) => ({
             id: question.id,
-            question: question.data.question,
-            answer: question.data.answer,
+            question: formatInline(question.data.question),
+            answer: formatAnswer(question.data.answer),
             code: question.data.codeExample || '',
             difficulty: question.data.difficulty,
             topics: question.data.tags.length ? question.data.tags : ['General'],
@@ -36,8 +93,8 @@ const pageQuestions = {
         .filter((question) => question.data.course === course && question.data.experienceLevel === 'mid')
         .map((question) => ({
             id: question.id,
-            question: question.data.question,
-            answer: question.data.answer,
+            question: formatInline(question.data.question),
+            answer: formatAnswer(question.data.answer),
             code: question.data.codeExample || '',
             difficulty: question.data.difficulty,
             topics: question.data.tags.length ? question.data.tags : ['General'],
@@ -47,8 +104,8 @@ const pageQuestions = {
         .filter((question) => question.data.course === course && question.data.experienceLevel === 'senior')
         .map((question) => ({
             id: question.id,
-            question: question.data.question,
-            answer: question.data.answer,
+            question: formatInline(question.data.question),
+            answer: formatAnswer(question.data.answer),
             code: question.data.codeExample || '',
             difficulty: question.data.difficulty,
             topics: question.data.tags.length ? question.data.tags : ['General'],
@@ -129,7 +186,8 @@ const pageQuestions = {
     }
     
     .accordion-content.open {
-        max-height: 2000px;
+        /* Long answers with code run ~2400px tall on phones; a lower cap clips them. */
+        max-height: 4000px;
         padding: 1.5rem;
     }
     
@@ -337,7 +395,7 @@ pageType='website'>
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold">Fresher Level Questions</h2>
-                    <p class="text-gray-600 dark:text-gray-300">Basic to intermediate questions for entry-level JavaScript roles (0-2 years experience)</p>
+                    <p class="text-gray-600 dark:text-gray-300">Basic to intermediate questions for entry-level {courseData.courseTitle} roles (0-2 years experience)</p>
                 </div>
             </div>
             
@@ -405,7 +463,7 @@ pageType='website'>
     </div>
 </MainLayout>
 
-<script is:inline define:vars={{ pageQuestions }}>
+<script is:inline define:vars={{ pageQuestions, courseTitle: courseData.courseTitle }}>
     const interviewQuestions = pageQuestions;
 
     // Generate Questions
@@ -472,7 +530,7 @@ pageType='website'>
                             Answer
                         </h4>
                         <div class="prose dark:prose-invert max-w-none">
-                            <p>${q.answer}</p>
+                            ${q.answer}
                         </div>
                     </div>
                     
@@ -484,7 +542,7 @@ pageType='website'>
                         </h4>
                         <div class="code-block bg-gray-900 text-gray-100">
                             <div class="code-header border-gray-700">
-                                <span class="text-sm text-gray-400">JavaScript</span>
+                                <span class="text-sm text-gray-400">${courseTitle}</span>
                                 <button class="copy-btn bg-gray-800 hover:bg-gray-700 text-gray-300" data-code="${q.id}">
                                     <i class="far fa-copy mr-1"></i> Copy Code
                                 </button>

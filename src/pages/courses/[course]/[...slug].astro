@@ -33,8 +33,8 @@ article.data.author.map((articleAuthors :any)=>{
     authorData.push(authors.find(obj => obj.authorId === articleAuthors));
 })
 
-const filteredObjects = _allCodeArticles.filter(obj => 
-obj.filePath?.includes(courseData?.slug || "")
+const filteredObjects = _allCodeArticles.filter(obj =>
+    (obj.data.course ?? obj.filePath?.split("/")[3]) === courseData?.slug
 );
 
 let listOfAllSimilarArticles : any[] = [];
@@ -287,12 +287,16 @@ const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <!-- Razor views (`cshtml`) build on markup and csharp, so this must come after csharp. -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cshtml.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-http.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bicep.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-hcl.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-kusto.min.js"></script>
 
     <script is:inline define:vars={{courseTitle: courseData?.courseTitle, slug : slug}}>
         // Copy Code Button

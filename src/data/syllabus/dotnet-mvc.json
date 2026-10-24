@@ -1,0 +1,396 @@
+{
+  "courseName": "DotNet MVC",
+  "courseSlug": "dotnet-mvc",
+  "topics": [
+    {
+      "topicName": "What is ASP.NET Core MVC",
+      "slug": "what-is-aspnet-core-mvc",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Setting Up the .NET SDK and Tools",
+      "slug": "setting-up-the-dotnet-sdk-and-tools",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Your First MVC Project",
+      "slug": "your-first-mvc-project",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Understanding the Project Structure",
+      "slug": "understanding-the-project-structure",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Controllers and Action Methods",
+      "slug": "controllers-and-action-methods",
+      "difficultyLevel": "Beginner",
+      "section": "Controllers and Actions"
+    },
+    {
+      "topicName": "Action Results",
+      "slug": "action-results",
+      "difficultyLevel": "Beginner",
+      "section": "Controllers and Actions"
+    },
+    {
+      "topicName": "Handling GET and POST Requests",
+      "slug": "handling-get-and-post-requests",
+      "difficultyLevel": "Beginner",
+      "section": "Controllers and Actions"
+    },
+    {
+      "topicName": "Conventional Routing",
+      "slug": "conventional-routing",
+      "difficultyLevel": "Beginner",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Attribute Routing",
+      "slug": "attribute-routing",
+      "difficultyLevel": "Beginner",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Route Parameters and Constraints",
+      "slug": "route-parameters-and-constraints",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Generating URLs and Links",
+      "slug": "generating-urls-and-links",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Introduction to Razor Views",
+      "slug": "introduction-to-razor-views",
+      "difficultyLevel": "Beginner",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Razor Syntax Basics",
+      "slug": "razor-syntax-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Passing Data to Views",
+      "slug": "passing-data-to-views",
+      "difficultyLevel": "Beginner",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Layouts, Sections and _ViewStart",
+      "slug": "layouts-sections-and-viewstart",
+      "difficultyLevel": "Beginner",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Partial Views",
+      "slug": "partial-views",
+      "difficultyLevel": "Beginner",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Tag Helpers",
+      "slug": "tag-helpers",
+      "difficultyLevel": "Beginner",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Static Files, CSS and JavaScript",
+      "slug": "static-files-css-and-javascript",
+      "difficultyLevel": "Beginner",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "HTML Helpers",
+      "slug": "html-helpers",
+      "difficultyLevel": "Intermediate",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "View Components",
+      "slug": "view-components",
+      "difficultyLevel": "Intermediate",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Display and Editor Templates",
+      "slug": "display-and-editor-templates",
+      "difficultyLevel": "Intermediate",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Custom Tag Helpers",
+      "slug": "custom-tag-helpers",
+      "difficultyLevel": "Advanced",
+      "section": "Razor Views"
+    },
+    {
+      "topicName": "Models and ViewModels",
+      "slug": "models-and-viewmodels",
+      "difficultyLevel": "Beginner",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "Building Forms with Tag Helpers",
+      "slug": "building-forms-with-tag-helpers",
+      "difficultyLevel": "Beginner",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "Model Validation with Data Annotations",
+      "slug": "model-validation-with-data-annotations",
+      "difficultyLevel": "Beginner",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "Model Binding",
+      "slug": "model-binding",
+      "difficultyLevel": "Intermediate",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "Client Side Validation",
+      "slug": "client-side-validation",
+      "difficultyLevel": "Intermediate",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "Custom and Remote Validation",
+      "slug": "custom-and-remote-validation",
+      "difficultyLevel": "Intermediate",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "Dropdowns, Checkboxes and Radio Buttons",
+      "slug": "dropdowns-checkboxes-and-radio-buttons",
+      "difficultyLevel": "Intermediate",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "File Uploads",
+      "slug": "file-uploads",
+      "difficultyLevel": "Intermediate",
+      "section": "Models and Forms"
+    },
+    {
+      "topicName": "Asynchronous Actions",
+      "slug": "asynchronous-actions",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Entity Framework Core Setup",
+      "slug": "entity-framework-core-setup",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Migrations and Seeding Data",
+      "slug": "migrations-and-seeding-data",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "CRUD Operations with EF Core",
+      "slug": "crud-operations-with-ef-core",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Scaffolding Controllers and Views",
+      "slug": "scaffolding-controllers-and-views",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Relationships and Navigation Properties",
+      "slug": "relationships-and-navigation-properties",
+      "difficultyLevel": "Advanced",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Searching, Sorting and Pagination",
+      "slug": "searching-sorting-and-pagination",
+      "difficultyLevel": "Advanced",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Dependency Injection in MVC",
+      "slug": "dependency-injection-in-mvc",
+      "difficultyLevel": "Intermediate",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "Configuration and appsettings.json",
+      "slug": "configuration-and-appsettings",
+      "difficultyLevel": "Intermediate",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "Environments and User Secrets",
+      "slug": "environments-and-user-secrets",
+      "difficultyLevel": "Intermediate",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "Service Layer and Repository Pattern",
+      "slug": "service-layer-and-repository-pattern",
+      "difficultyLevel": "Advanced",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "Organizing Large Apps with Areas",
+      "slug": "organizing-large-apps-with-areas",
+      "difficultyLevel": "Advanced",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "TempData and Flash Messages",
+      "slug": "tempdata-and-flash-messages",
+      "difficultyLevel": "Intermediate",
+      "section": "State Management"
+    },
+    {
+      "topicName": "Session State and Cookies",
+      "slug": "session-state-and-cookies",
+      "difficultyLevel": "Intermediate",
+      "section": "State Management"
+    },
+    {
+      "topicName": "The Request Pipeline and Middleware",
+      "slug": "the-request-pipeline-and-middleware",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Error Handling and Custom Error Pages",
+      "slug": "error-handling-and-custom-error-pages",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Writing Custom Middleware",
+      "slug": "writing-custom-middleware",
+      "difficultyLevel": "Advanced",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Filters in MVC",
+      "slug": "filters-in-mvc",
+      "difficultyLevel": "Advanced",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Authentication and Authorization Basics",
+      "slug": "authentication-and-authorization-basics",
+      "difficultyLevel": "Intermediate",
+      "section": "Security"
+    },
+    {
+      "topicName": "Anti Forgery Tokens and CSRF",
+      "slug": "anti-forgery-tokens-and-csrf",
+      "difficultyLevel": "Intermediate",
+      "section": "Security"
+    },
+    {
+      "topicName": "ASP.NET Core Identity",
+      "slug": "aspnet-core-identity",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Role and Policy Based Authorization",
+      "slug": "role-and-policy-based-authorization",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Web Security Best Practices",
+      "slug": "web-security-best-practices",
+      "difficultyLevel": "Expert",
+      "section": "Security"
+    },
+    {
+      "topicName": "AJAX Requests with Fetch",
+      "slug": "ajax-requests-with-fetch",
+      "difficultyLevel": "Intermediate",
+      "section": "Interactive Features"
+    },
+    {
+      "topicName": "Real Time Features with SignalR",
+      "slug": "real-time-features-with-signalr",
+      "difficultyLevel": "Expert",
+      "section": "Interactive Features"
+    },
+    {
+      "topicName": "Caching in MVC",
+      "slug": "caching-in-mvc",
+      "difficultyLevel": "Advanced",
+      "section": "Performance and Reliability"
+    },
+    {
+      "topicName": "Logging with ILogger and Serilog",
+      "slug": "logging-with-ilogger-and-serilog",
+      "difficultyLevel": "Advanced",
+      "section": "Performance and Reliability"
+    },
+    {
+      "topicName": "Unit Testing Controllers",
+      "slug": "unit-testing-controllers",
+      "difficultyLevel": "Advanced",
+      "section": "Testing"
+    },
+    {
+      "topicName": "Integration Testing with WebApplicationFactory",
+      "slug": "integration-testing-with-webapplicationfactory",
+      "difficultyLevel": "Expert",
+      "section": "Testing"
+    },
+    {
+      "topicName": "Publishing and Hosting",
+      "slug": "publishing-and-hosting",
+      "difficultyLevel": "Advanced",
+      "section": "Deployment"
+    },
+    {
+      "topicName": "Deploying to Azure App Service",
+      "slug": "deploying-to-azure-app-service",
+      "difficultyLevel": "Expert",
+      "section": "Deployment"
+    },
+    {
+      "topicName": "Localization and Globalization",
+      "slug": "localization-and-globalization",
+      "difficultyLevel": "Advanced",
+      "section": "Beyond the Basics"
+    },
+    {
+      "topicName": "MVC versus Razor Pages versus Blazor",
+      "slug": "mvc-versus-razor-pages-versus-blazor",
+      "difficultyLevel": "Intermediate",
+      "section": "Beyond the Basics"
+    },
+    {
+      "topicName": "Migrating from ASP.NET MVC 5",
+      "slug": "migrating-from-aspnet-mvc-5",
+      "difficultyLevel": "Expert",
+      "section": "Beyond the Basics"
+    },
+    {
+      "topicName": "Building a Complete MVC Web App",
+      "slug": "building-a-complete-mvc-web-app",
+      "difficultyLevel": "Expert",
+      "section": "Projects"
+    }
+  ]
+}

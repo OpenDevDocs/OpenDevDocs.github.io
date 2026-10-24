@@ -1,0 +1,594 @@
+{
+  "courseName": "Azure",
+  "courseSlug": "azure",
+  "topics": [
+    {
+      "topicName": "What is Azure? Cloud Concepts and the Global Footprint",
+      "slug": "what-is-azure-cloud-concepts",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Accounts, Subscriptions and Tenants",
+      "slug": "accounts-subscriptions-and-tenants",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Resource Groups and Azure Resource Manager",
+      "slug": "resource-groups-and-resource-manager",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Portal, Azure CLI and PowerShell",
+      "slug": "portal-cli-and-powershell",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Regions, Availability Zones and Paired Regions",
+      "slug": "regions-and-availability-zones",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Naming Conventions and Tagging",
+      "slug": "naming-conventions-and-tagging",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Reading Azure Pricing and the Free Tier",
+      "slug": "pricing-and-the-free-tier",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Microsoft Entra ID: What Replaced Azure AD",
+      "slug": "microsoft-entra-id-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Identity and Access"
+    },
+    {
+      "topicName": "Users, Groups and Administrative Units",
+      "slug": "users-groups-and-administrative-units",
+      "difficultyLevel": "Beginner",
+      "section": "Identity and Access"
+    },
+    {
+      "topicName": "Role Based Access Control",
+      "slug": "role-based-access-control",
+      "difficultyLevel": "Intermediate",
+      "section": "Identity and Access"
+    },
+    {
+      "topicName": "Custom Roles and Least Privilege",
+      "slug": "custom-roles-and-least-privilege",
+      "difficultyLevel": "Intermediate",
+      "section": "Identity and Access"
+    },
+    {
+      "topicName": "Service Principals and App Registrations",
+      "slug": "service-principals-and-app-registrations",
+      "difficultyLevel": "Intermediate",
+      "section": "Identity and Access"
+    },
+    {
+      "topicName": "Managed Identities",
+      "slug": "managed-identities",
+      "difficultyLevel": "Intermediate",
+      "section": "Identity and Access"
+    },
+    {
+      "topicName": "Conditional Access and Multifactor Authentication",
+      "slug": "conditional-access-and-mfa",
+      "difficultyLevel": "Intermediate",
+      "section": "Identity and Access"
+    },
+    {
+      "topicName": "Virtual Networks and Subnets",
+      "slug": "virtual-networks-and-subnets",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Network Security Groups and Application Security Groups",
+      "slug": "network-security-groups",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Public IPs, Load Balancers and NAT Gateway",
+      "slug": "load-balancers-and-nat-gateway",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Application Gateway and Web Application Firewall",
+      "slug": "application-gateway-and-waf",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Azure Front Door and Content Delivery",
+      "slug": "front-door-and-cdn",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Private Endpoints and Service Endpoints",
+      "slug": "private-endpoints-and-service-endpoints",
+      "difficultyLevel": "Advanced",
+      "section": "Networking"
+    },
+    {
+      "topicName": "DNS in Azure",
+      "slug": "azure-dns",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "VPN Gateway, ExpressRoute and Hybrid Connectivity",
+      "slug": "vpn-gateway-and-expressroute",
+      "difficultyLevel": "Advanced",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Choosing a Compute Service",
+      "slug": "choosing-a-compute-service",
+      "difficultyLevel": "Beginner",
+      "section": "Compute"
+    },
+    {
+      "topicName": "Virtual Machines and Scale Sets",
+      "slug": "virtual-machines-and-scale-sets",
+      "difficultyLevel": "Intermediate",
+      "section": "Compute"
+    },
+    {
+      "topicName": "App Service: Web Apps and Deployment Slots",
+      "slug": "app-service-and-deployment-slots",
+      "difficultyLevel": "Beginner",
+      "section": "Compute"
+    },
+    {
+      "topicName": "App Service Configuration and Scaling",
+      "slug": "app-service-configuration-and-scaling",
+      "difficultyLevel": "Intermediate",
+      "section": "Compute"
+    },
+    {
+      "topicName": "Azure Functions: Triggers and Bindings",
+      "slug": "azure-functions-triggers-and-bindings",
+      "difficultyLevel": "Intermediate",
+      "section": "Compute"
+    },
+    {
+      "topicName": "Azure Functions: Hosting Plans and Cold Starts",
+      "slug": "azure-functions-hosting-plans",
+      "difficultyLevel": "Intermediate",
+      "section": "Compute"
+    },
+    {
+      "topicName": "Azure Container Instances",
+      "slug": "azure-container-instances",
+      "difficultyLevel": "Intermediate",
+      "section": "Compute"
+    },
+    {
+      "topicName": "Azure Container Apps",
+      "slug": "azure-container-apps",
+      "difficultyLevel": "Intermediate",
+      "section": "Compute"
+    },
+    {
+      "topicName": "Azure Container Registry",
+      "slug": "azure-container-registry",
+      "difficultyLevel": "Intermediate",
+      "section": "Containers and Kubernetes"
+    },
+    {
+      "topicName": "Azure Kubernetes Service: Cluster Basics",
+      "slug": "aks-cluster-basics",
+      "difficultyLevel": "Advanced",
+      "section": "Containers and Kubernetes"
+    },
+    {
+      "topicName": "AKS Networking, Ingress and Identity",
+      "slug": "aks-networking-and-identity",
+      "difficultyLevel": "Advanced",
+      "section": "Containers and Kubernetes"
+    },
+    {
+      "topicName": "AKS Scaling, Upgrades and Automatic Mode",
+      "slug": "aks-scaling-and-upgrades",
+      "difficultyLevel": "Advanced",
+      "section": "Containers and Kubernetes"
+    },
+    {
+      "topicName": "Choosing Between Container Apps and AKS",
+      "slug": "container-apps-vs-aks",
+      "difficultyLevel": "Advanced",
+      "section": "Containers and Kubernetes"
+    },
+    {
+      "topicName": "Storage Accounts and Redundancy",
+      "slug": "storage-accounts-and-redundancy",
+      "difficultyLevel": "Beginner",
+      "section": "Storage"
+    },
+    {
+      "topicName": "Blob Storage, Tiers and Lifecycle Management",
+      "slug": "blob-storage-and-lifecycle",
+      "difficultyLevel": "Intermediate",
+      "section": "Storage"
+    },
+    {
+      "topicName": "Files, Queues and Tables",
+      "slug": "files-queues-and-tables",
+      "difficultyLevel": "Intermediate",
+      "section": "Storage"
+    },
+    {
+      "topicName": "Securing Storage: SAS, Keys and Entra Authorisation",
+      "slug": "securing-storage-access",
+      "difficultyLevel": "Intermediate",
+      "section": "Storage"
+    },
+    {
+      "topicName": "Managed Disks and Disk Types",
+      "slug": "azure-disks",
+      "difficultyLevel": "Intermediate",
+      "section": "Storage"
+    },
+    {
+      "topicName": "Data Lake Storage Gen2",
+      "slug": "data-lake-storage",
+      "difficultyLevel": "Advanced",
+      "section": "Storage"
+    },
+    {
+      "topicName": "Azure SQL Database and Managed Instance",
+      "slug": "azure-sql-database",
+      "difficultyLevel": "Intermediate",
+      "section": "Databases"
+    },
+    {
+      "topicName": "Azure SQL: Tiers, DTUs and vCores",
+      "slug": "azure-sql-performance-and-tiers",
+      "difficultyLevel": "Intermediate",
+      "section": "Databases"
+    },
+    {
+      "topicName": "Azure Database for PostgreSQL and MySQL",
+      "slug": "postgresql-and-mysql",
+      "difficultyLevel": "Intermediate",
+      "section": "Databases"
+    },
+    {
+      "topicName": "Cosmos DB: Model, Partitioning and Consistency",
+      "slug": "cosmos-db-fundamentals",
+      "difficultyLevel": "Advanced",
+      "section": "Databases"
+    },
+    {
+      "topicName": "Cosmos DB: Request Units, Indexing and Cost",
+      "slug": "cosmos-db-request-units-and-cost",
+      "difficultyLevel": "Advanced",
+      "section": "Databases"
+    },
+    {
+      "topicName": "Azure Cache for Redis",
+      "slug": "azure-cache-for-redis",
+      "difficultyLevel": "Intermediate",
+      "section": "Databases"
+    },
+    {
+      "topicName": "Choosing an Azure Data Store",
+      "slug": "choosing-a-data-store",
+      "difficultyLevel": "Intermediate",
+      "section": "Databases"
+    },
+    {
+      "topicName": "Service Bus Queues and Topics",
+      "slug": "service-bus-queues-and-topics",
+      "difficultyLevel": "Intermediate",
+      "section": "Messaging and Integration"
+    },
+    {
+      "topicName": "Event Grid",
+      "slug": "event-grid",
+      "difficultyLevel": "Intermediate",
+      "section": "Messaging and Integration"
+    },
+    {
+      "topicName": "Event Hubs and Streaming",
+      "slug": "event-hubs-and-streaming",
+      "difficultyLevel": "Advanced",
+      "section": "Messaging and Integration"
+    },
+    {
+      "topicName": "Storage Queues versus Service Bus",
+      "slug": "storage-queues-vs-service-bus",
+      "difficultyLevel": "Intermediate",
+      "section": "Messaging and Integration"
+    },
+    {
+      "topicName": "Logic Apps",
+      "slug": "logic-apps",
+      "difficultyLevel": "Intermediate",
+      "section": "Messaging and Integration"
+    },
+    {
+      "topicName": "API Management",
+      "slug": "api-management",
+      "difficultyLevel": "Advanced",
+      "section": "Messaging and Integration"
+    },
+    {
+      "topicName": "Why Infrastructure as Code",
+      "slug": "why-infrastructure-as-code",
+      "difficultyLevel": "Beginner",
+      "section": "Infrastructure as Code"
+    },
+    {
+      "topicName": "ARM Templates: The Original Format",
+      "slug": "arm-templates",
+      "difficultyLevel": "Intermediate",
+      "section": "Infrastructure as Code"
+    },
+    {
+      "topicName": "Bicep Fundamentals",
+      "slug": "bicep-fundamentals",
+      "difficultyLevel": "Intermediate",
+      "section": "Infrastructure as Code"
+    },
+    {
+      "topicName": "Bicep Modules and Parameter Files",
+      "slug": "bicep-modules-and-parameters",
+      "difficultyLevel": "Advanced",
+      "section": "Infrastructure as Code"
+    },
+    {
+      "topicName": "Bicep for Identity and RBAC",
+      "slug": "bicep-for-identity-and-rbac",
+      "difficultyLevel": "Advanced",
+      "section": "Infrastructure as Code"
+    },
+    {
+      "topicName": "Terraform on Azure",
+      "slug": "terraform-on-azure",
+      "difficultyLevel": "Advanced",
+      "section": "Infrastructure as Code"
+    },
+    {
+      "topicName": "Azure Verified Modules and Deployment Stacks",
+      "slug": "azure-verified-modules",
+      "difficultyLevel": "Advanced",
+      "section": "Infrastructure as Code"
+    },
+    {
+      "topicName": "The Azure Developer CLI",
+      "slug": "azure-developer-cli",
+      "difficultyLevel": "Intermediate",
+      "section": "Developer Tooling"
+    },
+    {
+      "topicName": "Azure SDKs and the Identity Library",
+      "slug": "azure-sdks-and-identity-library",
+      "difficultyLevel": "Intermediate",
+      "section": "Developer Tooling"
+    },
+    {
+      "topicName": "Local Development with Emulators",
+      "slug": "local-development-with-emulators",
+      "difficultyLevel": "Intermediate",
+      "section": "Developer Tooling"
+    },
+    {
+      "topicName": "Azure Resource Graph",
+      "slug": "azure-resource-graph",
+      "difficultyLevel": "Advanced",
+      "section": "Developer Tooling"
+    },
+    {
+      "topicName": "GitHub Actions for Azure",
+      "slug": "github-actions-for-azure",
+      "difficultyLevel": "Intermediate",
+      "section": "DevOps and Delivery"
+    },
+    {
+      "topicName": "Azure Pipelines",
+      "slug": "azure-pipelines",
+      "difficultyLevel": "Intermediate",
+      "section": "DevOps and Delivery"
+    },
+    {
+      "topicName": "Workload Identity Federation for CI/CD",
+      "slug": "workload-identity-federation",
+      "difficultyLevel": "Advanced",
+      "section": "DevOps and Delivery"
+    },
+    {
+      "topicName": "Deployment Strategies: Slots, Blue Green and Canary",
+      "slug": "deployment-strategies",
+      "difficultyLevel": "Advanced",
+      "section": "DevOps and Delivery"
+    },
+    {
+      "topicName": "Environments, Approvals and Promotion",
+      "slug": "environments-and-approvals",
+      "difficultyLevel": "Advanced",
+      "section": "DevOps and Delivery"
+    },
+    {
+      "topicName": "Azure DevOps or GitHub: Choosing",
+      "slug": "azure-devops-vs-github",
+      "difficultyLevel": "Intermediate",
+      "section": "DevOps and Delivery"
+    },
+    {
+      "topicName": "Handling Secrets in Pipelines",
+      "slug": "secrets-in-pipelines",
+      "difficultyLevel": "Advanced",
+      "section": "DevOps and Delivery"
+    },
+    {
+      "topicName": "Azure Key Vault",
+      "slug": "azure-key-vault",
+      "difficultyLevel": "Intermediate",
+      "section": "Security"
+    },
+    {
+      "topicName": "Microsoft Defender for Cloud",
+      "slug": "defender-for-cloud",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Azure Policy and Governance",
+      "slug": "azure-policy-and-governance",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Management Groups and Landing Zones",
+      "slug": "management-groups-and-landing-zones",
+      "difficultyLevel": "Expert",
+      "section": "Security"
+    },
+    {
+      "topicName": "Encryption at Rest and in Transit",
+      "slug": "encryption-at-rest-and-in-transit",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Azure Monitor: Metrics and Logs",
+      "slug": "azure-monitor-metrics-and-logs",
+      "difficultyLevel": "Intermediate",
+      "section": "Observability"
+    },
+    {
+      "topicName": "Log Analytics and KQL",
+      "slug": "log-analytics-and-kql",
+      "difficultyLevel": "Advanced",
+      "section": "Observability"
+    },
+    {
+      "topicName": "Application Insights",
+      "slug": "application-insights",
+      "difficultyLevel": "Intermediate",
+      "section": "Observability"
+    },
+    {
+      "topicName": "Distributed Tracing and OpenTelemetry",
+      "slug": "distributed-tracing-opentelemetry",
+      "difficultyLevel": "Advanced",
+      "section": "Observability"
+    },
+    {
+      "topicName": "Alerts, Action Groups and On Call",
+      "slug": "alerts-and-action-groups",
+      "difficultyLevel": "Intermediate",
+      "section": "Observability"
+    },
+    {
+      "topicName": "Dashboards and Workbooks",
+      "slug": "dashboards-and-workbooks",
+      "difficultyLevel": "Intermediate",
+      "section": "Observability"
+    },
+    {
+      "topicName": "Designing for Availability and SLAs",
+      "slug": "availability-and-slas",
+      "difficultyLevel": "Advanced",
+      "section": "Reliability and Cost"
+    },
+    {
+      "topicName": "Backup and Site Recovery",
+      "slug": "backup-and-site-recovery",
+      "difficultyLevel": "Intermediate",
+      "section": "Reliability and Cost"
+    },
+    {
+      "topicName": "Autoscaling Patterns",
+      "slug": "autoscaling-patterns",
+      "difficultyLevel": "Advanced",
+      "section": "Reliability and Cost"
+    },
+    {
+      "topicName": "Cost Management and Budgets",
+      "slug": "cost-management-and-budgets",
+      "difficultyLevel": "Intermediate",
+      "section": "Reliability and Cost"
+    },
+    {
+      "topicName": "Reservations, Savings Plans and Spot",
+      "slug": "reservations-and-savings-plans",
+      "difficultyLevel": "Intermediate",
+      "section": "Reliability and Cost"
+    },
+    {
+      "topicName": "Azure OpenAI and AI Foundry",
+      "slug": "azure-openai-and-ai-foundry",
+      "difficultyLevel": "Advanced",
+      "section": "AI and Data"
+    },
+    {
+      "topicName": "Azure AI Search",
+      "slug": "azure-ai-search",
+      "difficultyLevel": "Advanced",
+      "section": "AI and Data"
+    },
+    {
+      "topicName": "Data Factory and Pipelines",
+      "slug": "data-factory-and-pipelines",
+      "difficultyLevel": "Advanced",
+      "section": "AI and Data"
+    },
+    {
+      "topicName": "Microsoft Fabric Overview",
+      "slug": "microsoft-fabric-overview",
+      "difficultyLevel": "Advanced",
+      "section": "AI and Data"
+    },
+    {
+      "topicName": "Classic Resources and What Was Retired",
+      "slug": "classic-resources-and-retirements",
+      "difficultyLevel": "Expert",
+      "section": "Migration and Legacy"
+    },
+    {
+      "topicName": "Migrating from Cloud Services and Classic VMs",
+      "slug": "migrating-from-cloud-services",
+      "difficultyLevel": "Expert",
+      "section": "Migration and Legacy"
+    },
+    {
+      "topicName": "Planning an Azure Migration",
+      "slug": "planning-an-azure-migration",
+      "difficultyLevel": "Expert",
+      "section": "Migration and Legacy"
+    },
+    {
+      "topicName": "The Well-Architected Framework",
+      "slug": "well-architected-framework",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Multi-region and Disaster Recovery",
+      "slug": "multi-region-and-disaster-recovery",
+      "difficultyLevel": "Expert",
+      "section": "Architecture"
+    },
+    {
+      "topicName": "Certification Paths and Where to Go Next",
+      "slug": "certification-paths",
+      "difficultyLevel": "Beginner",
+      "section": "Architecture"
+    }
+  ]
+}
