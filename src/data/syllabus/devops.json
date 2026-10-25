@@ -1,0 +1,192 @@
+{
+  "courseName": "DevOps Fundamentals",
+  "courseSlug": "devops",
+  "topics": [
+    {
+      "topicName": "What is DevOps? A Culture, Not a Job Title",
+      "slug": "what-is-devops",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Software Delivery Lifecycle",
+      "slug": "software-delivery-lifecycle",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "DevOps Principles: CALMS and the Three Ways",
+      "slug": "devops-principles",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Measuring DevOps: The Four DORA Metrics",
+      "slug": "dora-metrics",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The DevOps Roadmap and Toolchain",
+      "slug": "devops-roadmap-and-toolchain",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Linux for DevOps: Why Servers Run Linux",
+      "slug": "linux-for-devops",
+      "difficultyLevel": "Beginner",
+      "section": "Linux and Git Foundations"
+    },
+    {
+      "topicName": "Essential Shell Commands and Bash Scripting",
+      "slug": "shell-essentials",
+      "difficultyLevel": "Beginner",
+      "section": "Linux and Git Foundations"
+    },
+    {
+      "topicName": "SSH, Users and Permissions on a Server",
+      "slug": "ssh-users-and-permissions",
+      "difficultyLevel": "Beginner",
+      "section": "Linux and Git Foundations"
+    },
+    {
+      "topicName": "Version Control with Git",
+      "slug": "version-control-with-git",
+      "difficultyLevel": "Beginner",
+      "section": "Linux and Git Foundations"
+    },
+    {
+      "topicName": "Branching Strategies: GitFlow vs Trunk-Based Development",
+      "slug": "branching-strategies",
+      "difficultyLevel": "Intermediate",
+      "section": "Linux and Git Foundations"
+    },
+    {
+      "topicName": "IP Addresses, Ports and Protocols",
+      "slug": "ip-addresses-ports-and-protocols",
+      "difficultyLevel": "Beginner",
+      "section": "Networking Basics"
+    },
+    {
+      "topicName": "DNS: How Domain Names Become Addresses",
+      "slug": "how-dns-works",
+      "difficultyLevel": "Beginner",
+      "section": "Networking Basics"
+    },
+    {
+      "topicName": "HTTP, HTTPS and TLS Certificates",
+      "slug": "http-https-and-tls",
+      "difficultyLevel": "Beginner",
+      "section": "Networking Basics"
+    },
+    {
+      "topicName": "Reverse Proxies and Load Balancers",
+      "slug": "reverse-proxies-and-load-balancers",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking Basics"
+    },
+    {
+      "topicName": "Continuous Integration Explained",
+      "slug": "continuous-integration",
+      "difficultyLevel": "Beginner",
+      "section": "CI/CD"
+    },
+    {
+      "topicName": "Your First Pipeline with GitHub Actions",
+      "slug": "first-github-actions-pipeline",
+      "difficultyLevel": "Intermediate",
+      "section": "CI/CD"
+    },
+    {
+      "topicName": "Automated Testing in the Pipeline",
+      "slug": "testing-in-the-pipeline",
+      "difficultyLevel": "Intermediate",
+      "section": "CI/CD"
+    },
+    {
+      "topicName": "Build Artifacts and Versioning",
+      "slug": "build-artifacts-and-versioning",
+      "difficultyLevel": "Intermediate",
+      "section": "CI/CD"
+    },
+    {
+      "topicName": "Continuous Delivery vs Continuous Deployment",
+      "slug": "continuous-delivery-vs-deployment",
+      "difficultyLevel": "Intermediate",
+      "section": "CI/CD"
+    },
+    {
+      "topicName": "Deployment Strategies: Rolling, Blue-Green and Canary",
+      "slug": "deployment-strategies",
+      "difficultyLevel": "Intermediate",
+      "section": "CI/CD"
+    },
+    {
+      "topicName": "Containers vs Virtual Machines",
+      "slug": "containers-vs-virtual-machines",
+      "difficultyLevel": "Beginner",
+      "section": "Containers and Orchestration"
+    },
+    {
+      "topicName": "Docker Essentials: Images, Containers and Dockerfiles",
+      "slug": "docker-essentials",
+      "difficultyLevel": "Intermediate",
+      "section": "Containers and Orchestration"
+    },
+    {
+      "topicName": "Multi-Container Apps with Docker Compose",
+      "slug": "docker-compose-basics",
+      "difficultyLevel": "Intermediate",
+      "section": "Containers and Orchestration"
+    },
+    {
+      "topicName": "Why Kubernetes? Container Orchestration Concepts",
+      "slug": "why-kubernetes",
+      "difficultyLevel": "Intermediate",
+      "section": "Containers and Orchestration"
+    },
+    {
+      "topicName": "Cloud Computing Basics: IaaS, PaaS and SaaS",
+      "slug": "cloud-computing-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Cloud and Infrastructure as Code"
+    },
+    {
+      "topicName": "Infrastructure as Code with Terraform",
+      "slug": "infrastructure-as-code",
+      "difficultyLevel": "Advanced",
+      "section": "Cloud and Infrastructure as Code"
+    },
+    {
+      "topicName": "Configuration, Environments and Secrets",
+      "slug": "configuration-environments-and-secrets",
+      "difficultyLevel": "Intermediate",
+      "section": "Cloud and Infrastructure as Code"
+    },
+    {
+      "topicName": "Monitoring, Logging and Alerting",
+      "slug": "monitoring-logging-and-alerting",
+      "difficultyLevel": "Intermediate",
+      "section": "Operations and Security"
+    },
+    {
+      "topicName": "Incident Response and Blameless Postmortems",
+      "slug": "incident-response-and-postmortems",
+      "difficultyLevel": "Intermediate",
+      "section": "Operations and Security"
+    },
+    {
+      "topicName": "DevSecOps: Security in the Pipeline",
+      "slug": "devsecops-basics",
+      "difficultyLevel": "Advanced",
+      "section": "Operations and Security"
+    },
+    {
+      "topicName": "Capstone: From Commit to Production",
+      "slug": "capstone-commit-to-production",
+      "difficultyLevel": "Advanced",
+      "section": "Capstone"
+    }
+  ]
+}
