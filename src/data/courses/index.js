@@ -10,3 +10,7 @@ const courseFiles = import.meta.glob('./*.json', {
 export const courses = Object.values(courseFiles).sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0) || a.courseTitle.localeCompare(b.courseTitle),
 );
+
+// Course titles are gradient text (bg-clip-text + text-transparent), so a course
+// with an empty `gradientClass` would get an invisible title. Use this instead.
+export const DEFAULT_GRADIENT_CLASS = 'from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400';

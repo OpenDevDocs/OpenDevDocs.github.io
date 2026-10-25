@@ -1,7 +1,7 @@
 ---
 import CourseLayout from "../../layouts/CourseLayout.astro";
 import { getCollection } from "astro:content";
-import { courses } from "../../data/courses";
+import { courses, DEFAULT_GRADIENT_CLASS } from "../../data/courses";
 import TopicCard from "../../components/TopicCard.astro";
 import { syllabus } from "../../content/syllabus";
 import { authors } from "../../data/authors";
@@ -21,6 +21,7 @@ export function getStaticPaths() {
 
 const {courseTitle,descriptionText,imageFileName,tags, isCompleted, authorId, gradientClass} = Astro.props;
 const {slug} = Astro.params;
+const titleGradient = gradientClass || DEFAULT_GRADIENT_CLASS;
 
 const publishedCourseTopics = new Set(
     (await getCollection('codeArticles'))
@@ -139,7 +140,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
     courseData = {currentSyllabus}
     courseImage = {imageFileName}
     courseSlug = {slug}
-    courseTextClass = {gradientClass || "text-black dark:text-white"}
+    courseTextClass = {titleGradient}
     >
 
     <!-- Course Header -->
@@ -166,7 +167,7 @@ let courseAuthor = authors.filter((author) => author.authorId === authorId)
                             class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">•
                             {tags}</span>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r bg-clip-text text-transparent leading-16" class:list={[gradientClass]}>{courseTitle} Mastery Course</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r bg-clip-text text-transparent leading-16" class:list={[titleGradient]}>{courseTitle} Mastery Course</h1>
                     <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">{descriptionText}</p>
 
                     {
