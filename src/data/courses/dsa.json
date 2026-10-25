@@ -1,0 +1,16 @@
+{
+  "courseTitle": "DSA",
+  "slug": "dsa",
+  "cardText": "Data structures and algorithms, explained simply",
+  "descriptionText": "Data Structures and Algorithms is the part of programming that decides whether your code handles ten records or ten million. Learn Big O notation, arrays, linked lists, stacks, queues, hash tables, trees, heaps and graphs, then the techniques that solve real problems with them: two pointers, sliding windows, recursion, sorting, searching, greedy choices and dynamic programming. Every idea is explained in plain language and shown as runnable C# code.",
+  "imageFileName": "dsa",
+  "tags": "Computer Science",
+  "color": "#10B981",
+  "gradientClass": "from-emerald-500 to-teal-500 dark:from-emerald-400 dark:to-teal-400",
+  "authorId": "bishal-biswas",
+  "order": 5,
+  "isAvailable": true,
+  "isCompleted": false,
+  "isPopular": true,
+  "isPaid": false
+}

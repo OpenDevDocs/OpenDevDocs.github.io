@@ -1,0 +1,384 @@
+{
+  "courseName": "DotNet Web API",
+  "courseSlug": "dotnet-webapi",
+  "topics": [
+    {
+      "topicName": "Introduction to Web APIs and REST",
+      "slug": "introduction-to-web-apis-and-rest",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Setting Up the .NET SDK and Tools",
+      "slug": "setting-up-the-dotnet-sdk-and-tools",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Your First Web API Project",
+      "slug": "your-first-web-api-project",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Understanding the Project Structure",
+      "slug": "understanding-the-project-structure",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "HTTP Methods and Verbs",
+      "slug": "http-methods-and-verbs",
+      "difficultyLevel": "Beginner",
+      "section": "HTTP Fundamentals"
+    },
+    {
+      "topicName": "HTTP Status Codes",
+      "slug": "http-status-codes",
+      "difficultyLevel": "Beginner",
+      "section": "HTTP Fundamentals"
+    },
+    {
+      "topicName": "Request and Response Headers",
+      "slug": "request-and-response-headers",
+      "difficultyLevel": "Beginner",
+      "section": "HTTP Fundamentals"
+    },
+    {
+      "topicName": "Content Negotiation and JSON",
+      "slug": "content-negotiation-and-json",
+      "difficultyLevel": "Intermediate",
+      "section": "HTTP Fundamentals"
+    },
+    {
+      "topicName": "Controllers and Action Methods",
+      "slug": "controllers-and-action-methods",
+      "difficultyLevel": "Beginner",
+      "section": "Controllers and Routing"
+    },
+    {
+      "topicName": "Attribute Routing",
+      "slug": "attribute-routing",
+      "difficultyLevel": "Beginner",
+      "section": "Controllers and Routing"
+    },
+    {
+      "topicName": "Route Parameters and Constraints",
+      "slug": "route-parameters-and-constraints",
+      "difficultyLevel": "Intermediate",
+      "section": "Controllers and Routing"
+    },
+    {
+      "topicName": "Model Binding",
+      "slug": "model-binding",
+      "difficultyLevel": "Intermediate",
+      "section": "Controllers and Routing"
+    },
+    {
+      "topicName": "Returning Results with IActionResult",
+      "slug": "returning-results-with-iactionresult",
+      "difficultyLevel": "Beginner",
+      "section": "Controllers and Routing"
+    },
+    {
+      "topicName": "Minimal APIs Introduction",
+      "slug": "minimal-apis-introduction",
+      "difficultyLevel": "Beginner",
+      "section": "Minimal APIs"
+    },
+    {
+      "topicName": "Route Groups and Endpoint Filters",
+      "slug": "route-groups-and-endpoint-filters",
+      "difficultyLevel": "Intermediate",
+      "section": "Minimal APIs"
+    },
+    {
+      "topicName": "Minimal APIs versus Controllers",
+      "slug": "minimal-apis-versus-controllers",
+      "difficultyLevel": "Intermediate",
+      "section": "Minimal APIs"
+    },
+    {
+      "topicName": "DTOs and Why You Need Them",
+      "slug": "dtos-and-why-you-need-them",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Transfer and Validation"
+    },
+    {
+      "topicName": "Model Validation with Data Annotations",
+      "slug": "model-validation-with-data-annotations",
+      "difficultyLevel": "Beginner",
+      "section": "Data Transfer and Validation"
+    },
+    {
+      "topicName": "Validation with FluentValidation",
+      "slug": "validation-with-fluentvalidation",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Transfer and Validation"
+    },
+    {
+      "topicName": "Object Mapping with AutoMapper",
+      "slug": "object-mapping-with-automapper",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Transfer and Validation"
+    },
+    {
+      "topicName": "Entity Framework Core Setup",
+      "slug": "entity-framework-core-setup",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "DbContext and Entity Models",
+      "slug": "dbcontext-and-entity-models",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Migrations and Database Updates",
+      "slug": "migrations-and-database-updates",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "CRUD Operations with EF Core",
+      "slug": "crud-operations-with-ef-core",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Relationships and Eager Loading",
+      "slug": "relationships-and-eager-loading",
+      "difficultyLevel": "Advanced",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Repository Pattern and Unit of Work",
+      "slug": "repository-pattern-and-unit-of-work",
+      "difficultyLevel": "Advanced",
+      "section": "Working with Databases"
+    },
+    {
+      "topicName": "Dependency Injection in ASP.NET Core",
+      "slug": "dependency-injection-in-aspnet-core",
+      "difficultyLevel": "Intermediate",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "Service Layer and Business Logic",
+      "slug": "service-layer-and-business-logic",
+      "difficultyLevel": "Intermediate",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "Configuration and appsettings.json",
+      "slug": "configuration-and-appsettings",
+      "difficultyLevel": "Intermediate",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "Environments and User Secrets",
+      "slug": "environments-and-user-secrets",
+      "difficultyLevel": "Intermediate",
+      "section": "Application Architecture"
+    },
+    {
+      "topicName": "The Request Pipeline and Middleware",
+      "slug": "the-request-pipeline-and-middleware",
+      "difficultyLevel": "Intermediate",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Writing Custom Middleware",
+      "slug": "writing-custom-middleware",
+      "difficultyLevel": "Advanced",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Global Exception Handling",
+      "slug": "global-exception-handling",
+      "difficultyLevel": "Advanced",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Filters and Action Filters",
+      "slug": "filters-and-action-filters",
+      "difficultyLevel": "Advanced",
+      "section": "Middleware and Filters"
+    },
+    {
+      "topicName": "Authentication and Authorization Basics",
+      "slug": "authentication-and-authorization-basics",
+      "difficultyLevel": "Intermediate",
+      "section": "Security"
+    },
+    {
+      "topicName": "JWT Authentication",
+      "slug": "jwt-authentication",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Refresh Tokens",
+      "slug": "refresh-tokens",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Role Based Authorization",
+      "slug": "role-based-authorization",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Policy Based Authorization",
+      "slug": "policy-based-authorization",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "ASP.NET Core Identity",
+      "slug": "aspnet-core-identity",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Cross Origin Resource Sharing (CORS)",
+      "slug": "cross-origin-resource-sharing-cors",
+      "difficultyLevel": "Intermediate",
+      "section": "Security"
+    },
+    {
+      "topicName": "API Security Best Practices",
+      "slug": "api-security-best-practices",
+      "difficultyLevel": "Expert",
+      "section": "Security"
+    },
+    {
+      "topicName": "Swagger and OpenAPI",
+      "slug": "swagger-and-openapi",
+      "difficultyLevel": "Intermediate",
+      "section": "API Design and Documentation"
+    },
+    {
+      "topicName": "API Versioning",
+      "slug": "api-versioning",
+      "difficultyLevel": "Advanced",
+      "section": "API Design and Documentation"
+    },
+    {
+      "topicName": "Pagination, Filtering and Sorting",
+      "slug": "pagination-filtering-and-sorting",
+      "difficultyLevel": "Advanced",
+      "section": "API Design and Documentation"
+    },
+    {
+      "topicName": "Problem Details and Error Responses",
+      "slug": "problem-details-and-error-responses",
+      "difficultyLevel": "Advanced",
+      "section": "API Design and Documentation"
+    },
+    {
+      "topicName": "RESTful API Design Best Practices",
+      "slug": "restful-api-design-best-practices",
+      "difficultyLevel": "Advanced",
+      "section": "API Design and Documentation"
+    },
+    {
+      "topicName": "Asynchronous Controllers",
+      "slug": "asynchronous-controllers",
+      "difficultyLevel": "Intermediate",
+      "section": "Performance and Reliability"
+    },
+    {
+      "topicName": "Response Caching and Output Caching",
+      "slug": "response-caching-and-output-caching",
+      "difficultyLevel": "Advanced",
+      "section": "Performance and Reliability"
+    },
+    {
+      "topicName": "Rate Limiting",
+      "slug": "rate-limiting",
+      "difficultyLevel": "Advanced",
+      "section": "Performance and Reliability"
+    },
+    {
+      "topicName": "Logging with Serilog",
+      "slug": "logging-with-serilog",
+      "difficultyLevel": "Advanced",
+      "section": "Performance and Reliability"
+    },
+    {
+      "topicName": "Health Checks",
+      "slug": "health-checks",
+      "difficultyLevel": "Advanced",
+      "section": "Performance and Reliability"
+    },
+    {
+      "topicName": "Calling Other APIs with HttpClient",
+      "slug": "calling-other-apis-with-httpclient",
+      "difficultyLevel": "Advanced",
+      "section": "Integration"
+    },
+    {
+      "topicName": "Background Services and Hosted Services",
+      "slug": "background-services-and-hosted-services",
+      "difficultyLevel": "Advanced",
+      "section": "Integration"
+    },
+    {
+      "topicName": "Real Time Updates with SignalR",
+      "slug": "real-time-updates-with-signalr",
+      "difficultyLevel": "Expert",
+      "section": "Integration"
+    },
+    {
+      "topicName": "File Uploads and Downloads",
+      "slug": "file-uploads-and-downloads",
+      "difficultyLevel": "Intermediate",
+      "section": "Integration"
+    },
+    {
+      "topicName": "Testing Endpoints with .http Files",
+      "slug": "testing-endpoints-with-http-files",
+      "difficultyLevel": "Beginner",
+      "section": "Testing"
+    },
+    {
+      "topicName": "Unit Testing Controllers",
+      "slug": "unit-testing-controllers",
+      "difficultyLevel": "Advanced",
+      "section": "Testing"
+    },
+    {
+      "topicName": "Integration Testing with WebApplicationFactory",
+      "slug": "integration-testing-with-webapplicationfactory",
+      "difficultyLevel": "Expert",
+      "section": "Testing"
+    },
+    {
+      "topicName": "Publishing and Hosting",
+      "slug": "publishing-and-hosting",
+      "difficultyLevel": "Advanced",
+      "section": "Deployment"
+    },
+    {
+      "topicName": "Docker for Web APIs",
+      "slug": "docker-for-web-apis",
+      "difficultyLevel": "Expert",
+      "section": "Deployment"
+    },
+    {
+      "topicName": "Deploying to Azure App Service",
+      "slug": "deploying-to-azure-app-service",
+      "difficultyLevel": "Expert",
+      "section": "Deployment"
+    },
+    {
+      "topicName": "Building a Complete REST API",
+      "slug": "building-a-complete-rest-api",
+      "difficultyLevel": "Expert",
+      "section": "Projects"
+    }
+  ]
+}

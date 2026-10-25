@@ -11,13 +11,12 @@ import { Image } from "astro:assets";
 
 export function getStaticPaths() {
 
-return courses.filter(course => course.isAvailable == true).map(({ slug, courseTitle, cardText, descriptionText, imageFileName, isCompleted, tags, color, isAvailable,
-    authorId, gradientClass}) => {
-    return {
-        params: { slug },
-        props: { courseTitle, descriptionText, imageFileName, isCompleted, tags, authorId, gradientClass },
-    };
-});
+    return courses.filter(course => course.isAvailable == true).map(({ slug, courseTitle, cardText, descriptionText, imageFileName, isCompleted, tags, color, isAvailable, authorId, gradientClass}) => {
+        return {
+            params: { slug },
+            props: { courseTitle, descriptionText, imageFileName, isCompleted, tags, authorId, gradientClass },
+        };
+    });
 }
 
 const {courseTitle,descriptionText,imageFileName,tags, isCompleted, authorId, gradientClass} = Astro.props;
