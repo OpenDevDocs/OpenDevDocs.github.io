@@ -1,0 +1,342 @@
+{
+  "courseName": "Electron JS",
+  "courseSlug": "electronjs",
+  "topics": [
+    {
+      "topicName": "What is Electron? Desktop Apps with Web Technologies",
+      "slug": "what-is-electron",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "How Electron Works: Main and Renderer Processes",
+      "slug": "main-and-renderer-processes",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Setting Up Your Computer for Electron",
+      "slug": "setting-up-your-computer",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Your First Electron App",
+      "slug": "your-first-electron-app",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Understanding package.json and the Project Files",
+      "slug": "project-files-and-package-json",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Starting a Project with Electron Forge",
+      "slug": "starting-with-electron-forge",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Debugging with DevTools and VS Code",
+      "slug": "debugging-electron-apps",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The App Lifecycle: ready, window-all-closed and activate",
+      "slug": "app-lifecycle",
+      "difficultyLevel": "Beginner",
+      "section": "Windows and the App"
+    },
+    {
+      "topicName": "Creating Windows with BrowserWindow",
+      "slug": "browserwindow-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Windows and the App"
+    },
+    {
+      "topicName": "Window Options: Size, Position, Title and Icon",
+      "slug": "window-options",
+      "difficultyLevel": "Beginner",
+      "section": "Windows and the App"
+    },
+    {
+      "topicName": "Loading Pages, Styles and Images",
+      "slug": "loading-pages-and-assets",
+      "difficultyLevel": "Beginner",
+      "section": "Windows and the App"
+    },
+    {
+      "topicName": "Working with Multiple Windows",
+      "slug": "multiple-windows",
+      "difficultyLevel": "Intermediate",
+      "section": "Windows and the App"
+    },
+    {
+      "topicName": "Frameless Windows and Custom Title Bars",
+      "slug": "frameless-windows-and-title-bars",
+      "difficultyLevel": "Intermediate",
+      "section": "Windows and the App"
+    },
+    {
+      "topicName": "Remembering Window Size and Position",
+      "slug": "remembering-window-state",
+      "difficultyLevel": "Intermediate",
+      "section": "Windows and the App"
+    },
+    {
+      "topicName": "Preload Scripts Explained",
+      "slug": "preload-scripts",
+      "difficultyLevel": "Beginner",
+      "section": "Talking Between Processes"
+    },
+    {
+      "topicName": "Context Isolation and contextBridge",
+      "slug": "context-isolation-and-contextbridge",
+      "difficultyLevel": "Beginner",
+      "section": "Talking Between Processes"
+    },
+    {
+      "topicName": "IPC Part 1: Sending Messages to the Main Process",
+      "slug": "ipc-send-to-main",
+      "difficultyLevel": "Beginner",
+      "section": "Talking Between Processes"
+    },
+    {
+      "topicName": "IPC Part 2: Asking Questions with invoke and handle",
+      "slug": "ipc-invoke-and-handle",
+      "difficultyLevel": "Beginner",
+      "section": "Talking Between Processes"
+    },
+    {
+      "topicName": "IPC Part 3: Sending Messages to a Window",
+      "slug": "ipc-main-to-renderer",
+      "difficultyLevel": "Intermediate",
+      "section": "Talking Between Processes"
+    },
+    {
+      "topicName": "Designing a Safe IPC API",
+      "slug": "designing-a-safe-ipc-api",
+      "difficultyLevel": "Intermediate",
+      "section": "Talking Between Processes"
+    },
+    {
+      "topicName": "MessagePorts for Direct Communication",
+      "slug": "message-ports",
+      "difficultyLevel": "Advanced",
+      "section": "Talking Between Processes"
+    },
+    {
+      "topicName": "Application Menus",
+      "slug": "application-menus",
+      "difficultyLevel": "Beginner",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Right-Click Context Menus",
+      "slug": "context-menus",
+      "difficultyLevel": "Intermediate",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Keyboard Shortcuts and Accelerators",
+      "slug": "keyboard-shortcuts",
+      "difficultyLevel": "Intermediate",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Native Dialogs: Open, Save and Message Boxes",
+      "slug": "native-dialogs",
+      "difficultyLevel": "Beginner",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Desktop Notifications",
+      "slug": "desktop-notifications",
+      "difficultyLevel": "Beginner",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "System Tray Icons",
+      "slug": "system-tray",
+      "difficultyLevel": "Intermediate",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Clipboard and Opening Links with shell",
+      "slug": "clipboard-and-shell",
+      "difficultyLevel": "Intermediate",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Dark Mode with nativeTheme",
+      "slug": "dark-mode-with-nativetheme",
+      "difficultyLevel": "Intermediate",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Drag and Drop Files",
+      "slug": "drag-and-drop-files",
+      "difficultyLevel": "Intermediate",
+      "section": "Native Desktop Features"
+    },
+    {
+      "topicName": "Reading and Writing Files from Your App",
+      "slug": "reading-and-writing-files",
+      "difficultyLevel": "Beginner",
+      "section": "Files, Data and Settings"
+    },
+    {
+      "topicName": "App Paths: Where to Store User Data",
+      "slug": "app-paths-and-user-data",
+      "difficultyLevel": "Beginner",
+      "section": "Files, Data and Settings"
+    },
+    {
+      "topicName": "Saving User Settings",
+      "slug": "saving-user-settings",
+      "difficultyLevel": "Intermediate",
+      "section": "Files, Data and Settings"
+    },
+    {
+      "topicName": "A Local Database with SQLite",
+      "slug": "local-database-with-sqlite",
+      "difficultyLevel": "Intermediate",
+      "section": "Files, Data and Settings"
+    },
+    {
+      "topicName": "Keeping Secrets Safe with safeStorage",
+      "slug": "safestorage-secrets",
+      "difficultyLevel": "Intermediate",
+      "section": "Files, Data and Settings"
+    },
+    {
+      "topicName": "Using React or Vue with Electron",
+      "slug": "using-react-or-vue",
+      "difficultyLevel": "Intermediate",
+      "section": "Building Real Apps"
+    },
+    {
+      "topicName": "TypeScript in Electron",
+      "slug": "typescript-with-electron",
+      "difficultyLevel": "Intermediate",
+      "section": "Building Real Apps"
+    },
+    {
+      "topicName": "Project: A Markdown Notes App",
+      "slug": "project-markdown-notes-app",
+      "difficultyLevel": "Intermediate",
+      "section": "Building Real Apps"
+    },
+    {
+      "topicName": "Electron Security Checklist",
+      "slug": "security-checklist",
+      "difficultyLevel": "Intermediate",
+      "section": "Security"
+    },
+    {
+      "topicName": "Content Security Policy",
+      "slug": "content-security-policy",
+      "difficultyLevel": "Intermediate",
+      "section": "Security"
+    },
+    {
+      "topicName": "Loading Remote Content Safely",
+      "slug": "loading-remote-content-safely",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Custom Protocols with protocol.handle",
+      "slug": "custom-protocols",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Sessions, Cookies and Permissions",
+      "slug": "sessions-cookies-and-permissions",
+      "difficultyLevel": "Advanced",
+      "section": "Security"
+    },
+    {
+      "topicName": "Single Instance Lock and Deep Links",
+      "slug": "single-instance-and-deep-links",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Topics"
+    },
+    {
+      "topicName": "Background Work with utilityProcess",
+      "slug": "utility-process",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Topics"
+    },
+    {
+      "topicName": "Embedding Web Content with WebContentsView",
+      "slug": "webcontentsview",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Topics"
+    },
+    {
+      "topicName": "Native Node Modules",
+      "slug": "native-node-modules",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Topics"
+    },
+    {
+      "topicName": "Performance: Faster Startup and Less Memory",
+      "slug": "performance-tips",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Topics"
+    },
+    {
+      "topicName": "Testing Electron Apps",
+      "slug": "testing-electron-apps",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Topics"
+    },
+    {
+      "topicName": "Packaging and Making Installers with Forge",
+      "slug": "packaging-and-installers",
+      "difficultyLevel": "Intermediate",
+      "section": "Packaging and Shipping"
+    },
+    {
+      "topicName": "App Icons, Names and Metadata",
+      "slug": "app-icons-and-metadata",
+      "difficultyLevel": "Intermediate",
+      "section": "Packaging and Shipping"
+    },
+    {
+      "topicName": "Code Signing and Notarization",
+      "slug": "code-signing-and-notarization",
+      "difficultyLevel": "Advanced",
+      "section": "Packaging and Shipping"
+    },
+    {
+      "topicName": "Automatic Updates",
+      "slug": "automatic-updates",
+      "difficultyLevel": "Advanced",
+      "section": "Packaging and Shipping"
+    },
+    {
+      "topicName": "Electron Fuses and ASAR Integrity",
+      "slug": "fuses-and-asar-integrity",
+      "difficultyLevel": "Expert",
+      "section": "Packaging and Shipping"
+    },
+    {
+      "topicName": "Publishing Releases to GitHub and App Stores",
+      "slug": "publishing-releases",
+      "difficultyLevel": "Advanced",
+      "section": "Packaging and Shipping"
+    },
+    {
+      "topicName": "Final Project: A Desktop Todo App",
+      "slug": "final-project-todo-app",
+      "difficultyLevel": "Intermediate",
+      "section": "Packaging and Shipping"
+    }
+  ]
+}
