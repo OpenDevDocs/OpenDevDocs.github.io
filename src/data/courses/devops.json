@@ -1,0 +1,16 @@
+{
+  "courseTitle": "DevOps Fundamentals",
+  "slug": "devops",
+  "cardText": "Ship software faster and more reliably",
+  "descriptionText": "DevOps is the culture and practice of building, testing and releasing software quickly and safely. Learn the full picture: Linux and Git basics, networking, CI/CD pipelines, containers, Kubernetes concepts, Infrastructure as Code, monitoring and security, then put it all together by taking an app from commit to production.",
+  "imageFileName": "devops",
+  "tags": "Beginner",
+  "color": "#326CE5",
+  "gradientClass": "",
+  "authorId": "bishal-biswas",
+  "order": 85,
+  "isAvailable": true,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}
