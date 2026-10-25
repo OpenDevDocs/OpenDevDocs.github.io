@@ -1,0 +1,342 @@
+{
+  "courseName": "Docker",
+  "courseSlug": "docker",
+  "topics": [
+    {
+      "topicName": "What is Docker and Why Use It?",
+      "slug": "what-is-docker",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Containers vs Virtual Machines",
+      "slug": "containers-vs-virtual-machines",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "How Docker Works: Engine, Client, Images and Registries",
+      "slug": "docker-architecture",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Installing Docker on Windows, macOS and Linux",
+      "slug": "installing-docker",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Running Your First Container",
+      "slug": "your-first-container",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Docker CLI: Commands You Will Use Every Day",
+      "slug": "docker-cli-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "docker run in Depth: The Flags That Matter",
+      "slug": "docker-run-in-depth",
+      "difficultyLevel": "Beginner",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "The Container Lifecycle: Create, Start, Stop and Remove",
+      "slug": "container-lifecycle",
+      "difficultyLevel": "Beginner",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "Publishing Ports: Reaching Apps Inside Containers",
+      "slug": "publishing-ports",
+      "difficultyLevel": "Beginner",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "Configuring Containers with Environment Variables",
+      "slug": "environment-variables",
+      "difficultyLevel": "Beginner",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "Reading Logs and Running Commands Inside Containers",
+      "slug": "logs-and-exec",
+      "difficultyLevel": "Beginner",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "Inspecting Containers: inspect, stats, top and diff",
+      "slug": "inspecting-containers",
+      "difficultyLevel": "Beginner",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "Restart Policies and Resource Limits",
+      "slug": "restart-policies-and-resource-limits",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "Cleaning Up: Pruning Containers, Images and Volumes",
+      "slug": "cleaning-up-docker",
+      "difficultyLevel": "Beginner",
+      "section": "Working with Containers"
+    },
+    {
+      "topicName": "Images and Layers Explained",
+      "slug": "images-and-layers",
+      "difficultyLevel": "Beginner",
+      "section": "Docker Images"
+    },
+    {
+      "topicName": "Image Names, Tags and Digests",
+      "slug": "image-names-tags-and-digests",
+      "difficultyLevel": "Beginner",
+      "section": "Docker Images"
+    },
+    {
+      "topicName": "Docker Hub and Official Images",
+      "slug": "docker-hub-and-official-images",
+      "difficultyLevel": "Beginner",
+      "section": "Docker Images"
+    },
+    {
+      "topicName": "Choosing a Base Image: Full, Slim, Alpine and Distroless",
+      "slug": "choosing-a-base-image",
+      "difficultyLevel": "Intermediate",
+      "section": "Docker Images"
+    },
+    {
+      "topicName": "docker commit, save and load (and Why Dockerfiles Win)",
+      "slug": "docker-commit-save-and-load",
+      "difficultyLevel": "Intermediate",
+      "section": "Docker Images"
+    },
+    {
+      "topicName": "Writing Your First Dockerfile",
+      "slug": "your-first-dockerfile",
+      "difficultyLevel": "Beginner",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Dockerfile Instructions: FROM, RUN, COPY, ADD and WORKDIR",
+      "slug": "dockerfile-instructions",
+      "difficultyLevel": "Beginner",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "CMD vs ENTRYPOINT: Choosing What a Container Runs",
+      "slug": "cmd-vs-entrypoint",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Build Arguments and Environment Variables: ARG vs ENV",
+      "slug": "arg-vs-env",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "The Build Context and .dockerignore",
+      "slug": "build-context-and-dockerignore",
+      "difficultyLevel": "Beginner",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Layer Caching: Faster Builds by Ordering Instructions",
+      "slug": "layer-caching",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Multi-Stage Builds for Small Images",
+      "slug": "multi-stage-builds",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Health Checks: Telling Docker Your App Is Working",
+      "slug": "healthchecks",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Running Containers as a Non-Root User",
+      "slug": "running-as-non-root",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Project: Dockerizing a Node.js App",
+      "slug": "dockerizing-a-node-app",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Project: Dockerizing a Python App",
+      "slug": "dockerizing-a-python-app",
+      "difficultyLevel": "Intermediate",
+      "section": "Writing Dockerfiles"
+    },
+    {
+      "topicName": "Why Container Data Disappears: The Writable Layer",
+      "slug": "container-storage-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Storage and Data"
+    },
+    {
+      "topicName": "Docker Volumes: Keeping Data Safe",
+      "slug": "docker-volumes",
+      "difficultyLevel": "Beginner",
+      "section": "Storage and Data"
+    },
+    {
+      "topicName": "Bind Mounts: Sharing Folders with a Container",
+      "slug": "bind-mounts",
+      "difficultyLevel": "Beginner",
+      "section": "Storage and Data"
+    },
+    {
+      "topicName": "tmpfs Mounts and Backing Up Volumes",
+      "slug": "tmpfs-and-volume-backups",
+      "difficultyLevel": "Intermediate",
+      "section": "Storage and Data"
+    },
+    {
+      "topicName": "Docker Networking Basics",
+      "slug": "docker-networking-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Bridge Networks and Container DNS",
+      "slug": "user-defined-bridge-networks",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "Host and None Networks, and When to Use Them",
+      "slug": "host-and-none-networks",
+      "difficultyLevel": "Intermediate",
+      "section": "Networking"
+    },
+    {
+      "topicName": "What is Docker Compose?",
+      "slug": "what-is-docker-compose",
+      "difficultyLevel": "Beginner",
+      "section": "Docker Compose"
+    },
+    {
+      "topicName": "Anatomy of a compose.yaml File",
+      "slug": "compose-file-anatomy",
+      "difficultyLevel": "Beginner",
+      "section": "Docker Compose"
+    },
+    {
+      "topicName": "Docker Compose Commands: up, down, logs and exec",
+      "slug": "compose-commands",
+      "difficultyLevel": "Beginner",
+      "section": "Docker Compose"
+    },
+    {
+      "topicName": "Environment Variables and Secrets in Compose",
+      "slug": "compose-environment-and-secrets",
+      "difficultyLevel": "Intermediate",
+      "section": "Docker Compose"
+    },
+    {
+      "topicName": "Startup Order with depends_on and Health Checks",
+      "slug": "compose-depends-on-and-healthchecks",
+      "difficultyLevel": "Intermediate",
+      "section": "Docker Compose"
+    },
+    {
+      "topicName": "Local Development with Compose: Bind Mounts and Watch",
+      "slug": "compose-for-local-development",
+      "difficultyLevel": "Intermediate",
+      "section": "Docker Compose"
+    },
+    {
+      "topicName": "Compose Profiles, Override Files and Multiple Environments",
+      "slug": "compose-profiles-and-overrides",
+      "difficultyLevel": "Intermediate",
+      "section": "Docker Compose"
+    },
+    {
+      "topicName": "Pushing Images to Docker Hub and GitHub Container Registry",
+      "slug": "pushing-images-to-a-registry",
+      "difficultyLevel": "Beginner",
+      "section": "Registries and Sharing"
+    },
+    {
+      "topicName": "Tagging Images for Releases",
+      "slug": "tagging-strategy",
+      "difficultyLevel": "Intermediate",
+      "section": "Registries and Sharing"
+    },
+    {
+      "topicName": "Multi-Platform Images with Buildx",
+      "slug": "multi-platform-builds",
+      "difficultyLevel": "Advanced",
+      "section": "Registries and Sharing"
+    },
+    {
+      "topicName": "BuildKit Cache Mounts and Build Secrets",
+      "slug": "buildkit-cache-and-secret-mounts",
+      "difficultyLevel": "Advanced",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "Scanning Images for Vulnerabilities with Docker Scout",
+      "slug": "image-scanning-with-docker-scout",
+      "difficultyLevel": "Intermediate",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "Container Security Best Practices",
+      "slug": "container-security-best-practices",
+      "difficultyLevel": "Advanced",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "Logging Drivers and Log Rotation",
+      "slug": "logging-drivers",
+      "difficultyLevel": "Intermediate",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "Building and Pushing Images in GitHub Actions",
+      "slug": "docker-in-ci-github-actions",
+      "difficultyLevel": "Intermediate",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "Debugging Containers That Will Not Start",
+      "slug": "debugging-containers",
+      "difficultyLevel": "Intermediate",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "Deploying a Compose App to a Linux Server",
+      "slug": "deploying-with-docker-on-a-server",
+      "difficultyLevel": "Advanced",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "From Docker to Kubernetes: What Comes Next",
+      "slug": "docker-to-kubernetes-next-steps",
+      "difficultyLevel": "Intermediate",
+      "section": "Production and Security"
+    },
+    {
+      "topicName": "Capstone: Containerize a Full-Stack App",
+      "slug": "capstone-full-stack-app",
+      "difficultyLevel": "Advanced",
+      "section": "Production and Security"
+    }
+  ]
+}

@@ -75,7 +75,22 @@ const previewFileNames: Record<string, string> = {
     'python': 'main.py',
     'sql': 'query.sql',
 };
-const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
+// Docker lessons mix Dockerfiles, compose files and shell scripts, so name the
+// panel after the language of the lesson's code-content block instead.
+const panelFileNames: Record<string, string> = {
+    'docker': 'Dockerfile',
+    'bash': 'commands.sh',
+};
+const panelMatch = (article.body ?? '').match(/<code id="code-content" class="language-(\w+)">([\s\S]*)$/);
+const panelLanguage = panelMatch?.[1] ?? '';
+const panelCode = panelMatch?.[2] ?? '';
+// Not every YAML panel is a compose file: spot Kubernetes manifests and CI workflows
+const yamlFileName = /^apiVersion:/m.test(panelCode) ? 'deployment.yaml'
+    : /^jobs:/m.test(panelCode) ? 'workflow.yml' : 'compose.yaml';
+const previewFileName = (course === 'docker'
+        ? (panelLanguage === 'yaml' ? yamlFileName : panelFileNames[panelLanguage])
+        : undefined)
+    ?? previewFileNames[course ?? ''] ?? 'script.js';
 
 // Reading time from the lesson body (about 200 words a minute), not a fixed guess
 const lessonWords = (article.body ?? '').split('<code id="code-content"')[0].split(/\s+/).filter(Boolean).length;
@@ -312,6 +327,8 @@ const readingMinutes = Math.max(1, Math.round(lessonWords / 200));
     <!-- Razor views (`cshtml`) build on markup and csharp, so this must come after csharp. -->
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cshtml.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nginx.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-http.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>

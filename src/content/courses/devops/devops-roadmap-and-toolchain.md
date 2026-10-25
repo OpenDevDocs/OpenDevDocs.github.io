@@ -39,7 +39,7 @@ Here is the order this course follows. Each step uses skills from the steps befo
 
 The course ends with a [capstone project](/courses/devops/capstone-commit-to-production) that ties every step together: you take an app from a single commit all the way to production.
 
-> **Note:** This is a **fundamentals** course. Each topic gets one or a few lessons that teach the core ideas and get you hands-on. Four of the biggest topics, **Linux and Shell**, **Git and GitHub**, **Docker** and **Kubernetes**, will each get their own full OpenDevDocs course that goes much deeper. They are coming soon, and the lessons here will point to them as they arrive.
+> **Note:** This is a **fundamentals** course. Each topic gets one or a few lessons that teach the core ideas and get you hands-on. Four of the biggest topics, **Linux and Shell**, **Git and GitHub**, **Docker** and **Kubernetes**, will each get their own full OpenDevDocs course that goes much deeper. The [Docker course](/courses/docker/what-is-docker) is already available; the others are coming soon, and the lessons here will point to them as they arrive.
 
 ### What about programming?
 

@@ -228,6 +228,8 @@ Commit the **structure**, not the secrets: a `.env.example` file with placeholde
 - `${VAR:-default}` and a git-ignored `.env` keep secrets out of the file.
 - Compose is great for development, CI and single-server production; beyond that, you need an **orchestrator**.
 
+> **Tip:** The [Docker course](/courses/docker/what-is-docker) has a whole section on Compose, starting with [What is Docker Compose?](/courses/docker/what-is-docker-compose), covering profiles, override files and live reload with Compose Watch.
+
 Next, you will see what that orchestrator does in [Why Kubernetes? Container Orchestration Concepts](/courses/devops/why-kubernetes).
 
 <code id="code-content" class="language-yaml">
