@@ -77,6 +77,8 @@ Notice that the `db` service has **no** `ports:` section. The API can reach it o
 ### Volumes: data that survives
 
 ```yaml
+services:
+  db:
     volumes:
       - db-data:/var/lib/postgresql/data
 
