@@ -9,20 +9,32 @@
       "section": "Getting Started"
     },
     {
-      "topicName": "Installing Node.js 24 LTS and Version Managers",
+      "topicName": "Node.js vs Browser JavaScript",
+      "slug": "nodejs-vs-browser-javascript",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Installing Node.js LTS and Version Managers",
       "slug": "installing-nodejs-and-version-managers",
       "difficultyLevel": "Beginner",
       "section": "Getting Started"
     },
     {
-      "topicName": "Release Lines: Current, Active LTS and Maintenance",
-      "slug": "nodejs-release-lines",
+      "topicName": "Your First Node.js Program",
+      "slug": "your-first-nodejs-program",
       "difficultyLevel": "Beginner",
       "section": "Getting Started"
     },
     {
       "topicName": "The REPL and Running Scripts",
       "slug": "repl-and-running-scripts",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Release Lines: Current, LTS and Maintenance",
+      "slug": "nodejs-release-lines",
       "difficultyLevel": "Beginner",
       "section": "Getting Started"
     },
@@ -93,8 +105,20 @@
       "section": "Core Basics"
     },
     {
+      "topicName": "Working with Folders and Directories",
+      "slug": "working-with-folders",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
       "topicName": "Watch Mode with node --watch",
       "slug": "watch-mode",
+      "difficultyLevel": "Beginner",
+      "section": "Core Basics"
+    },
+    {
+      "topicName": "Beginner Project: A Command-line To-Do App",
+      "slug": "beginner-project-cli-todo-app",
       "difficultyLevel": "Beginner",
       "section": "Core Basics"
     },
@@ -135,70 +159,82 @@
       "section": "Asynchronous Node"
     },
     {
+      "topicName": "Buffers and Binary Data",
+      "slug": "buffers-and-binary-data",
+      "difficultyLevel": "Intermediate",
+      "section": "Buffers and Streams"
+    },
+    {
       "topicName": "Streams: Readable, Writable and Transform",
       "slug": "streams-fundamentals",
       "difficultyLevel": "Intermediate",
-      "section": "Streams and Buffers"
+      "section": "Buffers and Streams"
     },
     {
       "topicName": "Pipelines and Backpressure",
       "slug": "pipelines-and-backpressure",
       "difficultyLevel": "Intermediate",
-      "section": "Streams and Buffers"
+      "section": "Buffers and Streams"
     },
     {
       "topicName": "Web Streams and Interop",
       "slug": "web-streams",
       "difficultyLevel": "Intermediate",
-      "section": "Streams and Buffers"
-    },
-    {
-      "topicName": "Buffers and Binary Data",
-      "slug": "buffers-and-binary-data",
-      "difficultyLevel": "Intermediate",
-      "section": "Streams and Buffers"
+      "section": "Buffers and Streams"
     },
     {
       "topicName": "The http Module and a Server from Scratch",
       "slug": "http-module-and-servers",
       "difficultyLevel": "Intermediate",
-      "section": "Core Modules"
+      "section": "Core Modules and Web Servers"
     },
     {
-      "topicName": "Built-in fetch, Undici and the WebSocket Client",
-      "slug": "fetch-undici-and-websocket",
+      "topicName": "Routing and JSON APIs without a Framework",
+      "slug": "routing-without-a-framework",
       "difficultyLevel": "Intermediate",
-      "section": "Core Modules"
+      "section": "Core Modules and Web Servers"
     },
     {
       "topicName": "URL, Query Strings and URLSearchParams",
       "slug": "url-and-query-strings",
       "difficultyLevel": "Intermediate",
-      "section": "Core Modules"
+      "section": "Core Modules and Web Servers"
     },
     {
-      "topicName": "The crypto Module and Hashing",
-      "slug": "crypto-and-hashing",
+      "topicName": "Built-in fetch, Undici and the WebSocket Client",
+      "slug": "fetch-undici-and-websocket",
       "difficultyLevel": "Intermediate",
-      "section": "Core Modules"
-    },
-    {
-      "topicName": "The os, util and zlib Modules",
-      "slug": "os-util-and-zlib",
-      "difficultyLevel": "Intermediate",
-      "section": "Core Modules"
-    },
-    {
-      "topicName": "The Built-in node:sqlite Database",
-      "slug": "node-sqlite",
-      "difficultyLevel": "Intermediate",
-      "section": "Core Modules"
+      "section": "Core Modules and Web Servers"
     },
     {
       "topicName": "Working with JSON and Structured Data",
       "slug": "working-with-json",
       "difficultyLevel": "Intermediate",
-      "section": "Core Modules"
+      "section": "Core Modules and Web Servers"
+    },
+    {
+      "topicName": "The crypto Module and Hashing",
+      "slug": "crypto-and-hashing",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules and Web Servers"
+    },
+    {
+      "topicName": "The os, util and zlib Modules",
+      "slug": "os-util-and-zlib",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules and Web Servers"
+    },
+    {
+      "topicName": "The Built-in node:sqlite Database",
+      "slug": "node-sqlite",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules and Web Servers"
+    },
+    {
+      "topicName": "Project: A Notes REST API with http and node:sqlite",
+      "slug": "project-notes-rest-api",
+      "difficultyLevel": "Intermediate",
+      "section": "Core Modules and Web Servers"
     },
     {
       "topicName": "The Built-in Test Runner",
@@ -267,8 +303,8 @@
       "section": "Platform Features"
     },
     {
-      "topicName": "Native Addons and the FFI Module",
-      "slug": "native-addons-and-ffi",
+      "topicName": "Native Addons and Node-API",
+      "slug": "native-addons-and-node-api",
       "difficultyLevel": "Advanced",
       "section": "Platform Features"
     },
@@ -345,14 +381,14 @@
       "section": "Building and Shipping"
     },
     {
-      "topicName": "Deploying and Scaling in Production",
-      "slug": "deploying-and-scaling",
+      "topicName": "CI/CD for Node Projects",
+      "slug": "ci-cd-for-node-projects",
       "difficultyLevel": "Expert",
       "section": "Building and Shipping"
     },
     {
-      "topicName": "CI/CD for Node Projects",
-      "slug": "ci-cd-for-node-projects",
+      "topicName": "Deploying and Scaling in Production",
+      "slug": "deploying-and-scaling",
       "difficultyLevel": "Expert",
       "section": "Building and Shipping"
     },
