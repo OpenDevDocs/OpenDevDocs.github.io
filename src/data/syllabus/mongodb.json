@@ -45,6 +45,12 @@
       "section": "Documents and CRUD"
     },
     {
+      "topicName": "ObjectId and the _id Field",
+      "slug": "objectid-and-id-field",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
       "topicName": "Databases, Collections and Namespaces",
       "slug": "databases-and-collections",
       "difficultyLevel": "Beginner",
@@ -81,6 +87,12 @@
       "section": "Documents and CRUD"
     },
     {
+      "topicName": "Counting Documents and Distinct Values",
+      "slug": "counting-and-distinct",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
       "topicName": "Updating Documents",
       "slug": "updating-documents",
       "difficultyLevel": "Beginner",
@@ -107,6 +119,18 @@
     {
       "topicName": "Embedded Documents and Dot Notation",
       "slug": "embedded-documents",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Connecting MongoDB to Your First App",
+      "slug": "connecting-from-an-app",
+      "difficultyLevel": "Beginner",
+      "section": "Documents and CRUD"
+    },
+    {
+      "topicName": "Beginner Project: A Library Database",
+      "slug": "beginner-project-library-database",
       "difficultyLevel": "Beginner",
       "section": "Documents and CRUD"
     },

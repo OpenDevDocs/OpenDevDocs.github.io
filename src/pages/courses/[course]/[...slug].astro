@@ -33,12 +33,25 @@ article.data.author.map((articleAuthors :any)=>{
     authorData.push(authors.find(obj => obj.authorId === articleAuthors));
 })
 
-const filteredObjects = _allCodeArticles.filter(obj => 
-obj.filePath?.includes(courseData?.slug || "")
+// Match the course folder exactly; a bare substring check lets e.g. an expressjs
+// article named "crud-api-with-mongodb..." leak into the mongodb course
+const filteredObjects = _allCodeArticles.filter(obj =>
+obj.filePath?.includes(`/courses/${courseData?.slug}/`)
 );
 
+// Match on the slug: syllabus names can differ from it ("Mongo DB" vs "mongodb")
+let currentSyllabus = syllabus.filter((courseSyllabus :any) => courseSyllabus.courseSlug?.toLowerCase() === course?.toLowerCase())
+
+// Previous/Next follows the syllabus order; articles missing from it go last, oldest first
+const syllabusSlugs: string[] = currentSyllabus[0]?.topics.map((topic :any) => topic.slug) ?? [];
+const syllabusPosition = (entry: CollectionEntry<"codeArticles">) => {
+    const index = syllabusSlugs.indexOf(entry.data.slug);
+    return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+};
+
 let listOfAllSimilarArticles : any[] = [];
-filteredObjects.sort((a: CollectionEntry<"codeArticles">, b: CollectionEntry<"codeArticles">) => new Date(a.data.updateDate).valueOf() - new Date(b.data.updateDate).valueOf());
+filteredObjects.sort((a: CollectionEntry<"codeArticles">, b: CollectionEntry<"codeArticles">) =>
+    (syllabusPosition(a) - syllabusPosition(b)) || (new Date(a.data.updateDate).valueOf() - new Date(b.data.updateDate).valueOf()));
 filteredObjects.map((article)=>{
     listOfAllSimilarArticles.push(article.filePath);
 })
@@ -48,8 +61,6 @@ let adjacentArticles = getAdjacentElements(listOfAllSimilarArticles, article.fil
 function getArticleByFileName(Filename : string){
     return filteredObjects.find(article => article.filePath === Filename)
 }
-
-let currentSyllabus = syllabus.filter((courseName :any) =>  courseName.courseName.toLowerCase() === course?.toLowerCase())
 
 // File name shown in the code preview panel header, per course language.
 const previewFileNames: Record<string, string> = {
@@ -290,6 +301,7 @@ const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-http.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bicep.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-powershell.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-hcl.min.js"></script>
