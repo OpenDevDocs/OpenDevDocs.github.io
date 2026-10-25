@@ -1,4 +1,6 @@
 ---
+import { getPublishedTopics, getTopicCourse } from "../data/topics";
+
 interface Props {
     courseData : any,
     courseName : string
@@ -6,6 +8,13 @@ interface Props {
 }
 
 const {courseData, courseName, courseSlug} = Astro.props;
+
+// Drafts and scheduled topics have no page yet, so they are listed without a link
+const publishedSlugs = new Set(
+    (await getPublishedTopics())
+        .filter((topic) => getTopicCourse(topic) === courseSlug)
+        .map((topic) => topic.data.slug)
+);
 let beginner :any[] = [];
 let intermediate :any[] = [];
 let advance :any[] = [];
@@ -69,9 +78,15 @@ topic.difficultyLevel === "Expert"
                         {
                         (beginner.length > 0) &&
                         beginner.map((topic)=>(
+                            publishedSlugs.has(topic.slug) ? (
                             <a href={`/courses/${courseSlug}/${topic.slug}`}
                             class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                                 class="fas fa-play-circle w-4 mr-2 text-emerald-500"></i>{topic.topicName}</a>
+                            ) : (
+                            <span title="Coming soon"
+                            class="block py-1.5 px-3 text-sm rounded-md text-gray-400 dark:text-gray-500 cursor-not-allowed"><i
+                                class="fas fa-clock w-4 mr-2"></i>{topic.topicName}</span>
+                            )
                             ))
                         }
                         
@@ -91,9 +106,15 @@ topic.difficultyLevel === "Expert"
                         {
                         (intermediate.length > 0) &&
                         intermediate.map((topic)=>(
+                            publishedSlugs.has(topic.slug) ? (
                             <a href={`/courses/${courseSlug}/${topic.slug}`}
                             class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                                 class="fas fa-play-circle w-4 mr-2 text-blue-400"></i>{topic.topicName}</a>
+                            ) : (
+                            <span title="Coming soon"
+                            class="block py-1.5 px-3 text-sm rounded-md text-gray-400 dark:text-gray-500 cursor-not-allowed"><i
+                                class="fas fa-clock w-4 mr-2"></i>{topic.topicName}</span>
+                            )
                             ))
                         }
                     </div>
@@ -112,9 +133,15 @@ topic.difficultyLevel === "Expert"
                         {
                         (advance.length > 0) &&
                         advance.map((topic)=>(
+                            publishedSlugs.has(topic.slug) ? (
                             <a href={`/courses/${courseSlug}/${topic.slug}`}
                             class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                                 class="fas fa-play-circle w-4 mr-2 text-purple-400"></i>{topic.topicName}</a>
+                            ) : (
+                            <span title="Coming soon"
+                            class="block py-1.5 px-3 text-sm rounded-md text-gray-400 dark:text-gray-500 cursor-not-allowed"><i
+                                class="fas fa-clock w-4 mr-2"></i>{topic.topicName}</span>
+                            )
                             ))
                         }
                     </div>
@@ -132,9 +159,15 @@ topic.difficultyLevel === "Expert"
                         <div id="expertDropdown" class="dropdown-submenu ml-4 mt-1 space-y-1">
                             {
                             expert.map((topic)=>(
+                                publishedSlugs.has(topic.slug) ? (
                                 <a href={`/courses/${courseSlug}/${topic.slug}`}
                                 class="block py-1.5 px-3 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                                     class="fas fa-play-circle w-4 mr-2 text-red-400"></i>{topic.topicName}</a>
+                                ) : (
+                                <span title="Coming soon"
+                                class="block py-1.5 px-3 text-sm rounded-md text-gray-400 dark:text-gray-500 cursor-not-allowed"><i
+                                    class="fas fa-clock w-4 mr-2"></i>{topic.topicName}</span>
+                                )
                                 ))
                             }
                         </div>
