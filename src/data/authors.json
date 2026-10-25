@@ -5,7 +5,18 @@
       "authorName": "Bishal Biswas",
       "authorDesignation": "Self Learner",
       "authorImageFileName": "bishal-biswas.png",
-      "bio": "I am the Best in the Coding World."
+      "bio": "Software developer who writes and maintains the Open Dev Docs courses, from JavaScript and Node.js to .NET, Angular, React, Azure and DevOps. Every lesson is checked against the current official documentation.",
+      "skills": [
+        "JavaScript",
+        "Node.js",
+        ".NET",
+        "Angular",
+        "React",
+        "Azure",
+        "DevOps"
+      ],
+      "githubUrl": "https://github.com/dev-bishal",
+      "websiteUrl": "https://bishal-biswas.github.io"
     }
   ]
 }

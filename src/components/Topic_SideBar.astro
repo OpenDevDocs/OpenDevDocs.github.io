@@ -1,5 +1,5 @@
 ---
-import { getPublishedTopics, getTopicCourse } from "../data/topics";
+import { getCourseResources, getPublishedTopics, getTopicCourse } from "../data/topics";
 
 interface Props {
     courseData : any,
@@ -15,6 +15,9 @@ const publishedSlugs = new Set(
         .filter((topic) => getTopicCourse(topic) === courseSlug)
         .map((topic) => topic.data.slug)
 );
+
+// Resource pages are only built for courses that have items
+const resources = (await getCourseResources())[courseSlug];
 let beginner :any[] = [];
 let intermediate :any[] = [];
 let advance :any[] = [];
@@ -173,24 +176,26 @@ topic.difficultyLevel === "Expert"
                         </div>
                     </div>
                 )}
+                {resources && (resources.interviewQuestions > 0 || resources.quizzes > 0 || resources.projectIdeas > 0) && (
                 <div class="pt-4 border-t border-gray-200 dark:border-gray-800 mt-2">
                     <div class="text-xs text-gray-500 dark:text-gray-400 px-1"><i
                             class="fas fa-book-open mr-1"></i> Resources</div>
                     <div class="mt-2 space-y-1">
-                        <a href={`/courses/${courseSlug}/interview-questions`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
+                        {resources.interviewQuestions > 0 && <a href={`/courses/${courseSlug}/interview-questions`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
                             <i class="fas fa-download"></i>
                             Interview Questions
-                        </a>
-                        <a href={`/courses/${courseSlug}/quizzes`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
+                        </a>}
+                        {resources.quizzes > 0 && <a href={`/courses/${courseSlug}/quizzes`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                             class="fas fa-tasks"></i>
                             Quizzes
-                        </a>
-                        <a href={`/courses/${courseSlug}/project-ideas`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
+                        </a>}
+                        {resources.projectIdeas > 0 && <a href={`/courses/${courseSlug}/project-ideas`} class="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"><i
                             class="fas fa-tasks"></i>
                             Project Ideas
-                        </a>
+                        </a>}
                     </div>
                 </div>
+                )}
             </div>
         </div>
     </div>

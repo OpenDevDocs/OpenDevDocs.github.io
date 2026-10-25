@@ -571,3 +571,6 @@ collections:
                         widget: string
                         hint: 'File name in the author-imgs CDN folder (e.g. "bishal-biswas.png") or a full https:// URL.'
                       - { label: Bio, name: bio, widget: text }
+                      - { label: Skills, name: skills, widget: list, required: false, hint: Shown as tags on the Authors page }
+                      - { label: GitHub URL, name: githubUrl, widget: string, required: false }
+                      - { label: Website URL, name: websiteUrl, widget: string, required: false }

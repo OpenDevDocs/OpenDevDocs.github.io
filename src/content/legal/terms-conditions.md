@@ -11,7 +11,7 @@ highlights:
   - Attribution Required
   - No Warranty
   - Fair Use
-updateDate: 2025-12-01T00:00:00.000Z
+updateDate: 2026-10-25T00:00:00.000Z
 order: 2
 showInFooter: true
 ---
@@ -53,6 +53,12 @@ We work to keep the material correct and current, but the content is provided fo
 
 We do not guarantee uninterrupted availability of the website, and we may add, change, or remove courses and articles at any time.
 
+## Advertising
+
+The site is free to read and is supported by advertising served by Google AdSense. Ads are provided by third parties and are labelled as advertisements. We do not endorse the products or services advertised, and any dealings you have with an advertiser are between you and that advertiser. Our [Privacy Policy](/privacy-policy) explains how advertising cookies work and how to opt out of personalised ads.
+
+You agree not to click ads you are not genuinely interested in, or to use any tool or method that generates artificial ad impressions or clicks.
+
 ## Third-Party Links and Services
 
 The site links to third-party documentation, tools, and services. We do not control those resources and are not responsible for their content, availability, or practices.
@@ -71,7 +77,4 @@ These terms are governed by the laws applicable in the jurisdiction where the si
 
 ## Contact Us
 
-Questions about these Terms & Conditions:
-
-- **Email:** [legal@example.com](mailto:legal@example.com)
-- **Contact form:** [/contact](/contact)
+Questions about these Terms & Conditions can be sent through any of the options on the [contact page](/contact).

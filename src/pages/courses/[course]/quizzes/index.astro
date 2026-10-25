@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import MainLayout from '../../../../layouts/MainLayout.astro';
 import { courses } from '../../../../data/courses';
+import { getCourseResources } from '../../../../data/topics';
 
 const difficultyLevels = [
     { id: 'beginner', label: 'Beginner', icon: 'fa-seedling', color: 'green' },
@@ -10,8 +11,9 @@ const difficultyLevels = [
     { id: 'expert', label: 'Expert', icon: 'fa-crown', color: 'purple' },
 ] as const;
 
-export function getStaticPaths() {
-    return courses.map((course) => ({
+export async function getStaticPaths() {
+    const resources = await getCourseResources();
+    return courses.filter((course) => resources[course.slug]?.quizzes > 0).map((course) => ({
         params: { course: course.slug },
         props: { courseData: course },
     }));

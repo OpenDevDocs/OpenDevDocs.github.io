@@ -10,10 +10,12 @@ interface Props {
     pageTitle ?: string,
     description : string,
     seoImagePath : string,
-    pageType ?: string
+    pageType ?: string,
+    noAds ?: boolean,
+    noIndex ?: boolean
 }
 
-const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", description, seoImagePath} = Astro.props;
+const {pageTitle = getSiteName() + " - Learn to Code", pageType = "website", description, seoImagePath, noAds = false, noIndex = false} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -23,6 +25,8 @@ const {pageTitle = getSiteName() + "- Learn to Code", pageType = "website", desc
     {description}
     {seoImagePath}
     {pageType}
+    {noAds}
+    {noIndex}
 >
     <link rel="stylesheet" href="/assets/view-transition.css">
     <style is:global>
