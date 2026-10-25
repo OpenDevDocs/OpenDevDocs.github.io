@@ -1,5 +1,6 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { getPublishedTopics, getTopicCourse } from '../../../data/topics';
 import CourseLayout from '../../../layouts/CourseLayout.astro';
 import { courses, DEFAULT_GRADIENT_CLASS } from '../../../data/courses';
 import { authors } from '../../../data/authors';
@@ -8,16 +9,16 @@ import AuthorChip from '../../../components/AuthorChip.astro';
 import Prose from "../../../components/Prose.astro"
 import { syllabus } from '../../../content/syllabus';
 
-let _allCodeArticles : CollectionEntry<"codeArticles">[] = await getCollection('codeArticles');
+// Only published topics get a page, and Previous/Next skips the rest
+let _allCodeArticles : CollectionEntry<"codeArticles">[] = await getPublishedTopics();
 export async function getStaticPaths() {
-    
-    let allCodeArticles : CollectionEntry<"codeArticles">[] = await getCollection('codeArticles');
+
+    let allCodeArticles : CollectionEntry<"codeArticles">[] = await getPublishedTopics();
     // Map each article to a valid route
     return allCodeArticles.map((article) => {
         return {
             params: {
-                // Set by the CMS; older files fall back to their folder name
-                course: article.data.course ?? article.filePath?.split("/")[3], // e.g., "javascript"
+                course: getTopicCourse(article), // e.g., "javascript"
                 slug: article.data.slug,    // e.g., "article-about-ai"
             },
             props: { article }, // Pass the full article data as a prop
@@ -34,7 +35,7 @@ article.data.author.map((articleAuthors :any)=>{
 })
 
 const filteredObjects = _allCodeArticles.filter(obj =>
-    (obj.data.course ?? obj.filePath?.split("/")[3]) === courseData?.slug
+    getTopicCourse(obj) === courseData?.slug
 );
 
 // Match on the slug: syllabus names can differ from it ("Mongo DB" vs "mongodb")

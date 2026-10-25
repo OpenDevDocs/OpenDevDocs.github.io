@@ -30,6 +30,9 @@ const codeArticles = defineCollection({
         // Written by the CMS so it knows which language folder an article belongs to.
         // Existing files fall back to the folder name in the route.
         course: z.string().optional(),
+        // Drafts, and topics whose publishDate is still in the future, are left
+        // off the site. See `isTopicPublished` in src/data/topics.ts.
+        isDraft: z.boolean().default(false),
     }),
 });
 

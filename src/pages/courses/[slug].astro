@@ -1,6 +1,6 @@
 ---
 import CourseLayout from "../../layouts/CourseLayout.astro";
-import { getCollection } from "astro:content";
+import { getPublishedTopics, getTopicCourse } from "../../data/topics";
 import { courses, DEFAULT_GRADIENT_CLASS } from "../../data/courses";
 import TopicCard from "../../components/TopicCard.astro";
 import { syllabus } from "../../content/syllabus";
@@ -23,12 +23,10 @@ const {courseTitle,descriptionText,imageFileName,tags, isCompleted, authorId, gr
 const {slug} = Astro.params;
 const titleGradient = gradientClass || DEFAULT_GRADIENT_CLASS;
 
+// Drafts and scheduled topics stay "Coming Soon" until they are published
 const publishedCourseTopics = new Set(
-    (await getCollection('codeArticles'))
-        .filter((article) => {
-            const articleCourse = article.data.course ?? article.filePath?.split('/')[3];
-            return articleCourse === slug;
-        })
+    (await getPublishedTopics())
+        .filter((article) => getTopicCourse(article) === slug)
         .map((article) => article.data.slug)
 );
 

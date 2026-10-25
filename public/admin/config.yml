@@ -186,6 +186,13 @@ collections:
       summary: '{{title}}'
       preview_path: 'courses/{{fields.course}}/{{fields.slug}}'
       sortable_fields: [title, publishDate, updateDate, level]
+      view_filters:
+          - label: Drafts
+            field: isDraft
+            pattern: true
+          - label: Published
+            field: isDraft
+            pattern: false
       fields:
           - label: Language
             name: course
@@ -209,7 +216,10 @@ collections:
                 required: false,
                 allow_multiple: false,
             }
-          - { label: Publish date, name: publishDate, widget: datetime }
+          - label: Publish date
+            name: publishDate
+            widget: datetime
+            hint: A future date schedules the article. It goes live on the first site build after this date.
           - { label: Last updated, name: updateDate, widget: datetime }
           - label: Authors
             name: author
@@ -228,6 +238,11 @@ collections:
             max: 4
             hint: '1 = Beginner, 2 = Intermediate, 3 = Advanced, 4 = Expert. Must match the topic difficulty in the course syllabus.'
           - { label: Tags, name: tags, widget: list, required: false, default: [] }
+          - label: Draft
+            name: isDraft
+            widget: boolean
+            default: false
+            hint: Drafts are kept in the repo but excluded from the published site. Articles are also hidden while their course is not available.
           - { label: Body, name: body, widget: markdown }
 
     # ------------------------------------------------------------------
