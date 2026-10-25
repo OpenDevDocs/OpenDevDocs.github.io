@@ -1,0 +1,384 @@
+{
+  "courseName": "Next JS",
+  "courseSlug": "nextjs",
+  "topics": [
+    {
+      "topicName": "What is Next.js? React for Real Websites",
+      "slug": "what-is-nextjs",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Setting Up Your Computer for Next.js",
+      "slug": "setting-up-your-computer",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Creating Your First Next.js App",
+      "slug": "create-your-first-app",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Understanding the Project Files",
+      "slug": "project-structure",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Dev Server, Fast Refresh and Error Overlay",
+      "slug": "dev-server-and-fast-refresh",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "How File-Based Routing Works",
+      "slug": "file-based-routing",
+      "difficultyLevel": "Beginner",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Pages and Layouts",
+      "slug": "pages-and-layouts",
+      "difficultyLevel": "Beginner",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Linking and Navigating Between Pages",
+      "slug": "linking-and-navigating",
+      "difficultyLevel": "Beginner",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Dynamic Routes and params",
+      "slug": "dynamic-routes",
+      "difficultyLevel": "Beginner",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Reading Search Params from the URL",
+      "slug": "search-params",
+      "difficultyLevel": "Beginner",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Route Groups and Private Folders",
+      "slug": "route-groups-and-private-folders",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Not Found Pages and Redirects",
+      "slug": "not-found-and-redirects",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Templates and the Root Layout in Depth",
+      "slug": "templates-and-root-layout",
+      "difficultyLevel": "Intermediate",
+      "section": "Routing"
+    },
+    {
+      "topicName": "Server Components Explained",
+      "slug": "server-components",
+      "difficultyLevel": "Beginner",
+      "section": "Server and Client Components"
+    },
+    {
+      "topicName": "Client Components and the use client Directive",
+      "slug": "client-components",
+      "difficultyLevel": "Beginner",
+      "section": "Server and Client Components"
+    },
+    {
+      "topicName": "Mixing Server and Client Components",
+      "slug": "server-client-boundary",
+      "difficultyLevel": "Intermediate",
+      "section": "Server and Client Components"
+    },
+    {
+      "topicName": "State, Context and Providers in Next.js",
+      "slug": "state-context-and-providers",
+      "difficultyLevel": "Intermediate",
+      "section": "Server and Client Components"
+    },
+    {
+      "topicName": "Global CSS and CSS Modules",
+      "slug": "global-css-and-css-modules",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Assets"
+    },
+    {
+      "topicName": "Styling with Tailwind CSS",
+      "slug": "tailwind-css",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Assets"
+    },
+    {
+      "topicName": "Optimizing Images with next/image",
+      "slug": "optimizing-images",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Assets"
+    },
+    {
+      "topicName": "Loading Fonts with next/font",
+      "slug": "optimizing-fonts",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Assets"
+    },
+    {
+      "topicName": "The public Folder and Third-Party Scripts",
+      "slug": "public-folder-and-scripts",
+      "difficultyLevel": "Intermediate",
+      "section": "Styling and Assets"
+    },
+    {
+      "topicName": "Fetching Data in Server Components",
+      "slug": "fetching-data",
+      "difficultyLevel": "Beginner",
+      "section": "Fetching Data"
+    },
+    {
+      "topicName": "Loading UI, Suspense and Streaming",
+      "slug": "loading-ui-and-streaming",
+      "difficultyLevel": "Intermediate",
+      "section": "Fetching Data"
+    },
+    {
+      "topicName": "Handling Errors with error.js",
+      "slug": "error-handling",
+      "difficultyLevel": "Intermediate",
+      "section": "Fetching Data"
+    },
+    {
+      "topicName": "Fetching Data on the Client",
+      "slug": "client-side-data-fetching",
+      "difficultyLevel": "Intermediate",
+      "section": "Fetching Data"
+    },
+    {
+      "topicName": "Building a Data Layer and Talking to a Database",
+      "slug": "data-layer-and-database",
+      "difficultyLevel": "Intermediate",
+      "section": "Fetching Data"
+    },
+    {
+      "topicName": "Environment Variables",
+      "slug": "environment-variables",
+      "difficultyLevel": "Intermediate",
+      "section": "Fetching Data"
+    },
+    {
+      "topicName": "Static and Dynamic Rendering",
+      "slug": "static-and-dynamic-rendering",
+      "difficultyLevel": "Intermediate",
+      "section": "Caching and Rendering"
+    },
+    {
+      "topicName": "Caching with Cache Components and use cache",
+      "slug": "use-cache",
+      "difficultyLevel": "Intermediate",
+      "section": "Caching and Rendering"
+    },
+    {
+      "topicName": "Cache Lifetimes, Tags and Revalidation",
+      "slug": "cache-life-and-revalidation",
+      "difficultyLevel": "Intermediate",
+      "section": "Caching and Rendering"
+    },
+    {
+      "topicName": "Pre-rendering Dynamic Routes with generateStaticParams",
+      "slug": "generate-static-params",
+      "difficultyLevel": "Intermediate",
+      "section": "Caching and Rendering"
+    },
+    {
+      "topicName": "Partial Prerendering: Static Shells with Dynamic Parts",
+      "slug": "partial-prerendering",
+      "difficultyLevel": "Advanced",
+      "section": "Caching and Rendering"
+    },
+    {
+      "topicName": "Caching in Projects Without Cache Components",
+      "slug": "caching-without-cache-components",
+      "difficultyLevel": "Advanced",
+      "section": "Caching and Rendering"
+    },
+    {
+      "topicName": "Server Functions and Server Actions",
+      "slug": "server-actions",
+      "difficultyLevel": "Intermediate",
+      "section": "Changing Data"
+    },
+    {
+      "topicName": "Building Forms with Server Actions",
+      "slug": "forms-with-server-actions",
+      "difficultyLevel": "Intermediate",
+      "section": "Changing Data"
+    },
+    {
+      "topicName": "Validating Forms and Showing Errors",
+      "slug": "form-validation",
+      "difficultyLevel": "Intermediate",
+      "section": "Changing Data"
+    },
+    {
+      "topicName": "Pending States and Optimistic Updates",
+      "slug": "pending-and-optimistic-ui",
+      "difficultyLevel": "Intermediate",
+      "section": "Changing Data"
+    },
+    {
+      "topicName": "Search Forms with the Form Component",
+      "slug": "search-with-next-form",
+      "difficultyLevel": "Intermediate",
+      "section": "Changing Data"
+    },
+    {
+      "topicName": "Building APIs with Route Handlers",
+      "slug": "route-handlers",
+      "difficultyLevel": "Intermediate",
+      "section": "Changing Data"
+    },
+    {
+      "topicName": "Reading Cookies and Headers",
+      "slug": "cookies-and-headers",
+      "difficultyLevel": "Intermediate",
+      "section": "Requests, Auth and Security"
+    },
+    {
+      "topicName": "Running Code Before Requests with Proxy",
+      "slug": "proxy",
+      "difficultyLevel": "Intermediate",
+      "section": "Requests, Auth and Security"
+    },
+    {
+      "topicName": "Adding Login with Sessions and Cookies",
+      "slug": "authentication",
+      "difficultyLevel": "Advanced",
+      "section": "Requests, Auth and Security"
+    },
+    {
+      "topicName": "Protecting Pages, Actions and APIs",
+      "slug": "authorization",
+      "difficultyLevel": "Advanced",
+      "section": "Requests, Auth and Security"
+    },
+    {
+      "topicName": "Keeping Secrets and Data Safe",
+      "slug": "data-security",
+      "difficultyLevel": "Advanced",
+      "section": "Requests, Auth and Security"
+    },
+    {
+      "topicName": "Page Titles, Descriptions and Metadata",
+      "slug": "metadata",
+      "difficultyLevel": "Beginner",
+      "section": "SEO and Metadata"
+    },
+    {
+      "topicName": "Open Graph Images and Social Cards",
+      "slug": "og-images",
+      "difficultyLevel": "Intermediate",
+      "section": "SEO and Metadata"
+    },
+    {
+      "topicName": "Sitemaps, robots.txt and App Icons",
+      "slug": "sitemap-robots-and-icons",
+      "difficultyLevel": "Intermediate",
+      "section": "SEO and Metadata"
+    },
+    {
+      "topicName": "Parallel Routes and Intercepting Routes",
+      "slug": "parallel-and-intercepting-routes",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Routing and Features"
+    },
+    {
+      "topicName": "Lazy Loading with next/dynamic",
+      "slug": "lazy-loading",
+      "difficultyLevel": "Intermediate",
+      "section": "Advanced Routing and Features"
+    },
+    {
+      "topicName": "Building a Multi-Language Site",
+      "slug": "internationalization",
+      "difficultyLevel": "Advanced",
+      "section": "Advanced Routing and Features"
+    },
+    {
+      "topicName": "Writing Pages with MDX",
+      "slug": "mdx",
+      "difficultyLevel": "Intermediate",
+      "section": "Advanced Routing and Features"
+    },
+    {
+      "topicName": "Using TypeScript with Next.js",
+      "slug": "typescript",
+      "difficultyLevel": "Intermediate",
+      "section": "Advanced Routing and Features"
+    },
+    {
+      "topicName": "Reading Older Projects: The Pages Router",
+      "slug": "pages-router-basics",
+      "difficultyLevel": "Intermediate",
+      "section": "Advanced Routing and Features"
+    },
+    {
+      "topicName": "Debugging Next.js Apps",
+      "slug": "debugging",
+      "difficultyLevel": "Intermediate",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "Unit Testing with Vitest",
+      "slug": "testing-with-vitest",
+      "difficultyLevel": "Intermediate",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "End-to-End Testing with Playwright",
+      "slug": "testing-with-playwright",
+      "difficultyLevel": "Intermediate",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "Building for Production",
+      "slug": "building-for-production",
+      "difficultyLevel": "Intermediate",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "Deploying to Vercel",
+      "slug": "deploying-to-vercel",
+      "difficultyLevel": "Beginner",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "Self-Hosting with Node.js and Docker",
+      "slug": "self-hosting",
+      "difficultyLevel": "Advanced",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "Static Exports for Any Web Host",
+      "slug": "static-exports",
+      "difficultyLevel": "Intermediate",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "Upgrading Next.js Safely",
+      "slug": "upgrading-nextjs",
+      "difficultyLevel": "Advanced",
+      "section": "Testing and Shipping"
+    },
+    {
+      "topicName": "Final Project: The Book Nook Store",
+      "slug": "final-project-book-nook",
+      "difficultyLevel": "Advanced",
+      "section": "Testing and Shipping"
+    }
+  ]
+}
