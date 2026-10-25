@@ -1,0 +1,426 @@
+{
+  "courseName": "DSA",
+  "courseSlug": "dsa",
+  "topics": [
+    {
+      "topicName": "What Are Data Structures and Algorithms",
+      "slug": "what-are-data-structures-and-algorithms",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "How to Measure Algorithm Efficiency",
+      "slug": "how-to-measure-algorithm-efficiency",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Big O Notation Explained",
+      "slug": "big-o-notation-explained",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Common Time Complexities with Examples",
+      "slug": "common-time-complexities-with-examples",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Space Complexity",
+      "slug": "space-complexity",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Best, Average and Worst Case",
+      "slug": "best-average-and-worst-case",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Arrays and Memory Layout",
+      "slug": "arrays-and-memory-layout",
+      "difficultyLevel": "Beginner",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "Dynamic Arrays and Lists",
+      "slug": "dynamic-arrays-and-lists",
+      "difficultyLevel": "Beginner",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "Two Dimensional Arrays and Matrices",
+      "slug": "two-dimensional-arrays-and-matrices",
+      "difficultyLevel": "Beginner",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "Array Traversal Patterns",
+      "slug": "array-traversal-patterns",
+      "difficultyLevel": "Beginner",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "Two Pointer Technique",
+      "slug": "two-pointer-technique",
+      "difficultyLevel": "Intermediate",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "Sliding Window Technique",
+      "slug": "sliding-window-technique",
+      "difficultyLevel": "Intermediate",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "Prefix Sums and Difference Arrays",
+      "slug": "prefix-sums-and-difference-arrays",
+      "difficultyLevel": "Intermediate",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "String Algorithms and Manipulation",
+      "slug": "string-algorithms-and-manipulation",
+      "difficultyLevel": "Intermediate",
+      "section": "Arrays and Strings"
+    },
+    {
+      "topicName": "Singly Linked List",
+      "slug": "singly-linked-list",
+      "difficultyLevel": "Beginner",
+      "section": "Linked Lists"
+    },
+    {
+      "topicName": "Doubly Linked List",
+      "slug": "doubly-linked-list",
+      "difficultyLevel": "Intermediate",
+      "section": "Linked Lists"
+    },
+    {
+      "topicName": "Circular Linked List",
+      "slug": "circular-linked-list",
+      "difficultyLevel": "Intermediate",
+      "section": "Linked Lists"
+    },
+    {
+      "topicName": "Reversing a Linked List",
+      "slug": "reversing-a-linked-list",
+      "difficultyLevel": "Intermediate",
+      "section": "Linked Lists"
+    },
+    {
+      "topicName": "Fast and Slow Pointers",
+      "slug": "fast-and-slow-pointers",
+      "difficultyLevel": "Intermediate",
+      "section": "Linked Lists"
+    },
+    {
+      "topicName": "Stack Data Structure",
+      "slug": "stack-data-structure",
+      "difficultyLevel": "Beginner",
+      "section": "Stacks and Queues"
+    },
+    {
+      "topicName": "Building a Stack from Scratch",
+      "slug": "building-a-stack-from-scratch",
+      "difficultyLevel": "Beginner",
+      "section": "Stacks and Queues"
+    },
+    {
+      "topicName": "Queue Data Structure",
+      "slug": "queue-data-structure",
+      "difficultyLevel": "Beginner",
+      "section": "Stacks and Queues"
+    },
+    {
+      "topicName": "Circular Queue and Deque",
+      "slug": "circular-queue-and-deque",
+      "difficultyLevel": "Intermediate",
+      "section": "Stacks and Queues"
+    },
+    {
+      "topicName": "Monotonic Stack",
+      "slug": "monotonic-stack",
+      "difficultyLevel": "Advanced",
+      "section": "Stacks and Queues"
+    },
+    {
+      "topicName": "Hash Tables Explained",
+      "slug": "hash-tables-explained",
+      "difficultyLevel": "Beginner",
+      "section": "Hashing"
+    },
+    {
+      "topicName": "Dictionary and HashSet in Practice",
+      "slug": "dictionary-and-hashset-in-practice",
+      "difficultyLevel": "Beginner",
+      "section": "Hashing"
+    },
+    {
+      "topicName": "Collision Handling",
+      "slug": "collision-handling",
+      "difficultyLevel": "Intermediate",
+      "section": "Hashing"
+    },
+    {
+      "topicName": "Frequency Counting Patterns",
+      "slug": "frequency-counting-patterns",
+      "difficultyLevel": "Intermediate",
+      "section": "Hashing"
+    },
+    {
+      "topicName": "Recursion Fundamentals",
+      "slug": "recursion-fundamentals",
+      "difficultyLevel": "Beginner",
+      "section": "Recursion"
+    },
+    {
+      "topicName": "The Call Stack and Stack Overflow",
+      "slug": "the-call-stack-and-stack-overflow",
+      "difficultyLevel": "Intermediate",
+      "section": "Recursion"
+    },
+    {
+      "topicName": "Divide and Conquer",
+      "slug": "divide-and-conquer",
+      "difficultyLevel": "Intermediate",
+      "section": "Recursion"
+    },
+    {
+      "topicName": "Backtracking Basics",
+      "slug": "backtracking-basics",
+      "difficultyLevel": "Advanced",
+      "section": "Recursion"
+    },
+    {
+      "topicName": "Bubble Sort",
+      "slug": "bubble-sort",
+      "difficultyLevel": "Beginner",
+      "section": "Sorting"
+    },
+    {
+      "topicName": "Selection Sort",
+      "slug": "selection-sort",
+      "difficultyLevel": "Beginner",
+      "section": "Sorting"
+    },
+    {
+      "topicName": "Insertion Sort",
+      "slug": "insertion-sort",
+      "difficultyLevel": "Beginner",
+      "section": "Sorting"
+    },
+    {
+      "topicName": "Merge Sort",
+      "slug": "merge-sort",
+      "difficultyLevel": "Intermediate",
+      "section": "Sorting"
+    },
+    {
+      "topicName": "Quick Sort",
+      "slug": "quick-sort",
+      "difficultyLevel": "Intermediate",
+      "section": "Sorting"
+    },
+    {
+      "topicName": "Counting Sort and Radix Sort",
+      "slug": "counting-sort-and-radix-sort",
+      "difficultyLevel": "Advanced",
+      "section": "Sorting"
+    },
+    {
+      "topicName": "Choosing a Sorting Algorithm",
+      "slug": "choosing-a-sorting-algorithm",
+      "difficultyLevel": "Intermediate",
+      "section": "Sorting"
+    },
+    {
+      "topicName": "Linear Search",
+      "slug": "linear-search",
+      "difficultyLevel": "Beginner",
+      "section": "Searching"
+    },
+    {
+      "topicName": "Binary Search",
+      "slug": "binary-search",
+      "difficultyLevel": "Beginner",
+      "section": "Searching"
+    },
+    {
+      "topicName": "Binary Search on the Answer",
+      "slug": "binary-search-on-the-answer",
+      "difficultyLevel": "Advanced",
+      "section": "Searching"
+    },
+    {
+      "topicName": "Searching Rotated and 2D Arrays",
+      "slug": "searching-rotated-and-2d-arrays",
+      "difficultyLevel": "Advanced",
+      "section": "Searching"
+    },
+    {
+      "topicName": "Tree Terminology and Types",
+      "slug": "tree-terminology-and-types",
+      "difficultyLevel": "Beginner",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Binary Trees",
+      "slug": "binary-trees",
+      "difficultyLevel": "Beginner",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Tree Traversals",
+      "slug": "tree-traversals",
+      "difficultyLevel": "Intermediate",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Binary Search Trees",
+      "slug": "binary-search-trees",
+      "difficultyLevel": "Intermediate",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Balanced Trees, AVL and Red Black",
+      "slug": "balanced-trees-avl-and-red-black",
+      "difficultyLevel": "Advanced",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Tries",
+      "slug": "tries",
+      "difficultyLevel": "Advanced",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Segment Trees and Fenwick Trees",
+      "slug": "segment-trees-and-fenwick-trees",
+      "difficultyLevel": "Expert",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Common Tree Problems",
+      "slug": "common-tree-problems",
+      "difficultyLevel": "Intermediate",
+      "section": "Trees"
+    },
+    {
+      "topicName": "Heaps Explained",
+      "slug": "heaps-explained",
+      "difficultyLevel": "Intermediate",
+      "section": "Heaps and Priority Queues"
+    },
+    {
+      "topicName": "Priority Queues in C Sharp",
+      "slug": "priority-queues-in-c-sharp",
+      "difficultyLevel": "Intermediate",
+      "section": "Heaps and Priority Queues"
+    },
+    {
+      "topicName": "Heap Sort and Top K Problems",
+      "slug": "heap-sort-and-top-k-problems",
+      "difficultyLevel": "Advanced",
+      "section": "Heaps and Priority Queues"
+    },
+    {
+      "topicName": "Graph Basics and Terminology",
+      "slug": "graph-basics-and-terminology",
+      "difficultyLevel": "Intermediate",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Graph Representations",
+      "slug": "graph-representations",
+      "difficultyLevel": "Intermediate",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Breadth First Search",
+      "slug": "breadth-first-search",
+      "difficultyLevel": "Intermediate",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Depth First Search",
+      "slug": "depth-first-search",
+      "difficultyLevel": "Intermediate",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Topological Sort",
+      "slug": "topological-sort",
+      "difficultyLevel": "Advanced",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Dijkstra Shortest Path",
+      "slug": "dijkstra-shortest-path",
+      "difficultyLevel": "Advanced",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Minimum Spanning Tree",
+      "slug": "minimum-spanning-tree",
+      "difficultyLevel": "Advanced",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Union Find and Disjoint Sets",
+      "slug": "union-find-and-disjoint-sets",
+      "difficultyLevel": "Advanced",
+      "section": "Graphs"
+    },
+    {
+      "topicName": "Greedy Algorithms",
+      "slug": "greedy-algorithms",
+      "difficultyLevel": "Advanced",
+      "section": "Algorithm Design Techniques"
+    },
+    {
+      "topicName": "Introduction to Dynamic Programming",
+      "slug": "introduction-to-dynamic-programming",
+      "difficultyLevel": "Advanced",
+      "section": "Algorithm Design Techniques"
+    },
+    {
+      "topicName": "Memoization and Tabulation",
+      "slug": "memoization-and-tabulation",
+      "difficultyLevel": "Advanced",
+      "section": "Algorithm Design Techniques"
+    },
+    {
+      "topicName": "Classic Dynamic Programming Problems",
+      "slug": "classic-dynamic-programming-problems",
+      "difficultyLevel": "Advanced",
+      "section": "Algorithm Design Techniques"
+    },
+    {
+      "topicName": "Bit Manipulation",
+      "slug": "bit-manipulation",
+      "difficultyLevel": "Advanced",
+      "section": "Algorithm Design Techniques"
+    },
+    {
+      "topicName": "Maths for Problem Solving",
+      "slug": "maths-for-problem-solving",
+      "difficultyLevel": "Intermediate",
+      "section": "Algorithm Design Techniques"
+    },
+    {
+      "topicName": "How to Approach a Coding Problem",
+      "slug": "how-to-approach-a-coding-problem",
+      "difficultyLevel": "Intermediate",
+      "section": "Putting It Together"
+    },
+    {
+      "topicName": "Choosing the Right Data Structure",
+      "slug": "choosing-the-right-data-structure",
+      "difficultyLevel": "Intermediate",
+      "section": "Putting It Together"
+    }
+  ]
+}

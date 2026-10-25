@@ -8,8 +8,8 @@
   "color": "#61DAFB",
   "gradientClass": "from-blue-400 to-blue-600",
   "authorId": "bishal-biswas",
-  "order": 160,
-  "isAvailable": false,
+  "order": 3,
+  "isAvailable": true,
   "isCompleted": false,
   "isPopular": false,
   "isPaid": false
