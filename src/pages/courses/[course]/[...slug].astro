@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import CourseLayout from '../../../layouts/CourseLayout.astro';
-import { courses } from '../../../data/courses';
+import { courses, DEFAULT_GRADIENT_CLASS } from '../../../data/courses';
 import { authors } from '../../../data/authors';
 import {getFormattedDate, getAdjacentElements} from "../../../data/utils"
 import AuthorChip from '../../../components/AuthorChip.astro';
@@ -86,7 +86,7 @@ const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
     courseImage = {courseData?.imageFileName || ""}
     courseSlug = {course || ""}
     isFullWidth = {false}
-    courseTextClass = {courseData?.gradientClass || "text-black dark:text-white"}
+    courseTextClass = {courseData?.gradientClass || DEFAULT_GRADIENT_CLASS}
     >
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 

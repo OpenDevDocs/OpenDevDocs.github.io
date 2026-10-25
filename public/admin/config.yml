@@ -85,7 +85,7 @@ collections:
             name: gradientClass
             widget: string
             required: false
-            hint: Optional Tailwind gradient classes for the course heading.
+            hint: Optional Tailwind gradient classes for the course heading, e.g. "from-green-600 to-lime-600 dark:from-green-400 dark:to-lime-400". Leave empty for the default purple/blue.
           - label: Author
             name: authorId
             widget: relation
