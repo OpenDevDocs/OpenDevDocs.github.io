@@ -16,7 +16,7 @@ In [Containers vs Virtual Machines](/courses/devops/containers-vs-virtual-machin
 
 By the end of this lesson you will be able to run any containerised software, read and write a **Dockerfile**, build a small, secure image for a Node.js app, and push it to a registry from your pipeline.
 
-> **Note:** This lesson covers the Docker you need for DevOps work. A full **Docker** course on OpenDevDocs, going much deeper into networking, storage, BuildKit and security, is coming soon.
+> **Note:** This lesson covers the Docker you need for DevOps work. For much more depth on networking, storage, Compose, BuildKit and security, take the full [Docker course](/courses/docker/what-is-docker).
 
 ## Installing Docker
 

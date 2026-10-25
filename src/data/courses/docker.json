@@ -1,0 +1,16 @@
+{
+  "courseTitle": "Docker",
+  "slug": "docker",
+  "cardText": "Package and run any app in containers",
+  "descriptionText": "Docker packages your app and everything it needs into a container that runs the same way on every machine. Start with your first container, learn images, Dockerfiles, volumes and networks, run multi-container apps with Docker Compose, push images to a registry, then build small, secure images and deploy them to a real server.",
+  "imageFileName": "docker",
+  "tags": "DevOps",
+  "color": "#2496ED",
+  "gradientClass": "from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400",
+  "authorId": "bishal-biswas",
+  "order": 86,
+  "isAvailable": true,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}

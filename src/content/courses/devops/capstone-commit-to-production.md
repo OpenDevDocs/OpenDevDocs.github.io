@@ -320,7 +320,7 @@ Ready for more? Each of these builds on a lesson you have done:
 
 ## Where to go next
 
-You now know the shape of the whole DevOps toolchain and have built a working delivery system end to end. The best next step is to go **deeper** into the tools you will use most. On OpenDevDocs, full courses on **Linux and Shell**, **Git and GitHub**, **Docker** and **Kubernetes** are coming soon, each picking up where the matching lessons in this course stopped.
+You now know the shape of the whole DevOps toolchain and have built a working delivery system end to end. The best next step is to go **deeper** into the tools you will use most. The full [Docker course](/courses/docker/what-is-docker) is ready now and picks up where the Docker lessons here stopped. Full courses on **Linux and Shell**, **Git and GitHub** and **Kubernetes** are coming soon.
 
 And keep the habits that matter more than any tool: **small changes**, **automate the second time**, **measure**, **learn without blame** and **share what you learn**.
 
