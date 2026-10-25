@@ -9,6 +9,12 @@
       "section": "Getting Started"
     },
     {
+      "topicName": "How the Web Works: HTTP Requests and Responses",
+      "slug": "how-the-web-works-http",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
       "topicName": "Node.js and npm Prerequisites",
       "slug": "nodejs-and-npm-prerequisites",
       "difficultyLevel": "Beginner",
@@ -221,6 +227,12 @@
     {
       "topicName": "API Versioning",
       "slug": "api-versioning",
+      "difficultyLevel": "Intermediate",
+      "section": "Building REST APIs"
+    },
+    {
+      "topicName": "Project: Build a Complete Notes API",
+      "slug": "project-build-a-notes-api",
       "difficultyLevel": "Intermediate",
       "section": "Building REST APIs"
     },
