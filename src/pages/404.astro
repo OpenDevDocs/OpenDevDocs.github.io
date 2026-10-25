@@ -1,14 +1,15 @@
 ---
-import { getSiteName } from "../data/data";
+import { getSiteName, GITHUB_ISSUES_URL } from "../data/data";
 import MainLayout from "../layouts/MainLayout.astro";
 
 ---
 
 <MainLayout
     pageTitle = {`Page Not Found - ${getSiteName()}`}
-    description = ""
+    description = "The page you were looking for does not exist or has moved."
     seoImagePath = ""
-    pageType = ""
+    noAds
+    noIndex
 >
 
     <style is:inline>
@@ -174,13 +175,13 @@ import MainLayout from "../layouts/MainLayout.astro";
                     
                     <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="index.html" class="px-8 py-3 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg flex items-center justify-center">
+                        <a href="/" class="px-8 py-3 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg flex items-center justify-center">
                             <i class="fas fa-home mr-2"></i>Back to Homepage
                         </a>
                         <a href="javascript:history.back()" class="px-8 py-3 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
                             <i class="fas fa-arrow-left mr-2"></i>Go Back
                         </a>
-                        <a href="#" class="px-8 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
+                        <a href={GITHUB_ISSUES_URL} rel="noopener" class="px-8 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
                             <i class="fas fa-question-circle mr-2"></i>Report Issue
                         </a>
                     </div>
@@ -189,23 +190,20 @@ import MainLayout from "../layouts/MainLayout.astro";
                     <div class="mt-12">
                         <p class="text-gray-500 dark:text-gray-400 mb-4">Try these pages instead:</p>
                         <div class="flex flex-wrap justify-center gap-3">
-                            <a href="index.html" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <a href="/" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                                 Home
                             </a>
-                            <a href="course-topics.html" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <a href="/courses" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                                 Courses
                             </a>
-                            <a href="interview-questions.html" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                                Interview Qs
+                            <a href="/blog" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                Blog
                             </a>
-                            <a href="project-ideas.html" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                                Projects
-                            </a>
-                            <a href="quiz.html" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                                Quiz
-                            </a>
-                            <a href="about.html" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            <a href="/about" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                                 About
+                            </a>
+                            <a href="/contact" class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                Contact
                             </a>
                         </div>
                     </div>
@@ -235,41 +233,6 @@ import MainLayout from "../layouts/MainLayout.astro";
             }, 10);
         }, 3000);
         
-        // Typewriter effect for console message (optional)
-        function typeWriter() {
-            const consoleText = "🚨 Page not found - Redirecting to homepage...";
-            const consoleElement = document.createElement('div');
-            consoleElement.className = 'bg-gray-900 text-green-400 font-mono text-sm p-3 rounded-lg mt-4';
-            consoleElement.style.opacity = '0';
-            consoleElement.style.transform = 'translateY(10px)';
-            consoleElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
-            const consoleContainer = document.querySelector('.bg-gray-900.rounded-xl');
-            if (consoleContainer) {
-                consoleContainer.parentNode.insertBefore(consoleElement, consoleContainer.nextSibling);
-                
-                setTimeout(() => {
-                    consoleElement.style.opacity = '1';
-                    consoleElement.style.transform = 'translateY(0)';
-                    
-                    let i = 0;
-                    const typingInterval = setInterval(() => {
-                        if (i < consoleText.length) {
-                            consoleElement.textContent += consoleText.charAt(i);
-                            i++;
-                        } else {
-                            clearInterval(typingInterval);
-                            // Add blinking cursor
-                            consoleElement.innerHTML += '<span class="blink">█</span>';
-                        }
-                    }, 50);
-                }, 1000);
-            }
-        }
-        
-        // Start typewriter effect after a delay
-        setTimeout(typeWriter, 2000);
-        
         // Add some random floating code elements
         function createFloatingCode() {
             const codeElements = ['{ }', '&lt;/&gt;', 'console.log()', 'function()', 'const', '=>', '() =>', 'return', 'import', 'export'];
@@ -297,14 +260,5 @@ import MainLayout from "../layouts/MainLayout.astro";
         // Create floating elements after page load
         setTimeout(createFloatingCode, 500);
         
-        // Add hover effect to code snippet
-        document.querySelector('.bg-gray-900.rounded-xl').addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        document.querySelector('.bg-gray-900.rounded-xl').addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
     </script>
 </MainLayout>

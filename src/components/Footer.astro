@@ -1,5 +1,10 @@
 ---
-import { getSiteName } from "../data/data";
+import { getCollection } from "astro:content";
+import { getSiteName, GITHUB_ORG_URL } from "../data/data";
+
+const legalPages = (await getCollection("legal"))
+    .filter((page) => page.data.showInFooter)
+    .sort((a, b) => a.data.order - b.data.order);
 
 
 ---
@@ -53,43 +58,33 @@ import { getSiteName } from "../data/data";
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-8 w-full">
                 <div>
-                    <h4 class="text-white font-bold mb-4">Platform</h4>
+                    <h4 class="text-white font-bold mb-4">Learn</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">Courses</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Interview Prep</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">For Teams</a></li>
+                        <li><a href="/courses" class="hover:text-white transition-colors">Courses</a></li>
+                        <li><a href="/interview-prep" class="hover:text-white transition-colors">Interview Prep</a></li>
+                        <li><a href="/blog" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="/authors" class="hover:text-white transition-colors">Authors</a></li>
+                        <li><a href="/contribute" class="hover:text-white transition-colors">Contribute</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <h4 class="text-white font-bold mb-4">Site</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+                        {legalPages.map((page) => (
+                            <li><a href={`/${page.data.slug}`} class="hover:text-white transition-colors">{page.data.title}</a></li>
+                        ))}
                     </ul>
                 </div>
 
                 <div class="col-span-2 md:col-span-1">
                     <h4 class="text-white font-bold mb-4">Connect</h4>
                     <div class="flex gap-4 w-full">
-                        <a href="#"
-                            class="size-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#"
-                            class="size-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#"
+                        <a href={GITHUB_ORG_URL} aria-label="Open Dev Docs on GitHub" rel="noopener"
                             class="size-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
                             <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#"
-                            class="size-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-500 transition-colors">
-                            <i class="fab fa-youtube"></i>
                         </a>
                     </div>
                 </div>

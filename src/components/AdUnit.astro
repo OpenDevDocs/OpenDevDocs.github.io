@@ -1,0 +1,28 @@
+---
+import { ADSENSE_CLIENT_ID } from "../data/data";
+
+interface Props {
+    // The ad unit's `data-ad-slot` number from AdSense > Ads > By ad unit
+    slot: string,
+    class?: string
+}
+
+const { slot, class: className } = Astro.props;
+---
+
+{
+    ADSENSE_CLIENT_ID && slot && (
+        <aside class:list={["ad-unit my-10 text-center", className]} aria-label="Advertisement">
+            <p class="mb-2 text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500">Advertisement</p>
+            <ins
+                class="adsbygoogle"
+                style="display:block"
+                data-ad-client={ADSENSE_CLIENT_ID}
+                data-ad-slot={slot}
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+            ></ins>
+            <script is:inline>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </aside>
+    )
+}

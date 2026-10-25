@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Head from "../components/Head.astro";
+import { getSiteName } from "../data/data";
 
 interface Props {
     pageTitle ?: string,
@@ -11,7 +12,7 @@ interface Props {
     bodyClass ?:string
 }
 
-const {pageTitle = "{getSiteName()} - Learn to Code", pageType = "website", description, seoImagePath, bodyClass} = Astro.props;
+const {pageTitle = getSiteName() + " - Learn to Code", pageType = "website", description, seoImagePath, bodyClass} = Astro.props;
 ---
 
 <!DOCTYPE html>

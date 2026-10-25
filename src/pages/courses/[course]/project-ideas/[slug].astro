@@ -5,7 +5,7 @@ import { courses } from '../../../../data/courses';
 
 export async function getStaticPaths() {
     const projects = await getCollection('projectIdeas');
-    return projects.map((project) => ({
+    return projects.filter((project) => project.data.isPublished).map((project) => ({
         params: { course: project.data.course, slug: project.data.slug },
         props: { project, courseData: courses.find((course) => course.slug === project.data.course) },
     }));

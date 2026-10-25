@@ -1,0 +1,240 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../layouts/MainLayout.astro";
+import { courses } from "../data/courses";
+import { getSiteName } from "../data/data";
+
+// Every number on this page is counted from the question banks at build time
+const availableSlugs = new Set(courses.filter((course) => course.isAvailable == true).map((course) => course.slug));
+const questions = (await getCollection("interviewQuestions"))
+    .filter((q) => q.data.isPublished && availableSlugs.has(q.data.course));
+
+const levels = [
+    {
+        id: "fresher",
+        label: "Fresher",
+        icon: "fa-seedling",
+        summary: "0 to 2 years. Interviewers check that you understand the language itself: types, control flow, collections, error handling and the basics of object-oriented or functional code.",
+        focus: ["Core syntax and types", "Common collections", "Errors and exceptions", "Explaining code you wrote"],
+    },
+    {
+        id: "mid",
+        label: "Mid-level",
+        icon: "fa-code-branch",
+        summary: "2 to 5 years. Expect questions about how the language and runtime behave under real workloads, and about the design choices you make when code has to be maintained by a team.",
+        focus: ["Async code and concurrency", "Memory and performance basics", "Design patterns and SOLID", "Testing and dependency injection"],
+    },
+    {
+        id: "senior",
+        label: "Senior",
+        icon: "fa-crown",
+        summary: "5+ years. Questions go below the surface: runtime internals, diagnosing production problems, and trade-offs you would defend in an architecture review.",
+        focus: ["Runtime internals", "Diagnosing production issues", "Architecture trade-offs", "Library and API design"],
+    },
+] as const;
+
+const banks = courses
+    .filter((course) => questions.some((q) => q.data.course === course.slug))
+    .map((course) => {
+        const own = questions.filter((q) => q.data.course === course.slug);
+        return {
+            course,
+            total: own.length,
+            byLevel: Object.fromEntries(levels.map((level) => [level.id, own.filter((q) => q.data.experienceLevel === level.id).length])),
+        };
+    });
+
+// The most commonly asked questions at each level, as a taste of each bank
+const samplesByLevel = Object.fromEntries(levels.map((level) => [
+    level.id,
+    questions
+        .filter((q) => q.data.experienceLevel === level.id)
+        .sort((a, b) => b.data.popularity - a.data.popularity)
+        .slice(0, 4)
+        .map((q) => ({ question: q.data.question, course: courses.find((course) => course.slug === q.data.course) })),
+]));
+
+// Questions are written in markdown, so `code` spans are split out and rendered as <code>
+const codeParts = (text: string) => text.split("`").map((part, index) => ({ part, isCode: index % 2 === 1 }));
+const questionCount = (count: number) => `${count} ${count === 1 ? "question" : "questions"} with answers`;
+
+const learnFirst = courses.filter((course) => course.isAvailable == true);
+
+const steps = [
+    { title: "Read the job description", text: "List every technology it mentions and sort them into core, supporting and nice to have. Spend most of your time on the core language and framework." },
+    { title: "Refresh the fundamentals", text: "Work back through the relevant course in order. For each topic, write a short explanation in your own words and a code example that proves it." },
+    { title: "Answer questions out loud", text: "Go through the question bank for your level and answer each question aloud before you read the written answer. Mark the ones you hesitate on and revisit them." },
+    { title: "Know your own projects", text: "Pick one or two projects and be ready to explain the problem, the main decisions, something that went wrong and what you would change now." },
+];
+
+const tips = [
+    { icon: "fa-comments", title: "Think out loud", text: "Interviewers want to see how you reason. Say what you are trying before you type it, and talk through why." },
+    { icon: "fa-list-check", title: "Clarify first", text: "Restate the problem and try one or two example inputs before writing code. Many mistakes come from solving the wrong problem." },
+    { icon: "fa-person-walking", title: "Simple, then better", text: "Get a working solution first, even a slow one. Then improve it and explain the trade-off you made." },
+    { icon: "fa-circle-question", title: "Admit what you do not know", text: "Say so plainly, then reason about how it probably works. That is a far better answer than a confident guess." },
+    { icon: "fa-vial", title: "Test your own code", text: "Walk through your solution with a normal input, an empty input and an edge case before saying you are done." },
+    { icon: "fa-handshake", title: "Ask good questions", text: "Prepare questions about the team, code review and the first few months in the role. It shows genuine interest." },
+];
+---
+
+<MainLayout
+    pageTitle={`Interview Prep - ${getSiteName()}`}
+    description={`Prepare for developer interviews with ${questions.length} questions and written answers for fresher, mid-level and senior roles, plus a practical preparation guide.`}
+    seoImagePath=""
+    pageType="website"
+>
+    <!-- Hero -->
+    <section class="pt-24 pb-16 px-6 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-300 dark:bg-purple-900 rounded-full -translate-y-32 translate-x-32 opacity-30 blur-3xl"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-3xl animate-on-scroll">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Ace Your <span class="gradient-text">Technical Interviews</span></h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                    Question banks with written answers for every experience level, and a practical guide to preparing in the weeks before an interview. Everything is free and needs no account.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow text-sm font-medium"><i class="fas fa-circle-question mr-2 text-purple-600 dark:text-purple-400"></i>{questionCount(questions.length)}</span>
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow text-sm font-medium"><i class="fas fa-layer-group mr-2 text-purple-600 dark:text-purple-400"></i>{banks.length} {banks.length === 1 ? "question bank" : "question banks"}</span>
+                    <span class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow text-sm font-medium"><i class="fas fa-signal mr-2 text-purple-600 dark:text-purple-400"></i>Fresher, mid-level and senior</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Question banks -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto">
+            <div class="mb-10 animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-2">Question Banks</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl">Each bank groups questions by experience level. Every question has a written answer, and most include a code example.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {
+                    banks.map(({ course, total, byLevel }) => (
+                        <a href={`/courses/${course.slug}/interview-questions`} class="block bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover">
+                            <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                                <i class="fas fa-question-circle text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1">{course.courseTitle} Interview Questions</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">{questionCount(total)}</p>
+                            <div class="flex flex-wrap gap-2 mb-4 text-sm">
+                                {levels.filter((level) => byLevel[level.id] > 0).map((level) => (
+                                    <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">{level.label}: {byLevel[level.id]}</span>
+                                ))}
+                            </div>
+                            <span class="text-purple-600 dark:text-purple-400 font-medium flex items-center">
+                                Start Practising
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Levels -->
+    <section class="py-16 px-6 bg-gray-100/50 dark:bg-gray-800/50">
+        <div class="container mx-auto">
+            <div class="mb-10 animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-2">What Each Level Is Tested On</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl">The same topic is asked differently depending on the role. A fresher explains what a feature does; a senior explains how it works and when not to use it.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {
+                    levels.map((level) => (
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 gradient-bg rounded-full flex items-center justify-center">
+                                    <i class={`fas ${level.icon} text-white`}></i>
+                                </div>
+                                <h3 class="text-xl font-bold">{level.label}</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">{level.summary}</p>
+                            <ul class="flex flex-wrap gap-2 mb-6 text-sm">
+                                {level.focus.map((item) => (
+                                    <li class="px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-200">{item}</li>
+                                ))}
+                            </ul>
+                            {samplesByLevel[level.id].length > 0 && (
+                                <div class="mt-auto">
+                                    <h4 class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">Commonly asked</h4>
+                                    <ul class="space-y-2">
+                                        {samplesByLevel[level.id].map(({ question, course }) => (
+                                            <li>
+                                                <a href={`/courses/${course?.slug}/interview-questions`} class="flex gap-2 hover:text-purple-600 dark:hover:text-purple-400">
+                                                    <i class="fas fa-angle-right mt-1 text-purple-600 dark:text-purple-400"></i>
+                                                    <span>{codeParts(question).map(({ part, isCode }) => isCode ? <code class="text-sm px-1 rounded bg-gray-100 dark:bg-gray-700">{part}</code> : part)}</span>
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- How to prepare -->
+    <section class="py-16 px-6">
+        <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-2">How to Prepare</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-8">A month is enough for most junior and mid-level roles if you spend it on the right things. Our <a href="/blog/four-week-technical-interview-plan" class="text-purple-600 dark:text-purple-400 hover:underline">four-week interview plan</a> breaks this down week by week.</p>
+                <ol class="space-y-6">
+                    {
+                        steps.map((step, index) => (
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-10 h-10 gradient-bg rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-white font-bold">{index + 1}</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold mb-1">{step.title}</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">{step.text}</p>
+                                </div>
+                            </li>
+                        ))
+                    }
+                </ol>
+            </div>
+
+            <div class="animate-on-scroll delay-100">
+                <h2 class="text-3xl font-bold mb-2">During the Interview</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-8">Knowing the answer is half of it. These habits make the difference in the room.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {
+                        tips.map((tip) => (
+                            <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+                                <i class={`fas ${tip.icon} text-purple-600 dark:text-purple-400 text-xl mb-3`}></i>
+                                <h3 class="font-bold mb-1">{tip.title}</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">{tip.text}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learn first -->
+    <section class="py-16 px-6 bg-gray-100/50 dark:bg-gray-800/50">
+        <div class="container mx-auto">
+            <div class="mb-8 animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-2">Learn the Topics First</h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl">Interview questions test understanding, not memory. If a question stumps you, the matching course covers the topic from the ground up.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                {
+                    learnFirst.map((course) => (
+                        <a href={`/courses/${course.slug}`} class="px-4 py-2 rounded-full bg-white dark:bg-gray-800 shadow hover:text-purple-600 dark:hover:text-purple-400 font-medium">{course.courseTitle}</a>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</MainLayout>

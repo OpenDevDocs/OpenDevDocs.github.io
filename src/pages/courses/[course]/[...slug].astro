@@ -7,6 +7,8 @@ import { authors } from '../../../data/authors';
 import {getFormattedDate, getAdjacentElements} from "../../../data/utils"
 import AuthorChip from '../../../components/AuthorChip.astro';
 import Prose from "../../../components/Prose.astro"
+import AdUnit from '../../../components/AdUnit.astro';
+import { ADSENSE_SLOTS } from '../../../data/data';
 import { syllabus } from '../../../content/syllabus';
 
 // Only published topics get a page, and Previous/Next skips the rest
@@ -75,13 +77,17 @@ const previewFileNames: Record<string, string> = {
 };
 const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
 
+// Reading time from the lesson body (about 200 words a minute), not a fixed guess
+const lessonWords = (article.body ?? '').split('<code id="code-content"')[0].split(/\s+/).filter(Boolean).length;
+const readingMinutes = Math.max(1, Math.round(lessonWords / 200));
+
 ---
 
 <CourseLayout 
     pageTitle={`${article.data.title} - ${courseData?.courseTitle} Mastery Course`} 
-    description="" 
+    description={article.data.metadescription}
     seoImagePath="" 
-    pageType="website"
+    pageType="article"
     courseName = {courseData?.courseTitle || ""}
     courseData = {currentSyllabus}
     courseImage = {courseData?.imageFileName || ""}
@@ -113,7 +119,7 @@ const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
                 </span>
                 <span
                     class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
-                    3 hours
+                    {readingMinutes} min read
                 </span>
             </div>
     
@@ -216,28 +222,33 @@ const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
                     }
                 </div>
 
+                <AdUnit slot={ADSENSE_SLOTS.lessonBottom} />
+
                 <!-- Next/Previous Navigation -->
                 <div
                     class="flex flex-wrap lg:gap-0 gap-3 justify-between items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 animate-on-scroll delay-200">
+                    <!-- The first and last lessons have no neighbour, so an empty slot keeps the layout without a dead link -->
+                    {adjacentArticles.previous == null ? <div class="hidden lg:block"></div> : (
                     <a href={`/courses/${course}/${getArticleByFileName(adjacentArticles.previous)?.data.slug}`}
-                        class="flex lg:w-fit w-full items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                        class:list={[adjacentArticles.previous == null && "invisible"]}>
+                        class="flex lg:w-fit w-full items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                         <i class="fas fa-arrow-left mr-3"></i>
                         <div>
                             <p class="text-sm text-gray-500 dark:text-gray-400">Previous</p>
                             <p class="font-medium">{getArticleByFileName(adjacentArticles.previous)?.data.title}</p>
                         </div>
                     </a>
+                    )}
 
+                    {adjacentArticles.next != null && (
                     <a href={`/courses/${course}/${getArticleByFileName(adjacentArticles.next)?.data.slug}`}
-                        class="flex lg:w-fit w-full justify-end items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-right"
-                        class:list={[adjacentArticles.next == null && "invisible"]}>
+                        class="flex lg:w-fit w-full justify-end items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-right">
                         <div>
                             <p class="text-sm text-gray-500 dark:text-gray-400">Next</p>
                             <p class="font-medium">{getArticleByFileName(adjacentArticles.next)?.data.title}</p>
                         </div>
                         <i class="fas fa-arrow-right ml-3"></i>
                     </a>
+                    )}
                 </div>
 
                 <!-- Feedback Section -->
@@ -346,7 +357,8 @@ const previewFileName = previewFileNames[course ?? ''] ?? 'script.js';
         });
 
         // Mark as Complete for Topic
-        let savedCompletionProgress = JSON.parse(localStorage.getItem("completionProgress"));
+        // Nothing is stored until the course page seeds it, so a first visit reads null
+        let savedCompletionProgress = JSON.parse(localStorage.getItem("completionProgress")) || [];
         const updateCompletion = (update = true) => {
             savedCompletionProgress.forEach(course => {
                 if(course.courseName === courseTitle){

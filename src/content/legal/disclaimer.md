@@ -11,7 +11,7 @@ highlights:
   - No Warranty
   - Verify Before Production
   - Not Professional Advice
-updateDate: 2025-12-01T00:00:00.000Z
+updateDate: 2026-10-25T00:00:00.000Z
 order: 3
 showInFooter: true
 ---
@@ -40,6 +40,10 @@ You are responsible for reviewing, testing, and adapting any code before you dep
 
 Nothing on this site constitutes professional, legal, financial, or career advice. If you need advice for a specific situation, consult a qualified professional.
 
+## Advertising
+
+Open Dev Docs shows ads served by Google AdSense. Advertisers do not write, review or influence our lessons, and an ad appearing next to a lesson is not a recommendation of that product.
+
 ## External Links
 
 Our articles link to third-party sites, documentation, and tools. We do not control those resources and are not responsible for their content, accuracy, or availability. A link is not an endorsement.
@@ -54,7 +58,4 @@ Under no circumstances will Open Dev Docs or its contributors be liable for any 
 
 ## Contact Us
 
-If you spot an error or want to report an issue with an article:
-
-- **Email:** [contact@example.com](mailto:contact@example.com)
-- **Contact form:** [/contact](/contact)
+If you spot an error or want to report an issue with an article, use any of the options on the [contact page](/contact). Reports on GitHub are the fastest way to get a lesson fixed.

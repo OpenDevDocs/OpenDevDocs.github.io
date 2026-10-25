@@ -6,8 +6,8 @@ import AuthorCard from "../components/AuthorCard.astro";
 ---
 
 <MainLayout
-    pageTitle = "All Contributors"
-    description = "List of Authors who contributed in making this platform a knowledgable place."
+    pageTitle = "Authors - Open Dev Docs"
+    description = "Meet the authors who write and maintain the Open Dev Docs courses and lessons."
     seoImagePath = ""
     pageType = "website"
 >
@@ -19,7 +19,7 @@ import AuthorCard from "../components/AuthorCard.astro";
                 <div class="lg:w-2/3 animate-on-scroll">
                     
                     <h1 class="text-4xl md:text-5xl font-bold mb-4">All Our Contributors</h1>
-                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">Thank you for making this a beautiful learning platform.</p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">The people who write, test and maintain every Open Dev Docs lesson.</p>
                     
                 </div>
                 
@@ -28,7 +28,7 @@ import AuthorCard from "../components/AuthorCard.astro";
     </header>
 
     <section class="py-10 px-6">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
             
             {
                 authors.map((author)=> (
@@ -37,6 +37,9 @@ import AuthorCard from "../components/AuthorCard.astro";
                         authorDesignation = {author.authorDesignation}
                         authorImage = {author.authorImageFileName}
                         authorBio = {author.bio}
+                        skills = {author.skills}
+                        githubUrl = {author.githubUrl}
+                        websiteUrl = {author.websiteUrl}
                     />
                 ))
             }

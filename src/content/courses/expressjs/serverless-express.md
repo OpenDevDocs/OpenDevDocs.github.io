@@ -347,9 +347,9 @@ A common real-world mix: an Express API in containers for the main app, plus a f
 
 Here's how to make it stick:
 
-- **Build something real.** Pick a project from the [Express project ideas](/courses/expressjs/project-ideas) list, build it from scratch, and deploy it with the Docker and CI/CD skills you just learned. Nothing teaches like shipping.
-- **Test your knowledge.** Work through the [Express quizzes](/courses/expressjs/quizzes) to find any topics worth a second look.
-- **Get job-ready.** Practise with the [Express interview questions](/courses/expressjs/interview-questions), and try explaining each answer out loud in your own words.
+- **Build something real.** Pick an API you would actually use, such as a reading list, a habit tracker or a small shop, build it from scratch, and deploy it with the Docker and CI/CD skills you just learned. Nothing teaches like shipping.
+- **Test your knowledge.** Go back through the syllabus and rebuild each lesson's example without looking at the code panel. The ones you get stuck on are worth a second read.
+- **Get job-ready.** Write down the questions an interviewer could ask about routing, middleware, authentication and deployment, and try explaining each answer out loud in your own words.
 - **Keep exploring.** Read the official Express documentation and changelog, look at popular middleware source code on GitHub, and try a framework like Fastify or Hono to see how other tools solve the same problems.
 
 Thank you for learning with us. Now go build something great.

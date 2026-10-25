@@ -1,33 +1,43 @@
 ---
 import { SEO } from 'astro-seo';
+import { ADSENSE_CLIENT_ID } from '../data/data';
 
 interface Props {
     pageTitle ?: string
     description : string,
     seoImagePath : string,
-    pageType ?: string
+    pageType ?: string,
+    // Error and utility pages have no publisher content, so AdSense policy says no ads there
+    noAds ?: boolean,
+    noIndex ?: boolean
 }
 
-const {pageTitle = "", pageType = "website", description, seoImagePath} = Astro.props;
+const {pageTitle = "", pageType = "website", description, seoImagePath, noAds = false, noIndex = false} = Astro.props;
+
+// Social previews need an absolute image URL; fall back to the site icon
+const ogImage = new URL(seoImagePath || "/android-chrome-512x512.png", Astro.site).href;
+const showAds = ADSENSE_CLIENT_ID !== "" && !noAds;
 ---
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{pageTitle}</title>
-    <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon">
-    <!-- ... other meta tags ... -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <SEO
       title={pageTitle}
-      description={description}
+      description={description || undefined}
+      noindex={noIndex}
       openGraph={{
         basic: {
           title: pageTitle,
           type: pageType,
-          image: seoImagePath,
+          image: ogImage,
+        },
+        optional: {
+          description: description || undefined,
+          siteName: "Open Dev Docs",
         }
       }}
       extend={{
@@ -35,12 +45,10 @@ const {pageTitle = "", pageType = "website", description, seoImagePath} = Astro.
         link: [{ rel: "icon", href: "/favicon.ico" }],
         // extending the default meta tags
         meta: [
-          {
-            name: "twitter:image",
-            content: seoImagePath,
-          },
+          { name: "twitter:card", content: "summary" },
+          { name: "twitter:image", content: ogImage },
           { name: "twitter:title", content: pageTitle },
-          { name: "twitter:description", content: description },
+          ...(description ? [{ name: "twitter:description", content: description }] : []),
         ],
       }}
     />
@@ -51,6 +59,16 @@ const {pageTitle = "", pageType = "website", description, seoImagePath} = Astro.
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+
+    {ADSENSE_CLIENT_ID && <meta name="google-adsense-account" content={ADSENSE_CLIENT_ID}>}
+    {showAds && (
+        <script
+            is:inline
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
+            crossorigin="anonymous"
+        ></script>
+    )}
 
     <slot />
 

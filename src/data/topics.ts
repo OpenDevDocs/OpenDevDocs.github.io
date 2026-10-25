@@ -23,3 +23,25 @@ export async function getPublishedTopics(): Promise<Topic[]> {
     const now = new Date();
     return (await getCollection('codeArticles')).filter((topic) => isTopicPublished(topic, now));
 }
+
+export type CourseResources = { interviewQuestions: number; quizzes: number; projectIdeas: number };
+
+// Published interview questions, quizzes and project ideas per available course.
+// A course's resource pages and sidebar links exist only when it has items, so
+// the site never publishes empty placeholder pages.
+export async function getCourseResources(): Promise<Record<string, CourseResources>> {
+    const [questions, quizzes, projects] = await Promise.all([
+        getCollection('interviewQuestions'),
+        getCollection('quizzes'),
+        getCollection('projectIdeas'),
+    ]);
+    return Object.fromEntries(
+        courses
+            .filter((course: any) => course.isAvailable === true)
+            .map((course: any) => [course.slug, {
+                interviewQuestions: questions.filter((q) => q.data.course === course.slug).length,
+                quizzes: quizzes.filter((q) => q.data.course === course.slug && q.data.isPublished).length,
+                projectIdeas: projects.filter((p) => p.data.course === course.slug && p.data.isPublished).length,
+            }])
+    );
+}

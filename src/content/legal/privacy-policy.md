@@ -1,132 +1,81 @@
 ---
 title: Privacy Policy
 slug: privacy-policy
-metadescription: How Open Dev Docs collects, uses, and safeguards your personal information.
+metadescription: What data Open Dev Docs and its advertising partners, including Google, collect when you visit, and how you can control it.
 badge: Privacy Policy
 heroHeadline: Your Privacy
 heroSubHeadline: Matters to Us
-summary: We are committed to protecting your personal information and being transparent about how we collect, use, and safeguard your data.
+summary: Open Dev Docs has no accounts and asks for no personal details. This page explains what your browser stores, what our hosting and advertising partners collect, and how to opt out.
 highlights:
-  - GDPR Compliant
-  - Encrypted Data
-  - No Third-Party Sharing
-  - Right to Delete
-updateDate: 2025-12-01T00:00:00.000Z
+  - No Account Needed
+  - Progress Stays in Your Browser
+  - Ads by Google AdSense
+  - Opt-Out Options Explained
+updateDate: 2026-10-25T00:00:00.000Z
 order: 1
 showInFooter: true
 ---
 
 ## Introduction
 
-Welcome to **Open Dev Docs**. Your privacy is critically important to us. This Privacy Policy document explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+This Privacy Policy explains what information is collected when you visit **Open Dev Docs** (the "site"), who collects it, and the choices you have. It applies to every page on opendevdocs.github.io.
 
-We respect your privacy and are committed to protecting your personal data. This policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.
+Open Dev Docs is a static website. There are no user accounts, no sign-up forms and no comment system, so we do not ask you for your name, email address or any other personal details to read the site.
 
-## Information We Collect
+## Information Stored in Your Browser
 
-We collect several different types of information for various purposes to provide and improve our service to you:
+The site keeps a few settings in your browser's local storage so it works the way you left it:
 
-**Personal Information**
+- **Theme** - whether you chose the light or dark theme
+- **Course progress** - which lessons you marked as complete
 
-- Full name
-- Email address
-- Username and password
-- Profile information
+This information never leaves your device and is not sent to us. You can remove it at any time by clearing your browser's site data for opendevdocs.github.io.
 
-**Usage Information**
+## Information Collected by Our Hosting Provider
 
-- Course progress
-- Quiz results
-- Articles read
-- Learning preferences
+The site is hosted on **GitHub Pages**. Like any web server, GitHub receives technical information when your browser requests a page, such as your IP address, browser type and the page you asked for. GitHub uses this to deliver the site and keep it secure. See the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) for details.
 
-**Technical Data**
+Pages also load fonts, icons, syntax highlighting and animations from public content delivery networks (cdnjs, jsDelivr, unpkg and LottieFiles). These services receive the same kind of technical request data when your browser downloads those files.
 
-- IP address
-- Browser type and version
-- Device information
-- Referral source
+## Advertising and Cookies
 
-**Cookies & Tracking**
+We use **Google AdSense** to show advertising, which pays for the time spent writing and maintaining the lessons.
 
-- Session cookies
-- Preference cookies
-- Analytics data
-- Authentication tokens
+- Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites.
+- Google's use of advertising cookies enables it and its partners to serve ads to you based on your visits to this site and/or other sites on the Internet.
+- You may opt out of personalised advertising by visiting [Google Ads Settings](https://adssettings.google.com). You can also opt out of some third-party vendors' use of cookies for personalised advertising at [www.aboutads.info/choices](https://www.aboutads.info/choices/) or, in Europe, at [www.youronlinechoices.eu](https://www.youronlinechoices.eu/).
+- If you opt out, you will still see ads, but they will be less relevant to you.
 
-## How We Use Your Data
+Google and its partners may also use cookies, web beacons, device identifiers and your IP address to measure ad performance, limit how often you see an ad and detect fraud. Learn more in [How Google uses information from sites or apps that use its services](https://policies.google.com/technologies/partner-sites) and the [Google advertising technologies page](https://policies.google.com/technologies/ads).
 
-We use the collected data for various purposes:
+### Consent in the EEA, the UK and Switzerland
 
-- **To provide and maintain our service** - including user authentication and personalized learning paths
-- **To improve our website and courses** - analyzing usage patterns to enhance the learning experience
-- **To communicate with you** - sending updates, newsletters, and responding to your inquiries
-- **To provide personalized recommendations** - suggesting courses and content based on your learning history
-- **To comply with legal obligations** - maintaining records as required by law
-- **To protect our platform** - detecting and preventing security issues and fraud
+If you visit from the European Economic Area, the United Kingdom or Switzerland, a consent message from a Google-certified consent management platform asks for your choice before personalised ads or advertising cookies are used. You can change your choice later from the privacy settings link that message provides.
 
-## Data Sharing
+## How Information Is Used
 
-We do not sell your personal data. We may share your information in the following situations:
+- To deliver pages to you and keep the site secure (hosting provider)
+- To remember your theme and course progress (your browser only)
+- To show advertising and measure it (Google and its partners, as described above)
 
-1. **Service Providers** - We may employ third-party companies to facilitate our service, such as hosting providers, email services, and analytics platforms.
-2. **Legal Requirements** - We may disclose your information when required by law or in response to valid requests by public authorities.
-3. **Business Transfers** - If we are involved in a merger, acquisition, or asset sale, your data may be transferred as part of that transaction.
-
-## Data Security
-
-- **Encryption** - All data is encrypted in transit and at rest.
-- **Secure Storage** - Your data is stored in secure, ISO-certified facilities.
-- **Access Control** - Strict role-based access to personal data.
-
-We implement appropriate technical and organizational measures to protect your personal data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure, or access.
-
-## Cookies and Tracking
-
-We use cookies and similar tracking technologies to track activity on our service and hold certain information.
-
-| Cookie type | Purpose | Status |
-| --- | --- | --- |
-| Essential cookies | Required for basic site functionality | Always active |
-| Preference cookies | Remember your settings and preferences | Optional |
-| Analytics cookies | Help us understand how you use our service | Optional |
+We do not sell personal information, and we do not combine advertising data with any other information about you.
 
 ## Your Rights
 
-Under the GDPR and other privacy regulations, you have the following rights:
-
-- **Right to Access** - Request a copy of your personal data
-- **Right to Rectification** - Correct inaccurate or incomplete data
-- **Right to Erasure** - Request deletion of your personal data
-- **Right to Restrict** - Limit how we use your data
-- **Right to Portability** - Transfer your data to another service
-- **Right to Object** - Object to processing of your data
-
-> To exercise any of these rights, please contact us at [privacy@example.com](mailto:privacy@example.com).
+Depending on where you live, laws such as the GDPR or the CCPA may give you the right to access, correct or delete personal data about you, or to object to its use. Because we do not hold personal data ourselves, requests about advertising data are best made to Google through its [privacy tools](https://myaccount.google.com/data-and-privacy). For anything else, see the contact options below.
 
 ## Third-Party Links
 
-Our website may contain links to third-party websites. We are not responsible for the privacy practices of those sites. We encourage you to review the privacy policies of any third-party websites you visit.
-
-We recommend that you read the privacy policies of any third-party websites you visit to understand how they collect and use your personal information.
+Lessons link to official documentation and other external sites. We are not responsible for the privacy practices of those sites, so please read their privacy policies when you visit them.
 
 ## Children's Privacy
 
-Our service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us.
+The site is not directed at children under 13, and we do not knowingly collect personal information from them. If you believe a child has provided personal information through the site, please contact us and we will help remove it.
 
 ## Changes to This Policy
 
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top.
-
-We will notify you of significant changes via email or through a prominent notice on our website.
+We may update this policy when the site or its partners change. The "Last Updated" date at the top of the page shows when it last changed.
 
 ## Contact Us
 
-If you have any questions about this Privacy Policy or our data practices, please contact us:
-
-- **Email:** [privacy@example.com](mailto:privacy@example.com)
-- **Contact form:** [/contact](/contact)
-
----
-
-This privacy policy applies to all Open Dev Docs services and platforms.
+If you have questions about this Privacy Policy, use any of the options on the [contact page](/contact).

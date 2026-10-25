@@ -5,7 +5,8 @@ import Prose from "../../components/Prose.astro";
 import AuthorChip from "../../components/AuthorChip.astro";
 import { authors } from "../../data/authors";
 import { getFormattedDate } from "../../data/utils";
-import { getSiteName } from "../../data/data";
+import AdUnit from "../../components/AdUnit.astro";
+import { ADSENSE_SLOTS, getSiteName } from "../../data/data";
 
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -36,6 +37,9 @@ const postAuthors = post.data.author
     seoImagePath={post.data.featuredImage || ""}
     pageType="article"
 >
+    <!-- Code fences are tokenised by Prism at build time, so only the theme is needed -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
     <article class="container mx-auto px-6 pt-24 pb-16">
         <div class="max-w-3xl mx-auto">
             <a
@@ -82,6 +86,8 @@ const postAuthors = post.data.author
             <Prose>
                 <Content />
             </Prose>
+
+            <AdUnit slot={ADSENSE_SLOTS.blogBottom} />
 
             {
                 post.data.tags.length > 0 && (

@@ -3,15 +3,32 @@ import CourseCard from "../components/CourseCard.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import { courses } from "../data/courses";
 import { getSiteName } from "../data/data";
+import { getCourseResources, getPublishedTopics, getTopicCourse } from "../data/topics";
 
+// Every number on this page is counted from the content at build time
+const publishedTopics = await getPublishedTopics();
+const availableCourses = courses.filter((course) => course.isAvailable == true);
+const resources = await getCourseResources();
+const totalInterviewQuestions = Object.values(resources).reduce((sum, r) => sum + r.interviewQuestions, 0);
+const interviewCourses = availableCourses.filter((course) => resources[course.slug]?.interviewQuestions > 0);
+
+const latestTopics = [...publishedTopics]
+    .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+    .slice(0, 6)
+    .map((topic) => ({ topic, course: courses.find((course) => course.slug === getTopicCourse(topic)) }));
 ---
-<MainLayout description="" seoImagePath="" >
+<MainLayout
+    pageTitle={`${getSiteName()} - Free Programming Tutorials and Courses`}
+    description={`Free, in-depth programming courses with ${publishedTopics.length} lessons across ${availableCourses.length} courses, from JavaScript and Node.js to .NET, Angular, React and DevOps.`}
+    seoImagePath="">
+    <script is:inline src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js"></script>
+
     <!-- Hero Section -->
     <section class="pt-24 pb-16 px-6 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 z-0"></div>
         <div class="absolute top-0 right-0 w-64 h-64 bg-purple-300 dark:bg-purple-900 rounded-full -translate-y-32 translate-x-32 opacity-50 blur-3xl"></div>
         <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-300 dark:bg-blue-900 rounded-full translate-y-32 -translate-x-32 opacity-50 blur-3xl"></div>
-        
+
         <div class="container mx-auto relative z-10">
             <div class="flex flex-col lg:flex-row items-center">
                 <div class="lg:w-1/2 mb-12 lg:mb-0 animate-on-scroll">
@@ -21,18 +38,18 @@ import { getSiteName } from "../data/data";
                         <span class="block">From Zero to Hero</span>
                     </h1>
                     <p class="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 max-w-2xl">
-                        Interactive courses, hands-on projects, and interview preparation to help you launch your tech career. Learn at your own pace whenever you want, wherever you want.
+                        Free, structured programming courses written lesson by lesson, with a complete code example beside every topic and interview questions to test what you learned. Learn at your own pace, no account needed.
                     </p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
                         <a href="#courses" class="px-8 py-3 gradient-bg text-white font-medium rounded-full hover:opacity-90 transition-opacity text-center shadow-lg hover:shadow-xl">
                             Explore Courses
                         </a>
-                        <a href="#interview" class="px-8 py-3 gradient-border text-purple-600 dark:text-purple-400 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center">
+                        <a href="/interview-prep" class="px-8 py-3 gradient-border text-purple-600 dark:text-purple-400 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center">
                             Interview Prep
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="lg:w-1/2 flex justify-center animate-on-scroll delay-200">
                     <div class="relative">
                         <div class="w-80 h-80 md:w-96 md:h-96 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-2xl">
@@ -48,12 +65,12 @@ import { getSiteName } from "../data/data";
                             </div>
                         </div>
                         <div class="absolute -top-4 -right-4 w-24 h-24 bg-yellow-500 rounded-2xl rotate-12 flex flex-col items-center justify-center shadow-xl">
-                            <i class="fas fa-star text-white text-2xl"></i>
-                            <span class="text-white font-bold mt-1">4.9/5</span>
+                            <i class="fas fa-book-open text-white text-2xl"></i>
+                            <span class="text-white font-bold mt-1">{publishedTopics.length} lessons</span>
                         </div>
                         <div class="absolute -bottom-4 -left-4 w-32 h-24 bg-green-500 rounded-2xl -rotate-12 flex flex-col items-center justify-center shadow-xl">
-                            <i class="fas fa-users text-white text-2xl"></i>
-                            <span class="text-white font-bold mt-1">50K+ Students</span>
+                            <i class="fas fa-layer-group text-white text-2xl"></i>
+                            <span class="text-white font-bold mt-1">{availableCourses.length} free courses</span>
                         </div>
                     </div>
                 </div>
@@ -66,15 +83,14 @@ import { getSiteName } from "../data/data";
         <div class="container mx-auto">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Popular <span class="gradient-text">Courses</span></h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Learn the most in-demand programming languages and frameworks with our interactive courses</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Each course runs from the basics to expert topics, one focused lesson at a time</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
+
                 {
-                    // courses.filter(x=>x.isPopular == true).map((course) => (
-                    courses.filter(x=>x.isAvailable == true).slice(0,3).map((course) => (
-                        <CourseCard 
+                    availableCourses.slice(0,3).map((course) => (
+                        <CourseCard
                             courseTitle = {course.courseTitle}
                             cardText = {course.cardText}
                             imageFileName = {course.imageFileName}
@@ -82,12 +98,11 @@ import { getSiteName } from "../data/data";
                             level = {course.tags}
                             slug = {course.slug}
                             color = {course.color}
-                        />                        
+                        />
                     ))
                 }
-                
             </div>
-            
+
             <div class="text-center mt-12 animate-on-scroll delay-400">
                 <a href="/courses" class="inline-flex items-center px-6 py-3 gradient-border text-purple-600 dark:text-purple-400 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                     View All Courses
@@ -97,27 +112,49 @@ import { getSiteName } from "../data/data";
         </div>
     </section>
 
+    <!-- Latest Lessons Section -->
+    <section id="latest" class="py-16 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Latest <span class="gradient-text">Lessons</span></h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Recently published topics from across the courses</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {
+                    latestTopics.map(({ topic, course }) => (
+                        <a href={`/courses/${course?.slug}/${topic.data.slug}`} class="block bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover">
+                            <p class="text-sm font-medium text-purple-600 dark:text-purple-400 mb-2">{course?.courseTitle}</p>
+                            <h3 class="text-xl font-bold mb-2">{topic.data.title}</h3>
+                            <p class="text-gray-600 dark:text-gray-300">{topic.data.metadescription}</p>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
     <!-- Interview Prep Section -->
-    <section id="interview" class="py-16 px-6">
+    <section id="interview" class="py-16 px-6 bg-gray-100/50 dark:bg-gray-800/50">
         <div class="container mx-auto">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Ace Your <span class="gradient-text">Technical Interviews</span></h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Comprehensive interview preparation with coding challenges, mock interviews, and company-specific questions</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{totalInterviewQuestions} interview questions with written answers, grouped by experience level</p>
             </div>
-            
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="animate-on-scroll delay-100">
                     <div class="bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 from-gray-200 to-white rounded-2xl shadow-2xl overflow-hidden">
                         <div class="p-8">
-                            <h3 class="text-2xl font-bold dark:text-white mb-4">Interview Preparation Roadmap</h3>
+                            <h3 class="text-2xl font-bold dark:text-white mb-4">How to Prepare</h3>
                             <div class="space-y-6">
                                 <div class="flex items-start">
                                     <div class="flex-shrink-0 w-10 h-10 gradient-bg rounded-full flex items-center justify-center mr-4">
                                         <span class="text-white font-bold">1</span>
                                     </div>
                                     <div>
-                                        <h4 class="dark:text-white font-bold mb-1">Data Structures & Algorithms</h4>
-                                        <p class="dark:text-gray-300 text-gray-600">Master essential algorithms and data structures with 500+ practice problems.</p>
+                                        <h4 class="dark:text-white font-bold mb-1">Learn the Fundamentals</h4>
+                                        <p class="dark:text-gray-300 text-gray-600">Work through a course in order. Lessons are grouped from Beginner to Expert.</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
@@ -125,8 +162,8 @@ import { getSiteName } from "../data/data";
                                         <span class="text-white font-bold">2</span>
                                     </div>
                                     <div>
-                                        <h4 class="dark:text-white font-bold mb-1">System Design</h4>
-                                        <p class="dark:text-gray-300 text-gray-600">Learn to design scalable systems for top tech company interviews.</p>
+                                        <h4 class="dark:text-white font-bold mb-1">Study the Code</h4>
+                                        <p class="dark:text-gray-300 text-gray-600">Every lesson ends with a complete example you can copy and run yourself.</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
@@ -134,8 +171,8 @@ import { getSiteName } from "../data/data";
                                         <span class="text-white font-bold">3</span>
                                     </div>
                                     <div>
-                                        <h4 class="dark:text-white font-bold mb-1">Mock Interviews</h4>
-                                        <p class="dark:text-gray-300 text-gray-600">Practice with industry experts and get personalized feedback.</p>
+                                        <h4 class="dark:text-white font-bold mb-1">Answer Interview Questions</h4>
+                                        <p class="dark:text-gray-300 text-gray-600">Practise with questions for freshers, mid-level and senior roles, each with an answer.</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
@@ -143,173 +180,76 @@ import { getSiteName } from "../data/data";
                                         <span class="text-white font-bold">4</span>
                                     </div>
                                     <div>
-                                        <h4 class="dark:text-white font-bold mb-1">Company-Specific Questions</h4>
-                                        <p class="dark:text-gray-300 text-gray-600">Prepare for interviews at FAANG and other top tech companies.</p>
+                                        <h4 class="dark:text-white font-bold mb-1">Build Something</h4>
+                                        <p class="dark:text-gray-300 text-gray-600">Put a course's topics together in a small project of your own.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="animate-on-scroll delay-200">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover">
-                            <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-4">
-                                <i class="fas fa-code text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Coding Challenges</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">1000+ problems with detailed solutions and explanations.</p>
-                            <a href="#" class="hidden text-purple-600 dark:text-purple-400 font-medium flex items-center">
-                                Practice Now
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover">
-                            <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
-                                <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Mock Interviews</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">Simulate real interview scenarios with expert feedback.</p>
-                            <a href="#" class="hidden text-blue-600 dark:text-blue-400 font-medium flex items-center">
-                                Schedule Now
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover">
-                            <div class="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center mb-4">
-                                <i class="fas fa-building text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Company Guides</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">Detailed breakdowns of interview processes at top companies.</p>
-                            <a href="#" class="hidden text-green-600 dark:text-green-400 font-medium flex items-center">
-                                Explore Guides
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                        
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover">
-                            <div class="w-14 h-14 bg-yellow-600 rounded-xl flex items-center justify-center mb-4">
-                                <i class="fas fa-question-circle text-white text-2xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Q&A Forum</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">Get your questions answered by our community of experts.</p>
-                            <a href="#" class="hidden text-yellow-600 dark:text-yellow-400 font-medium flex items-center">
-                                Join Discussion
-                                <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {
+                            interviewCourses.map((course) => (
+                                <a href={`/courses/${course.slug}/interview-questions`} class="block bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 card-hover">
+                                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                                        <i class="fas fa-question-circle text-white text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">{course.courseTitle} Interview Questions</h3>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">{resources[course.slug].interviewQuestions} {resources[course.slug].interviewQuestions === 1 ? "question" : "questions"} with answers</p>
+                                    <span class="text-purple-600 dark:text-purple-400 font-medium flex items-center">
+                                        Start Practising
+                                        <i class="fas fa-arrow-right ml-2"></i>
+                                    </span>
+                                </a>
+                            ))
+                        }
                     </div>
                 </div>
+            </div>
+
+            <div class="text-center mt-12 animate-on-scroll delay-400">
+                <a href="/interview-prep" class="inline-flex items-center px-6 py-3 gradient-border text-purple-600 dark:text-purple-400 font-medium rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    Open the Interview Prep Guide
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-16 px-6 bg-gray-100/50 dark:bg-gray-800/50">
+    <section id="features" class="py-16 px-6">
         <div class="container mx-auto">
             <div class="text-center mb-12 animate-on-scroll">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose <span class="gradient-text">{getSiteName()}</span></h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Our platform is designed to give you the most effective and engaging learning experience</p>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Written to be read, practised and come back to</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg card-hover animate-on-scroll delay-100">
                     <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-laptop-code text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Interactive Coding Environment</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Write, run, and test code directly in your browser with our built-in IDE. No setup required.</p>
+                    <h3 class="text-xl font-bold mb-4">Code Beside Every Lesson</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Each topic pairs the explanation with a full code listing in a side panel, ready to copy into your editor.</p>
                 </div>
-                
+
                 <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg card-hover animate-on-scroll delay-200">
                     <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-project-diagram text-white text-2xl"></i>
+                        <i class="fas fa-route text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Real-World Projects</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Build portfolio-worthy projects that simulate real industry challenges and workflows.</p>
+                    <h3 class="text-xl font-bold mb-4">A Clear Learning Path</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Courses follow a syllabus from Beginner to Expert, with Previous and Next links so you always know what comes next.</p>
                 </div>
-                
+
                 <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg card-hover animate-on-scroll delay-300">
                     <div class="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                        <i class="fas fa-unlock text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Personalized Learning Path</h3>
-                    <p class="text-gray-600 dark:text-gray-300">AI-powered recommendations adapt to your skill level and learning pace for optimal progress.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 px-6">
-        <div class="container mx-auto">
-            <div class="text-center mb-12 animate-on-scroll">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our <span class="gradient-text">Students Say</span></h2>
-                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Join thousands of developers who have transformed their careers with {getSiteName()}</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg card-hover animate-on-scroll delay-100">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
-                            AS
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Alex Smith</h4>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Software Engineer @ Google</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6">"The interview prep course was incredible. I went through 3 mock interviews and landed offers from both Google and Amazon!"</p>
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg card-hover animate-on-scroll delay-200">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
-                            MJ
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Maria Johnson</h4>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Frontend Developer @ Airbnb</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6">"I transitioned from marketing to tech in 8 months. The React course gave me the skills I needed to land my first developer job."</p>
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg card-hover animate-on-scroll delay-300">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
-                            DR
-                        </div>
-                        <div>
-                            <h4 class="font-bold">David Rodriguez</h4>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Data Scientist @ Microsoft</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 italic mb-6">"The Python for Data Science course covered everything from basics to advanced ML algorithms. The projects were especially helpful for my portfolio."</p>
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+                    <h3 class="text-xl font-bold mb-4">Free and Open</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Every lesson is free to read without signing up. Spot a mistake? Report it on GitHub and it gets fixed for everyone.</p>
                 </div>
             </div>
         </div>
@@ -319,16 +259,16 @@ import { getSiteName } from "../data/data";
     <section class="py-20 px-6 gradient-bg relative overflow-hidden">
         <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full -translate-y-32 translate-x-32"></div>
         <div class="absolute bottom-0 left-0 w-64 h-64 bg-white opacity-10 rounded-full translate-y-32 -translate-x-32"></div>
-        
+
         <div class="container mx-auto relative z-10 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 animate-on-scroll">Start Your Coding Journey Today</h2>
-            <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto animate-on-scroll delay-100">Join over 50,000 developers who have accelerated their careers with {getSiteName()}</p>
+            <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto animate-on-scroll delay-100">Pick a course and read the first lesson. It's free, and there is nothing to sign up for.</p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-on-scroll delay-200">
-                <a href="#" class="hidden px-8 py-3 bg-white text-purple-600 font-bold rounded-full hover:bg-gray-100 transition-colors shadow-lg">
-                    Get Started for Free
+                <a href="/courses" class="px-8 py-3 bg-white text-purple-600 font-bold rounded-full hover:bg-gray-100 transition-colors shadow-lg">
+                    Browse Courses
                 </a>
-                <a href="#" class="hidden px-8 py-3 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors">
-                    Schedule a Demo
+                <a href="/contribute" class="px-8 py-3 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors">
+                    Contribute
                 </a>
             </div>
         </div>
