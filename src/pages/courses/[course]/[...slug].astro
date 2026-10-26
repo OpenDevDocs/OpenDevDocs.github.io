@@ -87,9 +87,13 @@ const panelCode = panelMatch?.[2] ?? '';
 // Not every YAML panel is a compose file: spot Kubernetes manifests and CI workflows
 const yamlFileName = /^apiVersion:/m.test(panelCode) ? 'deployment.yaml'
     : /^jobs:/m.test(panelCode) ? 'workflow.yml' : 'compose.yaml';
+// WPF panels hold XAML or C#. They start with a comment naming the file, such as
+// `// ViewModels/MainViewModel.cs` or `<!-- MainWindow.xaml -->` (escaped in the body).
+const wpfNamedFile = panelCode.match(/^\s*(?:\/\/|&lt;!--)\s*(?:[\w.-]+\/)*([\w.-]+\.(?:xaml|cs|csproj|json))\b/)?.[1];
+const wpfFileName = wpfNamedFile ?? (panelLanguage === 'xml' ? 'MainWindow.xaml' : 'MainWindow.xaml.cs');
 const previewFileName = (course === 'docker'
         ? (panelLanguage === 'yaml' ? yamlFileName : panelFileNames[panelLanguage])
-        : undefined)
+        : course === 'wpf' ? wpfFileName : undefined)
     ?? previewFileNames[course ?? ''] ?? 'script.js';
 
 // Reading time from the lesson body (about 200 words a minute), not a fixed guess

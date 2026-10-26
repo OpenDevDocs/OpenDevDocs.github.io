@@ -1,0 +1,384 @@
+{
+  "courseName": "WPF",
+  "courseSlug": "wpf",
+  "topics": [
+    {
+      "topicName": "What is WPF",
+      "slug": "what-is-wpf",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Setting Up Visual Studio and the .NET SDK",
+      "slug": "setting-up-visual-studio-and-the-dotnet-sdk",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Your First WPF App",
+      "slug": "your-first-wpf-app",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Understanding the Project Structure",
+      "slug": "understanding-the-project-structure",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Application and Window Classes",
+      "slug": "the-application-and-window-classes",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "XAML Syntax Basics",
+      "slug": "xaml-syntax-basics",
+      "difficultyLevel": "Beginner",
+      "section": "XAML Basics"
+    },
+    {
+      "topicName": "Code-Behind and Event Handlers",
+      "slug": "code-behind-and-event-handlers",
+      "difficultyLevel": "Beginner",
+      "section": "XAML Basics"
+    },
+    {
+      "topicName": "XAML Namespaces and Markup Extensions",
+      "slug": "xaml-namespaces-and-markup-extensions",
+      "difficultyLevel": "Intermediate",
+      "section": "XAML Basics"
+    },
+    {
+      "topicName": "Logical and Visual Trees",
+      "slug": "logical-and-visual-trees",
+      "difficultyLevel": "Intermediate",
+      "section": "XAML Basics"
+    },
+    {
+      "topicName": "Layout Basics: Size, Margin and Alignment",
+      "slug": "layout-basics-size-margin-and-alignment",
+      "difficultyLevel": "Beginner",
+      "section": "Layout"
+    },
+    {
+      "topicName": "The Grid Panel",
+      "slug": "the-grid-panel",
+      "difficultyLevel": "Beginner",
+      "section": "Layout"
+    },
+    {
+      "topicName": "StackPanel, WrapPanel and DockPanel",
+      "slug": "stackpanel-wrappanel-and-dockpanel",
+      "difficultyLevel": "Beginner",
+      "section": "Layout"
+    },
+    {
+      "topicName": "Canvas and UniformGrid",
+      "slug": "canvas-and-uniformgrid",
+      "difficultyLevel": "Beginner",
+      "section": "Layout"
+    },
+    {
+      "topicName": "ScrollViewer and Viewbox",
+      "slug": "scrollviewer-and-viewbox",
+      "difficultyLevel": "Beginner",
+      "section": "Layout"
+    },
+    {
+      "topicName": "Building Resizable Layouts",
+      "slug": "building-resizable-layouts",
+      "difficultyLevel": "Intermediate",
+      "section": "Layout"
+    },
+    {
+      "topicName": "Text Controls: TextBlock, Label and TextBox",
+      "slug": "text-controls",
+      "difficultyLevel": "Beginner",
+      "section": "Controls"
+    },
+    {
+      "topicName": "Buttons, CheckBoxes and RadioButtons",
+      "slug": "buttons-and-toggle-controls",
+      "difficultyLevel": "Beginner",
+      "section": "Controls"
+    },
+    {
+      "topicName": "ComboBox, ListBox, Slider and DatePicker",
+      "slug": "selection-controls",
+      "difficultyLevel": "Beginner",
+      "section": "Controls"
+    },
+    {
+      "topicName": "Images, Icons and Media",
+      "slug": "images-and-media",
+      "difficultyLevel": "Beginner",
+      "section": "Controls"
+    },
+    {
+      "topicName": "Menus, ToolBars and StatusBars",
+      "slug": "menus-toolbars-and-status-bars",
+      "difficultyLevel": "Intermediate",
+      "section": "Controls"
+    },
+    {
+      "topicName": "TabControl, Expander and GroupBox",
+      "slug": "tabcontrol-expander-and-groupbox",
+      "difficultyLevel": "Beginner",
+      "section": "Controls"
+    },
+    {
+      "topicName": "Data Binding Basics",
+      "slug": "data-binding-basics",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "Binding Modes and Update Triggers",
+      "slug": "binding-modes-and-update-triggers",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "INotifyPropertyChanged",
+      "slug": "inotifypropertychanged",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "Binding to Collections with ObservableCollection",
+      "slug": "binding-to-collections",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "Value Converters",
+      "slug": "value-converters",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "Data Templates",
+      "slug": "data-templates",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "The DataGrid Control",
+      "slug": "the-datagrid-control",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "Sorting, Filtering and Grouping with CollectionView",
+      "slug": "sorting-filtering-and-grouping",
+      "difficultyLevel": "Advanced",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "Input Validation",
+      "slug": "input-validation",
+      "difficultyLevel": "Advanced",
+      "section": "Data Binding"
+    },
+    {
+      "topicName": "Resources and Resource Dictionaries",
+      "slug": "resources-and-resource-dictionaries",
+      "difficultyLevel": "Intermediate",
+      "section": "Styles and Resources"
+    },
+    {
+      "topicName": "Styles and Setters",
+      "slug": "styles-and-setters",
+      "difficultyLevel": "Intermediate",
+      "section": "Styles and Resources"
+    },
+    {
+      "topicName": "Property, Data and Event Triggers",
+      "slug": "triggers",
+      "difficultyLevel": "Intermediate",
+      "section": "Styles and Resources"
+    },
+    {
+      "topicName": "Control Templates",
+      "slug": "control-templates",
+      "difficultyLevel": "Advanced",
+      "section": "Styles and Resources"
+    },
+    {
+      "topicName": "Brushes, Shapes and Effects",
+      "slug": "brushes-shapes-and-effects",
+      "difficultyLevel": "Intermediate",
+      "section": "Styles and Resources"
+    },
+    {
+      "topicName": "Light, Dark and Fluent Themes",
+      "slug": "light-dark-and-fluent-themes",
+      "difficultyLevel": "Advanced",
+      "section": "Styles and Resources"
+    },
+    {
+      "topicName": "Introduction to MVVM",
+      "slug": "introduction-to-mvvm",
+      "difficultyLevel": "Intermediate",
+      "section": "MVVM"
+    },
+    {
+      "topicName": "Commands and ICommand",
+      "slug": "commands-and-icommand",
+      "difficultyLevel": "Intermediate",
+      "section": "MVVM"
+    },
+    {
+      "topicName": "MVVM with CommunityToolkit.Mvvm",
+      "slug": "mvvm-with-communitytoolkit-mvvm",
+      "difficultyLevel": "Intermediate",
+      "section": "MVVM"
+    },
+    {
+      "topicName": "Dependency Injection with the Generic Host",
+      "slug": "dependency-injection-with-the-generic-host",
+      "difficultyLevel": "Advanced",
+      "section": "MVVM"
+    },
+    {
+      "topicName": "Navigation Between Views",
+      "slug": "navigation-between-views",
+      "difficultyLevel": "Advanced",
+      "section": "MVVM"
+    },
+    {
+      "topicName": "Dialogs and Message Boxes",
+      "slug": "dialogs-and-message-boxes",
+      "difficultyLevel": "Intermediate",
+      "section": "MVVM"
+    },
+    {
+      "topicName": "Messaging Between ViewModels",
+      "slug": "messaging-between-viewmodels",
+      "difficultyLevel": "Advanced",
+      "section": "MVVM"
+    },
+    {
+      "topicName": "User Controls",
+      "slug": "user-controls",
+      "difficultyLevel": "Intermediate",
+      "section": "Custom Controls and Animation"
+    },
+    {
+      "topicName": "Dependency Properties",
+      "slug": "dependency-properties",
+      "difficultyLevel": "Advanced",
+      "section": "Custom Controls and Animation"
+    },
+    {
+      "topicName": "Attached Properties and Behaviors",
+      "slug": "attached-properties-and-behaviors",
+      "difficultyLevel": "Advanced",
+      "section": "Custom Controls and Animation"
+    },
+    {
+      "topicName": "Custom Controls",
+      "slug": "custom-controls",
+      "difficultyLevel": "Expert",
+      "section": "Custom Controls and Animation"
+    },
+    {
+      "topicName": "Animations and Storyboards",
+      "slug": "animations-and-storyboards",
+      "difficultyLevel": "Advanced",
+      "section": "Custom Controls and Animation"
+    },
+    {
+      "topicName": "Async, Await and a Responsive UI",
+      "slug": "async-await-and-a-responsive-ui",
+      "difficultyLevel": "Intermediate",
+      "section": "Data and Services"
+    },
+    {
+      "topicName": "The Dispatcher and Threading",
+      "slug": "the-dispatcher-and-threading",
+      "difficultyLevel": "Advanced",
+      "section": "Data and Services"
+    },
+    {
+      "topicName": "Saving Data to JSON Files",
+      "slug": "saving-data-to-json-files",
+      "difficultyLevel": "Intermediate",
+      "section": "Data and Services"
+    },
+    {
+      "topicName": "SQLite with Entity Framework Core",
+      "slug": "sqlite-with-ef-core",
+      "difficultyLevel": "Advanced",
+      "section": "Data and Services"
+    },
+    {
+      "topicName": "Calling Web APIs with HttpClient",
+      "slug": "calling-web-apis-with-httpclient",
+      "difficultyLevel": "Advanced",
+      "section": "Data and Services"
+    },
+    {
+      "topicName": "App Settings and Configuration",
+      "slug": "app-settings-and-configuration",
+      "difficultyLevel": "Advanced",
+      "section": "Data and Services"
+    },
+    {
+      "topicName": "Keyboard Shortcuts and Focus",
+      "slug": "keyboard-shortcuts-and-focus",
+      "difficultyLevel": "Intermediate",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Drag and Drop",
+      "slug": "drag-and-drop",
+      "difficultyLevel": "Advanced",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Accessibility and Localization",
+      "slug": "accessibility-and-localization",
+      "difficultyLevel": "Advanced",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Error Handling and Logging",
+      "slug": "error-handling-and-logging",
+      "difficultyLevel": "Advanced",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Unit Testing ViewModels",
+      "slug": "unit-testing-viewmodels",
+      "difficultyLevel": "Advanced",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Performance and UI Virtualization",
+      "slug": "performance-and-virtualization",
+      "difficultyLevel": "Expert",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Publishing and Packaging WPF Apps",
+      "slug": "publishing-and-packaging-wpf-apps",
+      "difficultyLevel": "Advanced",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Migrating from .NET Framework to Modern .NET",
+      "slug": "migrating-from-dotnet-framework",
+      "difficultyLevel": "Expert",
+      "section": "Polish and Shipping"
+    },
+    {
+      "topicName": "Building a Complete Expense Tracker",
+      "slug": "building-a-complete-expense-tracker",
+      "difficultyLevel": "Expert",
+      "section": "Projects"
+    }
+  ]
+}
