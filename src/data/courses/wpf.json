@@ -1,0 +1,16 @@
+{
+  "courseTitle": "WPF",
+  "slug": "wpf",
+  "cardText": "Build Windows desktop apps with XAML and C#",
+  "descriptionText": "Windows Presentation Foundation (WPF) is Microsoft's framework for building rich Windows desktop applications with XAML and C#. Learn to lay out windows with panels, use the built in controls, connect your UI to data with bindings, style everything with resources, templates and themes, organize your code with MVVM and CommunityToolkit.Mvvm, save data with JSON and SQLite, keep the UI responsive with async code, and publish a finished app.",
+  "imageFileName": "wpf",
+  "tags": "Desktop",
+  "color": "#5C2D91",
+  "gradientClass": "from-violet-500 to-blue-600",
+  "authorId": "bishal-biswas",
+  "order": 51,
+  "isAvailable": true,
+  "isCompleted": false,
+  "isPopular": false,
+  "isPaid": false
+}
