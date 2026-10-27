@@ -1,0 +1,408 @@
+{
+  "courseName": "Python",
+  "courseSlug": "python",
+  "topics": [
+    {
+      "topicName": "What is Python and Why Learn It?",
+      "slug": "what-is-python",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Installing Python on Windows, macOS and Linux",
+      "slug": "installing-python",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Writing and Running Your First Python Program",
+      "slug": "first-python-program",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Python Interactive Shell (REPL)",
+      "slug": "python-repl",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Setting Up VS Code for Python",
+      "slug": "setting-up-vs-code",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Python Syntax: Comments, Indentation and Statements",
+      "slug": "syntax-comments-indentation",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Variables and Assignment",
+      "slug": "variables",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Data Types: An Overview",
+      "slug": "data-types",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Numbers and Math Operators",
+      "slug": "numbers-and-math",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Strings: Working with Text",
+      "slug": "strings",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Useful String Methods",
+      "slug": "string-methods",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "f-strings and String Formatting",
+      "slug": "f-strings",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Booleans, Comparisons and None",
+      "slug": "booleans-and-none",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Converting Between Types",
+      "slug": "type-conversion",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Getting Input and Printing Output",
+      "slug": "input-and-output",
+      "difficultyLevel": "Beginner",
+      "section": "Python Basics"
+    },
+    {
+      "topicName": "Making Decisions with if, elif and else",
+      "slug": "if-elif-else",
+      "difficultyLevel": "Beginner",
+      "section": "Control Flow"
+    },
+    {
+      "topicName": "Logical Operators: and, or, not",
+      "slug": "logical-operators",
+      "difficultyLevel": "Beginner",
+      "section": "Control Flow"
+    },
+    {
+      "topicName": "Repeating Code with while Loops",
+      "slug": "while-loops",
+      "difficultyLevel": "Beginner",
+      "section": "Control Flow"
+    },
+    {
+      "topicName": "for Loops and range()",
+      "slug": "for-loops-and-range",
+      "difficultyLevel": "Beginner",
+      "section": "Control Flow"
+    },
+    {
+      "topicName": "break, continue, pass and Loop else",
+      "slug": "break-continue-pass",
+      "difficultyLevel": "Beginner",
+      "section": "Control Flow"
+    },
+    {
+      "topicName": "Pattern Matching with match and case",
+      "slug": "match-case",
+      "difficultyLevel": "Intermediate",
+      "section": "Control Flow"
+    },
+    {
+      "topicName": "Project: Number Guessing Game",
+      "slug": "project-number-guessing-game",
+      "difficultyLevel": "Beginner",
+      "section": "Control Flow"
+    },
+    {
+      "topicName": "Lists: Ordered Collections",
+      "slug": "lists",
+      "difficultyLevel": "Beginner",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "List Methods, Slicing and Sorting",
+      "slug": "list-methods-and-slicing",
+      "difficultyLevel": "Beginner",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "Tuples and Unpacking",
+      "slug": "tuples-and-unpacking",
+      "difficultyLevel": "Beginner",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "Dictionaries: Key-Value Pairs",
+      "slug": "dictionaries",
+      "difficultyLevel": "Beginner",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "Sets: Collections of Unique Values",
+      "slug": "sets",
+      "difficultyLevel": "Beginner",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "List, Dict and Set Comprehensions",
+      "slug": "comprehensions",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "enumerate, zip and Other Loop Helpers",
+      "slug": "enumerate-zip-and-loop-helpers",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "Mutable vs Immutable: Copying Data Safely",
+      "slug": "mutability-and-copying",
+      "difficultyLevel": "Intermediate",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "Project: Contact Book",
+      "slug": "project-contact-book",
+      "difficultyLevel": "Beginner",
+      "section": "Data Structures"
+    },
+    {
+      "topicName": "Defining and Calling Functions",
+      "slug": "functions",
+      "difficultyLevel": "Beginner",
+      "section": "Functions"
+    },
+    {
+      "topicName": "Function Arguments: Defaults, Keywords, *args and **kwargs",
+      "slug": "function-arguments",
+      "difficultyLevel": "Intermediate",
+      "section": "Functions"
+    },
+    {
+      "topicName": "Variable Scope: Local, Global and nonlocal",
+      "slug": "variable-scope",
+      "difficultyLevel": "Intermediate",
+      "section": "Functions"
+    },
+    {
+      "topicName": "Lambda and Higher-Order Functions",
+      "slug": "lambda-and-higher-order-functions",
+      "difficultyLevel": "Intermediate",
+      "section": "Functions"
+    },
+    {
+      "topicName": "Recursion: Functions That Call Themselves",
+      "slug": "recursion",
+      "difficultyLevel": "Intermediate",
+      "section": "Functions"
+    },
+    {
+      "topicName": "Type Hints: Labeling Your Data",
+      "slug": "type-hints",
+      "difficultyLevel": "Intermediate",
+      "section": "Functions"
+    },
+    {
+      "topicName": "Docstrings and Writing Clean Functions",
+      "slug": "docstrings-and-clean-functions",
+      "difficultyLevel": "Beginner",
+      "section": "Functions"
+    },
+    {
+      "topicName": "Modules and import",
+      "slug": "modules-and-imports",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "A Tour of the Standard Library",
+      "slug": "standard-library-tour",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "Installing Packages with pip",
+      "slug": "pip-and-packages",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "Virtual Environments with venv",
+      "slug": "virtual-environments",
+      "difficultyLevel": "Beginner",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "Organizing Code into Packages and __main__",
+      "slug": "creating-packages",
+      "difficultyLevel": "Intermediate",
+      "section": "Modules and Packages"
+    },
+    {
+      "topicName": "Reading and Writing Files",
+      "slug": "reading-and-writing-files",
+      "difficultyLevel": "Beginner",
+      "section": "Files and Errors"
+    },
+    {
+      "topicName": "Working with File Paths using pathlib",
+      "slug": "pathlib",
+      "difficultyLevel": "Intermediate",
+      "section": "Files and Errors"
+    },
+    {
+      "topicName": "Working with JSON and CSV Files",
+      "slug": "json-and-csv",
+      "difficultyLevel": "Intermediate",
+      "section": "Files and Errors"
+    },
+    {
+      "topicName": "Handling Errors with try and except",
+      "slug": "exceptions",
+      "difficultyLevel": "Beginner",
+      "section": "Files and Errors"
+    },
+    {
+      "topicName": "Raising Errors and Custom Exceptions",
+      "slug": "raising-and-custom-exceptions",
+      "difficultyLevel": "Intermediate",
+      "section": "Files and Errors"
+    },
+    {
+      "topicName": "The with Statement and Context Managers",
+      "slug": "with-and-context-managers",
+      "difficultyLevel": "Intermediate",
+      "section": "Files and Errors"
+    },
+    {
+      "topicName": "Debugging Python Code",
+      "slug": "debugging-python",
+      "difficultyLevel": "Intermediate",
+      "section": "Files and Errors"
+    },
+    {
+      "topicName": "Classes and Objects",
+      "slug": "classes-and-objects",
+      "difficultyLevel": "Intermediate",
+      "section": "Object-Oriented Programming"
+    },
+    {
+      "topicName": "Instance, Class and Static Methods",
+      "slug": "instance-class-static-methods",
+      "difficultyLevel": "Intermediate",
+      "section": "Object-Oriented Programming"
+    },
+    {
+      "topicName": "Inheritance and super()",
+      "slug": "inheritance",
+      "difficultyLevel": "Intermediate",
+      "section": "Object-Oriented Programming"
+    },
+    {
+      "topicName": "Special (Dunder) Methods",
+      "slug": "dunder-methods",
+      "difficultyLevel": "Intermediate",
+      "section": "Object-Oriented Programming"
+    },
+    {
+      "topicName": "Properties and Encapsulation",
+      "slug": "properties-and-encapsulation",
+      "difficultyLevel": "Intermediate",
+      "section": "Object-Oriented Programming"
+    },
+    {
+      "topicName": "Data Classes",
+      "slug": "dataclasses",
+      "difficultyLevel": "Intermediate",
+      "section": "Object-Oriented Programming"
+    },
+    {
+      "topicName": "Project: Bank Account System",
+      "slug": "project-bank-account",
+      "difficultyLevel": "Intermediate",
+      "section": "Object-Oriented Programming"
+    },
+    {
+      "topicName": "Iterators and Generators",
+      "slug": "iterators-and-generators",
+      "difficultyLevel": "Advanced",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Decorators",
+      "slug": "decorators",
+      "difficultyLevel": "Advanced",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Working with Dates and Times",
+      "slug": "dates-and-times",
+      "difficultyLevel": "Intermediate",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Regular Expressions with re",
+      "slug": "regular-expressions",
+      "difficultyLevel": "Intermediate",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Calling Web APIs with requests",
+      "slug": "calling-web-apis",
+      "difficultyLevel": "Intermediate",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Logging Instead of print()",
+      "slug": "logging",
+      "difficultyLevel": "Intermediate",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Testing Your Code with pytest",
+      "slug": "testing-with-pytest",
+      "difficultyLevel": "Advanced",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Async Python with asyncio",
+      "slug": "async-basics",
+      "difficultyLevel": "Advanced",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Capstone: Command-Line Task Manager",
+      "slug": "capstone-task-manager-cli",
+      "difficultyLevel": "Advanced",
+      "section": "Intermediate Python"
+    },
+    {
+      "topicName": "Where to Go Next with Python",
+      "slug": "next-steps",
+      "difficultyLevel": "Beginner",
+      "section": "Intermediate Python"
+    }
+  ]
+}
