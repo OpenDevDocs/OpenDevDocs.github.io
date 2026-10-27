@@ -1,0 +1,414 @@
+{
+  "courseName": "React Native",
+  "courseSlug": "react-native",
+  "topics": [
+    {
+      "topicName": "What is React Native? Phone Apps with React",
+      "slug": "what-is-react-native",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "How React Native Works Under the Hood",
+      "slug": "how-react-native-works",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Setting Up Your Computer for React Native",
+      "slug": "setting-up-your-computer",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Creating Your First App with Expo",
+      "slug": "create-your-first-app",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Understanding the Project Files",
+      "slug": "project-structure",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "The Dev Server, Fast Refresh and the Dev Menu",
+      "slug": "dev-server-and-fast-refresh",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Expo Go vs Development Builds",
+      "slug": "expo-go-vs-development-builds",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "Just Enough TypeScript for React Native",
+      "slug": "typescript-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
+      "topicName": "View and Text: The Building Blocks",
+      "slug": "view-and-text",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Showing Images",
+      "slug": "images",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Getting Text from Users with TextInput",
+      "slug": "text-input",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Buttons and Pressable",
+      "slug": "buttons-and-pressable",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Scrolling Content with ScrollView",
+      "slug": "scrollview",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Long Lists with FlatList",
+      "slug": "flatlist",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Grouped Lists with SectionList",
+      "slug": "sectionlist",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Modals and Alerts",
+      "slug": "modal-and-alert",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Switch, ActivityIndicator and Other Handy Components",
+      "slug": "switch-and-activity-indicator",
+      "difficultyLevel": "Beginner",
+      "section": "Core Components"
+    },
+    {
+      "topicName": "Styling with StyleSheet",
+      "slug": "stylesheet-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Layout"
+    },
+    {
+      "topicName": "Layout with Flexbox",
+      "slug": "flexbox-layout",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Layout"
+    },
+    {
+      "topicName": "Sizes, Dimensions and Different Screens",
+      "slug": "sizes-and-dimensions",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Layout"
+    },
+    {
+      "topicName": "Safe Areas: Notches, Status Bars and Home Bars",
+      "slug": "safe-areas",
+      "difficultyLevel": "Beginner",
+      "section": "Styling and Layout"
+    },
+    {
+      "topicName": "Writing Platform-Specific Code",
+      "slug": "platform-specific-code",
+      "difficultyLevel": "Intermediate",
+      "section": "Styling and Layout"
+    },
+    {
+      "topicName": "Dark Mode and Themes",
+      "slug": "dark-mode-and-themes",
+      "difficultyLevel": "Intermediate",
+      "section": "Styling and Layout"
+    },
+    {
+      "topicName": "Custom Fonts and Icons",
+      "slug": "fonts-and-icons",
+      "difficultyLevel": "Intermediate",
+      "section": "Styling and Layout"
+    },
+    {
+      "topicName": "State and Props in a Mobile App",
+      "slug": "state-and-props",
+      "difficultyLevel": "Beginner",
+      "section": "State and Logic"
+    },
+    {
+      "topicName": "Building Forms and Checking Input",
+      "slug": "forms-and-validation",
+      "difficultyLevel": "Intermediate",
+      "section": "State and Logic"
+    },
+    {
+      "topicName": "Handling the Keyboard",
+      "slug": "keyboard-handling",
+      "difficultyLevel": "Intermediate",
+      "section": "State and Logic"
+    },
+    {
+      "topicName": "Effects and the App Lifecycle",
+      "slug": "effects-and-app-state",
+      "difficultyLevel": "Intermediate",
+      "section": "State and Logic"
+    },
+    {
+      "topicName": "Sharing State with Context",
+      "slug": "context-for-shared-state",
+      "difficultyLevel": "Intermediate",
+      "section": "State and Logic"
+    },
+    {
+      "topicName": "useReducer and Custom Hooks",
+      "slug": "usereducer-and-custom-hooks",
+      "difficultyLevel": "Intermediate",
+      "section": "State and Logic"
+    },
+    {
+      "topicName": "How Expo Router Works",
+      "slug": "expo-router-basics",
+      "difficultyLevel": "Beginner",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Stack Navigation and Headers",
+      "slug": "stack-navigation",
+      "difficultyLevel": "Beginner",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Links and Navigating in Code",
+      "slug": "links-and-navigating",
+      "difficultyLevel": "Beginner",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Dynamic Routes and Route Params",
+      "slug": "dynamic-routes",
+      "difficultyLevel": "Intermediate",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Tab Navigation",
+      "slug": "tab-navigation",
+      "difficultyLevel": "Intermediate",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Nested Layouts and Route Groups",
+      "slug": "layouts-and-route-groups",
+      "difficultyLevel": "Intermediate",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Modal Screens",
+      "slug": "modal-screens",
+      "difficultyLevel": "Intermediate",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Protected Routes and a Simple Login Flow",
+      "slug": "protected-routes",
+      "difficultyLevel": "Intermediate",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Deep Linking: Opening Your App from a URL",
+      "slug": "deep-linking",
+      "difficultyLevel": "Intermediate",
+      "section": "Navigation with Expo Router"
+    },
+    {
+      "topicName": "Fetching Data from an API",
+      "slug": "fetching-data",
+      "difficultyLevel": "Intermediate",
+      "section": "Data and Storage"
+    },
+    {
+      "topicName": "Loading States, Errors and Pull to Refresh",
+      "slug": "loading-and-refreshing",
+      "difficultyLevel": "Intermediate",
+      "section": "Data and Storage"
+    },
+    {
+      "topicName": "Caching Server Data with TanStack Query",
+      "slug": "tanstack-query",
+      "difficultyLevel": "Intermediate",
+      "section": "Data and Storage"
+    },
+    {
+      "topicName": "Saving Data on the Phone with AsyncStorage",
+      "slug": "async-storage",
+      "difficultyLevel": "Intermediate",
+      "section": "Data and Storage"
+    },
+    {
+      "topicName": "Keeping Secrets Safe with SecureStore",
+      "slug": "secure-store",
+      "difficultyLevel": "Intermediate",
+      "section": "Data and Storage"
+    },
+    {
+      "topicName": "A Real Database on the Phone with SQLite",
+      "slug": "sqlite-database",
+      "difficultyLevel": "Advanced",
+      "section": "Data and Storage"
+    },
+    {
+      "topicName": "Offline Support and Network Status",
+      "slug": "offline-and-network-status",
+      "difficultyLevel": "Advanced",
+      "section": "Data and Storage"
+    },
+    {
+      "topicName": "Asking for Permissions the Right Way",
+      "slug": "permissions",
+      "difficultyLevel": "Intermediate",
+      "section": "Device Features"
+    },
+    {
+      "topicName": "Taking Photos with the Camera",
+      "slug": "camera",
+      "difficultyLevel": "Intermediate",
+      "section": "Device Features"
+    },
+    {
+      "topicName": "Picking Photos from the Gallery",
+      "slug": "image-picker",
+      "difficultyLevel": "Intermediate",
+      "section": "Device Features"
+    },
+    {
+      "topicName": "Getting the User's Location",
+      "slug": "location",
+      "difficultyLevel": "Intermediate",
+      "section": "Device Features"
+    },
+    {
+      "topicName": "Local Notifications and Reminders",
+      "slug": "notifications",
+      "difficultyLevel": "Advanced",
+      "section": "Device Features"
+    },
+    {
+      "topicName": "Haptics, Sharing and the Clipboard",
+      "slug": "haptics-sharing-and-clipboard",
+      "difficultyLevel": "Intermediate",
+      "section": "Device Features"
+    },
+    {
+      "topicName": "Working with Files",
+      "slug": "file-system",
+      "difficultyLevel": "Advanced",
+      "section": "Device Features"
+    },
+    {
+      "topicName": "First Animations with the Animated API",
+      "slug": "animated-api",
+      "difficultyLevel": "Intermediate",
+      "section": "Animations and Gestures"
+    },
+    {
+      "topicName": "Smooth Animations with Reanimated",
+      "slug": "reanimated-basics",
+      "difficultyLevel": "Advanced",
+      "section": "Animations and Gestures"
+    },
+    {
+      "topicName": "Swipes and Drags with Gesture Handler",
+      "slug": "gestures",
+      "difficultyLevel": "Advanced",
+      "section": "Animations and Gestures"
+    },
+    {
+      "topicName": "Entering, Exiting and Layout Animations",
+      "slug": "layout-animations",
+      "difficultyLevel": "Advanced",
+      "section": "Animations and Gestures"
+    },
+    {
+      "topicName": "Debugging React Native Apps",
+      "slug": "debugging",
+      "difficultyLevel": "Intermediate",
+      "section": "Quality and Performance"
+    },
+    {
+      "topicName": "Making Your App Fast",
+      "slug": "performance",
+      "difficultyLevel": "Advanced",
+      "section": "Quality and Performance"
+    },
+    {
+      "topicName": "Accessibility: Apps Everyone Can Use",
+      "slug": "accessibility",
+      "difficultyLevel": "Intermediate",
+      "section": "Quality and Performance"
+    },
+    {
+      "topicName": "Testing with Jest and React Native Testing Library",
+      "slug": "testing",
+      "difficultyLevel": "Advanced",
+      "section": "Quality and Performance"
+    },
+    {
+      "topicName": "App Config, Icons and the Splash Screen",
+      "slug": "app-config-icons-and-splash",
+      "difficultyLevel": "Intermediate",
+      "section": "Shipping Your App"
+    },
+    {
+      "topicName": "Environment Variables and App Settings",
+      "slug": "environment-variables",
+      "difficultyLevel": "Intermediate",
+      "section": "Shipping Your App"
+    },
+    {
+      "topicName": "Building Your App with EAS Build",
+      "slug": "eas-build",
+      "difficultyLevel": "Advanced",
+      "section": "Shipping Your App"
+    },
+    {
+      "topicName": "Publishing to Google Play",
+      "slug": "publishing-to-google-play",
+      "difficultyLevel": "Advanced",
+      "section": "Shipping Your App"
+    },
+    {
+      "topicName": "Publishing to the Apple App Store",
+      "slug": "publishing-to-the-app-store",
+      "difficultyLevel": "Advanced",
+      "section": "Shipping Your App"
+    },
+    {
+      "topicName": "Shipping Fixes Fast with EAS Update",
+      "slug": "eas-update",
+      "difficultyLevel": "Advanced",
+      "section": "Shipping Your App"
+    },
+    {
+      "topicName": "Course Review and Where to Go Next",
+      "slug": "next-steps",
+      "difficultyLevel": "Intermediate",
+      "section": "Shipping Your App"
+    }
+  ]
+}

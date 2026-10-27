@@ -91,9 +91,15 @@ const yamlFileName = /^apiVersion:/m.test(panelCode) ? 'deployment.yaml'
 // `// ViewModels/MainViewModel.cs` or `<!-- MainWindow.xaml -->` (escaped in the body).
 const wpfNamedFile = panelCode.match(/^\s*(?:\/\/|&lt;!--)\s*(?:[\w.-]+\/)*([\w.-]+\.(?:xaml|cs|csproj|json))\b/)?.[1];
 const wpfFileName = wpfNamedFile ?? (panelLanguage === 'xml' ? 'MainWindow.xaml' : 'MainWindow.xaml.cs');
+// React Native panels start with a comment naming the file, such as `// src/app/index.tsx`
+// or `# commands.sh`. Without one, fall back to a name that fits the panel language.
+const rnNamedFile = panelCode.match(/^\s*(?:\/\/|#)\s*(?:[\w.@()[\]-]+\/)*([\w.@-]+\.(?:tsx|ts|jsx|js|json|sh))\b/)?.[1];
+const rnFallbackNames: Record<string, string> = { 'tsx': 'App.tsx', 'ts': 'index.ts', 'typescript': 'index.ts', 'bash': 'commands.sh', 'json': 'app.json' };
+const rnFileName = rnNamedFile ?? rnFallbackNames[panelLanguage] ?? 'App.tsx';
 const previewFileName = (course === 'docker'
         ? (panelLanguage === 'yaml' ? yamlFileName : panelFileNames[panelLanguage])
-        : course === 'wpf' ? wpfFileName : undefined)
+        : course === 'wpf' ? wpfFileName
+        : course === 'react-native' ? rnFileName : undefined)
     ?? previewFileNames[course ?? ''] ?? 'script.js';
 
 // Reading time from the lesson body (about 200 words a minute), not a fixed guess
