@@ -747,6 +747,37 @@ pageType='website'>
         });
     });
     
+    // Opens one question and scrolls to it. Used by the random-question button and
+    // by search results, which link here as `#q=<question id>`.
+    function openQuestion(questionElement, behavior = 'smooth') {
+        if (!questionElement) return false;
+        const header = questionElement.querySelector('.accordion-header');
+        const content = questionElement.querySelector('.accordion-content');
+        const icon = header.querySelector('.accordion-icon i');
+
+        // Close all accordions first
+        document.querySelectorAll('.accordion-content').forEach(acc => {
+            acc.classList.remove('open');
+            acc.previousElementSibling.querySelector('.accordion-icon i').classList.remove('open');
+        });
+
+        content.classList.add('open');
+        icon.classList.add('open');
+
+        window.scrollTo({
+            top: questionElement.getBoundingClientRect().top + window.scrollY - 120,
+            behavior
+        });
+        return true;
+    }
+
+    function openQuestionFromHash() {
+        const id = new URLSearchParams(location.hash.slice(1)).get('q');
+        // Jump straight there: a long smooth scroll on arrival feels slow.
+        if (id) openQuestion(document.querySelector(`.accordion-item[data-id="${CSS.escape(id)}"]`), 'instant');
+    }
+    window.addEventListener('hashchange', openQuestionFromHash);
+
     // Floating Action Button - Random Question
     const fab = document.getElementById('fab');
     fab.addEventListener('click', function() {
@@ -760,29 +791,7 @@ pageType='website'>
         const randomQuestion = allQuestions[Math.floor(Math.random() * allQuestions.length)];
         
         // Scroll to random question
-        const questionElement = document.querySelector(`.accordion-item[data-id="${randomQuestion.id}"]`);
-        if (questionElement) {
-            // Open the accordion
-            const header = questionElement.querySelector('.accordion-header');
-            const content = questionElement.querySelector('.accordion-content');
-            const icon = header.querySelector('.accordion-icon i');
-            
-            // Close all accordions first
-            document.querySelectorAll('.accordion-content').forEach(acc => {
-                acc.classList.remove('open');
-                acc.previousElementSibling.querySelector('.accordion-icon i').classList.remove('open');
-            });
-            
-            // Open random question
-            content.classList.add('open');
-            icon.classList.add('open');
-            
-            // Scroll to question
-            window.scrollTo({
-                top: questionElement.offsetTop - 120,
-                behavior: 'smooth'
-            });
-            
+        if (openQuestion(document.querySelector(`.accordion-item[data-id="${randomQuestion.id}"]`))) {
             // Visual feedback on FAB
             this.style.transform = 'scale(1.2)';
             setTimeout(() => {
@@ -794,6 +803,7 @@ pageType='website'>
     // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             generateQuestions();
+            openQuestionFromHash();
             
             // Initialize animations
             window.addEventListener('load', animateOnScroll);

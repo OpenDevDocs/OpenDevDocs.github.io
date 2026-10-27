@@ -40,18 +40,16 @@ const {courseTitle, courseImage, courseSlug, courseTextClass} = Astro.props;
                 </div>
             </div>
             <div class="flex items-center gap-2 sm:gap-3">
+                <button type="button" data-search-open aria-label="Search"
+                    class="flex items-center gap-2 h-10 px-3 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                    <i class="fas fa-search"></i>
+                    <span class="hidden md:inline text-sm">Search</span>
+                    <kbd class="hidden md:inline text-xs font-sans px-1.5 py-0.5 rounded border border-gray-300 dark:border-gray-600">Ctrl K</kbd>
+                </button>
                 <button id="darkModeToggle"
                     class="size-10 p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                     <i id="darkIcon" class="fas fa-sun"></i>
                 </button>
-                {
-                    false &&
-                    <div
-                        class="hidden md:flex text-sm items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full">
-                        <i class="fas fa-search text-gray-500 text-xs"></i>
-                        <span class="text-gray-500 dark:text-gray-400 text-xs">Ctrl + K</span>
-                    </div>
-                }
             </div>
         </div>
     </div>

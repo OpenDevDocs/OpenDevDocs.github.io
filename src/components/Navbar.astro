@@ -29,6 +29,12 @@ import { getSiteName } from "../data/data";
             </div>
 
             <div class="flex items-center space-x-4">
+                <button type="button" data-search-open aria-label="Search"
+                    class="flex items-center gap-2 h-10 px-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-400 transition-colors">
+                    <i class="fas fa-search"></i>
+                    <span class="hidden lg:inline text-sm">Search</span>
+                    <kbd class="hidden lg:inline text-xs font-sans px-1.5 py-0.5 rounded border border-gray-300 dark:border-gray-600">Ctrl K</kbd>
+                </button>
                 <button id="theme-toggle" aria-label="Toggle dark mode"
                     class="size-10 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                     <i class="fas fa-moon text-gray-800 dark:text-yellow-400"></i>
