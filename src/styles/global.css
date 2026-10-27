@@ -1,3 +1,22 @@
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Markdown tables are wrapped in .table-scroll (src/plugins/table-scroll.mjs)
+   so a wide table scrolls inside its own box on phones instead of the page. */
+.table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-block: 2em;
+}
+.table-scroll > table {
+    margin-block: 0;
+}
+
+/* Long words and inline code (`featureCompatibilityVersion`,
+   `session.defaultSession.setPermissionRequestHandler`) have no spaces to wrap at,
+   so let them break when a line has no room instead of widening the page.
+   break-word (unlike anywhere) leaves table column widths alone. */
+.prose {
+    overflow-wrap: break-word;
+}

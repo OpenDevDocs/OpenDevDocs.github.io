@@ -3,6 +3,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
+import { satteri } from '@astrojs/markdown-satteri';
+import { tableScroll } from './src/plugins/table-scroll.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,6 +17,7 @@ export default defineConfig({
     // markup (`language-*` classes and `.token` spans) instead of Shiki's inline styles.
     markdown: {
         syntaxHighlight: 'prism',
+        processor: satteri({ hastPlugins: [tableScroll()] }),
     },
     image: {
         remotePatterns: [
