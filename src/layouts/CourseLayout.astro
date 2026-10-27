@@ -5,6 +5,7 @@ import Head from "../components/Head.astro";
 import Footer from "../components/Footer.astro";
 import TopicSideBar from "../components/Topic_SideBar.astro";
 import InstallPrompt from "../components/InstallPrompt.astro";
+import SiteSearch from "../components/SiteSearch.astro";
 import { getSiteName } from "../data/data";
 
 interface Props {
@@ -191,8 +192,9 @@ const {pageTitle = getSiteName() + " - Learn to Code", pageType = "website", isF
         </section>
         
         <Footer />
-    </div>   
+    </div>
     <InstallPrompt />
+    <SiteSearch />
     
     <script is:inline>
         (function () {

@@ -1,0 +1,285 @@
+---
+// Site-wide search dialog. Any element with `data-search-open` opens it, and so do
+// Ctrl+K / Cmd+K and "/". Results come from /search-index.json (built by
+// src/pages/search-index.json.ts), fetched the first time the dialog opens.
+---
+
+<dialog id="site-search" aria-label="Search the site"
+    class="m-0 sm:mx-auto sm:mt-[10vh] p-0 w-full max-w-none sm:max-w-2xl h-dvh sm:h-auto max-h-dvh sm:max-h-[75vh] sm:rounded-2xl bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 shadow-2xl border-0 sm:border border-gray-200 dark:border-gray-700 backdrop:bg-gray-900/60 backdrop:backdrop-blur-sm">
+    <div class="flex flex-col h-full sm:max-h-[75vh]">
+        <div class="flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+            <i class="fas fa-search text-purple-500" aria-hidden="true"></i>
+            <input id="site-search-input" type="search" autocomplete="off" spellcheck="false"
+                placeholder="Search courses, lessons, blog, interview questions"
+                aria-label="Search" aria-controls="site-search-results"
+                class="flex-1 min-w-0 bg-transparent py-2 text-base outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500" />
+            <button type="button" id="site-search-close" aria-label="Close search"
+                class="shrink-0 text-xs font-medium px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700">
+                Esc
+            </button>
+        </div>
+
+        <div id="site-search-filters" role="tablist" aria-label="Filter results"
+            class="flex gap-2 px-4 py-2 overflow-x-auto border-b border-gray-200 dark:border-gray-700 text-sm">
+            <button type="button" role="tab" data-kind="all" class="search-filter">All</button>
+            <button type="button" role="tab" data-kind="course" class="search-filter">Courses</button>
+            <button type="button" role="tab" data-kind="lesson" class="search-filter">Lessons</button>
+            <button type="button" role="tab" data-kind="blog" class="search-filter">Blog</button>
+            <button type="button" role="tab" data-kind="interview" class="search-filter">Interview</button>
+        </div>
+
+        <div id="site-search-results" role="listbox" class="flex-1 overflow-y-auto p-2" aria-live="polite"></div>
+
+        <div class="hidden sm:flex items-center gap-4 px-4 py-2 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400">
+            <span><kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to move</span>
+            <span><kbd class="search-kbd">Enter</kbd> to open</span>
+            <span><kbd class="search-kbd">Esc</kbd> to close</span>
+        </div>
+    </div>
+</dialog>
+
+<style is:global>
+    #site-search .search-filter {
+        flex-shrink: 0;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        background: #f3f4f6;
+        color: #4b5563;
+        white-space: nowrap;
+    }
+    .dark #site-search .search-filter { background: #1f2937; color: #9ca3af; }
+    #site-search .search-filter[aria-selected="true"] { background: var(--gradient-primary); color: #fff; }
+    #site-search .search-filter .count { opacity: 0.75; margin-left: 0.25rem; font-size: 0.75rem; }
+    #site-search mark { background: transparent; color: #7c3aed; font-weight: 600; }
+    .dark #site-search mark { color: #a78bfa; }
+    #site-search .search-result[aria-selected="true"] { background: #f3e8ff; }
+    .dark #site-search .search-result[aria-selected="true"] { background: rgba(124, 58, 237, 0.2); }
+    #site-search .search-kbd {
+        font-family: inherit;
+        padding: 0 0.3rem;
+        border-radius: 0.25rem;
+        border: 1px solid #d1d5db;
+    }
+    .dark #site-search .search-kbd { border-color: #4b5563; }
+    html.search-open { overflow: hidden; }
+</style>
+
+<script>
+    type Kind = 'course' | 'lesson' | 'blog' | 'interview';
+    type Entry = { k: Kind; t: string; u: string; c?: string; d?: string; x?: string };
+    type Indexed = Entry & { title: string; meta: string; extra: string };
+
+    const KINDS: Record<Kind, { label: string; icon: string; color: string }> = {
+        course: { label: 'Course', icon: 'fa-graduation-cap', color: 'text-purple-500' },
+        lesson: { label: 'Lesson', icon: 'fa-book-open', color: 'text-blue-500' },
+        blog: { label: 'Blog', icon: 'fa-pen-nib', color: 'text-pink-500' },
+        interview: { label: 'Interview', icon: 'fa-user-tie', color: 'text-green-500' },
+    };
+    const MAX_RESULTS = 60;
+
+    const dialog = document.getElementById('site-search') as HTMLDialogElement;
+    const input = document.getElementById('site-search-input') as HTMLInputElement;
+    const results = document.getElementById('site-search-results') as HTMLElement;
+    const filters = [...document.querySelectorAll<HTMLButtonElement>('#site-search-filters [data-kind]')];
+
+    let index: Indexed[] | null = null;
+    let loading: Promise<void> | null = null;
+    let kind: Kind | 'all' = 'all';
+    let shown: Indexed[] = [];
+    let active = 0;
+
+    const normalize = (text: string) => text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
+    const escapeHtml = (text: string) =>
+        text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    function loadIndex() {
+        loading ??= fetch('/search-index.json')
+            .then((response) => {
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return response.json();
+            })
+            .then((entries: Entry[]) => {
+                index = entries.map((entry) => ({
+                    ...entry,
+                    title: normalize(entry.t),
+                    meta: normalize(`${entry.c ?? ''} ${entry.d ?? ''}`),
+                    extra: normalize(entry.x ?? ''),
+                }));
+            })
+            .catch(() => {
+                loading = null; // let the next open try again
+                results.innerHTML = message('fa-triangle-exclamation', 'Search could not load. Check your connection and try again.');
+            });
+        return loading;
+    }
+
+    // Every word of the query must appear somewhere in the entry. Title hits weigh
+    // the most, a word that starts a title word beats one found mid-word, and
+    // courses get a small lift so "react" lists the React course first.
+    function score(entry: Indexed, query: string, terms: string[]) {
+        let total = 0;
+        for (const term of terms) {
+            const at = entry.title.indexOf(term);
+            if (at !== -1) total += at === 0 || /\W/.test(entry.title[at - 1]) ? 10 : 6;
+            else if (entry.meta.includes(term)) total += 3;
+            else if (entry.extra.includes(term)) total += 2;
+            else return 0;
+        }
+        if (entry.title === query) total += 30;
+        else if (entry.title.startsWith(query)) total += 15;
+        else if (terms.length > 1 && entry.title.includes(query)) total += 10;
+        if (entry.k === 'course') total += 4;
+        return total;
+    }
+
+    function highlight(text: string, terms: string[]) {
+        const safe = escapeHtml(text);
+        if (!terms.length) return safe;
+        // The pattern runs on the escaped text, so skip terms that escaping changes.
+        const usable = terms.filter((term) => escapeHtml(term) === term).map(escapeRegExp);
+        if (!usable.length) return safe;
+        return safe.replace(new RegExp(`(${usable.join('|')})`, 'gi'), '<mark>$1</mark>');
+    }
+
+    function message(icon: string, text: string) {
+        return `<div class="flex flex-col items-center gap-3 py-12 px-6 text-center text-gray-500 dark:text-gray-400">
+            <i class="fas ${icon} text-3xl opacity-60" aria-hidden="true"></i><p>${text}</p></div>`;
+    }
+
+    function setCounts(counts: Record<string, number> | null) {
+        for (const button of filters) {
+            const name = (button.dataset.label ??= button.textContent!.trim());
+            const count = counts?.[button.dataset.kind!];
+            button.innerHTML = count === undefined ? name : `${name}<span class="count">${count}</span>`;
+            button.setAttribute('aria-selected', String(button.dataset.kind === kind));
+        }
+    }
+
+    function render() {
+        if (!index) {
+            results.innerHTML = message('fa-spinner fa-spin', 'Loading search...');
+            return;
+        }
+        const query = normalize(input.value.trim());
+        const terms = [...new Set(query.split(/\s+/).filter(Boolean))];
+
+        if (!terms.length) {
+            const totals: Record<string, number> = { all: index.length };
+            for (const entry of index) totals[entry.k] = (totals[entry.k] ?? 0) + 1;
+            setCounts(null);
+            shown = [];
+            results.innerHTML = message('fa-magnifying-glass',
+                `Search ${totals.course ?? 0} courses, ${totals.lesson ?? 0} lessons, ${totals.blog ?? 0} blog posts and ${totals.interview ?? 0} interview questions.`);
+            return;
+        }
+
+        const matches = index
+            .map((entry) => ({ entry, points: score(entry, query, terms) }))
+            .filter((match) => match.points > 0)
+            .sort((a, b) => b.points - a.points || a.entry.t.length - b.entry.t.length);
+
+        const counts: Record<string, number> = { all: matches.length };
+        for (const { entry } of matches) counts[entry.k] = (counts[entry.k] ?? 0) + 1;
+        setCounts(counts);
+
+        shown = matches.filter((match) => kind === 'all' || match.entry.k === kind).slice(0, MAX_RESULTS).map((match) => match.entry);
+        active = 0;
+
+        if (!shown.length) {
+            results.innerHTML = message('fa-face-meh', `No results for "${escapeHtml(input.value.trim())}"${kind === 'all' ? '' : ' in this section'}.`);
+            return;
+        }
+
+        results.innerHTML = shown.map((entry, i) => {
+            const info = KINDS[entry.k];
+            const meta = [info.label, entry.c].filter(Boolean).map((part) => escapeHtml(part!)).join(' · ');
+            return `<a href="${escapeHtml(entry.u)}" role="option" id="search-result-${i}" data-index="${i}" aria-selected="${i === 0}"
+                class="search-result flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                <i class="fas ${info.icon} ${info.color} mt-1 w-4 text-center" aria-hidden="true"></i>
+                <span class="min-w-0 flex-1">
+                    <span class="block font-medium text-gray-900 dark:text-gray-100">${highlight(entry.t, terms)}</span>
+                    <span class="block text-xs text-gray-500 dark:text-gray-400 mt-0.5">${meta}</span>
+                    ${entry.d ? `<span class="block text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-1">${highlight(entry.d, terms)}</span>` : ''}
+                </span>
+            </a>`;
+        }).join('') + (matches.length > shown.length && kind === 'all'
+            ? `<p class="px-3 py-3 text-xs text-center text-gray-500 dark:text-gray-400">Showing the top ${shown.length}. Pick a section above or add another word to narrow it down.</p>`
+            : '');
+        input.setAttribute('aria-activedescendant', 'search-result-0');
+    }
+
+    function setActive(next: number) {
+        if (!shown.length) return;
+        active = (next + shown.length) % shown.length;
+        results.querySelectorAll('.search-result').forEach((el, i) => el.setAttribute('aria-selected', String(i === active)));
+        const el = document.getElementById(`search-result-${active}`);
+        el?.scrollIntoView({ block: 'nearest' });
+        input.setAttribute('aria-activedescendant', `search-result-${active}`);
+    }
+
+    function open() {
+        if (dialog.open) return;
+        dialog.showModal();
+        document.documentElement.classList.add('search-open');
+        input.select();
+        render();
+        loadIndex()?.then(() => dialog.open && render());
+    }
+
+    function close() {
+        dialog.close();
+    }
+
+    dialog.addEventListener('close', () => document.documentElement.classList.remove('search-open'));
+    // A click on the backdrop lands on the <dialog> itself
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) close(); });
+    document.getElementById('site-search-close')!.addEventListener('click', close);
+
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') { event.preventDefault(); setActive(active + 1); }
+        else if (event.key === 'ArrowUp') { event.preventDefault(); setActive(active - 1); }
+        else if (event.key === 'Enter' && shown[active]) {
+            event.preventDefault();
+            const link = document.getElementById(`search-result-${active}`) as HTMLAnchorElement | null;
+            link?.click();
+        }
+    });
+    results.addEventListener('mousemove', (event) => {
+        const item = (event.target as HTMLElement).closest<HTMLElement>('.search-result');
+        if (item && Number(item.dataset.index) !== active) setActive(Number(item.dataset.index));
+    });
+    // Same-page links (an interview question on the page already open) only change
+    // the hash, so close the dialog ourselves.
+    results.addEventListener('click', (event) => {
+        if ((event.target as HTMLElement).closest('.search-result')) close();
+    });
+
+    for (const button of filters) {
+        button.addEventListener('click', () => {
+            kind = button.dataset.kind as Kind | 'all';
+            render();
+            input.focus();
+        });
+    }
+
+    document.addEventListener('click', (event) => {
+        const trigger = (event.target as HTMLElement).closest('[data-search-open]');
+        if (trigger) { event.preventDefault(); open(); }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        const target = event.target as HTMLElement;
+        const typing = target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName);
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+            event.preventDefault();
+            dialog.open ? close() : open();
+        } else if (event.key === '/' && !typing && !dialog.open) {
+            event.preventDefault();
+            open();
+        }
+    });
+
+    setCounts(null);
+</script>
