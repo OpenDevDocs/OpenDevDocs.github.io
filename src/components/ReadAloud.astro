@@ -1,0 +1,365 @@
+---
+// Read Aloud for lesson pages. Uses the browser's Web Speech API, so nothing is
+// sent anywhere and the start button stays hidden where speechSynthesis is missing.
+// Elements marked `data-read-aloud` are read in page order: the title, the
+// description and the lesson body. Code blocks are announced, not read; tables are
+// read row by row. Each block (or ~180 character chunk of a long block) is its own
+// utterance, which keeps Chrome's ~15 second cut-off away. The current block is
+// always highlighted, and the current word too when the voice sends word boundaries
+// and the browser has the CSS Custom Highlight API.
+---
+
+<div id="read-aloud-player" role="region" aria-label="Read aloud player" hidden
+    class="fixed z-[60] inset-x-4 bottom-4 sm:left-1/2 sm:right-auto sm:w-[26rem] sm:-translate-x-1/2 flex items-center gap-3 p-2 pl-4 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-800/95 backdrop-blur shadow-2xl">
+    <i class="fas fa-headphones text-purple-500 shrink-0" aria-hidden="true"></i>
+    <div class="flex-1 min-w-0">
+        <p class="text-sm font-medium truncate">Read aloud</p>
+        <p id="read-aloud-status" class="text-xs text-gray-500 dark:text-gray-400 truncate">Ready</p>
+    </div>
+    <button type="button" id="read-aloud-rate" aria-label="Reading speed 1x, change speed"
+        class="shrink-0 min-w-[3rem] h-10 px-2 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+        1x
+    </button>
+    <button type="button" id="read-aloud-toggle" aria-label="Pause reading"
+        class="shrink-0 size-10 rounded-full gradient-bg text-white hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800">
+        <i class="fas fa-pause" aria-hidden="true"></i>
+    </button>
+    <button type="button" id="read-aloud-close" aria-label="Close read aloud"
+        class="shrink-0 size-10 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+        <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+</div>
+
+<style is:global>
+    .read-aloud-block {
+        background-color: rgba(124, 58, 237, 0.08);
+        box-shadow: 0 0 0 0.4rem rgba(124, 58, 237, 0.08);
+        border-radius: 0.25rem;
+    }
+    .dark .read-aloud-block {
+        background-color: rgba(167, 139, 250, 0.12);
+        box-shadow: 0 0 0 0.4rem rgba(167, 139, 250, 0.12);
+    }
+    ::highlight(read-aloud-word) {
+        background-color: rgba(168, 85, 247, 0.35);
+        color: inherit;
+    }
+    .dark ::highlight(read-aloud-word) {
+        background-color: rgba(192, 132, 252, 0.45);
+        color: #fff;
+    }
+    /* Keep the footer's scroll-to-top button clear of the player */
+    body.read-aloud-open .scroll-to-top { bottom: 6rem; }
+</style>
+
+<script>
+    type Piece = { node: Text; start: number; end: number };
+    type Block = { el: Element; text: string; pieces: Piece[] };
+    type Chunk = { block: Block; start: number; end: number; index: number };
+
+    const synth = window.speechSynthesis;
+    const supported = !!synth && 'SpeechSynthesisUtterance' in window;
+    const startButtons = document.querySelectorAll<HTMLButtonElement>('[data-read-aloud-start]');
+    const player = document.getElementById('read-aloud-player');
+
+    if (supported && player) {
+        // A reload can leave the previous page's queue playing
+        synth.cancel();
+
+        const statusEl = document.getElementById('read-aloud-status')!;
+        const toggleBtn = document.getElementById('read-aloud-toggle') as HTMLButtonElement;
+        const rateBtn = document.getElementById('read-aloud-rate') as HTMLButtonElement;
+        const closeBtn = document.getElementById('read-aloud-close') as HTMLButtonElement;
+
+        const BLOCK_SELECTOR = 'p, li, h1, h2, h3, h4, h5, h6, dt, dd, figcaption, summary, tr, blockquote, div';
+        const SKIP_SELECTOR = 'script, style, noscript, svg, button, [aria-hidden="true"], .sr-only';
+        const MAX_CHUNK = 180;
+        const RATES = [1, 1.25, 1.5, 0.75];
+        const wordHighlight = 'highlights' in CSS && typeof Highlight === 'function' ? new Highlight() : null;
+        if (wordHighlight) CSS.highlights.set('read-aloud-word', wordHighlight);
+
+        let chunks: Chunk[] = [];
+        let blockCount = 0;
+        let current = 0;       // chunk being read
+        let offset = 0;        // where the next utterance starts inside that chunk
+        let playing = false;
+        let generation = 0;    // bumps on every stop so stale utterance events are ignored
+        let utterance: SpeechSynthesisUtterance | null = null;
+        let rateIndex = 0;
+        let currentBlockEl: Element | null = null;
+        let userScrolledAt = 0;
+
+        // Collect readable blocks in page order. Text nodes belong to their nearest
+        // block ancestor, so a list item with a nested list reads as two blocks.
+        function collectBlocks(): Block[] {
+            const blocks: Block[] = [];
+            document.querySelectorAll('[data-read-aloud]').forEach((root) => {
+                const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
+                    acceptNode(node) {
+                        if (node.nodeType === Node.TEXT_NODE)
+                            return node.parentElement?.closest('pre') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+                        const el = node as Element;
+                        if (el.matches('pre')) return NodeFilter.FILTER_ACCEPT;
+                        if (el.matches(SKIP_SELECTOR)) return NodeFilter.FILTER_REJECT;
+                        return NodeFilter.FILTER_SKIP;
+                    },
+                });
+                let last: Block | null = null;
+                let lastCell: Element | null = null;
+                for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        // Code blocks are announced so listeners know to look, not read out
+                        blocks.push(last = { el: node as Element, text: 'Code example.', pieces: [] });
+                        lastCell = null;
+                        continue;
+                    }
+                    const text = node as Text;
+                    if (!text.data.trim()) continue;
+                    const parent = text.parentElement;
+                    if (!parent) continue;
+                    const owner = parent.closest(BLOCK_SELECTOR);
+                    const el = owner && owner !== root && root.contains(owner) ? owner : root;
+                    if (!last || last.el !== el) {
+                        blocks.push(last = { el, text: '', pieces: [] });
+                        lastCell = null;
+                    }
+                    // Table cells are spoken as a list: "Name, Type, Default."
+                    const cell = parent.closest('td, th');
+                    if (cell && lastCell && cell !== lastCell) last.text += ', ';
+                    lastCell = cell;
+                    const start = last.text.length;
+                    // Same length as the original, so offsets still map back to the DOM
+                    last.text += text.data.replace(/\s/g, ' ');
+                    last.pieces.push({ node: text, start, end: last.text.length });
+                }
+            });
+            return blocks.filter((block) => block.text.trim());
+        }
+
+        // Split long blocks at sentence ends (or commas, or spaces) into short utterances
+        function chunkBlocks(blocks: Block[]): Chunk[] {
+            const result: Chunk[] = [];
+            blocks.forEach((block, index) => {
+                const { text } = block;
+                let start = 0;
+                while (start < text.length) {
+                    let end = text.length;
+                    if (end - start > MAX_CHUNK) {
+                        const slice = text.slice(start, start + MAX_CHUNK);
+                        const cut = Math.max(slice.lastIndexOf('. '), slice.lastIndexOf('? '), slice.lastIndexOf('! '), slice.lastIndexOf(': '));
+                        const soft = cut > MAX_CHUNK / 3 ? cut : Math.max(slice.lastIndexOf(', '), slice.lastIndexOf('; '));
+                        const space = soft > MAX_CHUNK / 3 ? soft : slice.lastIndexOf(' ');
+                        end = start + (space > 0 ? space + 1 : MAX_CHUNK);
+                    }
+                    if (text.slice(start, end).trim()) result.push({ block, start, end, index });
+                    start = end;
+                }
+            });
+            return result;
+        }
+
+        function pickVoice(): SpeechSynthesisVoice | null {
+            const voices = synth.getVoices();
+            const lang = (document.documentElement.lang || 'en').toLowerCase();
+            const matching = voices.filter((voice) => voice.lang.toLowerCase().startsWith(lang.slice(0, 2)));
+            // Local voices send word boundaries more reliably than network ones
+            return matching.find((v) => v.default && v.localService)
+                ?? matching.find((v) => v.localService)
+                ?? matching[0] ?? null;
+        }
+
+        function getScrollParent(el: Element): Element | null {
+            for (let node = el.parentElement; node && node !== document.body; node = node.parentElement) {
+                const { overflowY } = getComputedStyle(node);
+                if ((overflowY === 'auto' || overflowY === 'scroll') && node.scrollHeight > node.clientHeight + 1) return node;
+            }
+            return null;
+        }
+
+        // Scroll the lesson section (when it scrolls on its own) and then the window,
+        // so the given rect sits in the upper part of the space above the player.
+        function keepInView(rect: DOMRect, el: Element) {
+            if (Date.now() - userScrolledAt < 4000) return;
+            const behavior: ScrollBehavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            const bandTop = 96;
+            const bandBottom = player!.getBoundingClientRect().top - 24;
+            const container = getScrollParent(el);
+            if (container) {
+                const box = container.getBoundingClientRect();
+                const top = Math.max(box.top, bandTop);
+                const bottom = Math.min(box.bottom, bandBottom);
+                if (bottom - top > 80 && (rect.top < top || rect.bottom > bottom)) {
+                    const delta = rect.top - (top + (bottom - top) * 0.3);
+                    container.scrollBy({ top: delta, behavior });
+                    rect = new DOMRect(rect.x, rect.y - delta, rect.width, rect.height);
+                }
+            }
+            if (rect.top < bandTop || rect.bottom > bandBottom) {
+                window.scrollBy({ top: rect.top - (bandTop + (bandBottom - bandTop) * 0.3), behavior });
+            }
+        }
+
+        function rangeFor(block: Block, start: number, end: number): Range | null {
+            const first = block.pieces.find((piece) => start < piece.end);
+            const lastPiece = [...block.pieces].reverse().find((piece) => end > piece.start);
+            if (!first || !lastPiece) return null;
+            const range = document.createRange();
+            range.setStart(first.node, Math.max(0, start - first.start));
+            range.setEnd(lastPiece.node, Math.min(lastPiece.node.length, end - lastPiece.start));
+            return range;
+        }
+
+        function highlightBlock(el: Element | null) {
+            if (currentBlockEl === el) return;
+            currentBlockEl?.classList.remove('read-aloud-block');
+            currentBlockEl = el;
+            el?.classList.add('read-aloud-block');
+        }
+
+        function highlightWord(block: Block, index: number, length: number) {
+            if (!length) length = block.text.slice(index).match(/^\S+/)?.[0].length ?? 0;
+            // Don't paint trailing punctuation that the engine includes
+            const word = block.text.slice(index, index + length).replace(/[.,;:!?)"']+$/, '');
+            const range = word ? rangeFor(block, index, index + word.length) : null;
+            if (!range) return;
+            wordHighlight?.clear();
+            wordHighlight?.add(range);
+            keepInView(range.getBoundingClientRect(), block.el);
+        }
+
+        function setStatus() {
+            const chunk = chunks[current];
+            const position = chunk ? `Part ${chunk.index + 1} of ${blockCount}` : chunks.length ? 'Finished' : 'Ready';
+            statusEl.textContent = playing ? position : chunk ? `Paused, ${position.toLowerCase()}` : position;
+            toggleBtn.setAttribute('aria-label', playing ? 'Pause reading' : 'Resume reading');
+            toggleBtn.querySelector('i')!.className = playing ? 'fas fa-pause' : 'fas fa-play';
+            startButtons.forEach((btn) => btn.setAttribute('aria-pressed', String(!player!.hidden)));
+        }
+
+        function speakCurrent() {
+            const chunk = chunks[current];
+            if (!chunk) {
+                // Reached the end: stay open so Play starts again from the top
+                playing = false;
+                current = chunks.length;
+                wordHighlight?.clear();
+                highlightBlock(null);
+                setStatus();
+                return;
+            }
+            const base = chunk.start + offset;
+            const myGeneration = generation;
+            utterance = new SpeechSynthesisUtterance(chunk.block.text.slice(base, chunk.end));
+            const voice = pickVoice();
+            if (voice) utterance.voice = voice;
+            utterance.lang = voice?.lang || document.documentElement.lang || 'en';
+            utterance.rate = RATES[rateIndex];
+            utterance.onstart = () => {
+                if (myGeneration !== generation) return;
+                if (chunk.block.el !== currentBlockEl) keepInView(chunk.block.el.getBoundingClientRect(), chunk.block.el);
+                highlightBlock(chunk.block.el);
+            };
+            utterance.onboundary = (event) => {
+                if (myGeneration !== generation || event.name === 'sentence') return;
+                highlightWord(chunk.block, base + event.charIndex, event.charLength);
+                offset = base + event.charIndex - chunk.start;
+            };
+            const next = () => {
+                if (myGeneration !== generation) return;
+                wordHighlight?.clear();
+                current++;
+                offset = 0;
+                setStatus();
+                speakCurrent();
+            };
+            utterance.onend = next;
+            utterance.onerror = (event) => {
+                if (myGeneration !== generation || event.error === 'interrupted' || event.error === 'canceled') return;
+                if (event.error === 'not-allowed') return pause();
+                next();
+            };
+            highlightBlock(chunk.block.el);
+            setStatus();
+            // Chrome won't speak while a previous pause is still in effect
+            if (synth.paused) synth.resume();
+            synth.speak(utterance);
+        }
+
+        // Pause cancels and later restarts from the last word heard: speechSynthesis.pause()
+        // is unreliable (Android Chrome drops the queue, some voices ignore it).
+        function stopSpeech() {
+            generation++;
+            utterance = null;
+            synth.cancel();
+        }
+
+        function play() {
+            if (!chunks.length || current >= chunks.length) {
+                chunks = chunkBlocks(collectBlocks());
+                blockCount = chunks.length ? chunks[chunks.length - 1].index + 1 : 0;
+                current = 0;
+                offset = 0;
+            }
+            stopSpeech();
+            playing = true;
+            userScrolledAt = 0;
+            speakCurrent();
+        }
+
+        function pause() {
+            stopSpeech();
+            playing = false;
+            setStatus();
+        }
+
+        function open() {
+            player!.hidden = false;
+            document.body.classList.add('read-aloud-open');
+            play();
+            toggleBtn.focus();
+        }
+
+        function close() {
+            stopSpeech();
+            playing = false;
+            chunks = [];
+            current = 0;
+            offset = 0;
+            wordHighlight?.clear();
+            highlightBlock(null);
+            player!.hidden = true;
+            document.body.classList.remove('read-aloud-open');
+            setStatus();
+        }
+
+        startButtons.forEach((btn) => {
+            btn.hidden = false;
+            btn.addEventListener('click', () => (player.hidden ? open() : close()));
+        });
+        toggleBtn.addEventListener('click', () => (playing ? pause() : play()));
+        closeBtn.addEventListener('click', () => {
+            close();
+            startButtons[0]?.focus();
+        });
+        rateBtn.addEventListener('click', () => {
+            rateIndex = (rateIndex + 1) % RATES.length;
+            rateBtn.textContent = `${RATES[rateIndex]}x`;
+            rateBtn.setAttribute('aria-label', `Reading speed ${RATES[rateIndex]}x, change speed`);
+            // Restart the current chunk from the last word at the new speed
+            if (playing) play();
+        });
+        player.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                close();
+                startButtons[0]?.focus();
+            }
+        });
+        // Let readers scroll away without being pulled back straight away
+        ['wheel', 'touchmove'].forEach((type) =>
+            window.addEventListener(type, () => { userScrolledAt = Date.now(); }, { passive: true, capture: true }));
+        window.addEventListener('pagehide', () => synth.cancel());
+        window.addEventListener('beforeunload', () => synth.cancel());
+        // Voices can load late; nothing to do but make sure they are requested
+        synth.getVoices();
+    }
+</script>
