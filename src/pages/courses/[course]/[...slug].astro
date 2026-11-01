@@ -8,6 +8,7 @@ import {getFormattedDate, getAdjacentElements} from "../../../data/utils"
 import AuthorChip from '../../../components/AuthorChip.astro';
 import Prose from "../../../components/Prose.astro"
 import AdUnit from '../../../components/AdUnit.astro';
+import ReadAloud from '../../../components/ReadAloud.astro';
 import { ADSENSE_SLOTS } from '../../../data/data';
 import { syllabus } from '../../../content/syllabus';
 
@@ -148,9 +149,9 @@ const readingMinutes = Math.max(1, Math.round(lessonWords / 200));
                     {courseData?.courseTitle}
                 </a>
                 <span class="text-gray-400"> / </span>
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">{article.data.title}</h1>
+                <h1 data-read-aloud class="text-4xl md:text-5xl font-bold mb-4">{article.data.title}</h1>
             </div>
-            <p class="text-xl text-gray-600 dark:text-gray-300 mb-6">{article.data.metadescription}</p>
+            <p data-read-aloud class="text-xl text-gray-600 dark:text-gray-300 mb-6">{article.data.metadescription}</p>
     
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center flex-wrap gap-4 space-x-4">
@@ -176,7 +177,13 @@ const readingMinutes = Math.max(1, Math.round(lessonWords / 200));
                     </div>
                 </div>
     
-                <div class="flex items-center space-x-4">
+                <div class="flex flex-wrap items-center gap-4">
+                    <!-- Shown by ReadAloud.astro only where the browser can speak -->
+                    <button type="button" data-read-aloud-start hidden aria-pressed="false"
+                        class="px-4 py-2 rounded-lg font-medium bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+                        <i class="fas fa-headphones mr-2 text-purple-500" aria-hidden="true"></i>
+                        <span>Listen</span>
+                    </button>
                     <button id="mark-complete"
                         class="px-6 py-2 gradient-bg text-white font-medium rounded-lg hover:opacity-90 transition-opacity"> <!-- bg-linear-to-r from-green-400 to-lime-500 -->
                         <i class="far fa-check-circle mr-2"></i>
@@ -205,7 +212,7 @@ const readingMinutes = Math.max(1, Math.round(lessonWords / 200));
                                 {article.data.level == 3 && "Advance"}
                                 &nbsp;Topic</span>
                             
-                            <div class="content prose dark:prose-invert prose-slate max-w-none space-y-6">
+                            <div data-read-aloud class="content prose dark:prose-invert prose-slate max-w-none space-y-6">
                                 <Prose set:html={article.rendered?.html.split(`<code id="code-content"`)[0]}>
                                     <!-- Content will be here -->
                                  </Prose>
@@ -317,6 +324,7 @@ const readingMinutes = Math.max(1, Math.round(lessonWords / 200));
                 </div>
             </div>
         </section>
+        <ReadAloud />
         <span class="hidden bg-green-500 dark:bg-green-500 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"></span>
     </article>
     <!-- Prism.js for code highlighting -->
