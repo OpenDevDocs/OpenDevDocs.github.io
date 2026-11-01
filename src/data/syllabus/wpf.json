@@ -9,6 +9,12 @@
       "section": "Getting Started"
     },
     {
+      "topicName": "C# Concepts You Need for WPF",
+      "slug": "csharp-concepts-you-need-for-wpf",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
       "topicName": "Setting Up Visual Studio and the .NET SDK",
       "slug": "setting-up-visual-studio-and-the-dotnet-sdk",
       "difficultyLevel": "Beginner",

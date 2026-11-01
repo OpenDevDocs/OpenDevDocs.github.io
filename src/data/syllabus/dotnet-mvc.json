@@ -9,6 +9,12 @@
       "section": "Getting Started"
     },
     {
+      "topicName": "C# Concepts You Need for ASP.NET Core MVC",
+      "slug": "csharp-concepts-you-need-for-mvc",
+      "difficultyLevel": "Beginner",
+      "section": "Getting Started"
+    },
+    {
       "topicName": "Setting Up the .NET SDK and Tools",
       "slug": "setting-up-the-dotnet-sdk-and-tools",
       "difficultyLevel": "Beginner",
