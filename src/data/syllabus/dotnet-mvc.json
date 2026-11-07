@@ -207,6 +207,12 @@
       "section": "Working with Databases"
     },
     {
+      "topicName": "Database First with an Existing Database",
+      "slug": "database-first-with-an-existing-database",
+      "difficultyLevel": "Intermediate",
+      "section": "Working with Databases"
+    },
+    {
       "topicName": "CRUD Operations with EF Core",
       "slug": "crud-operations-with-ef-core",
       "difficultyLevel": "Intermediate",
