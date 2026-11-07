@@ -101,7 +101,7 @@ Filter attributes carry over with namespace changes. `ActionFilterAttribute` has
 EF 6 and EF Core are different libraries with similar surfaces. Simple code moves easily: `DbContext`, `DbSet`, LINQ queries, `SaveChanges`. Differences to check:
 
 - No lazy loading unless you opt in. Add `Include` where the old code relied on it.
-- The `EDMX` designer is gone. Only code first.
+- The `EDMX` designer is gone. Code First apps keep working with classes and migrations. Database First apps generate plain C# classes from the existing database with `dotnet ef dbcontext scaffold` instead, as shown in [Database First with an Existing Database](/courses/dotnet-mvc/database-first-with-an-existing-database).
 - Some LINQ that EF 6 ran in memory now throws because EF Core insists on translating to SQL. Add `AsEnumerable()` where needed.
 - Migrations have a new command line and the history table format differs. Create a fresh initial migration against the existing schema and mark it applied.
 
