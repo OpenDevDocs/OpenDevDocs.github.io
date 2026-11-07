@@ -6,28 +6,63 @@
 // read row by row. Each block (or ~180 character chunk of a long block) is its own
 // utterance, which keeps Chrome's ~15 second cut-off away. The current block is
 // always highlighted, and the current word too when the voice sends word boundaries
-// and the browser has the CSS Custom Highlight API.
+// and the browser has the CSS Custom Highlight API. Previous/Next jump a whole
+// block; the voice and speed are picked in the settings panel and remembered in
+// localStorage.
 ---
 
 <div id="read-aloud-player" role="region" aria-label="Read aloud player" hidden
-    class="fixed z-[60] inset-x-4 bottom-4 sm:left-1/2 sm:right-auto sm:w-[26rem] sm:-translate-x-1/2 flex items-center gap-3 p-2 pl-4 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-800/95 backdrop-blur shadow-2xl">
-    <i class="fas fa-headphones text-purple-500 shrink-0" aria-hidden="true"></i>
-    <div class="flex-1 min-w-0">
-        <p class="text-sm font-medium truncate">Read aloud</p>
-        <p id="read-aloud-status" class="text-xs text-gray-500 dark:text-gray-400 truncate">Ready</p>
+    class="fixed z-[60] inset-x-4 bottom-4 sm:left-1/2 sm:right-auto sm:w-[30rem] sm:-translate-x-1/2 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-800/95 backdrop-blur shadow-2xl">
+    <!-- Voice and speed settings, opened from the sliders button -->
+    <div id="read-aloud-settings" hidden class="grid grid-cols-[1fr_auto] gap-3 p-3 pb-0">
+        <label class="min-w-0 text-xs font-medium text-gray-600 dark:text-gray-300">
+            Voice
+            <select id="read-aloud-voice"
+                class="mt-1 block w-full h-9 px-2 rounded-lg text-sm bg-gray-100 dark:bg-gray-700 border border-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+                <option value="">Automatic</option>
+            </select>
+        </label>
+        <label class="text-xs font-medium text-gray-600 dark:text-gray-300">
+            Speed
+            <select id="read-aloud-rate"
+                class="mt-1 block h-9 px-2 rounded-lg text-sm bg-gray-100 dark:bg-gray-700 border border-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+                <option value="0.75">0.75x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+                <option value="1.75">1.75x</option>
+                <option value="2">2x</option>
+            </select>
+        </label>
     </div>
-    <button type="button" id="read-aloud-rate" aria-label="Reading speed 1x, change speed"
-        class="shrink-0 min-w-[3rem] h-10 px-2 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
-        1x
-    </button>
-    <button type="button" id="read-aloud-toggle" aria-label="Pause reading"
-        class="shrink-0 size-10 rounded-full gradient-bg text-white hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800">
-        <i class="fas fa-pause" aria-hidden="true"></i>
-    </button>
-    <button type="button" id="read-aloud-close" aria-label="Close read aloud"
-        class="shrink-0 size-10 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
-        <i class="fas fa-times" aria-hidden="true"></i>
-    </button>
+    <div class="flex items-center gap-1.5 sm:gap-2 p-2 pl-3 sm:pl-4">
+        <i class="fas fa-headphones text-purple-500 shrink-0" aria-hidden="true"></i>
+        <div class="flex-1 min-w-0 sm:ml-1">
+            <p class="text-sm font-medium truncate">Read aloud</p>
+            <p id="read-aloud-status" class="text-xs text-gray-500 dark:text-gray-400 truncate" aria-live="polite">Ready</p>
+        </div>
+        <button type="button" id="read-aloud-prev" aria-label="Previous block" title="Previous block"
+            class="shrink-0 size-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-40 disabled:pointer-events-none transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+            <i class="fas fa-backward-step" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="read-aloud-toggle" aria-label="Pause reading"
+            class="shrink-0 size-10 rounded-full gradient-bg text-white hover:opacity-90 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800">
+            <i class="fas fa-pause" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="read-aloud-next" aria-label="Next block" title="Next block"
+            class="shrink-0 size-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-40 disabled:pointer-events-none transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+            <i class="fas fa-forward-step" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="read-aloud-settings-toggle" aria-label="Voice and speed" title="Voice and speed"
+            aria-expanded="false" aria-controls="read-aloud-settings"
+            class="shrink-0 size-9 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 aria-expanded:text-purple-600 dark:aria-expanded:text-purple-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+            <i class="fas fa-sliders" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="read-aloud-close" aria-label="Close read aloud" title="Close"
+            class="shrink-0 size-9 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
 </div>
 
 <style is:global>
@@ -68,13 +103,19 @@
 
         const statusEl = document.getElementById('read-aloud-status')!;
         const toggleBtn = document.getElementById('read-aloud-toggle') as HTMLButtonElement;
-        const rateBtn = document.getElementById('read-aloud-rate') as HTMLButtonElement;
         const closeBtn = document.getElementById('read-aloud-close') as HTMLButtonElement;
+        const prevBtn = document.getElementById('read-aloud-prev') as HTMLButtonElement;
+        const nextBtn = document.getElementById('read-aloud-next') as HTMLButtonElement;
+        const settingsBtn = document.getElementById('read-aloud-settings-toggle') as HTMLButtonElement;
+        const settingsPanel = document.getElementById('read-aloud-settings')!;
+        const voiceSelect = document.getElementById('read-aloud-voice') as HTMLSelectElement;
+        const rateSelect = document.getElementById('read-aloud-rate') as HTMLSelectElement;
 
         const BLOCK_SELECTOR = 'p, li, h1, h2, h3, h4, h5, h6, dt, dd, figcaption, summary, tr, blockquote, div';
         const SKIP_SELECTOR = 'script, style, noscript, svg, button, [aria-hidden="true"], .sr-only';
         const MAX_CHUNK = 180;
-        const RATES = [1, 1.25, 1.5, 0.75];
+        const VOICE_KEY = 'readAloud.voice';
+        const RATE_KEY = 'readAloud.rate';
         const wordHighlight = 'highlights' in CSS && typeof Highlight === 'function' ? new Highlight() : null;
         if (wordHighlight) CSS.highlights.set('read-aloud-word', wordHighlight);
 
@@ -85,7 +126,7 @@
         let playing = false;
         let generation = 0;    // bumps on every stop so stale utterance events are ignored
         let utterance: SpeechSynthesisUtterance | null = null;
-        let rateIndex = 0;
+        let rate = 1;
         let currentBlockEl: Element | null = null;
         let userScrolledAt = 0;
 
@@ -158,14 +199,69 @@
             return result;
         }
 
-        function pickVoice(): SpeechSynthesisVoice | null {
-            const voices = synth.getVoices();
-            const lang = (document.documentElement.lang || 'en').toLowerCase();
-            const matching = voices.filter((voice) => voice.lang.toLowerCase().startsWith(lang.slice(0, 2)));
-            // Local voices send word boundaries more reliably than network ones
+        // localStorage can be missing or throw (private windows, blocked storage)
+        function load(key: string): string | null {
+            try { return localStorage.getItem(key); } catch { return null; }
+        }
+        function save(key: string, value: string) {
+            try {
+                if (value) localStorage.setItem(key, value);
+                else localStorage.removeItem(key);
+            } catch { /* not remembered, still works for this page */ }
+        }
+
+        const pageLang = () => (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+
+        // The automatic choice: a voice in the page's language, preferring local ones
+        // (they send word boundaries more reliably than network ones)
+        function autoVoice(): SpeechSynthesisVoice | null {
+            const matching = synth.getVoices().filter((voice) => voice.lang.toLowerCase().startsWith(pageLang()));
             return matching.find((v) => v.default && v.localService)
                 ?? matching.find((v) => v.localService)
+                ?? matching.find((v) => v.default)
                 ?? matching[0] ?? null;
+        }
+
+        function pickVoice(): SpeechSynthesisVoice | null {
+            const chosen = voiceSelect.value;
+            return (chosen && synth.getVoices().find((voice) => voice.voiceURI === chosen)) || autoVoice();
+        }
+
+        function languageName(code: string): string {
+            try {
+                return new Intl.DisplayNames([code], { type: 'language' }).of(code) ?? code;
+            } catch {
+                return code;
+            }
+        }
+
+        // Voices load asynchronously (Chrome fills the list only after voiceschanged),
+        // so the list is rebuilt each time it changes. Voices in the page's language
+        // come first; the saved voice is reselected once it shows up.
+        function fillVoices() {
+            const voices = synth.getVoices();
+            const wanted = voiceSelect.value || load(VOICE_KEY) || '';
+            const auto = autoVoice();
+            const sameLang = voices.filter((voice) => voice.lang.toLowerCase().startsWith(pageLang()));
+            const others = voices.filter((voice) => !sameLang.includes(voice));
+            const option = (voice: SpeechSynthesisVoice) =>
+                // Many names already say the language ("Microsoft Zira - English (United States)")
+                new Option(`${voice.name}${voice.name.includes('(') ? '' : ` (${voice.lang})`}${voice.localService ? '' : ', online'}`, voice.voiceURI);
+            const byName = (a: SpeechSynthesisVoice, b: SpeechSynthesisVoice) => a.name.localeCompare(b.name);
+            voiceSelect.replaceChildren(new Option(auto ? `Automatic (${auto.name})` : 'Automatic', ''));
+            if (sameLang.length) {
+                const group = document.createElement('optgroup');
+                group.label = languageName(pageLang());
+                group.append(...sameLang.sort(byName).map(option));
+                voiceSelect.append(group);
+            }
+            if (others.length) {
+                const group = document.createElement('optgroup');
+                group.label = 'Other languages';
+                group.append(...others.sort(byName).map(option));
+                voiceSelect.append(group);
+            }
+            voiceSelect.value = voices.some((voice) => voice.voiceURI === wanted) ? wanted : '';
         }
 
         function getScrollParent(el: Element): Element | null {
@@ -234,6 +330,38 @@
             toggleBtn.setAttribute('aria-label', playing ? 'Pause reading' : 'Resume reading');
             toggleBtn.querySelector('i')!.className = playing ? 'fas fa-pause' : 'fas fa-play';
             startButtons.forEach((btn) => btn.setAttribute('aria-pressed', String(!player!.hidden)));
+            const blockIndex = chunk ? chunk.index : blockCount;
+            prevBtn.disabled = !chunks.length || blockIndex === 0;
+            nextBtn.disabled = !chunk;
+        }
+
+        // Move to the start of the previous or next block. Keeps playing if it was
+        // playing, otherwise just marks where Play will start.
+        function jump(step: 1 | -1) {
+            if (!chunks.length) return;
+            const from = chunks[current]?.index ?? blockCount;
+            const target = Math.min(Math.max(from + step, 0), blockCount);
+            if (target === from) return;
+            stopSpeech();
+            wordHighlight?.clear();
+            offset = 0;
+            userScrolledAt = 0;
+            current = target >= blockCount ? chunks.length : chunks.findIndex((chunk) => chunk.index === target);
+            const chunk = chunks[current];
+            if (!chunk) {
+                // Past the last block: same as reaching the end
+                speakCurrent();
+                return;
+            }
+            highlightBlock(chunk.block.el);
+            keepInView(chunk.block.el.getBoundingClientRect(), chunk.block.el);
+            if (playing) speakCurrent();
+            else setStatus();
+        }
+
+        function setSettingsOpen(isOpen: boolean) {
+            settingsPanel.hidden = !isOpen;
+            settingsBtn.setAttribute('aria-expanded', String(isOpen));
         }
 
         function speakCurrent() {
@@ -253,7 +381,7 @@
             const voice = pickVoice();
             if (voice) utterance.voice = voice;
             utterance.lang = voice?.lang || document.documentElement.lang || 'en';
-            utterance.rate = RATES[rateIndex];
+            utterance.rate = rate;
             utterance.onstart = () => {
                 if (myGeneration !== generation) return;
                 if (chunk.block.el !== currentBlockEl) keepInView(chunk.block.el.getBoundingClientRect(), chunk.block.el);
@@ -327,6 +455,7 @@
             offset = 0;
             wordHighlight?.clear();
             highlightBlock(null);
+            setSettingsOpen(false);
             player!.hidden = true;
             document.body.classList.remove('read-aloud-open');
             setStatus();
@@ -341,25 +470,42 @@
             close();
             startButtons[0]?.focus();
         });
-        rateBtn.addEventListener('click', () => {
-            rateIndex = (rateIndex + 1) % RATES.length;
-            rateBtn.textContent = `${RATES[rateIndex]}x`;
-            rateBtn.setAttribute('aria-label', `Reading speed ${RATES[rateIndex]}x, change speed`);
+        prevBtn.addEventListener('click', () => jump(-1));
+        nextBtn.addEventListener('click', () => jump(1));
+        settingsBtn.addEventListener('click', () => setSettingsOpen(settingsPanel.hidden));
+
+        const savedRate = load(RATE_KEY);
+        if (savedRate && [...rateSelect.options].some((option) => option.value === savedRate)) rateSelect.value = savedRate;
+        rate = Number(rateSelect.value) || 1;
+        rateSelect.addEventListener('change', () => {
+            rate = Number(rateSelect.value) || 1;
+            save(RATE_KEY, rate === 1 ? '' : rateSelect.value);
             // Restart the current chunk from the last word at the new speed
             if (playing) play();
         });
+        voiceSelect.addEventListener('change', () => {
+            save(VOICE_KEY, voiceSelect.value);
+            // Start the current part again so it is heard in the new voice
+            offset = 0;
+            if (playing) play();
+        });
+
         player.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                close();
-                startButtons[0]?.focus();
+            if (event.key !== 'Escape') return;
+            if (!settingsPanel.hidden) {
+                setSettingsOpen(false);
+                settingsBtn.focus();
+                return;
             }
+            close();
+            startButtons[0]?.focus();
         });
         // Let readers scroll away without being pulled back straight away
         ['wheel', 'touchmove'].forEach((type) =>
             window.addEventListener(type, () => { userScrolledAt = Date.now(); }, { passive: true, capture: true }));
         window.addEventListener('pagehide', () => synth.cancel());
         window.addEventListener('beforeunload', () => synth.cancel());
-        // Voices can load late; nothing to do but make sure they are requested
-        synth.getVoices();
+        fillVoices();
+        synth.addEventListener('voiceschanged', fillVoices);
     }
 </script>
