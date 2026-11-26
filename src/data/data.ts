@@ -15,7 +15,8 @@ export const CONTACT_EMAIL = "";
 
 // Google AdSense publisher ID, e.g. "ca-pub-1234567890123456".
 // While it is empty no ad code, verification tag or ads.txt record is emitted.
-export const ADSENSE_CLIENT_ID = "";
+// google.com, pub-2574388510848450, DIRECT, f08c47fec0942fa0
+export const ADSENSE_CLIENT_ID = "ca-pub-2574388510848450";
 
 // Ad unit IDs (the `data-ad-slot` number) for manual placements. Leave a slot
 // empty to skip that placement; Auto ads still work with just the client ID.

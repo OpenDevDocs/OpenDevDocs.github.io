@@ -22,7 +22,7 @@ const showAds = ADSENSE_CLIENT_ID !== "" && !noAds;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <!-- Google Analytics Code-->
     <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NH8RXZPL"></script>
     <script is:inline>
@@ -30,6 +30,10 @@ const showAds = ADSENSE_CLIENT_ID !== "" && !noAds;
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     </script>
+
+    <!-- Adsense Script -->
+    <script is:inline async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2574388510848450" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-2574388510848450">
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
